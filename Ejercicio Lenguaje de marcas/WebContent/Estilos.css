@@ -1,0 +1,39 @@
+@CHARSET "ISO-8859-1";
+h1 {
+	text-align: center;
+}
+#links {
+	text-align: center;
+}
+.bandera {
+	max-width: 5%;
+	max-height: 5%;
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 20px;
+	right: 10px;
+}
+fieldset {
+	text-align: center;
+	margin: 0 auto;
+	width: 400px;
+}
+
+#inicio {
+	text-align: center;
+}
+#condicionesuso {
+	text-align: justify;
+	border-style: solid;
+	border-width: 1px;
+	width: 1000px;
+	height: 600px;
+	margin: 0 auto;
+	overflow: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.subtitulo {
+	font-size: x-large;
+}
