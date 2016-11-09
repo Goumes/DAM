@@ -11,7 +11,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.wst.validation.validationbuilder</name>
+			<name>org.eclipse.wst.valclassation.valclassationbuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
