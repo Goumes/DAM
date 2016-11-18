@@ -1,0 +1,25 @@
+{
+	"Receta Médica":
+		[
+			{"Tipo" : "Común", "Médico": "Pedro Jiménez Salinas", 
+			"Fecha de prescripción": "27 de enero de 2012",
+			"Medicamento":    
+				[
+					{"Nombre": "Ibuprofeno", "Marca": "Farmatex",
+					"Presentación": "Cápsulas de 600mg"},
+					{"Nombre": "Paracetamol", "Marca": "Pharmacorp",
+					"Presentación": "Cápsulas de 600mg"}
+				]
+			},
+			{"Tipo" : "Urgente", "Médico": "Nzhdeh Yeghiazaryan", 
+			"Fecha de prescripción": "32 de enero de 2099",
+			"Medicamento":    
+				[
+					{"Nombre": "Valium", "Marca": "Farmenia",
+					"Presentación": "Comprimidos"},
+					{"Nombre": "Medicinatex", "Marca": "PharmeniaLaGrande",
+					"Presentación": "Efervesente"}
+				]
+			}
+		]
+}
