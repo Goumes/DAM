@@ -1,0 +1,44 @@
+@CHARSET "ISO-8859-1";
+h1 {
+	text-align: center;
+	background-color: orange;
+	padding-bottom: 50px;
+	margin: 0 auto;
+}
+#page1 {
+	position: absolute;
+	top: 70px;
+	right: 160px;
+}
+
+#page2 {
+	position: absolute;
+	top: 70px;
+	right: 90px;
+}
+
+#page3 {
+	position: absolute;
+	top: 70px;
+	right: 20px;
+}
+
+#piedepagina {
+	text-align: right;
+	background-color: orange;
+	margin: 0 auto;
+	padding: 1px;
+}
+
+#items {
+	background-color: grey;
+	margin: 0 auto;
+	padding-bottom: 200px;
+	margin-right: 700px;
+	padding-top: 1px;
+}
+
+#contenido {
+	
+
+}
