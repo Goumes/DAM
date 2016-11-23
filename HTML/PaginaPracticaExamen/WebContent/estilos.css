@@ -36,9 +36,12 @@ h1 {
 	padding-bottom: 200px;
 	margin-right: 700px;
 	padding-top: 1px;
+	float: left;
+	width: 30%;
 }
 
 #contenido {
-	
-
+	float: left;
+	width: 70%;
+	background-color: white;
 }

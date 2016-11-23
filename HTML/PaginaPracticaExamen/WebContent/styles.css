@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+header {
+	background-color: orange;
+	padding-bottom: 1px;
+	text-align: center;
+}
+
+nav ul{
+	list-style-type: none;
+	text-align: right;
+	
+}
+nav li {
+	display: inline;
+	padding:10px;
+}
+aside li{
+	list-style-type: square;
+}
+.items{
+	
+}
+article{
+	size:1.5 em;
+	width:75%;
+	text-align: justify;
+	margin-left: 5px;
+	padding-left: 2em;
+	overflow:auto; /*Mirar qué hace esto*/
+}
+aside{
+	float: left;
+	width: 20%;
+	height: 390px;
+	background-color: #eeeeee;
+}
+footer{
+	
+	background-color: orange;
+	text-align: right;
+	text-size: 0.8 em;
+	width: 100%;
+	margin-bottom: 0px;
+}
+article a:hover{
+	color: orange;
+}
