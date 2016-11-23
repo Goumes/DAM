@@ -36,7 +36,7 @@ aside{
 	background-color: #eeeeee;
 }
 footer{
-	
+	clear:both;
 	background-color: orange;
 	text-align: right;
 	text-size: 0.8 em;
