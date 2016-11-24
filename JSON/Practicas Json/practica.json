@@ -1,51 +1,99 @@
 {
 	"Factura" :
-		[
+		[{
 			"Datos empresa" :
-				[
+				
 				
 					{"Nombre" : "Equipos digitales", "Dirección": "S.L. Av. Valladolid", 
 					"Ciudad": "Madrid", "Código Postal" : "28015", "CIF" : "Q-9876543",
 					"Teléfono" : "917776688", "Fax" : "917776699"}
 				
-				]
 				
-			"Datos pedido" :
-				[
+				
+			,"Datos pedido" :
+				
 					{"Fecha" : "12-01-2005", "Número de pedido": "731", 
 					"Forma de pago": "EFECTIVO"}
-				]
 				
-			"Datos cliente" :
-				[
+				
+			,"Datos cliente" :
+				
 					{"Número de cliente" : "879", "Nombre": "Dario Bueno Gutiérrez", 
 					"Dirección de envío": "Av. Oporto nº7 4ºD", "Población" : "Madrid", 
 					"Código Postal": "28043", "Provincia": "Madrid"}
-				]
 				
-			"Datos factura" :
-				[
+				
+			,"Datos factura" :
+				[{
 				
 				"Item" : 
 					[
 						{"Ref" : "MII93000F/8", "Descripción": "MICRO PENTIUM IV 3000MHZ FB800", 
-						"Cantidad": "1", "Precio" : "230 eur.", "IVA": "16,0", "Importe": "266,80 eur."}
+						"Cantidad": "1", "Precio" : "230 eur.", "IVA": "16,0", "Importe": "266,80 eur."},
 						
 						{"Ref" : "MB8QDIP4", "Descripción": "PLACA BASE QDI P4", 
-						"Cantidad": "1", "Precio" : "180 eur.", "IVA": "16,0", "Importe": "208,80 eur."}
+						"Cantidad": "1", "Precio" : "180 eur.", "IVA": "16,0", "Importe": "208,80 eur."},
 						
 						{"Ref" : "MEDD512M32", "Descripción": "DIMM DRR 512MB 3200", 
-						"Cantidad": "2", "Precio" : "40 eur.", "IVA": "16,0", "Importe": "92,80 eur."}
+						"Cantidad": "2", "Precio" : "40 eur.", "IVA": "16,0", "Importe": "92,80 eur."},
 						
 						{"Ref" : "HD250GSA7", "Descripción": "DISCO DURO 250GB S-ATA 7200", 
 						"Cantidad": "4", "Precio" : "120 eur.", "IVA": "16,0", "Importe": "556,80 eur."}
 					]
 					
-				"Precio cesta" :
-					[
+				,"Precio cesta" :
+					
 						{"Precio base" : "970,0 eur.", "Porcentaje IVA" : "16,0", "Cuota IVA" : "155,20 eur.", 
-						"Precio final" : "1125,20 eur.",}
-					] 
-				]
-		]
+						"Precio final" : "1125,20 eur."}
+					
+				}]
+		},
+		{
+			"Datos empresa" :
+				
+				
+					{"Nombre" : "Equipos digitales", "Dirección": "S.L. Av. Valladolid", 
+					"Ciudad": "Madrid", "Código Postal" : "28015", "CIF" : "Q-9876543",
+					"Teléfono" : "917776688", "Fax" : "917776699"}
+				
+				
+				
+			,"Datos pedido" :
+				
+					{"Fecha" : "12-01-2005", "Número de pedido": "731", 
+					"Forma de pago": "EFECTIVO"}
+				
+				
+			,"Datos cliente" :
+				
+					{"Número de cliente" : "879", "Nombre": "Dario Bueno Gutiérrez", 
+					"Dirección de envío": "Av. Oporto nº7 4ºD", "Población" : "Madrid", 
+					"Código Postal": "28043", "Provincia": "Madrid"}
+				
+				
+			,"Datos factura" :
+				[{
+				
+				"Item" : 
+					[
+						{"Ref" : "MII93000F/8", "Descripción": "MICRO PENTIUM IV 3000MHZ FB800", 
+						"Cantidad": "1", "Precio" : "230 eur.", "IVA": "16,0", "Importe": "266,80 eur."},
+						
+						{"Ref" : "MB8QDIP4", "Descripción": "PLACA BASE QDI P4", 
+						"Cantidad": "1", "Precio" : "180 eur.", "IVA": "16,0", "Importe": "208,80 eur."},
+						
+						{"Ref" : "MEDD512M32", "Descripción": "DIMM DRR 512MB 3200", 
+						"Cantidad": "2", "Precio" : "40 eur.", "IVA": "16,0", "Importe": "92,80 eur."},
+						
+						{"Ref" : "HD250GSA7", "Descripción": "DISCO DURO 250GB S-ATA 7200", 
+						"Cantidad": "4", "Precio" : "120 eur.", "IVA": "16,0", "Importe": "556,80 eur."}
+					]
+					
+				,"Precio cesta" :
+					
+						{"Precio base" : "970,0 eur.", "Porcentaje IVA" : "16,0", "Cuota IVA" : "155,20 eur.", 
+						"Precio final" : "1125,20 eur."}
+					
+				}]
+		}]
 }
