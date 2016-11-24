@@ -7,20 +7,39 @@ header {
 nav {
 	text-align: center;
 	background-color: red;
+	padding: 10px;
 }
 
 section {
+	float: left;
 	background-color: orange;
 	text-align: center;
+	width: 75%;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 article{
 	float: left;
 	background-color: green;
+	width: 75%;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	clear:both;
 }
 aside {
-	width:25%;
+	padding-top: 109px;
+	padding-bottom: 109px;
 	text-align: center;
 	margin-left: 5px;
 	padding-left: 20px;
 	background-color: yellow;
+	overflow:auto;
+	
+}
+footer {
+	background-color: purple;
+	text-align: center;
+	padding: 10px;
+	clear:both;
 }
