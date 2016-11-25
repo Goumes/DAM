@@ -1,0 +1,76 @@
+{
+	"Talleres" :
+		[
+			{"Título" : "Autoestima"},
+				[
+					{"lugar" : "Sevilla", "fecha" : "20/1/2017",
+					"responsables" : "Laura", "codigo" : "AE17001"},
+					
+					{"lugar" : "Córdoba", "fecha" : "24/1/2016",
+					"responsables" : "Elina, Teresa, Alfonso",
+					 "codigo" : "AE17002"}
+				],
+			{"Título" : "Defensa personal"},
+				[
+					{"lugar" : "Huelva", "fecha" : "26/1/2016",
+					"responsables" : "Miguel", "codigo" : "DP17001"},
+					
+					{"lugar" : "Cádiz", "fecha" : "22/1/2017",
+					"responsables" : "Tania",
+					 "codigo" : "DP17002"},
+					 
+					 {"lugar" : "Málaga", "fecha" : "4/2/2017",
+					"responsables" : "Miguel, Rosa",
+					 "codigo" : "DP17003"}
+				],
+				
+				{"Título" : "Marco legal"},
+				[
+					{"lugar" : "Sevilla", "fecha" : "11/2/2017",
+					"responsables" : "Sofía", "codigo" : "ML17001"},
+					
+					{"lugar" : "Granada", "fecha" : "19/2/2017",
+					"responsables" : "Ramón, Laura", "codigo" : "ML17002"}
+				]
+		],
+		
+		"Salud" :
+		[
+			{"Título" : "Reconocimiento médico"},
+				[
+					{"lugar" : "Almería", "fecha" : "5/2/2017",
+					"responsables" : "Sara, Luis", "codigo" : "RM17001"},
+					
+					{"lugar" : "Cádiz", "fecha" : "1/3/2017",
+					"responsables" : "Sara", "codigo" : "RM17002"}
+				],
+			{"Título" : "Test VIH"},
+				[
+					{"lugar" : "Málaga", "fecha" : "5/3/2017",
+					"responsables" : "Alfonso", "codigo" : "TS17001"}
+				]
+				
+		],
+		
+	"Concienciación" :
+		[
+			{"Título" : "Autoestima"},
+				[
+					{"lugar" : "Córdoba", "fecha" : "10/1/2017",
+					"responsables" : "Laura", "codigo" : "EX17001"},
+					
+					{"lugar" : "Jaén", "fecha" : "10/2/2017",
+					"responsables" : "Elena, Sara", "codigo" : "EX17002"},
+					
+					{"lugar" : "Almería", "fecha" : "11/3/2017",
+					"responsables" : "Teresa", "codigo" : "EX17003"}
+				],
+			{"Título" : "Defensa personal"},
+				[
+					{"lugar" : "Sevilla", "fecha" : "15/1/2017",
+					"responsables" : "Sofía, Miguel, Rosa", "codigo" : "FM17001"}
+				]
+				
+		]
+		
+}

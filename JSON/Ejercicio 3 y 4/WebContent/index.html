@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Ejercicio 3</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+	</head>
+	<body>
+		<header>Ejercicio 3</header>
+		<div id="formulario">
+					<form action="paginadeejemplo.com" method="post">
+					<fieldset>
+						<legend>Tipo de actividad<b>:</b></legend><br>
+						<input type="radio" name="tipo" value="Talleres">Talleres<br>
+						<input type="radio" name="tipo" value="Salud">Salud<br>
+						<input type="radio" name="tipo" value="Concienciación">Concienciación<br><br>
+					</fieldset>
+					<br><br><br>
+					<fieldset>
+						<legend>Datos de la actividad<b>:</b></legend><br>
+						Título<br>
+						<input type="text" name="titulo"><br><br>
+						Lugar<br>
+						<select name="lugar">
+							<option value= "huelva">Huelva</option>
+							<option value= "sevilla" selected>Sevilla</option>
+							<option value= "cordoba">Córdoba</option>
+							<option value= "jaen">Jaén</option>
+							<option value= "cadiz">Cádiz</option>
+							<option value= "malaga">Málaga</option>
+							<option value= "granada">Granada</option>
+							<option value= "almeria">Almería</option>
+						</select><br><br>
+						Fecha<br>
+						<input type="date" name="fecha"><br><br>
+						Responsables<br>
+						<input type="text" name="responsables"><br><br>
+						Código<br>
+						<input type="text" name="codigo"><br><br>
+						Si desea introducir más de un lugar o una fecha, haga click
+						<a href="datosextra.html"">aquí</a>
+						:
+					</fieldset><br>
+					<input type ="submit" value="Enviar"><br>
+					</form>
+		</div>
+		<footer>Examen de Lenguaje de Marcas, Alejandro Gómez Olivera</footer>
+	</body>
+</html>

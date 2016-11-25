@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tabla>
+	<tipo id = "Talleres">
+		<titulo id = "Autoestima">
+			<lugar id = "1">Sevilla</lugar>
+			<lugar id = "2">Córdoba</lugar>
+			<fecha id = "1">20/1/2017</fecha>
+			<fecha id = "2">24/1/2016</fecha>
+			<responsables id = "1">Laura</responsables>
+			<responsables id = "2">Elina, Teresa, Alfonso</responsables>
+			<codigo id = "1">AE17001</codigo>
+			<codigo id = "2">AE17002</codigo>
+		</titulo>
+		<titulo id = "Defensa personal">
+			<lugar id = "3">Huelva</lugar>
+			<lugar id = "4">Cádiz</lugar>
+			<lugar id = "5">Málaga</lugar>
+			<fecha id = "3">26/1/2016</fecha>
+			<fecha id = "4">22/1/2017</fecha>
+			<fecha id = "5">4/2/2017</fecha>
+			<responsables id = "3">Miguel</responsables>
+			<responsables id = "4">Tania</responsables>
+			<responsables id = "5">Miguel, Rosa</responsables>
+			<codigo id = "3">DP17001</codigo>
+			<codigo id = "4">DP17002</codigo>
+			<codigo id = "5">DP17003</codigo>
+		</titulo>
+		<titulo id = "Marco legal">
+			<lugar id = "6">Sevilla</lugar>
+			<lugar id = "7">Granada</lugar>
+			<fecha id = "6">11/2/2017</fecha>
+			<fecha id = "7">19/2/2017</fecha>
+			<responsables id = "6">Sofía</responsables>
+			<responsables id = "7">Ramón, Laura</responsables>
+			<codigo id = "6">ML17001</codigo>
+			<codigo id = "7">ML17002</codigo>
+		</titulo>
+	</tipo>
+	
+	<tipo id = "Salud">
+		<titulo id = "Reconocimiento médico">
+			<lugar id = "1">Almería</lugar>
+			<lugar id = "2">Cádiz</lugar>
+			<fecha id = "1">5/2/2017</fecha>
+			<fecha id = "2">1/3/2017</fecha>
+			<responsables id = "1">Sara, Luis</responsables>
+			<responsables id = "2">Sara</responsables>
+			<codigo id = "1">RM17001</codigo>
+			<codigo id = "2">RM17002</codigo>
+		</titulo>
+		<titulo id = "Test VIH">
+			<lugar id = "3">Málaga</lugar>
+			<fecha id = "3">5/3/2017</fecha>
+			<responsables id = "3">Alfonso</responsables>
+			<codigo id = "3">TS17001</codigo>
+		</titulo>
+	</tipo>
+	
+	<tipo id = "Concienciación">
+		<titulo id = "Exposición imágenes">
+			<lugar id = "1">Córdoba</lugar>
+			<lugar id = "2">Jaén</lugar>
+			<lugar id = "3">Almería</lugar>
+			<fecha id = "1">10/1/2017</fecha>
+			<fecha id = "2">10/2/2017</fecha>
+			<fecha id = "3">11/3/2017</fecha>
+			<responsables id = "1">Laura</responsables>
+			<responsables id = "2">Elena, Sara</responsables>
+			<responsables id = "3">Teresa</responsables>
+			<codigo id = "1">EX17001</codigo>
+			<codigo id = "2">EX17002</codigo>
+			<codigo id = "3">EX17003</codigo>
+		</titulo>
+		<titulo id = "Flashmob">
+			<lugar id = "3">Sevilla</lugar>
+			<fecha id = "3">15/1/2017</fecha>
+			<responsables id = "3">Sofía, Miguel, Rosa</responsables>
+			<codigo id = "4">FM17001</codigo>
+		</titulo>
+	</tipo>
+</tabla>

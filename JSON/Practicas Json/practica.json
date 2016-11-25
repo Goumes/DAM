@@ -24,7 +24,7 @@
 				
 				
 			,"Datos factura" :
-				[{
+				{
 				
 				"Item" : 
 					[
@@ -46,7 +46,7 @@
 						{"Precio base" : "970,0 eur.", "Porcentaje IVA" : "16,0", "Cuota IVA" : "155,20 eur.", 
 						"Precio final" : "1125,20 eur."}
 					
-				}]
+				}
 		},
 		{
 			"Datos empresa" :

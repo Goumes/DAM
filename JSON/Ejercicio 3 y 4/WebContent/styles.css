@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+fieldset{
+	text-align: center;
+	margin: 0 auto;
+	width: 400px;
+}
+
+#formulario{
+	text-align: center;
+}
+
+header{
+	padding: 10px;
+	background-color: red;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+footer{
+	padding: 10px;
+	background-color: red;
+	text-align: center;
+	margin-top: 20px;
+	text-align: right;
+}
