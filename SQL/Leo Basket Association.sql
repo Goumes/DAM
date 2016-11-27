@@ -1,0 +1,104 @@
+CREATE DATABASE LBA
+GO
+USE LBA
+GO
+
+CREATE TABLE LBA_Paises
+(
+	ID CHAR (3) NOT NULL,
+	Denominacion VARCHAR (25) NOT NULL,
+	UE BIT NOT NULL
+
+	CONSTRAINT PK_LBA_Paises PRIMARY KEY (ID) 
+)
+GO
+
+CREATE TABLE LBA_Jugadores
+(
+	Licencia CHAR (10) NOT NULL,
+	Nombre VARCHAR (20) NOT NULL,
+	Apellidos VARCHAR (30) NOT NULL,
+	FechaNac DATE NULL,
+	Dorsal TINYINT NOT NULL,
+	Posicion CHAR (1) NULL,
+	Nacionalidad CHAR (3) NULL,
+
+	CONSTRAINT PK_LBA_Jugadores PRIMARY KEY (Licencia),
+	CONSTRAINT FK_LBA_Jugadores_LBA_paises FOREIGN KEY (Nacionalidad) REFERENCES LBA_Paises (ID) ON DELETE NO ACTION ON UPDATE CASCADE
+)
+
+GO 
+
+CREATE TABLE LBA_Canchas
+(
+	ID TINYINT IDENTITY NOT NULL,
+	Denominacion VARCHAR (30) NOT NULL,
+	Direccion VARCHAR (30) NULL,
+	Localidad VARCHAR (25) NOT NULL,
+
+	CONSTRAINT PK_LBA_Canchas PRIMARY KEY (ID)
+)
+
+GO
+
+CREATE TABLE LBA_Equipos
+(
+	Codigo CHAR (3) NOT NULL,
+	Nombre VARCHAR (30) NOT NULL,
+	Fecha_Fundacion DATE NULL,
+	Localidad VARCHAR (25) NOT NULL,
+	ID_Cancha TINYINT,
+
+	CONSTRAINT PK_LBA_Equipos PRIMARY KEY (Codigo),
+	CONSTRAINT FK_LBA_Equipos_LBA_Canchas FOREIGN KEY (ID_Cancha) REFERENCES LBA_Canchas (ID) ON DELETE NO ACTION ON UPDATE CASCADE
+)
+
+GO
+
+CREATE TABLE LBA_Partidos
+(
+	ID SMALLINT IDENTITY NOT NULL,
+	Fecha_Hora SMALLDATETIME NOT NULL,
+	id_Local CHAR (3) NOT NULL,
+	id_Visitante CHAR (3) NOT NULL,
+	Puntos_Local TINYINT NULL,
+	Puntos_Visitante TINYINT NULL,
+
+	CONSTRAINT PK_LBA_Partidos PRIMARY KEY ( ID),
+	CONSTRAINT FK_LBA_Partidos_LBA_Equipos FOREIGN KEY (id_Local) REFERENCES LBA_Equipos (Codigo) ON DELETE NO ACTION ON UPDATE CASCADE,
+	CONSTRAINT FK_LBA_Partidos_LBA_Equipos FOREIGN KEY (id_Visitante) REFERENCES LBA_Equipos (Codigo) ON DELETE NO ACTION ON UPDATE CASCADE, /*No se permiten nombres duplicados*/
+)
+
+GO
+
+CREATE TABLE LBA_Juega
+(
+	Licencia CHAR (10) NOT NULL,
+	ID_Partido SMALLINT NOT NULL,
+	Minutos INT NULL,
+	Tiros1 TINYINT NULL,
+	TIros2 TINYINT NULL,
+	Tiros3 TINYINT NULL,
+	Puntos1 TINYINT NULL,
+	Puntos2 TINYINT NULL,
+	Puntos3 TINYINT NULL,
+	Personales TINYINT NULL,
+
+	CONSTRAINT PK_LBA_Juega PRIMARY KEY (Licencia),
+	CONSTRAINT PK_LBA_Juega PRIMARY KEY (ID_Partido), /*No se permiten nombres duplicados*/ /*No se pueden añadir dos primary keys*/
+	CONSTRAINT FK_LBA_Juega_LBA_Jugadores FOREIGN KEY (Licencia) REFERENCES LBA_Jugadores (Licencia) ON DELETE NO ACTION ON UPDATE CASCADE,
+	CONSTRAINT FK_LBA_Juega_LBA_Partidos FOREIGN KEY (ID) REFERENCES LBA_Partidos (ID) ON DELETE NO ACTION ON UPDATE CASCADE
+)
+
+ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_EdadRequerida CHECK (FechaNac < 1966 AND FechaNac > 2001) /*Conflicto de datos. Date es incompatible con smallint*/
+ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_Dorsal CHECK (Dorsal BETWEEN 0 AND 99)
+ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_Posicion CHECK (Posicion IN ('B','A','P','E','L'))
+ALTER TABLE LBA_Equipos WITH NOCHECK ADD CONSTRAINT CK_Fecha_Fundacion CHECK (Fecha_Fundacion < 2016)
+ALTER TABLE LBA_Juega WITH NOCHECK ADD CONSTRAINT CK_Minutos CHECK (Minutos BETWEEN 0 AND 40)
+ALTER TABLE LBA_Juega WITH NOCHECK ADD CONSTRAINT CK_Tiros CHECK (Tiros1 >= Puntos1 AND Tiros2 >= Puntos2 AND Tiros3 >= Puntos3)
+/*ALTER TABLE LBA_Partidos WITH NOCHECK ADD CONSTRAINT CK_Puntos_Local CHECK (COMO SE PONE A NULL)*/
+/*ALTER TABLE LBA_Partidos WITH NOCHECK ADD CONSTRAINT CK_Puntos_Visitante CHECK (COMO SE PONE A NULL)*/
+
+
+/*1. ¿Puede ser nulo el campo ID_Cancha de la tabla LBA_Equipos? ¿De qué depende?
+ No, no puede. Depende de la clave a la que refiere, en este caso la clave ID de la tabla LBA_Canchas*/
