@@ -84,10 +84,9 @@ CREATE TABLE LBA_Juega
 	Puntos3 TINYINT NULL,
 	Personales TINYINT NULL,
 
-	CONSTRAINT PK_LBA_Juega PRIMARY KEY (Licencia),
-	CONSTRAINT PK_LBA_Juega PRIMARY KEY (ID_Partido), /*No se permiten nombres duplicados*/ /*No se pueden añadir dos primary keys*/
+	CONSTRAINT PK_LBA_Juega PRIMARY KEY (Licencia, ID_Partido),
 	CONSTRAINT FK_LBA_Juega_LBA_Jugadores FOREIGN KEY (Licencia) REFERENCES LBA_Jugadores (Licencia) ON DELETE NO ACTION ON UPDATE CASCADE,
-	CONSTRAINT FK_LBA_Juega_LBA_Partidos FOREIGN KEY (ID) REFERENCES LBA_Partidos (ID) ON DELETE NO ACTION ON UPDATE CASCADE
+	CONSTRAINT FK_LBA_Juega_LBA_Partidos FOREIGN KEY (ID_partido) REFERENCES LBA_Partidos (ID) ON DELETE NO ACTION ON UPDATE CASCADE
 )
 
 ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_EdadRequerida CHECK (FechaNac < 1966 AND FechaNac > 2001) /*Conflicto de datos. Date es incompatible con smallint*/
