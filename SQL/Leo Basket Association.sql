@@ -89,7 +89,7 @@ CREATE TABLE LBA_Juega
 	CONSTRAINT FK_LBA_Juega_LBA_Partidos FOREIGN KEY (ID_partido) REFERENCES LBA_Partidos (ID) ON DELETE NO ACTION ON UPDATE CASCADE
 )
 
-ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_EdadRequerida CHECK (FechaNac < 1966 AND FechaNac > 2001) /*Conflicto de datos. Date es incompatible con smallint*/
+ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_EdadRequerida CHECK (((CURRENT_TIMESTAMP - FechaNac)-1900) BETWEEN 15 AND 50) /*Conflicto de datos. Date es incompatible con smallint*/
 ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_Dorsal CHECK (Dorsal BETWEEN 0 AND 99)
 ALTER TABLE LBA_Jugadores WITH NOCHECK ADD CONSTRAINT CK_Posicion CHECK (Posicion IN ('B','A','P','E','L'))
 ALTER TABLE LBA_Equipos WITH NOCHECK ADD CONSTRAINT CK_Fecha_Fundacion CHECK (Fecha_Fundacion < 2016)
