@@ -19,7 +19,7 @@
  * 				caso 3: minMay
  * 				caso 4: annoBisiesto
  * 				caso 5: digitoHex
- * 				caso 6:
+ * 				caso 6: Distancia
  * 				caso 7: Alfabeto
  * 				caso 8:
  * 				caso 9:
@@ -37,7 +37,7 @@
  * Inicio
  * 	LeerValidarNumero
  * 	LeerCaracter
- * 	PintarLinea
+ * 	PintarLinea *
  * Fin
  * 
  * 
@@ -45,7 +45,7 @@
  * 
  * Inicio
  * 	LeerNumero
- * 	CalcularPar
+ * 	CalcularPar *
  * 	PrintRes
  * Fin
  * 
@@ -54,7 +54,7 @@
  * 
  * Inicio
  * 	LeerValidarCaracter
- * 	PasarMinusculas
+ * 	PasarMinusculas *
  * 	PrintRes
  * Fin
  * 
@@ -63,7 +63,7 @@
  * 
  * Inicio
  * 	LeerValidarAño
- * 	CalcularBisiesto
+ * 	CalcularBisiesto * 
  * 	PrintRes
  * Fin
  * 
@@ -72,16 +72,23 @@
  * 
  * Inicio
  * 	LeerCaracter
- * 	CalcularHex
+ * 	CalcularHex * 
  * 	PrintRes
  * Fin
  * 
+ * 
+ * Modulo: Distancia
+ * 
+ * Inicio
+ * 	LeerCoordenadas
+ * 	CalcularDistanciaPrintRes *
+ * Fin
  * 
  * Modulo: Alfabeto
  * 
  * Inicio
  * 	LeerCaracter
- * 	CalcularAlfabeto
+ * 	CalcularAlfabeto *
  * 	PrintRes
  * Fin
  * 
@@ -90,7 +97,7 @@
  * 
  * Inicio
  * 	LeerValidarCoeficientes
- * 	CalcularEcuacionPrintRes
+ * 	CalcularEcuacionPrintRes +
  * Fin
  */
  
@@ -98,166 +105,6 @@
  
  import java.util.Scanner;
  public class PracticaSubprogramas {	 
-
-/*	Prototipo: char MinMay (char caracter)
- * 	Breve comentario de lo que realiza: 
- * 	Precondiciones: Un carácter en minúsculas 
- * 	Entradas: carácter 
- * 	Salidas: carácter  (Asignado nombre)
- *	Entradas/Salidas: carácter 
- *	Postcondiciones: Un carácter en mayúscula 
- * 
- * 
- * Resguardo: public static char MinMay (char caracter)
- * {
- *  	System.out.println("Llamada al método MinMay");
- * 		System.out.println("Variables: "+caracter);
- * }
- */
-
-	public static char MinMay (char caracter)
-	{
-		char resultado = ' ';
-		resultado = Character.toUpperCase(caracter);
-		return resultado;
-	}
-//Fin subprograma MinMay
-
-
-/*	Prototipo: boolean AnnoBisiesto (int numero)
- * 	Breve comentario de lo que realiza: 
- * 	Precondiciones: Ninguna
- * 	Entradas: entero
- *  Salidas: lógico (Asignado nombre)
- * 	Entradas/Salidas: Nada
- * 	Postcondiciones: VERDAD si el número es bisiesto y FALSO si no lo es.
- * 
- * 
- * Resguardo: public static boolean AnnoBisiesto (int numero)
- * {
- *  	System.out.println("Llamada al método AnnoBisiesto");
- * 		System.out.println("Variables: "+numero);
- * }
- */
- 
-	public static boolean AnnoBisiesto(int numero)
-	{
-		boolean resultado = false;
-		
-		if ((numero%4 == 0) && (numero%100 != 0))
-		{
-			resultado = true;
-		}
-		return resultado;
-	}
-	
-//Fin subprograma AnnoBisiesto
-
-
-/*	Prototipo: boolean digitoHex (char caracter)
- * 	Breve comentario de lo que realiza: Subprograma DigitoHex que diga si un carácter es un dígito hexadecimal
- * 	Precondiciones: 
- * 	Entradas: char caracter
- * 	Salidas: boolean
- * 	Entradas/Salidas:
- * 	Postcondiciones: verdad si el carácter es hexadecimal, y falso si no lo es.
- * 
- * 
- * Resguardo: public static boolean digitoHex (char caracter)
- * {
- *  	System.out.println("Llamada al método digitoHex");
- * 		System.out.println("Variables: "+caracter);
- * }
- */
-	public static boolean digitoHex (char caracter)
-	{
-		boolean resultado = false;
-		if ((caracter >= '0' && caracter <= '9') || (caracter >= 'a' && caracter <= 'f'))
-		{
-			resultado = true;
-		}
-		return (resultado);
-	}
-	 
-//Fin subprograma DigitoHex
-
-
-/*	Prototipo: boolean Alfabeto (char caracter)
- * 	Breve comentario de lo que realiza: 
- * 	Precondiciones: Ninguna
- * 	Entradas: carácter 
- * 	Salidas: lógico (Asignado a nombre)
- * 	Entradas/Salidas: Nada
- * 	Postcondiciones: VERDAD si el carácter pertenece al alfabeto español y FALSO sino.
- * 
- * 
- * Resguardo: public static boolean Alfabeto (char caracter)
- * {
- *  	System.out.println("Llamada al método Alfabeto");
- * 		System.out.println("Variables: "+caracter);
- * }
- */
-
-	public static boolean Alfabeto (char caracter)
-	{
-		boolean resultado = false;
-		
-		if ((caracter >= 'a' && caracter <= 'z') || (caracter >= 'A' && caracter <= 'Z'))
-		{
-				resultado = true;
-		}
-		return resultado;
-	}
-//Fin subprograma Alfabeto
-
-/*	Prototipo: void EcuacionSegundoGrado (real1, real2, real3, resultado1, resultado2)
- * 	Breve comentario de lo que realiza: Resuelve una ecuación de segundo grado.
- * 	Precondiciones: El primer valor debe ser mayor o igual que cero
- * 	Entradas: tres reales
- * 	Salidas: dos reales (Por referencia)
- * 	Entradas/Salidas: Dos reales 
- * 	Postcondiciones: real  resultado1 y real resultado2
- * 
- * 
- * (Como no podemos hacer todavía salida una salida múltiple en java, lo haré con prints)
- * 
- * Prototipo: void EcuacionSegundoGrado (real1, real2, real3)
- * 	Breve comentario de lo que realiza: Resuelve una ecuación de segundo grado.
- * 	Precondiciones: El primer valor debe ser distinto que cero
- * 	Entradas: tres reales
- * 	Salidas: nada
- * 	Entradas/Salidas: nada
- * 	Postcondiciones:
- * 
- * 
- * 
- * Resguardo: void ecuacionSegundoGrado (double numero1, double numero2, double numero3)
- * {
- *  	System.out.println("Llamada al método ecuacionSegundoGrado");
- * 		System.out.println("Variables: "+numero1+", "+numero2+", "+numero3);
- * }
- */
-	
-	public static void ecuacionSegundoGrado (double numero1, double numero2, double numero3)
-	{
-		double resultado1;
-		double resultado2; 
-		
-		if (numero2*numero2-(4*numero1*numero3)>= 0)
-			{
-				resultado1 = (-(numero2) + Math.pow(numero2*numero2-(4*numero1*numero3),0.5))/(2*numero1);
-				resultado2 = (-(numero2) - Math.pow(numero2*numero2-(4*numero1*numero3),0.5))/(2*numero1);
-				System.out.println ("x1= "+resultado1);
-				System.out.println ("x2= "+resultado2);
-			}
-		else
-			{
-				System.out.println ("Esta ecuaci\u00f3n no se puede calcular");
-			}
-	}
- 
- //Fin subprograma EcuacionSegundoGrado
-
 	 public static void main (String[]args){
 		Scanner teclado = new Scanner (System.in);
 		char iniciar = ' ';
@@ -270,16 +117,20 @@
 		char caracterMinMay = ' ';
 		int numeroAnnoBisiesto;
 		boolean resultadoAnnoBisiesto;
+		double Coordenada1;
+		double Coordenada2;
+		double Coordenada3;
+		double Coordenada4;
 		char caracterHex = ' ';
 		boolean resultadoHex;
 		boolean resultadoAlfabeto;
 		char caracterAlfabeto = ' ';
+		double unidad;
+		char medidaConversor = ' ';
 		double numeroEcuacion1;
 		double numeroEcuacion2;
 		double numeroEcuacion3;
 		 
-	
-		
 		
 		//LeerValidariniciar
 		do
@@ -302,9 +153,9 @@
 					System.out.println("------------------3. Pasar de min\u00fasculas a may\u00fasculas-----------------");
 					System.out.println("------------------4. Calcular si un a\u00f1o es bisiesto-------------------");
 					System.out.println("----------5. Calcular si un car\u00e1cter es un n\u00famero hexadecimal---------");
-					System.out.println("--------------------------6. [EN CONSTRUCCION]------------------------");
+					System.out.println("-------6. Calcular la distancia entre dos puntos de un plano----------");
 					System.out.println("----------7. Calcular si el c\u00e1racter es del alfabeto espa\u00f1ol----------");
-					System.out.println("--------------------------8. [EN CONSTRUCCION]------------------------");
+					System.out.println("------------8. Convertir hectareas y areas a metros cuadrados---------");
 					System.out.println("--------------------------9. [EN CONSTRUCCION]------------------------");
 					System.out.println("-------------------------10. [EN CONSTRUCCION]------------------------");
 					System.out.println("-------------------------11. [EN CONSTRUCCION]------------------------");
@@ -387,7 +238,7 @@
 							//Fin LeerValidarCaracter
 							
 							//PasarMinusculas
-							resultadoMinMay = MinMay (caracterMinMay);
+							resultadoMinMay = MetodosPracticaSubprogramas.MinMay (caracterMinMay);
 							//Fin PasarMinusculas
 							
 							//PrintRes
@@ -408,7 +259,7 @@
 							//Fin LeerValidarAño
 							
 							//CalcularBisiesto
-							resultadoAnnoBisiesto = AnnoBisiesto (numeroAnnoBisiesto);
+							resultadoAnnoBisiesto = MetodosPracticaSubprogramas.AnnoBisiesto (numeroAnnoBisiesto);
 							//Fin CalcularBisiesto
 							
 							//PrintRes
@@ -434,7 +285,7 @@
 							//Fin LeerCaracter
 							
 							//CalcularHex
-							resultadoHex = digitoHex (caracterHex);
+							resultadoHex = MetodosPracticaSubprogramas.digitoHex (caracterHex);
 							//CalcularHex
 							
 							//PrintRes
@@ -453,7 +304,22 @@
 						
 						//caso 6:
 						case 6:
-						System.out.println("[EN CONSTRUCCION]");
+						
+						//LeerCoordenadas
+						System.out.println("Introduzca la primera coordenada del primer punto");
+						Coordenada1 = teclado.nextDouble();
+						System.out.println("Introduzca la segunda coordenada del primer punto");
+						Coordenada2 = teclado.nextDouble();
+						System.out.println("Introduzca la primera coordenada del segundo punto");
+						Coordenada3 = teclado.nextDouble();
+						System.out.println("Introduzca la segunda coordenada del segundo punto");
+						Coordenada4 = teclado.nextDouble();
+						//Fin LeerCoordenadas
+						
+						//CalcularDistanciaPrintRes
+						MetodosPracticaSubprogramas.Distancia (Coordenada1, Coordenada2, Coordenada3, Coordenada4);
+						//Fin CalcularDistanciaPrintRes
+						
 						break;
 						//fin caso 6
 						
@@ -466,7 +332,7 @@
 						//Fin LeerCaracter
 						
 						//CalcularAlfabeto
-						resultadoAlfabeto = Alfabeto (caracterAlfabeto);
+						resultadoAlfabeto = MetodosPracticaSubprogramas.Alfabeto (caracterAlfabeto);
 						//Fin CalcularAlfabeto
 						
 						//PrintRes
@@ -485,7 +351,36 @@
 						
 						//caso 8:
 						case 8:
-						System.out.println("[EN CONSTRUCCION]");
+						
+						//LeerValidarTipo
+						do
+						{
+						System.out.println("Desea introducir la medida en hectareas o en areas? H/A");
+						medidaConversor = Character.toLowerCase (teclado.next().charAt(0));
+						}
+						while (medidaConversor != 'h' && medidaConversor != 'a');	
+						//Fin LeerValidarTipo
+						
+						//LeerValidarUnidad
+						System.out.println("Introduzca la medida");
+						if (medidaConversor == 'h')
+						{
+							unidad = (teclado.nextDouble() * 100);
+						}
+						else
+						{
+							unidad = teclado.nextDouble();
+						}
+						//Fin LeerValidarUnidad
+						
+						//ConvertirMedida
+						MetodosPracticaSubprogramas.conversorMedidas (unidad);
+						//Fin ConvertirMedida
+						
+						//PrintRes
+						System.out.println("El resultado de la conversion es: "+unidad+" metros cuadrados");
+						//Fin PrintRes
+						
 						break;
 						//fin caso 8
 						
@@ -525,7 +420,7 @@
 						//Fin LeerValidarCoeficientes
 						
 						//CalcularEcuacionPrintRes
-						ecuacionSegundoGrado (numeroEcuacion1, numeroEcuacion2, numeroEcuacion3);
+						MetodosPracticaSubprogramas.ecuacionSegundoGrado (numeroEcuacion1, numeroEcuacion2, numeroEcuacion3);
 						//Fin CalcularEcuacionPrintRes
 						
 						break;

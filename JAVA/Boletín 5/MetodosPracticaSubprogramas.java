@@ -60,4 +60,206 @@ public class MetodosPracticaSubprogramas
 		return (resultado);
 	}
 //Fin subprograma Par
-}
+
+
+/*	Prototipo: char MinMay (char caracter)
+ * 	Breve comentario de lo que realiza: 
+ * 	Precondiciones: Un carácter en minúsculas 
+ * 	Entradas: carácter 
+ * 	Salidas: carácter  (Asignado nombre)
+ *	Entradas/Salidas: carácter 
+ *	Postcondiciones: Un carácter en mayúscula 
+ * 
+ * 
+ * Resguardo: public static char MinMay (char caracter)
+ * {
+ *  	System.out.println("Llamada al método MinMay");
+ * 		System.out.println("Variables: "+caracter);
+ * }
+ */
+
+	public static char MinMay (char caracter)
+	{
+		char resultado = ' ';
+		resultado = Character.toUpperCase(caracter);
+		return resultado;
+	}
+//Fin subprograma MinMay
+
+/*	Prototipo: boolean AnnoBisiesto (int numero)
+ * 	Breve comentario de lo que realiza: 
+ * 	Precondiciones: Ninguna
+ * 	Entradas: entero
+ *  Salidas: lógico (Asignado nombre)
+ * 	Entradas/Salidas: Nada
+ * 	Postcondiciones: VERDAD si el número es bisiesto y FALSO si no lo es.
+ * 
+ * 
+ * Resguardo: public static boolean AnnoBisiesto (int numero)
+ * {
+ *  	System.out.println("Llamada al método AnnoBisiesto");
+ * 		System.out.println("Variables: "+numero);
+ * }
+ */
+ 
+	public static boolean AnnoBisiesto(int numero)
+	{
+		boolean resultado = false;
+		
+		if ((numero%4 == 0) && (numero%100 != 0))
+		{
+			resultado = true;
+		}
+		return resultado;
+	}
+	
+//Fin subprograma AnnoBisiesto
+
+/*	Prototipo: boolean digitoHex (char caracter)
+ * 	Breve comentario de lo que realiza: Subprograma DigitoHex que diga si un carácter es un dígito hexadecimal
+ * 	Precondiciones: 
+ * 	Entradas: char caracter
+ * 	Salidas: boolean
+ * 	Entradas/Salidas:
+ * 	Postcondiciones: verdad si el carácter es hexadecimal, y falso si no lo es.
+ * 
+ * 
+ * Resguardo: public static boolean digitoHex (char caracter)
+ * {
+ *  	System.out.println("Llamada al método digitoHex");
+ * 		System.out.println("Variables: "+caracter);
+ * }
+ */
+	public static boolean digitoHex (char caracter)
+	{
+		boolean resultado = false;
+		if ((caracter >= '0' && caracter <= '9') || (caracter >= 'a' && caracter <= 'f'))
+		{
+			resultado = true;
+		}
+		return (resultado);
+	}
+	 
+//Fin subprograma DigitoHex
+
+/* Prototipo: void Distancia (int Coordenada1, Coordenada2, Coordenada3, Coordenada4)
+ * Breve comentario de lo que realiza: Subprograma que calcule la distancia entre dos puntos que se encuentran en el plano a partir de sus coordenadas.
+ * Precondiciones: ninguna
+ * Entradas: cuatro enteros
+ * Salidas: ninguna
+ * Entradas/Salidas: ninguna
+ * Postcondiciones: ninguna
+ * Resguardo: public static void Distancia (double numero1, double numero2, double numero3, double numero4)
+	{
+		System.out.println("Llamada al metodo Distancia");
+		System.out.println("Variables: "+numero1+", "+numero2+", "+numero3+", "+numero4);
+	}
+ */ 
+ 
+	public static void Distancia (double numero1, double numero2, double numero3, double numero4)
+	{
+		double resultado;
+		resultado = Math.pow(Math.pow(numero2 - numero1, 2) + Math.pow(numero4 - numero3, 2), 0.5);
+		System.out.println("La distancia entre los dos puntos es: "+resultado+ " unidades");
+	}
+	
+ //Fin subprograma DigitoHex
+
+/*	Prototipo: boolean Alfabeto (char caracter)
+ * 	Breve comentario de lo que realiza: 
+ * 	Precondiciones: Ninguna
+ * 	Entradas: carácter 
+ * 	Salidas: lógico (Asignado a nombre)
+ * 	Entradas/Salidas: Nada
+ * 	Postcondiciones: VERDAD si el carácter pertenece al alfabeto español y FALSO sino.
+ * 
+ * 
+ * Resguardo: public static boolean Alfabeto (char caracter)
+ * {
+ *  	System.out.println("Llamada al método Alfabeto");
+ * 		System.out.println("Variables: "+caracter);
+ * }
+ */
+
+	public static boolean Alfabeto (char caracter)
+	{
+		boolean resultado = false;
+		
+		if ((caracter >= 'a' && caracter <= 'z') || (caracter >= 'A' && caracter <= 'Z'))
+		{
+				resultado = true;
+		}
+		return resultado;
+	}
+//Fin subprograma Alfabeto
+
+/*Prototipo: real conversorMedidas (real unidad)
+ * Breve comentario de lo que realiza: Subprograma para pasar una medida en hectáreas y áreas a metros cuadrados.
+ * Precondiciones: Real positivo
+ * Entradas: real unidad
+ * Salidas: real unidad (asignado al nombre)
+ * Entradas/Salidas: ninguna
+ * Postcondiciones: real unidad en metros cuadrados
+ * Resguardo: public static double conversorMedidas (double unidad)
+	{
+		System.out.println("Llamada al metodo conversorMedidas");
+		System.out.println("Variables: "+unidad);
+		return (-1);
+ */
+ 
+	public static double conversorMedidas (double unidad)
+	{
+		double resultado;
+		resultado = unidad * 100;
+		return (resultado);
+	}
+ //Fin subprograma conversorMedidas
+
+/*	Prototipo: void EcuacionSegundoGrado (real1, real2, real3, resultado1, resultado2)
+ * 	Breve comentario de lo que realiza: Resuelve una ecuación de segundo grado.
+ * 	Precondiciones: El primer valor debe ser mayor o igual que cero
+ * 	Entradas: tres reales
+ * 	Salidas: dos reales (Por referencia)
+ * 	Entradas/Salidas: Dos reales 
+ * 	Postcondiciones: real  resultado1 y real resultado2
+ * 
+ * 
+ * (Como no podemos hacer todavía salida una salida múltiple en java, lo haré con prints)
+ * 
+ * Prototipo: void EcuacionSegundoGrado (real1, real2, real3)
+ * 	Breve comentario de lo que realiza: Resuelve una ecuación de segundo grado.
+ * 	Precondiciones: El primer valor debe ser distinto que cero
+ * 	Entradas: tres reales
+ * 	Salidas: nada
+ * 	Entradas/Salidas: nada
+ * 	Postcondiciones:
+ * 
+ * 
+ * 
+ * Resguardo: void ecuacionSegundoGrado (double numero1, double numero2, double numero3)
+ * {
+ *  	System.out.println("Llamada al método ecuacionSegundoGrado");
+ * 		System.out.println("Variables: "+numero1+", "+numero2+", "+numero3);
+ * }
+ */
+	
+	public static void ecuacionSegundoGrado (double numero1, double numero2, double numero3)
+	{
+		double resultado1;
+		double resultado2; 
+		
+		if (numero2*numero2-(4*numero1*numero3)>= 0)
+			{
+				resultado1 = (-(numero2) + Math.pow(numero2*numero2-(4*numero1*numero3),0.5))/(2*numero1);
+				resultado2 = (-(numero2) - Math.pow(numero2*numero2-(4*numero1*numero3),0.5))/(2*numero1);
+				System.out.println ("x1= "+resultado1);
+				System.out.println ("x2= "+resultado2);
+			}
+		else
+			{
+				System.out.println ("Esta ecuaci\u00f3n no se puede calcular");
+			}
+	}
+ 
+ //Fin subprograma EcuacionSegundoGrado
+}//fin_pp
