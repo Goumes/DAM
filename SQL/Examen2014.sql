@@ -42,7 +42,7 @@ CREATE TABLE Acuarios
 	Ancho SMALLINT,
 	Temperatura SMALLINT,
 	Modelo_Bombas VARCHAR (20),
-	Numero_Socio SMALLINT,
+	Numero_Socio SMALLINT UNIQUE,
 	ID_Acuario SMALLINT IDENTITY (1, 1),
 
 	CONSTRAINT PK_Acuarios PRIMARY KEY (ID_Acuario),
@@ -158,4 +158,4 @@ ALTER TABLE Peces WITH NOCHECK ADD CONSTRAINT CK_Tipo CHECK (Tipo IN ('T', 'R', 
 ALTER TABLE Plantas WITH NOCHECK ADD CONSTRAINT CK_Necesidad_Luz CHECK (Necesidad_Luz BETWEEN 4 AND 10)
 ALTER TABLE Peces_Peces WITH NOCHECK ADD CONSTRAINT CK_Compatibilidad CHECK (Especie_Seres_vivos1 != Especie_Seres_vivos2)
 ALTER TABLE Tierras WITH NOCHECK ADD CONSTRAINT CK_Porcentajes CHECK ((Arcillas + Silicatos + Sustratos + Nitratos + Otros) = 100)
-ALTER TABLE Socios WITH NOCHECK ADD CONSTRAINT CK_Email CHECK (Email UNIQUE)
+ALTER TABLE Socios WITH NOCHECK ADD CONSTRAINT UQ_Email UNIQUE (Email)
