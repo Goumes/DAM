@@ -21,7 +21,7 @@
  * 				caso 5: digitoHex
  * 				caso 6: Distancia
  * 				caso 7: Alfabeto
- * 				caso 8:
+ * 				caso 8: conversorMedidas
  * 				caso 9:
  * 				caso 10:
  * 				caso 11:
@@ -130,7 +130,7 @@
 		double numeroEcuacion1;
 		double numeroEcuacion2;
 		double numeroEcuacion3;
-		 
+		
 		
 		//LeerValidariniciar
 		do
