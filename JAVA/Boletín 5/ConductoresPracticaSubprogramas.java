@@ -3,7 +3,7 @@ public class ConductoresPracticaSubprogramas
 {
 	public static void main (String[]args)
 	{
-		MetodosPracticaSubprogramas.Linea(4, 'a');
+		/*MetodosPracticaSubprogramas.Linea(4, 'a');
 		System.out.println(MetodosPracticaSubprogramas.Par(4)); 
 		System.out.println(MetodosPracticaSubprogramas.MinMay('a')); 
 		System.out.println(MetodosPracticaSubprogramas.AnnoBisiesto(4));
@@ -11,6 +11,8 @@ public class ConductoresPracticaSubprogramas
 		System.out.println(MetodosPracticaSubprogramas.Alfabeto('f'));
 		MetodosPracticaSubprogramas.ecuacionSegundoGrado(1, -5, 6); 
 		MetodosPracticaSubprogramas.Distancia (1, 2, 3, 4);
-		System.out.println(MetodosPracticaSubprogramas.conversorMedidas (5));
+		System.out.println(MetodosPracticaSubprogramas.conversorMedidas (5));*/
+		System.out.println(MetodosPracticaSubprogramas.Compuesto (14));
+		//System.out.println(MetodosPracticaSubprogramas.Pendiente (1, 2, 3, 4));
 	}
 }

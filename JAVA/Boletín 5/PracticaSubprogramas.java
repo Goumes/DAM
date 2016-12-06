@@ -21,7 +21,7 @@
  * 				caso 5: digitoHex
  * 				caso 6: Distancia
  * 				caso 7: Alfabeto
- * 				caso 8: conversorMedidas
+ * 				caso 8:
  * 				caso 9:
  * 				caso 10:
  * 				caso 11:
@@ -93,6 +93,14 @@
  * Fin
  * 
  * 
+ * Modulo: Compuesto
+ * 
+ * Inicio
+ * 	LeerValidarNumero
+ * 	CalcularCompuesto *
+ * 	PrintRes
+ * Fin
+ * 
  * Modulo: ecuacionSegundoGrado
  * 
  * Inicio
@@ -127,10 +135,12 @@
 		char caracterAlfabeto = ' ';
 		double unidad;
 		char medidaConversor = ' ';
+		double numeroCompuesto;
+		boolean resultadoCompuesto;
 		double numeroEcuacion1;
 		double numeroEcuacion2;
 		double numeroEcuacion3;
-		
+		 
 		
 		//LeerValidariniciar
 		do
@@ -156,7 +166,7 @@
 					System.out.println("-------6. Calcular la distancia entre dos puntos de un plano----------");
 					System.out.println("----------7. Calcular si el c\u00e1racter es del alfabeto espa\u00f1ol----------");
 					System.out.println("------------8. Convertir hectareas y areas a metros cuadrados---------");
-					System.out.println("--------------------------9. [EN CONSTRUCCION]------------------------");
+					System.out.println("------------------9. Calcular si un numero es compuesto---------------");
 					System.out.println("-------------------------10. [EN CONSTRUCCION]------------------------");
 					System.out.println("-------------------------11. [EN CONSTRUCCION]------------------------");
 					System.out.println("----------------12. Calcular ecuaci\u00f3n de segundo grado----------------");
@@ -386,7 +396,27 @@
 						
 						//caso 9:
 						case 9:
-						System.out.println("[EN CONSTRUCCION]");
+						
+						//LeerValidarNumero
+						System.out.println("Introduzca el numero que desee saber si es compuesto");
+						numeroCompuesto = teclado.nextDouble();
+						//Fin LeerValidarNumero
+						
+						//CalcularCompuesto
+						resultadoCompuesto = MetodosPracticaSubprogramas.Compuesto (numeroCompuesto);
+						//Fin CalcularCompuesto
+						
+						//PrintRes
+						if (resultadoCompuesto == true)
+						{
+							System.out.println("El numero es compuesto");
+						}
+						else
+						{
+							System.out.println("El numero no es compuesto");
+						}
+						//Fin PrintRes
+						
 						break;
 						//fin caso 9
 						

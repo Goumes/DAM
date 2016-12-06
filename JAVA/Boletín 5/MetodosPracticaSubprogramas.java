@@ -45,7 +45,6 @@ public class MetodosPracticaSubprogramas
  * 		System.out.println("Variables: "+numero);
  * }
  */
- 
 	public static boolean Par (int numero)
 	{
 		boolean resultado;
@@ -214,6 +213,54 @@ public class MetodosPracticaSubprogramas
 		return (resultado);
 	}
  //Fin subprograma conversorMedidas
+
+/* Prototipo: boolean Compuesto (real numero)
+ * Breve comentario de lo que realiza: Subprograma para calcular si un número es o no compuesto. 
+ * Es compuesto todo número natural mayor que 1 que no es primo
+ * Precondiciones: ninguna
+ * Entradas: real numero
+ * Salidas: boolean
+ * Entradas/Salidas: ninguna 
+ * Postcondiciones: VERDAD si el número es compuesto, FALSO sino.
+ * public static boolean Compuesto (double numero)
+	{
+			System.out.println("Llamada al metodo Compuesto");
+			System.out.println("Variables: "+numero);
+			System.out.print("Devolucion: ");
+			return (false);
+	}
+ */
+	public static boolean Compuesto (double numero)
+	{
+		boolean resultado = true;
+		for (int contador = 2; numero > contador; contador++)
+		{
+		if (numero%contador == 0)
+			{
+				resultado = false;
+			}
+		}
+		return (resultado);
+	}
+ 
+ //Fin subprograma Compuesto
+ 
+/* Prototipo: real Pendiente (real parametro1, real parametro2, real parametro3, real parametro4)
+ * Breve comentario de lo que realiza: Subprograma que teniendo como parámetros las coordenadas cartesianas de dos puntos en el plano calcule la pendiente de la recta que definen.
+ * Precondiciones: Ninguna
+ * Entradas: real parametro1, real parametro2, real parametro3, real parametro4
+ * Salidas: real pendiente
+ * Entradas/Salidas: ninguna
+ * Postcondiciones: Un número real
+ */
+	public static double Pendiente (double parametro1, double parametro2, double parametro3, double parametro4)
+	{
+		System.out.println("Llamada al metodo pendiente");
+		System.out.println("Varibles: "+parametro1+", "+parametro2+", "+parametro3+", "+parametro4);
+		System.out.print("Devolucion: ");
+		return (-1);
+	}
+ //Fin subprograma Pendiente
 
 /*	Prototipo: void EcuacionSegundoGrado (real1, real2, real3, resultado1, resultado2)
  * 	Breve comentario de lo que realiza: Resuelve una ecuación de segundo grado.
