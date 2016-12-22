@@ -55,12 +55,12 @@ SELECT Codigo FROM BI_Mascotas WHERE CodigoPropietario = 104
 
 GO
 
-INSERT INTO BI_Mascotas_Enfermedades (IDEnfermedad,Mascota,FechaInicio,FechaCura)
+INSERT INTO BI_Mascotas_Enfermedades (Mascota,FechaInicio,FechaCura)
 	VALUES
-	(7,'GH004','2016-12-20 10:05:00',null),
-	(20,'PH004','2016-12-20 10:05:00',null),
-	(15,'PH104','2016-12-20 10:05:00',null),
-	(2,'PM004','2016-12-20 10:05:00',null)
+	('GH004','2016-12-20 10:05:00',null),
+	('PH004','2016-12-20 10:05:00',null),
+	('PH104','2016-12-20 10:05:00',null),
+	('PM004','2016-12-20 10:05:00',null)
 
 GO
 
