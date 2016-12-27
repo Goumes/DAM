@@ -1,4 +1,4 @@
-java "ConductoresPracticaSubprogramas"
+java "MetodosPracticaSubprogramas"
 
 pause
 del "%0"

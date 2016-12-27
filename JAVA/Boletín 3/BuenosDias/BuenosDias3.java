@@ -109,7 +109,7 @@ public class BuenosDias3{
 			System.out.println("Desea inciar el programa?: Y/N");
 			iniciar = Character.toLowerCase(teclado.next().charAt(0));
 			}
-			//LeerValidarIniciar
+			//LeerValidarReiniciar
 				
 		}//fin_mientras
 	}//fin_main
