@@ -226,4 +226,198 @@ public class MetodosNavidad
 		return (resultado);
 	}
 	 //Fin subprograma Compuesto
+	 
+	/* Prototipo: boolean Perfecto (int numero)
+	 * Breve resumen: Subprograma que diga si un numero es perfecto.
+	 * Perfecto es todo número natural que es igual a la suma de sus divisores propios. 
+	 * Precondiciones: ninguna
+	 * Entradas: un entero
+	 * Salidas: un booleano
+	 * Entradas/Salidas: ninguna
+	 * Postcondiciones: VERDAD si es perfecto, FALSO sino.
+	 * 
+	 * Resguardo: public static boolean Perfecto (int numero)
+	 * {
+	 * 	System.out.println("Llamada al metodo Perfecto");
+	 * 	System.out.println("Variables: "+numero);
+	 * 	return (false);
+	 * }
+	 */
+	public static boolean Perfecto (int numero)
+	{
+		boolean resultado = false;
+		int acumulador = 0;
+		
+		for (int contador = 1; numero > contador; contador++)
+		{
+			if (numero%contador == 0)
+			{
+				acumulador = contador + acumulador;
+			}
+		}
+		
+		if (acumulador == numero)
+		{
+			resultado = true;
+		}
+		
+		return (resultado);
+	}
+	  //fin subprograma Perfecto
+	  
+	/* Prototipo: boolean Semiperfecto (int numero)
+	 * Breve resumen: Subprograma que diga si un numero es semiperfecto.
+	 * Semiperfecto es todo número natural que es igual a la suma de algunos de sus divisores propios. 
+	 * Precondiciones: ninguna
+	 * Entradas: un entero
+	 * Salidas: un booleano
+	 * Entradas/Salidas: ninguna
+	 * Postcondiciones: VERDAD si es semiperfecto, FALSO sino.
+	 * 
+	 * Resguardo: public static boolean Semiperfecto (int numero)
+	 * {
+	 * 	System.out.println("Llamada al metodo Semiperfecto");
+	 * 	System.out.println("Variables: "+numero);
+	 * 	return (false);
+	 * }
+	 */
+	public static boolean Semiperfecto (int numero)
+	{
+		boolean resultado = false;
+		int acumulador = numero;
+		
+		for (int contador = numero-1; contador > 0; contador--)
+		{
+			if (numero%contador == 0)
+			{
+				acumulador = acumulador - contador;
+				if (acumulador < 0)
+				{
+					acumulador = acumulador + contador;
+				}
+				else if (acumulador == 0)
+				{
+					resultado = true;
+				}
+			}
+		}
+		
+		return (resultado);
+	}
+	 //Fin subprograma Semiperfecto
+	 
+	/* Prototipo: boolean numeroFriki (int numero)
+	 * Breve resumen: Subprograma que indica si un numero es friki. Un numero es friki si sus dígitos suman 13 
+	 * y además son múltiplos de 7.
+	 * Precondiciones: ninguna
+	 * Entradas: un entero
+	 * Salidas: un booleano
+	 * Entradas/Salidas: ninguna
+	 * Postcondiciones: VERDAD si el numero es friki, FALSO sino.
+	 * 
+	 * Resguardo: public static boolean numeroFriki (int numero)
+	 {
+		System.out.println("Llamada al metodo numeroFriki");
+		System.out.println("Variables: "+numero);
+		return (false);
+	 }
+	 */
+	public static boolean numeroFriki (int numero)
+	{
+		boolean resultado = false;
+		int resultadoSuma = 0;
+		int contador = 0;
+		
+		resultadoSuma = MetodosModificacionesNumeros.sumarDigitos (numero);
+		
+		while (numero >= 10)
+		{
+			numero = (numero - (numero%10))/10;
+			if (numero % 10 == 7)
+			{
+				contador++;
+			}
+		}
+		if (numero % 7 == 0)
+		{
+			contador++;
+		}
+		
+		else if (resultadoSuma == 13 && contador == resultadoSuma) 
+		{
+			resultado = true;
+		}
+		
+		return (resultado);
+	}
+
+	//fin subprograma numeroFriki
+	 
+	/* Propotipo: int mensajeGraciosillo (int numero)
+	 * Breve resumen: Subprograma que reciba un dígito e imprima una frase que rime con el numero del 0 al 9.
+	 * Precondiciones: ninguna
+	 * Entradas: un entero
+	 * Salidas: un entero
+	 * Entradas/Salidas: ninguna
+	 * Postcondiciones: Devuelve un -1 si el numero recibido no está entre 0 y 9, y devuelve 0 si es correcto.
+	 * 
+	 * Resguardo:
+	 */
+	public static int mensajeGraciosillo (int numero)
+	{
+		int resultado = 0;
+		
+		if (numero < 0 && numero > 9)
+		{
+			resultado = -1;
+		}
+		else
+		{
+			switch (numero)
+			{
+				case 0:
+				System.out.println("Este programa esta hecho con esmero");
+				break;
+				
+				case 1:
+				System.out.println("No conozco a ningun villavicenciuno");
+				break;
+				
+				case 2:
+				System.out.println("#Perezos");
+				break;
+				
+				case 3:
+				System.out.println("#Perezres");
+				break;
+				
+				case 4:
+				System.out.println("#Perezuatro");
+				break;
+				
+				case 5:
+				System.out.println("Lo siento, no estoy autorizado a responder a esta rima.");
+				break;
+				
+				case 6:
+				System.out.println("#Perezeis (No murais pls)");
+				break;
+				
+				case 7:
+				System.out.println("#Pereziete");
+				break;
+				
+				case 8:
+				System.out.println("#Pereziocho");
+				break;
+				
+				case 9:
+				System.out.println("#Perezueve");
+				break;
+				
+			}
+		}
+		return (resultado);
+	}
+	//fin subprograma
 }//fin_pp

@@ -49,5 +49,29 @@ public class ConductoresMetodosNavidad
 			//System.out.println(MetodosNavidad.Compuesto (1));
 		//Fin Conductores Compuesto
 		
+		//Conductores Perfecto
+			//System.out.println(MetodosNavidad.Perfecto (28));
+			//System.out.println(MetodosNavidad.Perfecto (496));
+			//System.out.println(MetodosNavidad.Perfecto (8128));
+			//System.out.println(MetodosNavidad.Perfecto (4324));
+		//Fin Conductores Perfecto
+		
+		//Conductores Semiperfecto
+			//System.out.println(MetodosNavidad.Semiperfecto (40));
+			//System.out.println(MetodosNavidad.Semiperfecto (18));
+			//System.out.println(MetodosNavidad.Semiperfecto (24));
+			//System.out.println(MetodosNavidad.Semiperfecto (5));
+			//System.out.println(MetodosNavidad.Semiperfecto (1));
+		//Fin Conductores Semiperfecto
+		
+		//Conductores numeroFriki
+			//System.out.println(MetodosNavidad.numeroFriki (238)); //No puede salir true porque el numero friki es imposible.
+		//Fin Conductores numeroFriki
+		
+		//Conductores mensajeGraciosillo
+			//MetodosNavidad.mensajeGraciosillo (5);
+		//Fin Conductores mensajeGraciosillo
+		
+		
 	}//fin_main
 }//fin_pp
