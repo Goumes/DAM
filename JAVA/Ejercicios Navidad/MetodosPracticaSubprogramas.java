@@ -315,4 +315,112 @@ public class MetodosPracticaSubprogramas
 	}
  
  //Fin subprograma EcuacionSegundoGrado
+ 
+ /* Prototipo: boolean validarFecha (int dia, int mes, int agno)
+  * Breve resumen: Programa para validar que la fecha introducida sea correcta
+  * Precondiciones: ninguna
+  * Entradas: tres enteros
+  * Salidas: un booleano
+  * Entradas/Salidas: ninguna
+  * Postcondiciones: VERDAD si la fecha es correcta, FALSO sino.
+  * 
+  * Resguardo: public static boolean validarFecha (int dia, int mes, int agno)
+  {
+	System.out.println("Llamada al metodo validarFecha");
+	System.out.println("Variables: "+dia+", "+mes+", "+agno);
+	return (false);
+  }
+  
+  */
+public static boolean validarFecha (int dia, int mes, int agno)
+{
+	boolean resultado = false;
+	boolean diaC = false; //diaC - dia check, comprueba si el dia es correcto
+	boolean mesC = false;
+	boolean agnoC = false;
+	boolean bisiesto = false;
+	
+	bisiesto = MetodosPracticaSubprogramas.AnnoBisiesto (agno);
+	
+	if (agno >= 0)
+	{
+		agnoC = true;
+	}
+	if (mes >= 1 && mes <= 12)
+	{
+		mesC = true;
+	}
+	switch (mes)
+	{
+		case 1: 
+		case 3:
+		case 5: 
+		case 6:
+		case 8:
+		case 10:
+		case 12:
+		if (dia > 0 && dia <= 31)
+		{
+			diaC = true;
+		}
+		break;
+		
+		case 4:
+		case 7:
+		case 9:
+		case 11:
+		if (dia > 0 && dia <= 30)
+		{
+			diaC = true;
+		}
+		break;
+		
+		case 2:
+		if (dia > 0 && dia <= 29 && bisiesto == true)
+		{
+			diaC = true;
+		}
+		if (dia > 0 && dia <= 28)
+		{
+			diaC = true;
+		}
+		
+		break;
+	}//fin_segun
+	
+	if (diaC == true && mesC == true && agnoC == true)
+	{
+		resultado = true;
+	}
+	return (resultado);
+}
+  //fin subprograma validarFecha
+  
+/* Prototipo: boolean validarHora (int hora, int minutos)
+ * Breve descripcion: Valida la hora en formato 24h.
+ * Precondiciones: ninguna
+ * Entradas: dos enteros
+ * Salidas: un booleano 
+ * Entradas/Salidas: ninguna
+ * Postcondiciones: VERDAD si la hora es correcta, FALSO sino.
+ * 
+ * Resguardo: public static boolean validarHora (int hora, int minutos)
+ {
+	System.out.println("Llamada al metodo validarHora");
+	System.out.println("Variables: "+hora+", "+minutos);
+	return (false);
+ }
+*/
+public static boolean validarHora (int hora, int minutos)
+{
+	boolean resultado = true;
+	
+	if (hora < 0 || hora > 23 || minutos < 0 || minutos > 59)
+	{
+		resultado = false;
+	}
+	
+	return (resultado);
+}
+   //fin subprograma validarHora
 }//fin_pp

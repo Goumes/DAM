@@ -72,6 +72,20 @@ public class ConductoresMetodosNavidad
 			//MetodosNavidad.mensajeGraciosillo (5);
 		//Fin Conductores mensajeGraciosillo
 		
+		//Conductores compararFechas
+			//System.out.println(MetodosNavidad.compararFechas (29, 12, 2016, 31, 12, 2016)); //menor
+			//System.out.println(MetodosNavidad.compararFechas (29, 12, 2016, 29, 12, 2016)); //igual
+			//System.out.println(MetodosNavidad.compararFechas (29, 12, 2016, 28, 10, 1996)); //mayor
+			//System.out.println(MetodosNavidad.compararFechas (33, 5, 1997, 32, 12, 2016)); //primera fecha erronea
+			//System.out.println(MetodosNavidad.compararFechas (29, 12, 2016, 32, 12, 2016)); //segunda fecha erronea
+		//Fin Conductores compararFechas
 		
+		//Conductores conv24hAmPm
+			//System.out.println(MetodosNavidad.conv24hAmPm (15, 30));
+			//System.out.println(MetodosNavidad.conv24hAmPm (3, 30));
+			//System.out.println(MetodosNavidad.conv24hAmPm (23, 59));
+			//System.out.println(MetodosNavidad.conv24hAmPm (0, 1));
+			//System.out.println(MetodosNavidad.conv24hAmPm (25, 22));
+		//Fin Conductores conv24hAmPm
 	}//fin_main
 }//fin_pp
