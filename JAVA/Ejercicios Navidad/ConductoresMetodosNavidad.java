@@ -87,5 +87,19 @@ public class ConductoresMetodosNavidad
 			//System.out.println(MetodosNavidad.conv24hAmPm (0, 1));
 			//System.out.println(MetodosNavidad.conv24hAmPm (25, 22));
 		//Fin Conductores conv24hAmPm
+		
+		//Conductores diasTranscurridos
+			//System.out.println(MetodosNavidad.diasTranscurridos ((29, 12, 2016, 31, 12, 2016));
+		//Fin Conductores diasTranscurridos
+		
+		//Conductores relojArena
+			System.out.println(MetodosNavidad.relojArena (7, 'D')); //impar dentro rango
+			System.out.println(MetodosNavidad.relojArena (1, '*')); //limite inferior
+			System.out.println(MetodosNavidad.relojArena (15, 'X')); //limite superior
+			System.out.println(MetodosNavidad.relojArena (8, '*')); //par
+			System.out.println(MetodosNavidad.relojArena (17, '*')); //impar fuera rango
+		//Fin Conductores relojArena
+		
+		
 	}//fin_main
 }//fin_pp

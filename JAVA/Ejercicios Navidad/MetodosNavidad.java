@@ -640,4 +640,129 @@ public class MetodosNavidad
 		return (resultado);
 	}
 	//fin subprograma conv24hAmPm
+	
+	/* Prototipo: int diasTranscurridos (int dia1, int mes1, int agno1, int dia2, int mes2, int agno2)
+	 * Breve comentario: Recibir dos fechas dadas por dia, mes y año y calcular los dias transcurridos entre ambas.
+	 * Precondiciones: ninguna
+	 * Entradas: seis enteros
+	 * Salidas: un entero
+	 * Entradas/Salidas: ninguna
+	 * Postcondiciones: -1 si la primera fecha es incorrecta, 0 si la segunda fecha es incorrecta y cualquier otro entero
+	 * que indique los días transcurridos entre ambas.
+	 * 
+	 * Resguardo: public static int diasTranscurridos (int dia1, int mes1, int agno1, int dia2, int mes2, int agno2)
+	{
+			System.out.println("Llamada al metodo diasTranscurridos");
+			System.out.println("Variables:");
+			System.out.println("Dia 1: "+dia1+", Mes 1: "+mes1+", Anno 1: "+agno1);
+			System.out.println("Dia 2: "+dia2+", Mes 2: "+mes2+", Anno 2: "+agno2);
+			return (-1);
+	}
+	 */
+	public static int diasTranscurridos (int dia1, int mes1, int agno1, int dia2, int mes2, int agno2)
+	{
+			int resultado = -1;
+			boolean fecha1 = false;
+			boolean fecha2 = false;
+			
+			fecha1 = MetodosPracticaSubprogramas.validarFecha (dia1, mes1, agno1);
+			fecha2 = MetodosPracticaSubprogramas.validarFecha (dia2, mes2, agno2);
+			
+			if (fecha2 == false)
+			{
+				resultado = 0;
+			}
+			
+			else if (fecha1 == true && fecha2 == true)
+			{
+				
+			}
+			return (resultado);
+			
+			//POR ACABAR
+	}
+	 
+	//fin subprograma
+	
+	
+	/* Prototipo: int relojArena (int numero, char caracter)
+	 * Breve comentario: Subprograma que dibuje un reloj de arena con un caracter y un numero a elegir por el usuario.
+	 * Precondiciones: ninguna
+	 * Entradas: un entero y un caracter
+	 * Salidas: un entero
+	 * Entradas/Salidas: ninguna
+	 * Postcondiciones: devuelve -1 si el numero es incorrecto (no impar entre 1 y 15), y 0 si es correcto.
+	 * 
+	 * Resguardo: public static int relojArena (int numero, char caracter)
+	{
+		System.out.println("Llamada al metodo relojArena");
+		System.out.println("Variables: "+numero+", "+caracter);
+		return (-1);
+	}
+	 */
+	public static int relojArena (int numero, char caracter)
+	{
+		int resultado = -1;
+		int acumulador = 0;
+		int espacio = 0;
+		
+		if (numero >= 1 && numero <= 15 && numero%2 != 0)
+		{
+			acumulador = numero;
+			
+			//parte superior
+			while (acumulador > 1)
+			{
+				for (int contadorEspacio = 0; espacio > contadorEspacio; contadorEspacio++)
+				{
+					System.out.print(" ");
+				}
+				for (int contador = acumulador; contador > 1; contador--)
+				{
+					System.out.print(caracter);
+				}
+				
+				acumulador = acumulador - 2;
+				
+				System.out.println(caracter);
+				
+				espacio++;
+			}
+			//fin parte superior
+			
+			//caracter central
+			for (int contadorEspacio = 0; espacio > contadorEspacio; contadorEspacio++)
+			{
+				System.out.print(" ");
+			}
+			System.out.println(caracter);
+			//fin caracter central
+			
+			//parte inferior
+			while (acumulador < numero)
+			{
+				acumulador = acumulador + 2;
+				espacio--;
+				
+				for (int contadorEspacio = 0 ; contadorEspacio < espacio ;contadorEspacio++)
+				{
+					System.out.print(" ");
+				}
+				
+				for (int contador = 1; contador < acumulador; contador++)
+				{
+					System.out.print(caracter);
+				}
+				
+				System.out.println(caracter);
+				
+			}
+			//fin parte inferior
+			
+			resultado = 0;
+		}
+		
+		return (resultado);
+	}
+	//fin subprograma
 }//fin_pp
