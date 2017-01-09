@@ -45,6 +45,8 @@ public class JuegosNavidenos
 	{
 		char iniciar = ' ';
 		int opcion = 0;
+		char tirarDados = ' ';
+		int dadoInicial = 0;
 		
 		Scanner teclado = new Scanner (System.in);
 		
@@ -80,6 +82,28 @@ public class JuegosNavidenos
 				
 					//caso 1: Chicago
 					case 1:
+					
+					//TirarDados
+					do
+					{
+						System.out.println("Desea tirar los dados para ver quién empieza? S/N");
+						tirarDados = Character.toLowerCase (teclado.next().charAt(0));
+					}
+					while (tirarDados != 's' && tirarDados != 'n');
+					
+					
+					dadoInicial = MetodosJuegosNavidenos.tirarDado (tirarDados);
+					//Fin TirarDados
+					
+					//SeleccionarGanador
+					//Fin SeleccionarGanador
+					
+					//LeerValidarApuesta
+					//Fin LeerValidarApuesta
+					
+					//JugarChicago
+					//Fin JugarChicago
+					
 					break;
 					
 					//caso 2: Barbudi

@@ -308,7 +308,7 @@ public class MetodosNavidad
 	 
 	/* Prototipo: boolean numeroFriki (int numero)
 	 * Breve resumen: Subprograma que indica si un numero es friki. Un numero es friki si sus dígitos suman 13 
-	 * y además son múltiplos de 7.
+	 * y además son múltiplos de 3.
 	 * Precondiciones: ninguna
 	 * Entradas: un entero
 	 * Salidas: un booleano
@@ -333,12 +333,12 @@ public class MetodosNavidad
 		while (numero >= 10)
 		{
 			numero = (numero - (numero%10))/10;
-			if (numero % 10 == 7)
+			if (numero % 10 == 3)
 			{
 				contador++;
 			}
 		}
-		if (numero % 7 == 0)
+		if (numero % 3 == 0)
 		{
 			contador++;
 		}
@@ -765,4 +765,107 @@ public class MetodosNavidad
 		return (resultado);
 	}
 	//fin subprograma
+	
+	/* Prototipo: public static boolean isSpaceChar (char ch)
+	 * Breve comentario: Determines if the specified character is a Unicode space character. 
+	 * A character is considered to be a space character if and only if it is specified to be a space character by the Unicode Standard. 
+	 * This method returns true if the character's general category type is any of the following:
+			SPACE_SEPARATOR
+			LINE_SEPARATOR
+			PARAGRAPH_SEPARATOR
+	 * Precondiciones: Ninguna
+	 * Entradas: ch - the character to be tested.
+	 * Salidas: Un booleano
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: true if the character is a space character; false otherwise.
+	 * 
+	 * Resguardo: public static boolean isSpaceChar (char ch)
+		{
+			System.out.println("Llamada al método isSpaceChar");
+			System.out.println("Variables: "+ch);
+			return (false);
+		}
+	//fin 
+	 */
+	public static boolean isSpaceChar (char ch)
+	{
+		boolean resultado = false;
+		if (ch == '\u0020' || ch == '\u00A0' || ch == '\u1680' || ch == '\u200A' || ch == '\u202F' || ch == '\u205F' || ch == '\u3000' || ch == '\u2028' || ch == '\u2029' || (ch > '\u2000' && ch < '\u2009'))
+		{
+			resultado = true;
+		}
+		return (resultado);
+	}
+	//fin subprograma isSpaceChar
+	
+		/* Prototipo: public static boolean isSpaceChar (int ch)
+	 * Breve comentario: Determines if the specified character is a Unicode space character. 
+	 * A character is considered to be a space character if and only if it is specified to be a space character by the Unicode Standard. 
+	 * This method returns true if the character's general category type is any of the following:
+			SPACE_SEPARATOR
+			LINE_SEPARATOR
+			PARAGRAPH_SEPARATOR
+	 * Precondiciones: Ninguna
+	 * Entradas: codePoint - the character (Unicode code point) to be tested.
+	 * Salidas: Un booleano
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: true if the character is a space character; false otherwise.
+	 * 
+	 * Resguardo: public static boolean isSpaceChar (int codePoint)
+		{
+			System.out.println("Llamada al método isSpaceChar");
+			System.out.println("Variables: "+codePoint);
+			return (false);
+		}
+	//fin 
+	 */
+	public static boolean isSpaceChar (int codePoint)
+	{
+		boolean resultado = false;
+		if (codePoint == '\u0020' || codePoint  == '\u00A0' || codePoint  == '\u1680' || codePoint  == '\u200A' || codePoint  == '\u202F' || codePoint  == '\u205F' || codePoint  == '\u3000' || codePoint  == '\u2028' || codePoint  == '\u2029' || (codePoint  > '\u2000' && codePoint  < '\u2009'))
+		{
+			resultado = true;
+		}
+		return (resultado);
+	}
+	//fin subprograma isSpaceChar
+	
+	/* Prototipo: public static boolean isWhitespace(char ch)
+	 * Breve comentario:Determines if the specified character is white space according to Java. 
+	 * A character is a Java whitespace character if and only if it satisfies one of the following criteria:
+			It is a Unicode space character (SPACE_SEPARATOR, LINE_SEPARATOR, or PARAGRAPH_SEPARATOR) but is not also a non-breaking space ('\u00A0', '\u2007', '\u202F').
+			It is '\t', U+0009 HORIZONTAL TABULATION.
+			It is '\n', U+000A LINE FEED.
+			It is '\u000B', U+000B VERTICAL TABULATION.
+			It is '\f', U+000C FORM FEED.
+			It is '\r', U+000D CARRIAGE RETURN.
+			It is '\u001C', U+001C FILE SEPARATOR.
+			It is '\u001D', U+001D GROUP SEPARATOR.
+			It is '\u001E', U+001E RECORD SEPARATOR.
+			It is '\u001F', U+001F UNIT SEPARATOR.
+	 * Precondiciones: Ninguna
+	 * Entradas: ch - the character to be tested.
+	 * Salidas: Un booleano
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: true if the character is a Java whitespace character; false otherwise
+	 * 
+	 * Resguardo: public static boolean isWhitespace(char ch)
+		{
+			System.out.println("Llamada al metodo isWhitespace");
+			System.out.println("Variables: "+ch);
+			return (false);
+		}
+	 */
+	public static boolean isWhitespace(char ch)
+	{
+		boolean resultado = false;
+		
+		if (ch == '\u00A0' || ch == '\u2007' || ch == '\u202F' ||ch == '\t' ||ch == '\n' || ch == '\u000B' || ch == '\f' || ch == '\r' ||ch == '\u001C' || ch == '\u001D' || ch == '\u001E' || ch == '\u001F')
+		{
+			resultado = true;
+		}
+
+		return (resultado);
+	}
+	//fin subprograma isWhitespace
 }//fin_pp

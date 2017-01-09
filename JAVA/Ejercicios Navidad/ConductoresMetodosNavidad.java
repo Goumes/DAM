@@ -65,7 +65,7 @@ public class ConductoresMetodosNavidad
 		//Fin Conductores Semiperfecto
 		
 		//Conductores numeroFriki
-			//System.out.println(MetodosNavidad.numeroFriki (238)); //No puede salir true porque el numero friki es imposible.
+			//System.out.println(MetodosNavidad.numeroFriki (238));
 		//Fin Conductores numeroFriki
 		
 		//Conductores mensajeGraciosillo
@@ -100,6 +100,8 @@ public class ConductoresMetodosNavidad
 			System.out.println(MetodosNavidad.relojArena (17, '*')); //impar fuera rango
 		//Fin Conductores relojArena
 		
-		
+		String prueba = " ";
+		prueba = teclado.next();
+		System.out.println(prueba);
 	}//fin_main
 }//fin_pp
