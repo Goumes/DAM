@@ -6,6 +6,7 @@ public class ConductoresMetodosNavidad
 		Scanner teclado = new Scanner (System.in);
 		char pruebaCaracter = ' '; //Declaré estas variables para usarlas en caso de prueba de lectura como con el caracter '¡'.
 		int pruebaNumero = 0;
+		int contadorFriki;
 		
 		//Conductores ordenAlfabeto
 			//System.out.println(MetodosNavidad.ordenAlfabeto ('a','d'));
@@ -65,12 +66,22 @@ public class ConductoresMetodosNavidad
 		//Fin Conductores Semiperfecto
 		
 		//Conductores numeroFriki
-			//System.out.println(MetodosNavidad.numeroFriki (238));
+		//for (contadorFriki = 0; contadorFriki < 10000; contadorFriki++)
+		//{
+			//System.out.println(MetodosNavidad.numeroFriki (contadorFriki));
+		//}
 		//Fin Conductores numeroFriki
 		
 		//Conductores mensajeGraciosillo
 			//MetodosNavidad.mensajeGraciosillo (5);
 		//Fin Conductores mensajeGraciosillo
+		
+		//Conductores PrimoProbable
+		//for (int contador = 0; contador < 10000; contador++)
+		//{
+			//System.out.println(MetodosNavidad.primoProbable (9));
+		//}
+		//Fin Conductores Primoprobable
 		
 		//Conductores compararFechas
 			//System.out.println(MetodosNavidad.compararFechas (29, 12, 2016, 31, 12, 2016)); //menor
@@ -89,19 +100,21 @@ public class ConductoresMetodosNavidad
 		//Fin Conductores conv24hAmPm
 		
 		//Conductores diasTranscurridos
-			//System.out.println(MetodosNavidad.diasTranscurridos ((29, 12, 2016, 31, 12, 2016));
+			System.out.println(MetodosNavidad.diasTranscurridos (22, 12, 2016, 31, 12, 2016));
+			System.out.println(MetodosNavidad.diasTranscurridos (22, 8, 2016, 22, 12, 2015));
+			System.out.println(MetodosNavidad.diasTranscurridos (22, 12, 2012, 30, 03, 2016));
 		//Fin Conductores diasTranscurridos
 		
 		//Conductores relojArena
-			System.out.println(MetodosNavidad.relojArena (7, 'D')); //impar dentro rango
-			System.out.println(MetodosNavidad.relojArena (1, '*')); //limite inferior
-			System.out.println(MetodosNavidad.relojArena (15, 'X')); //limite superior
-			System.out.println(MetodosNavidad.relojArena (8, '*')); //par
-			System.out.println(MetodosNavidad.relojArena (17, '*')); //impar fuera rango
+			//System.out.println(MetodosNavidad.relojArena (7, 'D')); //impar dentro rango
+			//System.out.println(MetodosNavidad.relojArena (1, '*')); //limite inferior
+			//System.out.println(MetodosNavidad.relojArena (15, 'X')); //limite superior
+			//System.out.println(MetodosNavidad.relojArena (8, '*')); //par
+			//System.out.println(MetodosNavidad.relojArena (17, '*')); //impar fuera rango
 		//Fin Conductores relojArena
 		
-		String prueba = " ";
-		prueba = teclado.next();
-		System.out.println(prueba);
+		//String prueba = " ";
+		//prueba = teclado.next();
+		//System.out.println(prueba);
 	}//fin_main
 }//fin_pp

@@ -47,6 +47,7 @@ public class JuegosNavidenos
 		int opcion = 0;
 		char tirarDados = ' ';
 		int dadoInicial = 0;
+		int dadoInicialCPU = 0;
 		
 		Scanner teclado = new Scanner (System.in);
 		
@@ -86,16 +87,19 @@ public class JuegosNavidenos
 					//TirarDados
 					do
 					{
-						System.out.println("Desea tirar los dados para ver quién empieza? S/N");
+						System.out.println("Desea tirar los dados para ver quien empieza? S/N");
 						tirarDados = Character.toLowerCase (teclado.next().charAt(0));
 					}
 					while (tirarDados != 's' && tirarDados != 'n');
-					
-					
+
 					dadoInicial = MetodosJuegosNavidenos.tirarDado (tirarDados);
+					System.out.println("Has sacado un: "+dadoInicial);
+					dadoInicialCPU = MetodosJuegosNavidenos.tirarDado (tirarDados);
+					System.out.println("La CPU ha sacado un: "+dadoInicialCPU);
 					//Fin TirarDados
 					
 					//SeleccionarGanador
+					
 					//Fin SeleccionarGanador
 					
 					//LeerValidarApuesta

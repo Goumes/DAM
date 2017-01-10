@@ -101,4 +101,24 @@ public class MetodosJuegosNavidenos
 		return (resultado);
 	}
 	//fin subprograma tirarDado
+	
+	/* Prototipo: int seleccionarGanador (int dado1, int dado2)
+	 * Breve comentario: Compara las tiradas de dados e indica quién es el ganador.
+	 * Precondiciones: Ninguna
+	 * Entradas: dos enteros
+	 * Salidas: un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postoncidiciones: 0 si gana el jugador, 1 si gana la CPU.
+	 * 
+	 * Resguardo:
+	 */
+	public static int seleccionarGanador (int dado1, int dado2)
+	{
+		int resultado = 0;
+		
+		System.out.println("Llamada al metodo seleccionarGanador");
+		System.out.println("Variables: "+dado1+", "+dado2);
+		return (resultado);
+	}
+	//fin subprograma seleccionarGanador
 }//fin_pp

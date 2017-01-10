@@ -1,5 +1,7 @@
 /* MetodosNavidad */
-
+import java.util.*;
+import java.io.*;
+import java.lang.*;
 public class MetodosNavidad
 {
 	/* Prototipo: int ordenAlfabeto (char caracter1, char caracter 2)
@@ -307,7 +309,7 @@ public class MetodosNavidad
 	 //Fin subprograma Semiperfecto
 	 
 	/* Prototipo: boolean numeroFriki (int numero)
-	 * Breve resumen: Subprograma que indica si un numero es friki. Un numero es friki si sus dígitos suman 13 
+	 * Breve resumen: Subprograma que indica si un numero es friki. Un numero es friki si sus dígitos suman 15 
 	 * y además son múltiplos de 3.
 	 * Precondiciones: ninguna
 	 * Entradas: un entero
@@ -325,29 +327,34 @@ public class MetodosNavidad
 	public static boolean numeroFriki (int numero)
 	{
 		boolean resultado = false;
+		int resultadoMultiplo = 0;
 		int resultadoSuma = 0;
+		int resultadoContar = 0;
 		int contador = 0;
 		
 		resultadoSuma = MetodosModificacionesNumeros.sumarDigitos (numero);
+		resultadoContar = MetodosModificacionesNumeros.contarDigitos (numero);
 		
 		while (numero >= 10)
 		{
-			numero = (numero - (numero%10))/10;
-			if (numero % 10 == 3)
+			resultadoMultiplo = numero%10;
+			numero = numero/10;
+			
+			if (resultadoMultiplo % 3 == 0)
 			{
 				contador++;
 			}
 		}
+		
 		if (numero % 3 == 0)
 		{
 			contador++;
 		}
 		
-		else if (resultadoSuma == 13 && contador == resultadoSuma) 
+		if (resultadoSuma == 15 && resultadoContar == contador) 
 		{
 			resultado = true;
 		}
-		
 		return (resultado);
 	}
 
@@ -439,9 +446,22 @@ public class MetodosNavidad
 	 */
 	public static boolean primoProbable (int numero)
 	{
-		boolean resultado = false;
+		Random aleatorio = new Random ();
+		boolean resultado = true;
+		int numeroVeces = 0;
+		int numeroAleatorio = 0;
+		int contador;
 		
-		//POR ACABAR PORQUE ME DA PEREZA HACER ESTE EJERCICIO AHORA
+		for (contador = 1;contador < numeroVeces; contador++)
+		{
+			numeroAleatorio = aleatorio.nextInt (numero);
+			
+			if (((int) Math.pow (numeroAleatorio, (numero-1)) % numero) != 1)
+			{
+				resultado = false;
+			}
+		}
+		
 		
 		return (resultado);
 	}
@@ -647,7 +667,7 @@ public class MetodosNavidad
 	 * Entradas: seis enteros
 	 * Salidas: un entero
 	 * Entradas/Salidas: ninguna
-	 * Postcondiciones: -1 si la primera fecha es incorrecta, 0 si la segunda fecha es incorrecta y cualquier otro entero
+	 * Postcondiciones: -1 si la primera fecha es incorrecta, -2 si la segunda fecha es incorrecta y cualquier otro entero
 	 * que indique los días transcurridos entre ambas.
 	 * 
 	 * Resguardo: public static int diasTranscurridos (int dia1, int mes1, int agno1, int dia2, int mes2, int agno2)
@@ -664,23 +684,46 @@ public class MetodosNavidad
 			int resultado = -1;
 			boolean fecha1 = false;
 			boolean fecha2 = false;
+			int resultadoComparar = 0;
+			int diferenciaDia = 0;
+			int diferenciaMes = 0;
+			int diferenciaAgno = 0;
 			
 			fecha1 = MetodosPracticaSubprogramas.validarFecha (dia1, mes1, agno1);
 			fecha2 = MetodosPracticaSubprogramas.validarFecha (dia2, mes2, agno2);
 			
 			if (fecha2 == false)
 			{
-				resultado = 0;
+				resultado = -2;
 			}
 			
 			else if (fecha1 == true && fecha2 == true)
 			{
+				resultadoComparar = MetodosNavidad.compararFechas (dia1, mes1, agno1, dia2, mes2, agno2);
 				
+				if (resultadoComparar == 0)
+				{
+					resultado = 0;
+				}
+				
+				else if (resultadoComparar == 1)
+				{
+					diferenciaAgno = agno1 - agno2;
+					diferenciaMes = mes1 - mes2;
+					diferenciaDia = dia1 - dia2;
+				}
+				else
+				{
+					diferenciaAgno = agno2 - agno1;
+					diferenciaMes = mes2 - mes1;
+					diferenciaDia = dia2 - dia1;
+				}
+				
+				resultado = diferenciaDia + (diferenciaMes * 30) + (diferenciaAgno * 365);
 			}
 			return (resultado);
-			
-			//POR ACABAR
 	}
+	 /*Mejorar algoritmo ya que no tiene en cuenta ni los años bisiestos ni los meses de 31/28 días.*/
 	 
 	//fin subprograma
 	
