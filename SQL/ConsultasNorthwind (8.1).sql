@@ -59,6 +59,8 @@ SELECT YEAR (OrderDate) AS Año, AVG (DAY(OrderDate)) AS TiempoMedioTranscurridoD
 
 /* 9. ID del distribuidor y número de pedidos enviados a través de ese distribuidor. */
 
-
+SELECT SupplierID, 
+	FROM Suppliers
+	GROUP BY
 
 /* 10. ID de cada proveedor y número de productos distintos que nos suministra. */
