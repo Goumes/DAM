@@ -30,8 +30,6 @@ del precio de venta. */
 
 
 
-
-
 --5.Número de productos de cada categoría
 --6.Igual a la anterior, pero considerando las categorías generales (categorías de categorías).
 --7.Número de unidades vendidas de cada producto cada año.
