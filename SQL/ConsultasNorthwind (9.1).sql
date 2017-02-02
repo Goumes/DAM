@@ -80,10 +80,10 @@ SELECT E.EmployeeID, E.FirstName, E.LastName
 	ON O.CustomerID = C.CustomerID
 	WHERE C.Country IN ('France')
 
-	select country from Customers
 --7. Total de ventas en US$ de productos de cada categoría (nombre de la categoría).
 
-
+SELECT *
+	FROM
 
 --8. Total de ventas en US$ de cada empleado cada año (nombre, apellidos, dirección).
 
