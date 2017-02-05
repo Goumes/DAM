@@ -82,16 +82,40 @@ SELECT E.EmployeeID, E.FirstName, E.LastName
 
 --7. Total de ventas en US$ de productos de cada categoría (nombre de la categoría).
 
-SELECT *
-	FROM
+SELECT C.CategoryName, (OD.UnitPrice * OD.Quantity) AS TotalVentas
+	FROM [Order Details] AS OD
+	INNER JOIN
+	Products AS P
+	ON OD.ProductID = P.ProductID
+	INNER JOIN
+	Categories AS C
+	ON P.CategoryID = C.CategoryID
+	GROUP BY C.CategoryName, OD.UnitPrice, OD.Quantity
 
 --8. Total de ventas en US$ de cada empleado cada año (nombre, apellidos, dirección).
 
-
+SELECT (OD.UnitPrice * OD.Quantity) AS TotalVentas, E.FirstName, E.LastName, E.[Address]
+	FROM Employees AS E
+	INNER JOIN
+	Orders AS O
+	ON E.EmployeeID = O.CustomerID
+	INNER JOIN
+	[Order Details] AS OD
+	ON O.OrderID = OD.OrderID
+	GROUP BY E.EmployeeID, OD.UnitPrice, OD.Quantity, E.FirstName, E.LastName, E.Address
 
 --9. Ventas de cada producto en el año 97. Nombre del producto y unidades.
 
-
+SELECT COUNT (O.OrderID) AS NumeroVentas, P.ProductName, P.QuantityPerUnit
+	FROM Products AS P
+	INNER JOIN
+	[Order Details] AS OD
+	ON P.ProductID = OD.ProductID
+	INNER JOIN
+	Orders AS O
+	ON OD.OrderID = O.OrderID
+	GROUP BY P.ProductName, P.QuantityPerUnit, O.OrderDate
+	HAVING YEAR (O.OrderDate) = 1997 
 
 --10. Cuál es el producto del que hemos vendido más unidades en cada país.
 
