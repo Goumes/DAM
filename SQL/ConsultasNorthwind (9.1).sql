@@ -119,10 +119,66 @@ SELECT SUM (OD.Quantity) AS NumeroVentas, P.ProductName
 
 --10. Cuál es el producto del que hemos vendido más unidades en cada país.
 
-
+SELECT MAX (UnidadesVendidas.NumeroProductos) AS UnidadesVendidas, C.Country
+	FROM
+	(SELECT COUNT (P.ProductID) AS NumeroProductos, C.Country
+		FROM Products AS P
+		INNER JOIN
+		[Order Details] AS OD
+		ON P.ProductID = OD.ProductID
+		INNER JOIN
+		Orders AS O
+		ON OD.OrderID = O.OrderID
+		INNER JOIN
+		Customers AS C
+		ON O.CustomerID = C.CustomerID
+		GROUP BY C.Country) AS UnidadesVendidas
+	INNER JOIN
+	Customers AS C
+	ON UnidadesVendidas.Country = C.Country
+	GROUP BY C.Country
 
 --11. Empleados (nombre y apellidos) que trabajan a las órdenes de Andrew Fuller.
 
 
 
 --12. Número de subordinados que tiene cada empleado, incluyendo los que no tienen ninguno. Nombre, apellidos, ID.
+
+
+-- Clientes que han comprado productos de una categoría que contiene menos de 10 productos diferentes.
+
+SELECT DISTINCT C.CustomerID
+	FROM Customers AS C
+	INNER JOIN
+	Orders AS O
+	ON C.CustomerID = O.CustomerID
+	INNER JOIN
+	[Order Details] AS OD
+	ON O.OrderID = OD.OrderID
+	INNER JOIN
+	Products AS P
+	ON OD.ProductID = P.ProductID
+	WHERE P.CategoryID IN
+		(SELECT DISTINCT CategoryID
+			FROM Products
+			GROUP BY CategoryID
+			HAVING COUNT (ProductID) < 10) 
+
+
+SELECT DISTINCT C.CustomerID
+	FROM Customers AS C
+	INNER JOIN
+	Orders AS O
+	ON C.CustomerID = O.CustomerID
+	INNER JOIN
+	[Order Details] AS OD
+	ON O.OrderID = OD.OrderID
+	INNER JOIN
+	Products AS P
+	ON OD.ProductID = P.ProductID
+	INNER JOIN
+	(SELECT DISTINCT CategoryID
+		FROM Products
+		GROUP BY CategoryID
+		HAVING COUNT (ProductID) < 10) AS  CatMod
+	ON P.CategoryID = CatMod.CategoryID
