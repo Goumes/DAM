@@ -98,7 +98,7 @@ SELECT (OD.UnitPrice * OD.Quantity) AS TotalVentas, E.FirstName, E.LastName, E.[
 	FROM Employees AS E
 	INNER JOIN
 	Orders AS O
-	ON E.EmployeeID = O.CustomerID
+	ON E.EmployeeID = O.EmployeeID
 	INNER JOIN
 	[Order Details] AS OD
 	ON O.OrderID = OD.OrderID
@@ -106,7 +106,7 @@ SELECT (OD.UnitPrice * OD.Quantity) AS TotalVentas, E.FirstName, E.LastName, E.[
 
 --9. Ventas de cada producto en el año 97. Nombre del producto y unidades.
 
-SELECT COUNT (O.OrderID) AS NumeroVentas, P.ProductName, P.QuantityPerUnit
+SELECT SUM (OD.Quantity) AS NumeroVentas, P.ProductName
 	FROM Products AS P
 	INNER JOIN
 	[Order Details] AS OD
@@ -114,8 +114,8 @@ SELECT COUNT (O.OrderID) AS NumeroVentas, P.ProductName, P.QuantityPerUnit
 	INNER JOIN
 	Orders AS O
 	ON OD.OrderID = O.OrderID
-	GROUP BY P.ProductName, P.QuantityPerUnit, O.OrderDate
-	HAVING YEAR (O.OrderDate) = 1997 
+	GROUP BY P.ProductName, O.OrderDate
+	HAVING YEAR (O.OrderDate) = 1997
 
 --10. Cuál es el producto del que hemos vendido más unidades en cada país.
 
