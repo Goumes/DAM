@@ -119,31 +119,54 @@ SELECT SUM (OD.Quantity) AS NumeroVentas, P.ProductName
 
 --10. Cuál es el producto del que hemos vendido más unidades en cada país.
 
-SELECT MAX (UnidadesVendidas.NumeroProductos) AS UnidadesVendidas, C.Country
+SELECT P.ProductName, C.Country, SUM (OD.Quantity) AS UnidadesVendidasFinal
 	FROM
-	(SELECT COUNT (P.ProductID) AS NumeroProductos, C.Country
-		FROM Products AS P
-		INNER JOIN
-		[Order Details] AS OD
-		ON P.ProductID = OD.ProductID
-		INNER JOIN
-		Orders AS O
-		ON OD.OrderID = O.OrderID
+		(SELECT MAX (UnidadesVendidas.NumeroProductos) AS UnidadesVendidasMax, C.Country
+			FROM
+			(SELECT SUM (OD.Quantity) AS NumeroProductos, C.Country, P.ProductName
+				FROM Products AS P
+				INNER JOIN
+				[Order Details] AS OD
+				ON P.ProductID = OD.ProductID
+				INNER JOIN
+				Orders AS O
+				ON OD.OrderID = O.OrderID
+				INNER JOIN
+				Customers AS C
+				ON O.CustomerID = C.CustomerID
+				GROUP BY C.Country, P.ProductName) AS UnidadesVendidas
+			INNER JOIN
+			Customers AS C
+			ON UnidadesVendidas.Country = C.Country
+			GROUP BY C.Country) AS UnidadesVendidasMax
 		INNER JOIN
 		Customers AS C
-		ON O.CustomerID = C.CustomerID
-		GROUP BY C.Country) AS UnidadesVendidas
-	INNER JOIN
-	Customers AS C
-	ON UnidadesVendidas.Country = C.Country
-	GROUP BY C.Country
-
+		ON UnidadesVendidasMax.Country = C.Country
+		INNER JOIN
+		Orders AS O
+		ON C.CustomerID = O.CustomerID
+		INNER JOIN
+		[Order Details] AS OD
+		ON O.OrderID = OD.OrderID
+		INNER JOIN
+		Products AS P
+		ON OD.ProductID = P.ProductID
+	GROUP BY C.Country, P.ProductName, UnidadesVendidasMax
+	HAVING SUM (OD.Quantity) = UnidadesVendidasMax
+		
 --11. Empleados (nombre y apellidos) que trabajan a las órdenes de Andrew Fuller.
 
-
+SELECT FirstName, LastName
+	FROM Employees
+	WHERE ReportsTo = 
+	(SELECT EmployeeID
+		FROM Employees
+		WHERE FirstName = 'Andrew' AND LastName = 'Fuller')
 
 --12. Número de subordinados que tiene cada empleado, incluyendo los que no tienen ninguno. Nombre, apellidos, ID.
 
+SELECT *
+	FROM Employees
 
 -- Clientes que han comprado productos de una categoría que contiene menos de 10 productos diferentes.
 
@@ -158,7 +181,7 @@ SELECT DISTINCT C.CustomerID
 	INNER JOIN
 	Products AS P
 	ON OD.ProductID = P.ProductID
-	WHERE P.CategoryID IN
+	WHERE P.CategoryID IN -- = ANY Significa lo mismo que IN
 		(SELECT DISTINCT CategoryID
 			FROM Products
 			GROUP BY CategoryID
