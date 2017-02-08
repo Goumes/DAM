@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:complexType name = "tipoFicha">
+	<xs:sequence>
+		<xs:element name = "nombre">
+		<xs:element name = "apellido1">
+		<xs:element name = "apellido2">
+		<xs:element name = "email"> <!-- De 0 a 2. Sólo aceptará direcciones válidas -->
+		<xs:element name = "direccion"> <!-- De 0 a 3 -->
+		<!-- La dirección contiene: Calle, piso (opcional), 
+		letra (opcional), codigo_postal (va de 1000 a 9999), 
+		ciudad, pais -->
+		
+	</xs:sequence>
+</xs:complexType>
+
+<!-- Ficha tiene dos atributos: Categoria (obligatorio) y zona (opcional) -->
+<!-- tipo_categoria puede tener: 'empresa', 'particular' o 'agente_comercial' -->
+<!-- tipo_zona puede tener: 'Centro', 'Macarena' o 'Remedios' -->
+
+</xs:schema>

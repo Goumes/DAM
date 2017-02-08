@@ -23,13 +23,13 @@ public class utilArray
 	{
 		int arraySize = (int) Math.round((double) array.length / 2.0); //Dividir el tamaño del array original entre dos para crear el nuevo. Hay que redondearlo para evitar fallos de tamaño en el array. Math.round devuelve un double.
 		
-		int [] resultado = new int [arraySize]; //Crear nuevo array con el tamaÃ±o antes obtenido
-		int j = 0;
+		int [] resultado = new int [arraySize]; //Crear nuevo array con el tamaño antes obtenido
+		//int j = 0;
 		
-		for (int i = 0; i < array.length; i = i+2)
+		for (int i = 0, j = 0; i < array.length; i = i+2, j++)
 		{
 				resultado [j] = array [i];
-				j++;
+				//j++;
 		}
 		return resultado;
 	}
