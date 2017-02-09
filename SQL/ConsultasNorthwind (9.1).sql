@@ -165,8 +165,11 @@ SELECT FirstName, LastName
 
 --12. Número de subordinados que tiene cada empleado, incluyendo los que no tienen ninguno. Nombre, apellidos, ID.
 
-SELECT *
+SELECT DISTINCT EmployeeID, FirstName, LastName, ReportsTo
 	FROM Employees
+	WHERE ReportsTo IS NOT NULL
+
+	--POR TERMINAR
 
 -- Clientes que han comprado productos de una categoría que contiene menos de 10 productos diferentes.
 
