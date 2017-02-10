@@ -35,7 +35,7 @@
 	</xs:restriction>
 </xs:simpleType>
 
-<xs:element nam e= "helado" type = "tipoHelado"/>
+<xs:element name= "helado" type = "tipoHelado"/>
 			
 
 </xs:schema>

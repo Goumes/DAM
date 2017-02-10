@@ -1,0 +1,44 @@
+<fichas>
+	<ficha categoria = "empresa" zona = "Centro">
+		<nombre>pepejava</nombre>
+		<apellido1>.io</apellido1>
+		<apellido2>de Armenia</apellido2>
+		<email>pepejava@gmail.com</email>
+		<direccion>
+			<calle>pepejava Street</calle>
+			<piso>4</piso>
+			<letra>f</letra>
+			<codigo_postal>9901</codigo_postal>
+			<ciudad>API Java</ciudad>
+			<pais>Oracle</pais>
+		</direccion>
+	</ficha>
+	
+	<ficha categoria = "particular" zona = "Macarena">
+		<nombre>pepejava2</nombre>
+		<apellido1>fdsaf</apellido1>
+		<apellido2>fdsaf</apellido2>
+		<email>pfmdasio@nfdjisa.com</email>
+		<direccion>
+			<calle>fdsaf</calle>
+			<codigo_postal>3132</codigo_postal>
+			<ciudad>fdsaf</ciudad>
+			<pais>fsdafasd</pais>
+		</direccion>
+	</ficha>
+	
+	<ficha categoria = "fdasf23" zona = "fdsa32df">
+		<nombre>pepejava3</nombre>
+		<apellido1></apellido1>
+		<apellido2></apellido2>
+		<email></email>
+		<direccion>
+			<calle></calle>
+			<piso></piso>
+			<letra></letra>
+			<codigo_postal></codigo_postal>
+			<ciudad></ciudad>
+			<pais></pais>
+		</direccion>
+	</ficha>
+</fichas>

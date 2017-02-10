@@ -2,19 +2,82 @@
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-<xs:complexType name = "tipoFicha">
-	<xs:sequence>
-		<xs:element name = "nombre">
-		<xs:element name = "apellido1">
-		<xs:element name = "apellido2">
-		<xs:element name = "email"> <!-- De 0 a 2. Sólo aceptará direcciones válidas -->
-		<xs:element name = "direccion"> <!-- De 0 a 3 -->
-		<!-- La dirección contiene: Calle, piso (opcional), 
-		letra (opcional), codigo_postal (va de 1000 a 9999), 
-		ciudad, pais -->
-		
-	</xs:sequence>
-</xs:complexType>
+	<!-- La dirección contiene: Calle, piso (opcional), 
+	letra (opcional), codigo_postal (va de 1000 a 9999),
+	ciudad, pais -->
+	<xs:complexType name = "tipoFicha">
+		<xs:sequence>
+			<xs:element name = "nombre" type = "xs:string"/>
+			<xs:element name = "apellido1" type = "xs:string"/>
+			<xs:element name = "apellido2" type = "xs:string"/>
+			<xs:element name = "email" minOccurs = "0" maxOccurs = "2" type = "tipoEmail"/> <!-- De 0 a 2. Sólo aceptará direcciones válidas -->
+			<xs:element name = "direccion" minOccurs = "0" maxOccurs = "3" type = "tipoDireccion"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name = "tipoEmail">
+		<xs:restriction base = "xs:string">
+		  <xs:pattern value = "([a-zA-Z0-9])*[@]([a-zA-Z0-9])*[.]([a-zA-Z0-9])*"/> <!-- Hay extensiones de dominio que tienen más de 3 caracteres -->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name = "tipoDireccion">
+		<xs:sequence>
+			<xs:element name = "calle" type = "xs:string"/>
+			<xs:element name = "piso" type = "xs:integer" minOccurs = "0" maxOccurs = "1"/>
+			<xs:element name = "letra" type = "char" minOccurs = "0" maxOccurs = "1"/>
+			<xs:element name = "codigo_postal" type = "tipoCodigoPostal"/>
+			<xs:element name = "ciudad"/>
+			<xs:element name = "pais"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="char">
+		<xs:restriction base="xs:string">
+			<xs:length value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name = "tipoCodigoPostal">
+		<xs:restriction base = "xs:integer">
+			<xs:minInclusive value = "1000"/>
+			<xs:maxInclusive value = "9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name = "fichas" type = "fichas"/> <!-- Elemento 'fichas' que contiene de 0 a infitinos elementos 'ficha' -->
+	
+	<!-- arreglar atributo tipoFicha -->
+	<xs:complexType name="fichas">
+		<xs:sequence>
+			<xs:element name="ficha" minOccurs = "0" maxOccurs="unbounded">
+			<xs:complexType>
+				<xs:simpleContent>
+					<xs:extension base = "tipoFicha">
+						<xs:attribute name = "categoria" type = "tipo_categoria"/>
+						<xs:attribute name = "zona" type = "tipo_zona" use = "optional"/>
+					</xs:extension>
+				</xs:simpleContent>
+			</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name = "tipo_categoria">
+		<xs:restriction base = "xs:string">
+			<xs:enumeration value = "empresa"/>
+			<xs:enumeration value = "particular"/>
+			<xs:enumeration value = "agente_comercial"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name = "tipo_zona">
+		<xs:restriction base = "xs:string">
+			<xs:enumeration value = "Centro"/>
+			<xs:enumeration value = "Macarena"/>
+			<xs:enumeration value = "Remedios"/>
+		</xs:restriction>
+	</xs:simpleType>
 
 <!-- Ficha tiene dos atributos: Categoria (obligatorio) y zona (opcional) -->
 <!-- tipo_categoria puede tener: 'empresa', 'particular' o 'agente_comercial' -->
