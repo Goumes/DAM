@@ -6,28 +6,65 @@ public class TestUtilArray
 {
 	public static void main (String [] args)
 	{
-		//double operacion = 10.0/2.0;
-		//int operacion2 = (int) Math.round(operacion);
+		//arrayPar
+			
+			//double operacion = 10.0/2.0;
+			//int operacion2 = (int) Math.round(operacion);
+			
+			//System.out.println(operacion2);
+			int [] array1 = {0,1,2,3,4,5,6,7,8,9, 10};
+			
+			int [] arrayPar = utilArray.arrayPar (array1);
+			
+			System.out.println("Array original");
+			System.out.println("----------------------------------");
+			
+			for (int i = 0; i < array1.length; i++)
+			{
+				System.out.println(array1 [i]);
+			}
+			
+			System.out.println("----------------------------------");
+			System.out.println("Array con solo los indices pares del original");
+			System.out.println("----------------------------------");
+			for (int i = 0; i < arrayPar.length; i++)
+			{
+				System.out.println(arrayPar [i]);
+			}
+		//Fin arrayPar
 		
-		//System.out.println(operacion2);
-		int [] array = {0,1,2,3,4,5,6,7,8,9, 10};
+		//arrayAleatorio
 		
-		int [] arrayPar = utilArray.arrayPar (array);
+			System.out.println("----------------------------------");
+			System.out.println("Array de 20 enteros aleatorios entre 100 y 300 sin repetirse");
+			System.out.println("----------------------------------");
+			
+			
+			int [] array2 = utilArray.arrayAleatorio ();
+			
+			for (int i = 0; i < array2.length; i++)
+			{
+				System.out.println(array2 [i]);
+			}
 		
-		System.out.println("Array original");
-		System.out.println("--------------");
 		
-		for (int i = 0; i < array.length; i++)
-		{
-			System.out.println(array [i]);
-		}
+		//Fin arrayAleatorio
 		
-		System.out.println("--------------");
-		System.out.println("Array con solo los indices pares del original");
-		System.out.println("--------------");
-		for (int i = 0; i < arrayPar.length; i++)
-		{
-			System.out.println(arrayPar [i]);
-		}
+		//alrrayVes
+		
+			System.out.println("----------------------------------");
+			System.out.println("Array con los elementos al reves del introducido");
+			System.out.println("----------------------------------");
+		
+			int [] array3 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+			
+			int [] alreves = utilArray.alrrayVes (array3);
+		
+			for (int i = 0; i < alreves.length; i++)
+			{
+				System.out.println(alreves [i]);
+			}
+		//Fin alrrayVes
+		
 	}//fin_main
 }//fin_clase
