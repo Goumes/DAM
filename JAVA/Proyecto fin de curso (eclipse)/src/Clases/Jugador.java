@@ -55,8 +55,10 @@
  * Restricciones:
  * 
  */
- import java.lang.*;
- import java.util.*;
+package Clases;
+
+import java.lang.*;
+import java.util.*;
  
 public class Jugador implements Cloneable, Comparable <Jugador>
 {

@@ -1,3 +1,5 @@
+package Clases;
+
 public class TestHabitacion
 {
 	public static void main (String []args)

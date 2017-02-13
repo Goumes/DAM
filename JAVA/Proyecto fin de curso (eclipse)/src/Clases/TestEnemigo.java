@@ -1,3 +1,5 @@
+package Clases;
+
 public class TestEnemigo
 {
 	public static void main (String[]args)

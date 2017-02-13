@@ -1,3 +1,5 @@
+package Clases;
+
 public class TestArma
 {
 	public static void main (String []args)

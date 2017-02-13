@@ -38,6 +38,8 @@ Métodos añadidos:
 Restricciones:
 
  */
+package Clases;
+
 import java.lang.*;
 import java.util.*;
 public class Item implements Cloneable, Comparable <Item>
