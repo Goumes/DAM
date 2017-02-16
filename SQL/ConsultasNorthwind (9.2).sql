@@ -96,10 +96,16 @@ SELECT COUNT (OD.Quantity) AS NumeroUnidades, E.FirstName, E.LastName, C.Categor
 
 -- 7. Total de ventas (US$) de cada categoría en el año 97.
 
-SELECT *
+SELECT TotalVentasCategoria.TotalVentas, P.CategoryID, YEAR (O.OrderDate) AS Año
 	FROM Orders AS O
 	INNER JOIN
-		(SELECT SUM (OD.Quantity * OD.UnitPrice) AS TotalVentas, C.CategoryID
+	[Order Details] AS OD
+	ON O.OrderID = OD.OrderID
+	INNER JOIN
+	Products AS P
+	ON OD.ProductID = P.ProductID
+	INNER JOIN
+		(SELECT CAST (SUM (OD.Quantity * (OD.UnitPrice * (1 - OD.Discount))) AS DECIMAL (10, 2)) AS TotalVentas, C.CategoryID
 			FROM Employees AS E
 			INNER JOIN
 			Orders AS O
@@ -114,21 +120,79 @@ SELECT *
 			Categories AS C
 			ON P.CategoryID = C.CategoryID
 			GROUP BY C.CategoryID) AS TotalVentasCategoria
-	ON  = TotalVentasCategoria.CategoryID
+	ON  P.CategoryID= TotalVentasCategoria.CategoryID
+	WHERE YEAR (O.OrderDate) = 1997 
+	GROUP BY YEAR (O.OrderDate), TotalVentasCategoria.TotalVentas, P.CategoryID
+	ORDER BY P.CategoryID
 
 /* 8. Productos que han comprado más de un cliente del mismo país, indicando el
 nombre del producto, el país y el número de clientes distintos de ese país que
 lo han comprado. */
 
-
+SELECT  P.ProductName, C.Country, COUNT (DISTINCT C.CustomerID) AS NumeroClientes
+	FROM Customers AS C
+		INNER JOIN
+		Orders AS O
+		ON C.CustomerID = O.CustomerID
+		INNER JOIN
+		[Order Details] AS OD
+		ON O.OrderID = OD.OrderID
+		INNER JOIN
+		Products AS P
+		ON OD.ProductID = P.ProductID
+		INNER JOIN
+		Categories AS CA
+		ON P.CategoryID = CA.CategoryID
+	GROUP BY P.ProductName, C.Country
+	HAVING COUNT (DISTINCT C.CustomerID) > 1
 
 -- 9. Total de ventas (US$) en cada país cada año.
 
-
+SELECT CAST (SUM (OD.Quantity * (OD.UnitPrice * (1- OD.Discount))) AS DECIMAL (12,2)) AS TotalVentas, YEAR (O.OrderDate) AS Año, C.Country
+	FROM Customers AS C
+		INNER JOIN
+		Orders AS O
+		ON C.CustomerID = O.CustomerID
+		INNER JOIN
+		[Order Details] AS OD
+		ON O.OrderID = OD.OrderID
+	GROUP BY C.Country, YEAR (O.OrderDate)
+	ORDER BY YEAR (O.OrderDate)
 
 /* 10. Producto superventas de cada año, indicando año, nombre del producto,
 categoría y cifra total de ventas. */
 
+SELECT MaxVentasAño.Superventas, YEAR (O.OrderDate) AS Año, P.ProductName, P.CategoryID
+	FROM Products AS P
+		INNER JOIN
+		[Order Details] AS OD
+		ON P.ProductID = OD.ProductID
+		INNER JOIN
+		Orders AS O
+		ON OD.OrderID = O.OrderID
+		INNER JOIN
+		(SELECT MAX (TotalVentasAño.TotalVentas) AS Superventas, YEAR (O.OrderDate) AS Año
+			FROM Products AS P
+				INNER JOIN
+				[Order Details] AS OD
+				ON P.ProductID = OD.ProductID
+				INNER JOIN
+				Orders AS O
+				ON OD.OrderID = O.OrderID
+				INNER JOIN
+				(SELECT SUM (OD.Quantity) AS TotalVentas, P.ProductID, YEAR (O.OrderDate) AS Año
+					FROM Products AS P
+						INNER JOIN
+						[Order Details] AS OD
+						ON P.ProductID = OD.ProductID
+						INNER JOIN
+						Orders AS O
+						ON OD.OrderID = O.OrderID
+					GROUP BY YEAR (O.OrderDate), P.ProductID) AS TotalVentasAño
+				ON P.ProductID = TotalVentasAño.ProductID
+				GROUP BY YEAR (O.OrderDate), TotalVentasAño.TotalVentas
+				HAVING MAX (TotalVentasAño.TotalVentas) = TotalVentasAño.TotalVentas) AS MaxVentasAño
+		ON YEAR (O.OrderDate) = MaxVentasAño.Año
 
 
 /* 11. Cifra de ventas de cada producto en el año 97 y su aumento o disminución
