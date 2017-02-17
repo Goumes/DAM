@@ -3,6 +3,28 @@ import java.io.*;
 
 public class utilArray
 {
+	/* Prototipo: void imprimirArray (Object [] array)
+	 * Breve comentario: Imprimir un array
+	 * Precondiciones: Ninguna
+	 * Entradas: Un array de Object
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public static void imprimirArray (Object [] array)
+	 * {
+	 * 		System.out.println("Llamada al metodo imprimirArray");
+	 * }
+	 */
+	public static void imprimirArray (Object [] array)
+	{
+		for (int i = 0; i < array.length; i++)
+		{
+			System.out.println(array [i]);
+		}
+	}
+	//Fin_imprimirArray
+	
 	/* Prototipo: int [] arrayPar (int [] array)
 	 * Breve comentario: Dado un array cargado aleatoriamente, generar a partir de Ã©l otro
 	 * array que contenga los elementos pares que se encuentran en el primero.
@@ -98,7 +120,7 @@ public class utilArray
 	//Se hace fácil con un arrayList. Preguntar si podemos usarlos.
 	
 	
-	/* Prototipo:
+	/* Prototipo: int [] alrrayVes (int [] array)
 	 * Breve comentario: A partir de un array generar otro con los elementos al revés.
 	 * Precondiciones: Ninguna
 	 * Entradas: Un array de enteros
@@ -120,12 +142,56 @@ public class utilArray
 	{
 		int [] resultado = new int [array.length];
 		
-		for (int i = array.length, j = 0; i > 0; i--, j++)
+		for (int i = array.length - 1, j = 0; i > 0; i--, j++)
 		{
 			resultado [j] = array [i];
 		}
 		
 		return resultado; 
 	}
+	//Fin_alrrayVes
+	
+	/* Prototipo: int dondeEstaWaldo (int [] array, int numero)
+	 * Breve comentario: Funcionalidad que reciba un array de enteros y un número y devuelva la 
+	 * posición en la que lo encuentre y -1 si el número no está en el array. En el array 
+	 * no puede haber números repetidos.
+	 * Precondiciones: Ninguna
+	 * Entradas: Un array de enteros y un número
+	 * Salidas: Un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un entero indicando la posición en la que se encuentra, -1 si el número
+	 * no está en el array y -2 si hay elementos iguales.
+	 * 
+	 * Resguardo: public static int dondeEstaWaldo (int [] array, int numero)
+		{
+			int resultado = 0;
+			
+			System.out.println("Llamada al metodo dondeEstaWaldo");
+			
+			return resultado;
+		}
+	 */
+	public static int dondeEstaWaldo (int [] array, int numero)
+	{
+		int resultado = 0;
+		int [] arrayCopia = array;
+		int j = 0;
+		
+		for (int i = 0; i < array.length; i++)
+		{
+			if (arrayCopia [j] == array [i])
+			{
+				i = -1;
+				resultado = -2;
+			}
+			else if (i == array.length)
+			{
+				j++;
+			}
+		}
+		
+		return resultado;
+	}
+	//Fin_dondeEstaWaldo
 	
 }//fin_clase

@@ -64,7 +64,20 @@ public class TestUtilArray
 			{
 				System.out.println(alreves [i]);
 			}
+			
 		//Fin alrrayVes
+		
+		//imprimirArray
+			
+			System.out.println("----------------------------------");
+			System.out.println("Funcionalidad que imprime un array");
+			System.out.println("----------------------------------");
+		
+			
+			Integer [] arrayInteger = {0, 1, 2, 3, 4, 5};
+			utilArray.imprimirArray (arrayInteger);
+			
+		//Fin imprimirArray
 		
 	}//fin_main
 }//fin_clase
