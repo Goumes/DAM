@@ -13,6 +13,8 @@
 			<xs:element name = "email" minOccurs = "0" maxOccurs = "2" type = "tipoEmail"/> <!-- De 0 a 2. Sólo aceptará direcciones válidas -->
 			<xs:element name = "direccion" minOccurs = "0" maxOccurs = "3" type = "tipoDireccion"/>
 		</xs:sequence>
+		<xs:attribute name="categoria" type="tipo_categoria"/>
+		<xs:attribute name="zona" type="tipo_zona" use = "optional"/>
 	</xs:complexType>
 
 	<xs:simpleType name = "tipoEmail">
@@ -47,19 +49,9 @@
 
 	<xs:element name = "fichas" type = "fichas"/> <!-- Elemento 'fichas' que contiene de 0 a infitinos elementos 'ficha' -->
 	
-	<!-- arreglar atributo tipoFicha -->
 	<xs:complexType name="fichas">
 		<xs:sequence>
-			<xs:element name="ficha" minOccurs = "0" maxOccurs="unbounded">
-			<xs:complexType>
-				<xs:simpleContent>
-					<xs:extension base = "tipoFicha">
-						<xs:attribute name = "categoria" type = "tipo_categoria"/>
-						<xs:attribute name = "zona" type = "tipo_zona" use = "optional"/>
-					</xs:extension>
-				</xs:simpleContent>
-			</xs:complexType>
-			</xs:element>
+			<xs:element name="ficha" type="tipoFicha" minOccurs = "0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 

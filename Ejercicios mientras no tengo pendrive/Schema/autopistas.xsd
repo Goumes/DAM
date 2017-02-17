@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:complexType name = "tipoEvento">
+	<xs:sequence>
+		<xs:element name = "via" type = "tipoVia"/>
+		<xs:element name = "pk">
+			<xs:simpleType name="restriccionDecimal"> <!-- Numero con 3 decimales -->
+				<xs:restriction base="xs:decimal">
+					<xs:fractionDigits value="3" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>		
+		<xs:element name = "sentido"> <!-- Puede tener los valores -1, 0 ó 1 -->
+			<xs:simpleType name = "tipoSentido">	
+				<xs:restriction base = "xs:integer">
+					<xs:minInclusive value = "-1"/>
+					<xs:maxInclusive value = "1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+		<xs:element name = "retencion" type = "tipoVia" minOccurs = "0" maxOccurs = "1"/> <!-- Opcional -->
+		<xs:element name = "carrilescortados" type = "tipoVia" minOccurs = "0" maxOccurs = "1"/> <!-- Opcional -->
+	</xs:sequence>
+	<xs:attribute name= "tipo" type= "tipo_tipo"/>
+	<xs:attribute name= "fecha" type= "xs:date"/>
+</xs:complexType>
+
+
+
+<xs:simpleType name = "tipoSentido">
+	<xs:restriction base = "xs:integer">
+		<xs:minInclusive value = "-1"/>
+		<xs:maxInclusive value = "1"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name = "tipo_tipo">
+	<xs:restriction base = "xs:string">
+		<xs:enumeration value = "Accidente"/>
+		<xs:enumeration value = "Retencion"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complextType name = "tipoVia">
+	<xs:sequence>
+		<xs:element name = "nombre" type = "xs:string" minOccurs = "0" maxOccurs = "1"/>
+		<xs:element name = "ref" type = "xs:string" minOccurs = "0" maxOccurs = "1"/>
+		<xs:element name = "origen" type = "xs:string" minOccurs = "0" maxOccurs = "1"/>
+		<xs:element name = "destino" type = "xs:string" minOccurs = "0" maxOccurs = "1"/>
+		<xs:element name = "doble" type = "xs:string" minOccurs = "0" maxOccurs = "1"/>
+		<xs:element name = "carriles" type = "xs:string" minOccurs = "0" maxOccurs = "1"/>
+	</xs:sequence>
+</xs:complexType>
+<!--  1.El elemento raíz se denomina "paneles"
+ 2."paneles" contiene un número indeterminado de elementos denominados "evento"
+ 3.Cada "evento" tiene dos atributos obligatorios "tipo" y "fecha"
+	a)"tipo" puede tener sólo dos valores "Accidente" o "Retención"
+	b)"fecha" tiene que ser de tipo fecha normalizado
+ 4.Cada "evento" tiene los elementos obligatorios "via", "pk" y "sentido" y los elementos
+opcionales "retencion" y "carrilescortados".
+	 a)"via" tiene los elementos opcionales "nombre", "ref", "origen", "destino", "doble"
+		y "carriles".
+			• "nombre" puede contener una cadena de texto de 50 caracteres como
+			máximo.
+			• "ref" está compuesto por una cadena de 3 caracteres como máximo, un
+			guión y un número comprendido entre 1 y 9999, por ejemplo SE-4100 o
+			A-92.
+			• "origen" y "destino" puede contener una cadena de texto de 30 caracteres
+			como máximo.
+			• "doble" no tiene contenido.
+			• "carriles" tiene que ser un número entre 1 y 8.
+	b)"pk" es un número con tres decimales.
+	c)"sentido" puede tener los valores -1, 0 ó 1.
+	d)"retencion" tiene el atributo opcional "long" que es del mismo tipo que pk.
+	e)"carrilescortados" tiene el atributo obligatorio "valor" que tiene que ser un
+	número entre 1 y 8. -->
+ 
+ <xs:complexType>
+ </xs:complexType>
+
+</xs:schema>
