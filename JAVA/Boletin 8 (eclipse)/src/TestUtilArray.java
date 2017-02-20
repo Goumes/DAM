@@ -78,6 +78,20 @@ public class TestUtilArray
 			utilArray.imprimirArray (arrayInteger);
 			
 		//Fin imprimirArray
+			
+		//dondeEstaWaldo
+			
+			int resultadoWaldo = 0;
+			
+			resultadoWaldo = utilArray.dondeEstaWaldo(array3, 4); //outofbounds exception
+			
+			System.out.println("----------------------------------");
+			System.out.println("Funcionalidad 'dondeEstaWaldo'");
+			System.out.println("----------------------------------");
+			
+			System.out.println(resultadoWaldo);
+			
+		//Fin dondeEstaWaldo
 		
 	}//fin_main
 }//fin_clase

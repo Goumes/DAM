@@ -79,25 +79,34 @@ public class utilArray
 		int numeroAleatorio = 0;
 		int [] resultado = new int [20];
 		
-		for (int i = 0; i < resultado.length; i++)
+		for (int i = 0, j = 0; i < resultado.length; j++)
 		{
 			numeroAleatorio = aleatorio.nextInt (200) + 100;
 			
 			if (i == 0)
 			{			
 				resultado [i] = numeroAleatorio;
+				i++;
+				j=0;
 			}
 			
 			else
 			{
-				if (numeroAleatorio != resultado [i - 1])
+				if (j == resultado.length - 1)
 				{
-					resultado [i] = numeroAleatorio;
+					j = 0;
+					i++;
+				}
+				
+				else if (resultado [i] == resultado [j])
+				{
+					i--;
 				}
 				
 				else
 				{
-					i--;
+					resultado [i] = numeroAleatorio;
+					j=0; //NO FUNCA
 				}
 			}
 		}
@@ -142,7 +151,7 @@ public class utilArray
 	{
 		int [] resultado = new int [array.length];
 		
-		for (int i = array.length - 1, j = 0; i > 0; i--, j++)
+		for (int i = array.length - 1, j = 0; i >= 0; i--, j++)
 		{
 			resultado [j] = array [i];
 		}
@@ -155,12 +164,12 @@ public class utilArray
 	 * Breve comentario: Funcionalidad que reciba un array de enteros y un número y devuelva la 
 	 * posición en la que lo encuentre y -1 si el número no está en el array. En el array 
 	 * no puede haber números repetidos.
-	 * Precondiciones: Ninguna
+	 * Precondiciones: El array no puede contener elementos repetidos
 	 * Entradas: Un array de enteros y un número
 	 * Salidas: Un entero
 	 * Entradas/Salidas: Ninguna
 	 * Postcondiciones: Un entero indicando la posición en la que se encuentra, -1 si el número
-	 * no está en el array y -2 si hay elementos iguales.
+	 * no está en el array.
 	 * 
 	 * Resguardo: public static int dondeEstaWaldo (int [] array, int numero)
 		{
@@ -174,24 +183,24 @@ public class utilArray
 	public static int dondeEstaWaldo (int [] array, int numero)
 	{
 		int resultado = -1;
-		int [] arrayCopia = array;
 		
-		for (int i = 0, j = 0; i < array.length || resultado != -2; i++)
+		for (int i = 0, j = 0; j < array.length; i++)
 		{
-			if (arrayCopia [j] == array [i])
+			
+			if (i == (array.length - 1))
 			{
-				i = -1;
-				resultado = -2;
+				i = 0;
+				j++;
 			}
 			
 			else if (numero == array [i])
 			{
-				resultado = array.length;
+				resultado = array [i];
 			}
 		}
 		
 		return resultado;
 	}
 	//Fin_dondeEstaWaldo
-	
+ 
 }//fin_clase
