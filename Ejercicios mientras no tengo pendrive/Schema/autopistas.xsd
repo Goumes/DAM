@@ -68,8 +68,8 @@
 			</xs:element>
 			<xs:element name = "ref" minOccurs = "0" maxOccurs = "1">
 				<xs:simpleType>
-					<xs:restriction base = "xs:string">
-					  <xs:pattern value = "([A-Z]){3}[-]([1-9999]){1}"/> <!-- Está compuesto por una cadena de 3 caracteres como máximo, unguión y un número comprendido entre 1 y 9999, por ejemplo SE-4100 o A-92. -->
+					<xs:restriction base = "xs:token">
+					  <xs:pattern value="[A-Z]{1,3}-[1-9][0-9]{0,3}"/> <!-- Está compuesto por una cadena de 3 caracteres como máximo, unguión y un número comprendido entre 1 y 9999, por ejemplo SE-4100 o A-92. -->
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
