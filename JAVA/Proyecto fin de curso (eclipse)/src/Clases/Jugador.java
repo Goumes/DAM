@@ -91,7 +91,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		this.baseDef = jugador.baseDef;
 		this.armadura = jugador.armadura;
 		this.armaEquipada = jugador.armaEquipada;
-		this.Oro = Oro;
+		this.Oro = jugador.Oro;
 	}
 	
 	public Jugador (String Nombre, int Vida, double baseDmg, double baseDef,Item armadura, Arma armaEquipada, int Oro)
@@ -152,7 +152,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return armadura;
 	}
 	
-	public void setArmadura (Item Armadura)
+	public void setArmadura (Item armadura)
 	{
 		this.armadura = armadura;
 	}
@@ -193,7 +193,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return s;
 	}
 	
-	//Criterio de igualdad: baseDmg, baseDef, Nombre, Vida, armadura, armaEquipada, Oro
+	//Criterio de igualdad: baseDmg, baseDef, Vida
 	@Override
 	public boolean equals (Object objeto)
 	{
@@ -203,13 +203,9 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		{
 			Jugador jugador = (Jugador) objeto;
 			
-			if (this.Nombre.equals (jugador.getNombre ()) 
-				&& this.getVida () == jugador.getVida ()
+			if (this.getVida () == jugador.getVida ()
 				&& this.getBaseDmg () == jugador.getBaseDmg ()
-				&& this.getBaseDef () == jugador.getBaseDef ()
-				&& this.armadura.equals (jugador.getArmadura ())
-				&& this.armaEquipada.equals (jugador.getArmaEquipada ())
-				&& this.getOro () == getOro ())
+				&& this.getBaseDef () == jugador.getBaseDef ())
 			{
 				resultado = true;
 			}
@@ -243,7 +239,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return (copia);
 	} 
 	
-	//Criterio de comparación: baseDmg
+	//Criterio de comparacion: Vida, baseDmg, baseDef
 	public int compareTo (Jugador jugador)
 	{
 		int resultado = 0;

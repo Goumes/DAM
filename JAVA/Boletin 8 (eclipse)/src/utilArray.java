@@ -173,20 +173,20 @@ public class utilArray
 	 */
 	public static int dondeEstaWaldo (int [] array, int numero)
 	{
-		int resultado = 0;
+		int resultado = -1;
 		int [] arrayCopia = array;
-		int j = 0;
 		
-		for (int i = 0; i < array.length; i++)
+		for (int i = 0, j = 0; i < array.length || resultado != -2; i++)
 		{
 			if (arrayCopia [j] == array [i])
 			{
 				i = -1;
 				resultado = -2;
 			}
-			else if (i == array.length)
+			
+			else if (numero == array [i])
 			{
-				j++;
+				resultado = array.length;
 			}
 		}
 		
