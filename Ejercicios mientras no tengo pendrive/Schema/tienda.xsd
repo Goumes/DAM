@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:complexType name = "tipoListado">
+		<xs:sequence>
+			<xs:element name = "producto" type = "tipoProducto" minOccurs = "0" maxOccurs = "unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="tienda" type="tipoTienda"/>
+	</xs:complexType>
+	
+	<xs:simpleType name = "tipoTienda">
+		<xs:restriction base = "xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name = "tipoDescripcion">
+		<xs:restriction base = "xs:string">
+			<xs:maxLength value="350"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name = "tipoNombre">
+		<xs:restriction base = "xs:string">
+			<xs:length value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name = "tipoNombre2">
+		<xs:restriction base = "xs:string">
+			<xs:length value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name = "restriccionPrecio"> 
+		<xs:restriction base="xs:token">
+			<xs:pattern value = "[0-9]*.[0-9] {1,2} ($|€)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name = "tipoTiempo"> 
+		<xs:restriction base="xs:token">
+			<xs:pattern value = "[0-9]{3}(h|d|s)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name = "tipoFoto"> 
+		<xs:restriction base="xs:token">
+			<xs:pattern value = "http:// ([a-zA-Z0-9])*. (jpg|gif|jpeg|JPG|GIF|JPEG)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name = "tipoUrl"> 
+		<xs:restriction base="xs:token">
+			<xs:pattern value = "http:// ([a-zA-Z0-9])*. (com|es|org)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name = "tipoProducto">
+		<xs:sequence>
+			<xs:element name = "foto" type = "tipoFoto" minOccurs = "1" maxOccurs = "unbounded"/>
+			<xs:element name = "nombre" type = "tipoNombre"/>
+			<xs:element name = "url" type = "tipoUrl"/>
+			<xs:element name = "precio" type = "restriccionPrecio" minOccurs = "1" maxOccurs = "unbounded"/>
+			<xs:element name = "descripcion" type = "tipoDescripcion"/>
+			<xs:element name = "envio" type = "tipoEnvio" minOccurs = "1" maxOccurs = "unbounded"/>
+		</xs:sequence>
+	<xs:attribute name="codigo" type="tipoCodigo"/>
+	</xs:complexType>
+	
+	<xs:complexType name = "tipoEnvio">
+		<xs:sequence>
+			<xs:element name = "coste" type = "restriccionPrecio"/>
+			<xs:element name = "tiempo" type = "tipoTiempo"/>
+		</xs:sequence>
+		<xs:attribute name = "nombre" type = "tipoNombre2"/>
+	</xs:complexType>
+	
+	<xs:simpleType name = "tipoCodigo">
+		<xs:restriction base = "xs:integer">
+			<xs:minInclusive value = "1"/>
+			<xs:maxInclusive value = "9999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:element name = "listado" type = "tipoListado"/>
+
+</xs:schema>
+
+<!-- El elemento raíz será "listado" y contendrá un atributo llamado "tienda" que podrá tener como valor una cadena de 50 caracteres como máximo.
+Dentro de listado debe haber como mínimo un elemento "producto", y como máximo un número indeterminado.
+Los productos deben tener un atributo "código" que debe ser numérico y comprendido entre 1 y 9999999.
+Los elementos dentro de producto son "foto", "nombre", "url", "precio", "descripción", "envio"
+"foto" debe ser una URL que empiece por "http://" y debe acabar en ".jpg", ".gif" o ".jpeg" (o en sus variantes en mayúsculas). Se debe validar también que la URL pertenezca a un dominio de nivel superior (no hace falta comprobar todos, pero sí unos cuantos... http://es.wikipedia.org/wiki/Dominio_de_Internet#Dominios_de_nivel_superior). Puede haber varios elementos "foto" para un mismo producto.
+"nombre" puede ser cualquier cadena de 50 caracteres.
+"descripción" tiene como máximo 350 caracteres.
+"url" es una URL, hacer comprobaciones similares a las de "foto" pero sin la extensión de tipo de imagen.
+"precio" es un número que admite como máximo dos decimales seguido de "€" o "$"
+"envio" puede aparecer varias veces para el mismo producto y representa una modalidad de envio. Debe tener un atributo "nombre" que admite una cadena de 30 caracteres. "envio" debe tener dos elementos: "coste" y "tiempo"
+"coste" tiene el mismo formato que "precio"
+"tiempo" admite un número entero de máximo 3 cifras seguido de un caracter que indica la unidad de tiempo. Dicho caracter puede ser "h" (horas), "d" (días), "s" (semanas) -->
