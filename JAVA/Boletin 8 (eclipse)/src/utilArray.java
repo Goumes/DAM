@@ -25,6 +25,67 @@ public class utilArray
 	}
 	//Fin_imprimirArray
 	
+	/* Prototipo: boolean sonIguales (Object [] array)
+	 * Breve comentario: Funcionalidad que compruebe si un array tiene datos repetidos
+	 * Precondiciones: Ninguna
+	 * Entradas: Un array de Object
+	 * Salidas: Un booleano
+	 * Entradas/Salidas: Ninguna 
+	 * Postcondiciones: Si el array contiene un dato repetido, devuelve TRUE, sino FALSE.
+	 * 
+	 * Resguardo: public static boolean sonIguales (Object [] array)
+		{
+			boolean resultado = false;
+			
+			System.out.println("Llamada al metodo sonIguales");
+			
+			return resultado;
+		}
+	 */
+	public static boolean sonIguales (Object [] array)
+	{
+		boolean resultado = false;
+		
+		for (int i = 0, j = 1; i < array.length && resultado == false; j++)
+		{
+			if (i != j && (array [i] == array [j]))
+			{
+				resultado = true;
+			}
+			else if (j == (array.length - 1))
+			{
+				j = 0;
+				i++;
+			}
+		}
+		
+		return resultado;
+	}
+	//Fin sonIguales
+	
+	/* Prototipo: int [] integerToInt (Integer [] array)
+	 * Breve comentario: Pasar un array de Integer a int
+	 * Precondiciones: Ninguna
+	 * Entradas: Un array de Integer
+	 * Salidas: Un array de int
+	 * Entradas/Salidas: Ninguna 
+	 * Postcondiciones: El array de entrada casteado a int
+	 * 
+	 * Resguardo: 
+	 */
+	public static int [] integerToInt (Integer [] array)
+	{
+		int [] resultado = new int [array.length];
+		
+		for (int i = 0; i < array.length; i++)
+		{
+			resultado [i] =  array [i];
+		}
+		
+		return resultado;
+	}
+	//Fin integerToInt
+	
 	/* Prototipo: int [] arrayPar (int [] array)
 	 * Breve comentario: Dado un array cargado aleatoriamente, generar a partir de él otro
 	 * array que contenga los elementos pares que se encuentran en el primero.
@@ -77,39 +138,24 @@ public class utilArray
 	{
 		Random aleatorio = new Random ();
 		int numeroAleatorio = 0;
-		int [] resultado = new int [20];
+		Integer [] arrayInteger = new Integer [20];
+		boolean igual = false;
 		
-		for (int i = 0, j = 0; i < resultado.length; j++)
+		for (int i = 0; i < arrayInteger.length; i++)
 		{
 			numeroAleatorio = aleatorio.nextInt (200) + 100;
 			
-			if (i == 0)
-			{			
-				resultado [i] = numeroAleatorio;
-				i++;
-				j=0;
+			arrayInteger [i] = numeroAleatorio;
+			igual = utilArray.sonIguales(arrayInteger);
+			
+			if (igual == true)
+			{
+				i--;
 			}
 			
-			else
-			{
-				if (j == resultado.length - 1)
-				{
-					j = 0;
-					i++;
-				}
-				
-				else if (resultado [i] == resultado [j])
-				{
-					i--;
-				}
-				
-				else
-				{
-					resultado [i] = numeroAleatorio;
-					j=0; //NO FUNCA
-				}
-			}
 		}
+		
+		int [] resultado = utilArray.integerToInt(arrayInteger);
 		
 		return resultado;
 	}

@@ -35,6 +35,7 @@ public class TestUtilArray
 		
 		//arrayAleatorio
 		
+
 			System.out.println("----------------------------------");
 			System.out.println("Array de 20 enteros aleatorios entre 100 y 300 sin repetirse");
 			System.out.println("----------------------------------");
@@ -46,7 +47,6 @@ public class TestUtilArray
 			{
 				System.out.println(array2 [i]);
 			}
-		
 		
 		//Fin arrayAleatorio
 		
@@ -81,17 +81,35 @@ public class TestUtilArray
 			
 		//dondeEstaWaldo
 			
+			System.out.println("----------------------------------");
+			System.out.println("Funcionalidad 'dondeEstaWaldo'");
+			System.out.println("----------------------------------");
+			
 			int resultadoWaldo = 0;
 			
 			resultadoWaldo = utilArray.dondeEstaWaldo(array3, 4); //outofbounds exception
 			
-			System.out.println("----------------------------------");
-			System.out.println("Funcionalidad 'dondeEstaWaldo'");
-			System.out.println("----------------------------------");
 			
 			System.out.println(resultadoWaldo);
 			
 		//Fin dondeEstaWaldo
 		
+		//sonIguales
+			
+			System.out.println("----------------------------------");
+			System.out.println("Funcionalidad 'sonIguales'");
+			System.out.println("----------------------------------");
+			
+			boolean resultadoIguales = false;
+			
+			Integer [] arrayIguales = {1, 2, 2, 4};
+			
+			resultadoIguales = utilArray.sonIguales(arrayIguales);
+			
+			System.out.println(resultadoIguales);
+			
+		//Fin sonIguales
+		
+			
 	}//fin_main
 }//fin_clase
