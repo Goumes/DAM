@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<listapasajes fecha="2016-05-31" compañia="Iberia">
+	<pasaje localizador="hy9k5n2b">
+		<vuelo>
+			<codigo>IB7045</codigo>
+			<aeropuertoSalida>MAD</aeropuertoSalida>
+			<fechayHoraSalida>2016-07-05T13:24:00.000</fechayHoraSalida>
+			<aeropuertoLlegada>AGP</aeropuertoLlegada>
+			<fechayHoraLlegada>2016-07-05T14:10:00.000</fechayHoraLlegada>
+		</vuelo>
+		<pasajero>
+			<nombre>Aniceto</nombre>
+			<apellidos>Matoma</apellidos>
+			<nacionalidad>es</nacionalidad>
+			<rangoEdad>adult</rangoEdad>
+		</pasajero>
+	</pasaje>
+	<pasaje localizador="rp93gyqd">
+		<vuelo>
+			<codigo>IB7045</codigo>
+			<aeropuertoSalida>MAD</aeropuertoSalida>
+			<fechayHoraSalida>2016-07-05T13:24:00.000</fechayHoraSalida>
+			<aeropuertoLlegada>AGP</aeropuertoLlegada>
+			<fechayHoraLlegada>2016-07-05T14:10:00.000</fechayHoraLlegada>
+		</vuelo>
+		<pasajero>
+			<nombre>Julia</nombre>
+			<apellidos>La Guita</apellidos>
+			<nacionalidad>es</nacionalidad>
+			<rangoEdad>adult</rangoEdad>
+		</pasajero>
+		<equipaje tipo="normal" unidad="kilos">20</equipaje>
+		<equipaje tipo="normal" unidad="kilos">25</equipaje>
+	</pasaje>
+	<pasaje localizador="rj45hk0m">
+		<vuelo>
+			<codigo>KLM2688</codigo>
+			<aeropuertoSalida>SVQ</aeropuertoSalida>
+			<fechayHoraSalida>2017-02-17T11:00:00.000</fechayHoraSalida>
+			<aeropuertoLlegada>AMS</aeropuertoLlegada>
+			<fechayHoraLlegada>2017-02-17T11:32:00.000</fechayHoraLlegada>
+		</vuelo>
+		<pasajero>
+			<nombre>Risto</nombre>
+			<apellidos>Kapelotic</apellidos>
+			<nacionalidad>rs</nacionalidad>
+			<rangoEdad>junior</rangoEdad>
+		</pasajero>
+	</pasaje>
+</listapasajes>

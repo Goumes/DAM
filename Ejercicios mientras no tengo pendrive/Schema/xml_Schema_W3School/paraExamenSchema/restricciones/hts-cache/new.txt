@@ -1,3 +1,0 @@
-date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
-21:32:44	20736/20736	---M--	200	added ('OK')	text/html	etag:%2205bcebf290c81:a4f%22	http://www.tic2.org/WebTecnica/Programacion/XSD/XSDTipoNumericoRestr/XSDTipoNumericoRestr.htm	C:/Users/anonymous/Desktop/Nueva%20carpeta/asd/www.tic2.org/WebTecnica/Programacion/XSD/XSDTipoNumericoRestr/XSDTipoNumericoRestr.html	(from )
-21:32:44	95/95	---M--	200	added ('OK')	text/plain	etag:%224da6ba59fa7d11:a4f%22	http://www.tic2.org/robots.txt		(from )

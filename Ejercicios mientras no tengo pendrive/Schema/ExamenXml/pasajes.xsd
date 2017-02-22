@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:complexType name="tipoListaPasajes">
+		<xs:sequence>
+			<xs:element name = "pasaje" type = "tipoPasaje" minOccurs = "1" maxOccurs = "unbounded"/>
+		</xs:sequence>
+		<xs:attribute name = "fecha" type = "xs:date"/>
+		<xs:attribute name = "compañia">
+			<xs:simpleType>
+				<xs:restriction base = "xs:string">
+					<xs:minLength value="3"/>
+					<xs:maxLength value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="tipoPasaje">
+		<xs:sequence>
+			<xs:element name = "vuelo" type = "tipoVuelo" minOccurs = "1" maxOccurs = "unbounded"/>
+			<xs:element name = "pasajero" type = "tipoPasajero" minOccurs = "1" maxOccurs = "1"/>
+			<xs:element name = "equipaje" minOccurs = "0" maxOccurs = "unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base = "xs:integer">
+							<xs:minInclusive value="15"/>
+							<xs:maxInclusive value="40"/>
+						</xs:restriction>
+					</xs:simpleContent>
+					
+					<xs:attribute name = "tipo">
+						<xs:simpleType>
+							<xs:restriction base = "xs:string">
+								<xs:enumeration value="normal"/>
+								<xs:enumeration value="especial"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					
+					<xs:attribute name = "unidad">
+						<xs:simpleType>
+							<xs:restriction base = "xs:string">
+								<xs:enumeration value="kilos"/>
+								<xs:enumeration value="libras"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name = "localizador" type = "tipoLocalizador"/>
+	</xs:complexType>
+	
+	<xs:simpleType name = "tipoLocalizador">
+		<xs:restriction base = "xs:string">
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="tipoVuelo">
+		<xs:sequence>
+		
+			<xs:element name = "codigo">
+				<xs:simpleType>
+					<xs:restriction base = "xs:token">
+						<xs:pattern value="[A-Z]{2,3}[0-9]{4}" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name = "aeropuertoSalida" type = "restriccionEntradasalida"/>
+			
+			<xs:element name = "fechayHoraSalida" type = "xs:dateTime"/>
+			
+			<xs:element name = "aeropuertoLlegada" type = "restriccionEntradasalida"/>
+			
+			<xs:element name = "fechayHoraLlegada" type = "xs:dateTime"/>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name = "restriccionEntradasalida">
+		<xs:restriction base = "xs:string">
+			<xs:pattern value="[A-Z]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="tipoPasajero">
+		<xs:sequence>
+		
+			<xs:element name = "nombre">
+				<xs:simpleType>
+					<xs:restriction base = "xs:string">
+						<xs:minLength value="3"/>
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name = "apellidos" type ="xs:string"/>
+			
+			<xs:element name = "nacionalidad">
+				<xs:simpleType>
+					<xs:restriction base = "xs:string">
+						<xs:pattern value="[a-z]{2}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+			<xs:element name ="rangoEdad">
+				<xs:simpleType>
+					<xs:restriction base = "xs:string">
+						<xs:enumeration value="Baby"/>
+						<xs:enumeration value="junior"/>
+						<xs:enumeration value="adult"/>
+						<xs:enumeration value="senior"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="listapasajes" type ="tipoListaPasajes"/>
+	
+</xs:schema>
