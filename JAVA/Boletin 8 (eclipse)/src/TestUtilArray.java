@@ -47,7 +47,7 @@ public class TestUtilArray
 			{
 				System.out.println(array2 [i]);
 			}
-		
+			
 		//Fin arrayAleatorio
 		
 		//alrrayVes
@@ -87,7 +87,7 @@ public class TestUtilArray
 			
 			int resultadoWaldo = 0;
 			
-			resultadoWaldo = utilArray.dondeEstaWaldo(array3, 4); //outofbounds exception
+			resultadoWaldo = utilArray.dondeEstaWaldo(array3, 4);
 			
 			
 			System.out.println(resultadoWaldo);

@@ -48,7 +48,7 @@ public class utilArray
 		
 		for (int i = 0, j = 1; i < array.length && resultado == false; j++)
 		{
-			if (i != j && (array [i] == array [j]))
+			if (i != j && (array [i] == array [j]) && array [j] != null)
 			{
 				resultado = true;
 			}
