@@ -132,7 +132,7 @@ SELECT DISTINCT E.fname, E.lname
 
 -- 9. Número de ejemplares vendidos de cada libro, especificando el título y el tipo.
 
-SELECT *
+SELECT (S.qty) AS NumeroEjemplaresVendidos
 	FROM titles as T
 	INNER JOIN
 	sales AS S
