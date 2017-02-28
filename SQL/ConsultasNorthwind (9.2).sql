@@ -298,3 +298,9 @@ SELECT EmployeeID, VV.Ventas
 
 /* 16. Empleados que hayan aumentado su cifra de ventas más de un 10% entre dos
 años consecutivos, indicando el año en que se produjo el aumento. */
+
+SELECT EmployeeID
+	FROM (SELECT COUNT (OrderID) AS NumeroVentasPorEmpleado, YEAR (OrderDate) AS Año, EmployeeID
+			FROM Orders
+			GROUP BY EmployeeID, YEAR (OrderDate)) AS Ventas
+	HAVING NumeroVentasPorEmpleado

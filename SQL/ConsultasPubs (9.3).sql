@@ -132,14 +132,65 @@ SELECT DISTINCT E.fname, E.lname
 
 -- 9. Número de ejemplares vendidos de cada libro, especificando el título y el tipo.
 
-SELECT (S.qty) AS NumeroEjemplaresVendidos
+SELECT SUM (S.qty) AS NumeroEjemplaresVendidos, T.title, T.type
 	FROM titles as T
 	INNER JOIN
 	sales AS S
 	ON T.title_id = S.title_id
+	GROUP BY T.title, T.[type]
 
 -- 10.  Número de ejemplares de todos sus libros que ha vendido cada autor.
+
+SELECT TA.au_id, SUM (S.qty) AS NumeroLibros
+	FROM titleauthor AS TA
+	INNER JOIN
+	titles AS T
+	ON TA.title_id = T.title_id
+	INNER JOIN
+	sales as S
+	ON T.title_id = S.title_id
+	GROUP BY TA.au_id
+
 -- 11.  Número de empleados de cada categoría (jobs).
+
+SELECT COUNT (E.emp_id) AS NumeroEmpleados, J.job_id
+	FROM jobs AS J
+	INNER JOIN
+	employee AS E
+	ON E.job_id = J.job_id
+	GROUP BY J.job_id
+
 -- 12.  Número de empleados de cada categoría (jobs) que tiene cada editorial, incluyendo aquellas categorías en las que no haya ningún empleado.
+
+/* Preguntar */
+
 -- 13.  Autores que han escrito libros de dos o más tipos diferentes
+
+SELECT DISTINCT A.au_fname, A.au_lname
+	FROM authors AS A
+	INNER JOIN
+	titleauthor AS TA
+	ON A.au_id = TA.au_id
+	INNER JOIN
+	titles AS T
+	ON TA.title_id = T.title_id
+	WHERE (SELECT DISTINCT COUNT ([type])
+			FROM titles) > 1
+
 -- 14.  Empleados que no trabajan en editoriales que han publicado libros cuya columna notes contenga la palabra "and”
+
+SELECT DISTINCT emp_id, pub_id
+	FROM employee
+
+EXCEPT
+
+
+SELECT DISTINCT E.emp_id, E.pub_id
+	FROM employee AS E
+	INNER JOIN (SELECT DISTINCT P.pub_name, P.pub_id
+					FROM publishers AS P
+					INNER JOIN
+					titles AS T
+					ON P.pub_id = T.pub_id
+					WHERE T.notes LIKE '%and%') AS Editoriales
+	ON E.pub_id = Editoriales.pub_id

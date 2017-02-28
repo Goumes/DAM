@@ -188,6 +188,87 @@ DELETE FROM Products WHERE ProductName = 'Mecca Cola' -- Para meterle el identit
 
 -- Todos los que han comprado "Outback Lager" han comprado cinco años después la misma cantidad de Mecca Cola al mismo vendedor
 
+GO
 
+CREATE VIEW OrderIDs AS
+(SELECT OrderID, CustomerID
+	FROM Orders
+	WHERE CustomerID IN (SELECT CustomerID
+							FROM Orders
+							WHERE OrderID IN (SELECT OrderID
+												FROM [Order Details]
+												WHERE ProductID = (SELECT ProductID
+																	FROM Products
+																	WHERE ProductName = 'Outback Lager'))) AND OrderDate IN (SELECT DATEADD (YEAR, 5,OrderDate)
+																																FROM Orders
+																																WHERE OrderID IN (SELECT OrderID
+																																					FROM [Order Details]
+																																					WHERE ProductID = (SELECT ProductID
+																																										FROM Products
+																																										WHERE ProductName = 'Outback Lager'))))
+
+GO
+
+CREATE VIEW Cantidades AS
+(SELECT Quantity, CustomerID
+	FROM [Order Details] AS OD
+	INNER JOIN
+	Orders AS O
+	ON OD.OrderID = O.OrderID
+	WHERE ProductID = 70)
+
+GO
+
+INSERT INTO Orders (CustomerID, OrderDate)
+SELECT CustomerID, DATEADD (YEAR, 5,OrderDate)
+	FROM Orders
+	WHERE OrderID IN (SELECT OrderID
+						FROM [Order Details]
+						WHERE ProductID = (SELECT ProductID
+											FROM Products
+											WHERE ProductName = 'Outback Lager'))
+
+
+INSERT INTO [Order Details] (OrderID, ProductID, Quantity)
+
+SELECT OID.OrderID, 91, SUM (C.Quantity)
+	FROM OrderIDs AS OID
+	INNER JOIN
+	Cantidades AS C
+	ON OID.CustomerID = C.CustomerID
+	GROUP BY OID.OrderID
 
 -- El pasado 20 de enero, Margaret Peacock consiguió vender una caja de Nesquick Power Max a todos los clientes que le habían comprado algo anteriormente. Los datos de envío (dirección, transportista, etc) son los mismos de alguna de sus ventas anteriores a ese cliente). */
+GO
+
+CREATE VIEW Compradores AS
+
+SELECT DISTINCT CustomerID, EmployeeID
+	FROM Orders
+	WHERE EmployeeID = (SELECT EmployeeID
+							FROM Employees
+							WHERE FirstName = 'Margaret' AND LastName = 'Peacock')
+
+GO
+
+INSERT INTO Orders (CustomerID, EmployeeID, OrderDate)
+
+SELECT  CustomerID, EmployeeID, ('20170120 00:00')
+	FROM Compradores
+
+INSERT INTO [Order Details] (OrderID, ProductID)
+SELECT OrderID, 90
+	FROM Orders
+	WHERE OrderDate = '20170120 00:00'
+
+-- Falta meter los mismos datos de envío. Hay que corregir.
+
+INSERT INTO Orders (ShipVia,ShipName, ShipAddress, ShipRegion, ShipPostalCode, ShipCountry)
+
+SELECT DISTINCT ShipVia,ShipName, ShipAddress, ShipRegion, ShipPostalCode, ShipCountry
+	FROM Orders
+	WHERE CustomerID IN (SELECT DISTINCT CustomerID
+							FROM Orders
+							WHERE EmployeeID = (SELECT EmployeeID
+													FROM Employees
+													WHERE FirstName = 'Margaret' AND LastName = 'Peacock'))
