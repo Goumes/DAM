@@ -242,17 +242,59 @@ SELECT C.CustomerID
 	HAVING C.CustomerID = MaxNumeroPedidosPorPais.MayorNumeroPedidos
 
 --13. Número de productos diferentes que nos compra cada cliente.
+GO
 
+CREATE VIEW NumeroProductosDiferentes AS
 
+SELECT DISTINCT COUNT (P.ProductID) AS NumeroProductos, C.CustomerID
+	FROM Customers AS C
+	INNER JOIN
+	Orders AS O
+	ON C.CustomerID = O.CustomerID
+	INNER JOIN
+	[Order Details] AS OD
+	ON O.OrderID = OD.OrderID
+	INNER JOIN
+	Products AS P
+	ON OD.ProductID = P.ProductID
+	GROUP BY C.CustomerID
+
+GO
 
 -- 14. Clientes que nos compran más de cinco productos diferentes.
 
-
+SELECT *
+	FROM NumeroProductosDiferentes
+	WHERE NumeroProductos > 5
 
 /* 15. Vendedores que han vendido una mayor cantidad que la media en US $ en el
 año 97. */
+GO
 
+CREATE VIEW VentasPorVendedor AS
+SELECT SUM (OD.UnitPrice * (OD.Quantity * (1- OD.Discount))) AS Ventas, YEAR (O.OrderDate) AS Año, O.EmployeeID
+	FROM [Order Details] AS OD
+	INNER JOIN
+	Orders AS O
+	ON OD.OrderID = O.OrderID
+	WHERE YEAR (O.OrderDate) = 1997
+	GROUP BY YEAR (O.OrderDate), O.EmployeeID
 
+GO
+
+CREATE VIEW MediaVentasVista AS
+SELECT AVG (VentasPorVendedor.Ventas) AS MediaVentas, Año
+	FROM VentasPorVendedor
+	GROUP BY Año
+
+GO
+
+SELECT EmployeeID, VV.Ventas
+	FROM VentasPorVendedor AS VV
+	INNER JOIN
+	MediaVentasVista AS MV
+	ON VV.Año = MV.Año
+	WHERE VV.Ventas > MV.MediaVentas
 
 /* 16. Empleados que hayan aumentado su cifra de ventas más de un 10% entre dos
 años consecutivos, indicando el año en que se produjo el aumento. */
