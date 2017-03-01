@@ -1,7 +1,10 @@
 package proyectoPrincipal;
 
 /* Nombre del programa: Ajedrez
+ * Entradas: Movimientos
+ * Salidas:
  * 
+ * Restricciones: Ninguna
  * 
  */
 
