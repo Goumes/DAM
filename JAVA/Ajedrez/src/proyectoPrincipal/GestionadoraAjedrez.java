@@ -5,93 +5,153 @@ import java.lang.*;
 import java.io.*;
 
 public class GestionadoraAjedrez 
-{
-	/* Prototipo: Pieza [][] generarTablero ()
-	 * Breve comentario: Funcionalidad que crea un array de Piezas para hacer un tablero inicial.
+{	
+	/* Prototipo: Tablero turnoJugador (Tablero tablero, boolean Turno)
+	 * Breve comentario: Funcionalidad que trata el turno entero de un jugador.
 	 * Precondiciones: Ninguna
-	 * Entradas: Ninguna
-	 * Salidas: Un array bidimensional de Piezas
-	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Un array bidimensional de Piezas rellenado en forma de un tablero de ajedrez.
+	 * Entradas: Un booleano
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Un tablero
+	 * Postcondiciones: Un tablero con el movimiento del jugador ya ejecutado.
 	 * 
-	 * Resguardo: public static Pieza [][] generarTablero ()
+	 * Resguardo: public static Tablero turnoJugador (Tablero tablero, boolean Turno)
 		{
-			System.out.println("Llamada al metodo generarTablero");
+			System.out.println("Llamada al metodo turnoJugador");
 			return tablero;
 		}
 	 */
-	public static Pieza [][] generarTablero () throws ExceptionAjedrez
+	public static Tablero turnoJugador (Tablero tablero, boolean Turno)
 	{
-			Pieza torreBlanca1 = new Pieza (true, "Torre");
-			Pieza torreBlanca2 = new Pieza (true, "Torre");
-			
-			Pieza torreNegra1 = new Pieza (false, "Torre");
-			Pieza torreNegra2 = new Pieza (false, "Torre");
-			
-			Pieza caballoBlanco1 = new Pieza (true, "Caballo");
-			Pieza caballoBlanco2 = new Pieza (true, "Caballo");
-			
-			Pieza caballoNegro1 = new Pieza (false, "Caballo");
-			Pieza caballoNegro2 = new Pieza (false, "Caballo");
-			
-			Pieza alfilBlanco1 = new Pieza (true, "Alfil");
-			Pieza alfilBlanco2 = new Pieza (true, "Alfil");
-			
-			Pieza alfilNegro1 = new Pieza (false, "Alfil");
-			Pieza alfilNegro2 = new Pieza (false, "Alfil");
-			
-			Pieza damaBlanca = new Pieza (true, "Dama");
-			
-			Pieza damaNegra = new Pieza (false, "Dama");
-			
-			Pieza reyBlanco = new Pieza (true, "Rey");
-			
-			Pieza reyNegro = new Pieza (false, "Rey");
-			
-			Pieza peonBlanco1 = new Pieza (true, "Peon");
-			Pieza peonBlanco2 = new Pieza (true, "Peon");
-			Pieza peonBlanco3 = new Pieza (true, "Peon");
-			Pieza peonBlanco4 = new Pieza (true, "Peon");
-			Pieza peonBlanco5 = new Pieza (true, "Peon");
-			Pieza peonBlanco6 = new Pieza (true, "Peon");
-			Pieza peonBlanco7 = new Pieza (true, "Peon");
-			Pieza peonBlanco8 = new Pieza (true, "Peon");
-			
-			Pieza peonNegro1 = new Pieza (false, "Peon");
-			Pieza peonNegro2 = new Pieza (false, "Peon");
-			Pieza peonNegro3 = new Pieza (false, "Peon");
-			Pieza peonNegro4 = new Pieza (false, "Peon");
-			Pieza peonNegro5 = new Pieza (false, "Peon");
-			Pieza peonNegro6 = new Pieza (false, "Peon");
-			Pieza peonNegro7 = new Pieza (false, "Peon");
-			Pieza peonNegro8 = new Pieza (false, "Peon");
+		Scanner teclado = new Scanner (System.in);
+		boolean Continuar = true;
+		int filaOriginal = 0;
+		int columnaOriginal = 0;
+		int filaNueva = 0;
+		int columnaNueva = 0;
 		
-		
-		
-		
-		Pieza [][] tablero = {
-								{torreBlanca1, caballoBlanco1, alfilBlanco1, damaBlanca, reyBlanco, alfilBlanco2, caballoBlanco2, torreBlanca2},
-								{peonBlanco1, peonBlanco2, peonBlanco3, peonBlanco4, peonBlanco5, peonBlanco6, peonBlanco7, peonBlanco8},
-								{null, null, null, null, null, null, null, null},
-								{null, null, null, null, null, null, null, null},
-								{null, null, null, null, null, null, null, null},
-								{null, null, null, null, null, null, null, null},
-								{torreNegra1, caballoNegro1, alfilNegro1, damaNegra, reyNegro, alfilNegro2, caballoNegro2, torreNegra2},
-								{peonNegro1, peonNegro2, peonNegro3, peonNegro4, peonNegro5, peonNegro6, peonNegro7, peonNegro8}
-							 };
+		do
+			{
+				Continuar = true;
+				do
+				{
+					if (Continuar == false)
+					{
+						System.out.println();
+		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
+					}
+ 				do
+ 				{
+ 					filaOriginal = teclado.nextInt();
+ 				}
+ 				while (filaOriginal < 0 || filaOriginal > 7);
+ 				
+ 				do
+ 				{
+ 					columnaOriginal = teclado.nextInt();
+ 				}
+ 				while (columnaOriginal < 0 || columnaOriginal > 7);
+ 				
+ 				if (tablero.getTablero()[filaOriginal][columnaOriginal].getColor() != Turno)
+ 				{
+ 					Continuar = false;
+ 				}
+ 				else
+ 				{
+ 					Continuar = true;
+ 				}
+				}
+				while (Continuar == false);
+			
+				do
+				{
+					filaNueva = teclado.nextInt();
+				}
+				while (filaNueva < 0 || filaNueva > 7);
+				
+				do
+				{
+					columnaNueva = teclado.nextInt();
+				}
+				while (columnaNueva < 0 || columnaNueva > 7);
+				
+				if ((tablero.getTablero()[filaNueva][columnaNueva] != null
+					&& tablero.getTablero()[filaNueva][columnaNueva].getColor() == Turno) 
+					|| tablero.getTablero()[filaNueva][columnaNueva] == tablero.getTablero()[filaOriginal][columnaOriginal])
+				{
+					Continuar = false;
+				}
+				else
+				{
+					Continuar = true;
+				}
+				
+				if (Continuar == false)
+				{
+					System.out.println("No puedes mover la pieza a esa posición.");
+				}
+			}
+			while (Continuar == false);
+				
+			tablero.moverPieza(filaOriginal, columnaOriginal, filaNueva, columnaNueva);
+			
 		return tablero;
 	}
-	//Fin
+	//Fin turnoJugador
 	
-	/* Prototipo:
-	 * Breve comentario:
-	 * Precondiciones:
-	 * Entradas:
-	 * Salidas:
-	 * Entradas/Salidas:
-	 * Postcondiciones:
+	/* Prototipo: int comprobarVictoria (Tablero tablero)
+	 * Breve comentario: Recorre un objeto tablero para comprobar si alguna pieza con tipo "Rey" ha sido eliminada.
+	 * Precondiciones: Ninguna
+	 * Entradas: Un tablero
+	 * Salidas: Un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: 1 si la partida ha acabado ganando el jugador blanco, 2 si ha ganado el jugador negro, 0 si sigue en juego.
 	 * 
-	 * Resguardo:
+	 * Resguardo: public static boolean comprobarVictoria (Tablero tablero)
+		{
+			boolean resultado = false;
+			
+			System.out.println("Llamada al método comprobarVictoria");
+			
+			return resultado;
+		}
 	 */
+	public static int comprobarVictoria (Tablero tablero)
+	{
+		int resultado = 0;
+		int contadorRey = 0;
+		boolean ganadorBlanco = false;
+		
+		for (int i = 0; i < tablero.getTablero ().length && contadorRey < 2; i++)
+		{
+			for (int j = 0; j < tablero.getTablero ()[0].length && contadorRey < 2; j++)
+			{
+				if (tablero.getTablero()[i][j] != null)
+				{
+					if (tablero.getTablero()[i][j].getTipo() == "Rey")
+					{
+						contadorRey++;
+						
+						if (tablero.getTablero()[i][j].getColor() == true)
+						{
+							ganadorBlanco = true;
+						}
+					}
+				}
+				
+			}
+		}
+		
+		if (contadorRey != 2 && ganadorBlanco == true)
+		{
+			resultado = 1;
+		}
+		
+		else if (contadorRey != 2 && ganadorBlanco == false)
+		{
+			resultado = 2;
+		}
+		
+		return resultado;
+	}
 	//Fin
 }

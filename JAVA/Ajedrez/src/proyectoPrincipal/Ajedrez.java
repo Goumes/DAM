@@ -27,10 +27,10 @@ package proyectoPrincipal;
  * 	Mientras PartidaNoAcabada
  * 		MostrarTablero *
  * 		IndicarJugador
- * 		Repetir
- * 			MoverPieza
- * 		Mientras el movimiento sea incorrecto
+ * 		EjecutarTurno *
+ * 		ComprobarPartidaAcabada *
  * 	Fin_Mientras
+ *  DeclararGanador
  * Fin
  */
 
@@ -53,11 +53,7 @@ public class Ajedrez
 		char Ejecutar = ' ';
 		boolean Acabar = false;
 		boolean Turno = true;
-		boolean Continuar = true;
-		int filaOriginal = 0;
-		int columnaOriginal = 0;
-		int filaNueva = 0;
-		int columnaNueva = 0;
+		int Ganador = 0;
 		
 		 	//LeerValidarEjecutar
 			do
@@ -145,88 +141,51 @@ public class Ajedrez
 		 			}
 					//Fin IndicarJugador
 		
-		 			//LeerValidarMovimientoJugador
+		 			//EjecutarTurno
 		 			System.out.println();
 	 				System.out.println("Realiza tu movimiento. Indica la posición actual y a la que te gustaría mover la pieza.");
-		 			do
-		 			{
-		 				Continuar = true;
-		 				do
-		 				{
-		 					if (Continuar == false)
-		 					{
-		 						System.out.println();
-		 		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
-		 					}
-			 				do
-			 				{
-			 					filaOriginal = teclado.nextInt();
-			 				}
-			 				while (filaOriginal < 0 || filaOriginal > 7);
-			 				
-			 				do
-			 				{
-			 					columnaOriginal = teclado.nextInt();
-			 				}
-			 				while (columnaOriginal < 0 || columnaOriginal > 7);
-			 				
-			 				if (tablero.getTablero()[filaOriginal][columnaOriginal].getColor() != Turno)
-			 				{
-			 					Continuar = false;
-			 				}
-			 				else
-			 				{
-			 					Continuar = true;
-			 				}
-		 				}
-		 				while (Continuar == false);
- 					
-		 				do
-		 				{
-		 					filaNueva = teclado.nextInt();
-		 				}
-		 				while (filaNueva < 0 || filaNueva > 7);
-		 				
-		 				do
-		 				{
-		 					columnaNueva = teclado.nextInt();
-		 				}
-		 				while (columnaNueva < 0 || columnaNueva > 7);
-		 				
-		 				if ((tablero.getTablero()[filaNueva][columnaNueva] != null
-		 					&& tablero.getTablero()[filaNueva][columnaNueva].getColor() == Turno) 
-		 					|| tablero.getTablero()[filaNueva][columnaNueva] == tablero.getTablero()[filaOriginal][columnaOriginal])
-		 				{
-		 					Continuar = false;
-		 				}
-		 				else
-		 				{
-		 					Continuar = true;
-		 				}
-		 				
-		 				if (Continuar == false)
-	 					{
-	 						System.out.println("No puedes mover la pieza a esa posición.");
-	 					}
-	 				}
-	 				while (Continuar == false);
-		 				
-	 				tablero.moverPieza(filaOriginal, columnaOriginal, filaNueva, columnaNueva);
+		 			
+	 				tablero = GestionadoraAjedrez.turnoJugador(tablero, Turno);
 	 				
 	 				Turno = !Turno;
-			 		//Fin LeerValidarMovimientoJugador
+			 		//Fin EjecutarTurno
+	 				
+	 				//ComprobarPartidaAcabada
+	 				Ganador = GestionadoraAjedrez.comprobarVictoria(tablero);
+	 				
+	 				if (Ganador != 0)
+	 				{
+	 					Acabar = true;
+	 				}
+	 				//Fin ComprobarPartidaAcabada
 			
-			 		}//Fin_Mientras
+		 		}//Fin_Mientras
+		 		
+		 		//DeclararGanador
+ 				if (Ganador == 1 && jugador1.getColor() == true
+ 					|| Ganador == 2 && jugador1.getColor() == false)
+ 				{
+ 					System.out.println("Ha ganado el jugador: "+jugador1.getNombre()+". Enhorabuena!");
+ 				}
+ 				
+ 				else
+ 				{
+ 					System.out.println("Ha ganado el jugador: "+jugador2.getNombre()+". Enhorabuena!");	
+ 				}
+ 				
+ 				System.out.println();
+ 				//Fin DeclararGanador
 			
-			 		//LeerValidarReiniciar
-					do
-					{
-						System.out.println("Desea jugar otra partida de ajedrez? S/N");
-						Ejecutar = Character.toLowerCase(teclado.next().charAt(0));
-					}
-					while (Ejecutar != 's' && Ejecutar != 'n');
+		 		//LeerValidarReiniciar
+				do
+				{
+					System.out.println("Desea jugar otra partida de ajedrez? S/N");
+					Ejecutar = Character.toLowerCase(teclado.next().charAt(0));	
+				}
+				while (Ejecutar != 's' && Ejecutar != 'n');
+				Acabar = false;
 				//Fin LeerValidarReiniciar
-		
+				
 		}//Fin_Mientras
 		
 	}//fin_main
