@@ -30,6 +30,8 @@ public class GestionadoraAjedrez
 		int filaNueva = 0;
 		int columnaOriginalInt = 0;
 		int columnaNuevaInt = 0;
+		String resultadoMovimiento = "0";
+		String [] partes = null;
 		
 		do
 			{
@@ -61,15 +63,24 @@ public class GestionadoraAjedrez
 	 				filaOriginal = GestionadoraAjedrez.transformarFila(filaOriginal);
 	 				columnaOriginalInt = GestionadoraAjedrez.transformarColumna(columnaOriginal);
 	 				
-	 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt].getColor() != Turno)
+	 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt] != null)
 	 				{
-	 					Continuar = false;
-	 					System.out.println();
-		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
+	 				
+		 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt].getColor() != Turno)
+		 				{
+		 					Continuar = false;
+		 					System.out.println();
+			 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
+		 				}
+		 				else
+		 				{
+		 					Continuar = true;
+		 				}
 	 				}
 	 				else
 	 				{
-	 					Continuar = true;
+	 					Continuar = false;
+	 					System.out.println("No puedes seleccionar una casilla vacía.");
 	 				}
 				}
 				while (Continuar == false);
@@ -98,11 +109,12 @@ public class GestionadoraAjedrez
 				
 				filaNueva = GestionadoraAjedrez.transformarFila(filaNueva);
 				columnaNuevaInt = GestionadoraAjedrez.transformarColumna(columnaNueva);
+				resultadoMovimiento = GestionadoraAjedrez.comprobarMovimiento (filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt, tablero.getTablero()[filaOriginal][columnaOriginalInt].getTipo(), tablero);
 				
 				if ((tablero.getTablero()[filaNueva][columnaNuevaInt] != null
 					&& tablero.getTablero()[filaNueva][columnaNuevaInt].getColor() == Turno) 
 					|| tablero.getTablero()[filaNueva][columnaNuevaInt] == tablero.getTablero()[filaOriginal][columnaOriginalInt]
-					|| GestionadoraAjedrez.comprobarMovimiento (filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt, tablero.getTablero()[filaOriginal][columnaOriginalInt].getTipo()) == false)
+					|| (resultadoMovimiento == "-1"))
 				{
 					Continuar = false;
 					System.out.println("No puedes mover la pieza a esa posición.");
@@ -114,6 +126,13 @@ public class GestionadoraAjedrez
 				
 			}
 			while (Continuar == false);
+		
+			if (resultadoMovimiento != "0" && resultadoMovimiento != "-1")
+			{
+				partes = resultadoMovimiento.split(",");
+				filaNueva = Integer.valueOf(partes [0]);
+				columnaNuevaInt = Integer.valueOf(partes [1]);
+			}
 				
 			tablero.moverPieza(filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt);
 			
@@ -307,15 +326,15 @@ public class GestionadoraAjedrez
 	}
 	//Fin transformarFila
 	
-	/* Prototipo: boolean comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo)
+	/* Prototipo: String comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo, Tablero tablero)
 	 * Breve comentario: Comprueba si el tipo de la pieza recibida puede realizar ese movimiento.
 	 * Precondiciones: Ninguna
-	 * Entradas: Dos enteros, dos caracteres y un String
-	 * Salidas: Un booleano
+	 * Entradas: Dos enteros, dos caracteres, un String y un Tablero
+	 * Salidas: Un String
 	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: True si el movimiento es posible, false sino
+	 * Postcondiciones: La cadena devuelve "0" si se ha movido correctamente, -1 sino o un conjunto de dos numeros separados por "," para indicar la nueva posición si se ha encontrado con un obstaculo.
 	 * 
-	 * Resguardo: public static boolean comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo)
+	 * Resguardo: public static String comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo, Tablero tablero)
 		{
 			boolean resultado = false;
 			
@@ -324,31 +343,171 @@ public class GestionadoraAjedrez
 			return resultado;
 		}
 	 */
-	public static boolean comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo)
+	public static String comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo, Tablero tablero)
 	{
-		boolean resultado = false;
+		String resultado = "0";
 		
 		if (Tipo == "Rey" 
 			&& ((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1))
 				|| ((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 0))
 				|| ((Fila1 - Fila2 == 0) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1)))
 		{
-			resultado = true;
+			resultado = "0";
 		}
 		
 		else if (Tipo == "Alfil"
-				&& ((Fila1 - Fila2 == Columna1 - Columna2)
-					|| (Fila1 - Fila2 == Columna2 - Columna1)
-					|| (Fila2 - Fila1 == Columna1 - Columna2)))
+				&& ((Fila1 - Fila2 == (Columna1 - Columna2))
+					|| (Fila1 - Fila2 == - (Columna1 - Columna2))
+					))
 		{
-			resultado = true;
+			if ((Fila1 - Fila2 == (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
+			{
+				for (int i = Fila1, j = Columna1; i > Fila2; i--, j--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == Columna1 - Columna2) && (Fila1 - Fila2) < 0)
+			{
+				for (int i = Fila1, j = Columna1; i < Fila2; i++, j++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == - (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
+			{
+				for (int i = Fila1, j = Columna1; i > Fila2; i--, j++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			else
+			{
+				for (int i = Fila1, j = Columna1; i < Fila2; i++, j--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
 		}
 		
 		else if (Tipo == "Torre"
 				&& ((Fila1 != Fila2 && Columna1 == Columna2)
 					|| Fila1 == Fila2 && Columna1 != Columna2))
 		{
-			resultado = true;
+			if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) > 0)
+			{
+				for (int i = Fila1, j = Columna1; i > Fila2; i--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			else if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) < 0)
+			{
+
+				for (int i = Fila1, j = Columna1; i < Fila2; i++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else if ((Fila1 == Fila2 && Columna1 != Columna2) && (Columna1 - Columna2) > 0)
+			{
+
+				for (int i = Fila1, j = Columna1; j > Columna2; j--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else
+			{
+				for (int i = Fila1, j = Columna1; j < Columna2; j++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
 		}
 		
 		else if (Tipo == "Caballo"
@@ -358,25 +517,167 @@ public class GestionadoraAjedrez
 					)
 				)
 		{
-			resultado = true;
+			resultado = "0";
 		}
 		
 		else if (Tipo == "Dama"
 				&& (((Fila1 - Fila2 == Columna1 - Columna2)
-						|| (Fila1 - Fila2 == Columna2 - Columna1)
-						|| (Fila2 - Fila1 == Columna1 - Columna2))
+						|| (Fila1 - Fila2 == - (Columna1 - Columna2)))
 					|| ((Fila1 != Fila2 && Columna1 == Columna2) 
 						|| Fila1 == Fila2 && Columna1 != Columna2)))
 		{
-			resultado = true;
+			
+			if ((Fila1 - Fila2 == (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
+			{
+				for (int i = Fila1, j = Columna1; i > Fila2; i--, j--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == Columna1 - Columna2) && (Fila1 - Fila2) < 0)
+			{
+				for (int i = Fila1, j = Columna1; i < Fila2; i++, j++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == - (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
+			{
+				for (int i = Fila1, j = Columna1; i > Fila2; i--, j++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			else if ((Fila1 - Fila2 == - (Columna1 - Columna2)) && (Fila1 - Fila2) < 0)
+			{
+				for (int i = Fila1, j = Columna1; i < Fila2; i++, j--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			else if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) > 0)
+			{
+				for (int i = Fila1, j = Columna1; i > Fila2; i--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			else if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) < 0)
+			{
+
+				for (int i = Fila1, j = Columna1; i < Fila2; i++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else if ((Fila1 == Fila2 && Columna1 != Columna2) && (Columna1 - Columna2) > 0)
+			{
+
+				for (int i = Fila1, j = Columna1; j > Columna2; j--)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
+			
+			else
+			{
+				for (int i = Fila1, j = Columna1; j < Columna2; j++)
+				{
+					if (tablero.getTablero()[i][j] != null)
+					{
+						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+						{
+							resultado = (i + "," + j);
+						}
+					}
+					else
+					{
+						resultado = "0";
+					}
+				}
+			}
 		}
 		
 		else if (Tipo == "Peon"
 				&& ((Fila2 - Fila1 == 1) && (Columna1 - Columna2 == 0)))
 		{
-			resultado = true;
+			resultado = "0";
 		}
 		return resultado;
 	}
 	//Fin comprobarMovimiento
+	
 }
