@@ -1,5 +1,9 @@
 package proyectoPrincipal;
 
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
 public class GestionadoraAjedrez 
 {
 	/* Prototipo: Pieza [][] generarTablero ()

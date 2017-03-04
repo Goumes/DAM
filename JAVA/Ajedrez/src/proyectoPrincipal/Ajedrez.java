@@ -38,6 +38,9 @@ package proyectoPrincipal;
  */
 
 import java.util.*;
+
+import utilidades.utilArray;
+
 import java.io.*;
 
 public class Ajedrez
@@ -47,10 +50,11 @@ public class Ajedrez
 		Scanner teclado = new Scanner (System.in);
 		InputStreamReader flujo = new InputStreamReader (System.in);
 		BufferedReader tecladoString = new BufferedReader (flujo);
-		Pieza [][] tablero = null;
-		String Jugador1 = "";
-		String Jugador2 = "";
+		Tablero tablero = new Tablero ();
+		Jugador jugador1 = new Jugador ();
+		Jugador jugador2 = new Jugador ();
 		char Ejecutar = ' ';
+		boolean Acabar = false;
 		
 		 	//LeerValidarEjecutar
 			do
@@ -67,31 +71,44 @@ public class Ajedrez
 				//GenerarTablero
 		 		try
 		 		{
-		 			tablero = GestionadoraAjedrez.generarTablero();
+		 			tablero.generarTablero();
 		 		}
 		 		catch (ExceptionAjedrez error)
 		 		{
 		 			System.out.println("Ha ocurrido un error generando el tablero.");
 		 		}
+		 		
 				//Fin GenerarTablero
 		
 		 		//LeerNombresJugadores
 	 			System.out.println("Introduzca el nombre del Jugador 1");
-	 			Jugador1 = tecladoString.readLine();
+	 			jugador1.setNombre (tecladoString.readLine());
 	 			
 	 			System.out.println("Introduzca el nombre del Jugador 2");
-	 			Jugador2 = tecladoString.readLine();
+	 			jugador2.setNombre(tecladoString.readLine());
 
-		 		System.out.println(Jugador1+", "+Jugador2);
+		 		System.out.println(jugador1.getNombre()+", "+jugador2.getNombre());
 				//Fin LeerNombresJugadores
 		
 		 		//ElegirColor
 		 		
-		 		/* Implementar clase Jugador con atributos Nombre, color del tablero y algo más. */
+		 		jugador1.elegirColor();
+		 		
+		 		if (jugador1.getColor() == true)
+		 		{
+		 			jugador2.setColor(false);
+		 		}
+		 		
+		 		else
+		 		{
+		 			jugador2.setColor(true);
+		 		}
 		 		
 				//Fin ElegirColor
 		
 		 		//Mientras PartidaNoAcabada
+		 		while (Acabar == false)
+		 		{
 		
 	 		 		//MostrarTablero
 					//Fin MostrarTablero
@@ -113,7 +130,7 @@ public class Ajedrez
 		
  		 		  	//Fin_si
 		
-		 		//Fin_Mientras
+		 		}//Fin_Mientras
 		
 		 		//LeerValidarReiniciar
 				do

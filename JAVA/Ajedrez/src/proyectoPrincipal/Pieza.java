@@ -140,6 +140,8 @@ public class Pieza implements Cloneable, Comparable <Pieza>
 	{
 		int resultado = 0;
 		
+		
+		/*
 		if (((Boolean) (this.getColor())).compareTo((Boolean) (pieza.getColor())) > 0		//Casteo el boolean a su clase de envoltura para poder usar el compareTo de Boolean.
 			&& this.getTipo().compareTo(pieza.getTipo()) > 0)
 		{
@@ -150,7 +152,20 @@ public class Pieza implements Cloneable, Comparable <Pieza>
 				&& this.getTipo().compareTo(pieza.getTipo()) < 0)
 		{
 			resultado = -1;
+		} */
+		
+		if ((this.getColor() == true && pieza.getColor() == false)
+			&& this.getTipo().compareTo(pieza.getTipo()) > 0)
+		{
+			resultado = 1;
 		}
+		
+		if ((this.getColor() == false && pieza.getColor() == true)
+				&& this.getTipo().compareTo(pieza.getTipo()) < 0)
+		{
+			resultado = -1;
+		}
+		
 		return resultado;
 	}
 	//Fin Metodos añadidos

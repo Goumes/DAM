@@ -65,10 +65,12 @@ public class TestPieza
 	@Test
 	public void testCompareTo () throws ExceptionAjedrez
 	{
-		Pieza compareTo1 = new Pieza (true, "Alfil");
-		Pieza compareTo2 = new Pieza (false, "Dama");
+		Pieza compareTo1 = new Pieza (true, "Dama");
+		Pieza compareTo2 = new Pieza (false, "Alfil");
 		
-		assertEquals("testCompareTo. Comparando los objetos compareTo1 y compareTo2", 1, compareTo1.compareTo(compareTo2)); //Echarle un vistazo al compareTo de la clase Pieza.
+		assertEquals("testCompareTo. Comparando los objetos compareTo1 y compareTo2", 1, compareTo1.compareTo(compareTo2));
+		assertEquals("testCompareTo. Comparando los objetos compareTo1 y compareTo2", -1, compareTo2.compareTo(compareTo1));
+		assertEquals("testCompareTo. Comparando los objetos compareTo1 y compareTo2", 0, compareTo1.compareTo(compareTo1));
 	}
 	
 	@Test
