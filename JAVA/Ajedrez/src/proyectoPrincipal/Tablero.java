@@ -222,6 +222,7 @@ public class Tablero
 			{
 				System.out.println("  --------- --------- --------- --------- --------- --------- --------- ---------");
 				System.out.println("      A         B         C         D         E         F         G         H    ");
+				System.out.println();
 			}
 			
 		}
