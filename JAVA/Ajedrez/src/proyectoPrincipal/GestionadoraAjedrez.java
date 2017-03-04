@@ -36,20 +36,25 @@ public class GestionadoraAjedrez
 				Continuar = true;
 				do
 				{
-					if (Continuar == false)
-					{
-						System.out.println();
-		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
-					}
 	 				do
 	 				{
 	 					columnaOriginal = Character.toLowerCase(teclado.next().charAt(0));
+	 					
+	 					if (columnaOriginal < 'a' || columnaOriginal > 'h')
+	 					{
+	 						System.out.println("Selecciona una columna válida.");
+	 					}
 	 				}
 	 				while (columnaOriginal < 'a' || columnaOriginal > 'h');
 	 				
 	 				do
 	 				{
 	 					filaOriginal = teclado.nextInt();
+	 					
+	 					if (filaOriginal < 1 || filaOriginal > 8)
+	 					{
+	 						System.out.println("Selecciona una fila válida.");
+	 					}
 	 				}
 	 				while (filaOriginal < 1 || filaOriginal > 8);
 	 				
@@ -59,6 +64,8 @@ public class GestionadoraAjedrez
 	 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt].getColor() != Turno)
 	 				{
 	 					Continuar = false;
+	 					System.out.println();
+		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
 	 				}
 	 				else
 	 				{
@@ -70,12 +77,22 @@ public class GestionadoraAjedrez
 				do
 				{
 					columnaNueva = Character.toLowerCase(teclado.next().charAt(0));
+					
+					if (columnaNueva < 'a' || columnaNueva > 'h')
+ 					{
+ 						System.out.println("Selecciona una columna válida.");
+ 					}
 				}
 				while (columnaNueva < 'a' || columnaNueva > 'h');
 				
 				do
 				{
 					filaNueva = teclado.nextInt();
+					
+					if (filaNueva < 1 || filaNueva > 8)
+ 					{
+ 						System.out.println("Selecciona una fila válida.");
+ 					}
 				}
 				while (filaNueva < 1 || filaNueva > 8);
 				
@@ -84,19 +101,17 @@ public class GestionadoraAjedrez
 				
 				if ((tablero.getTablero()[filaNueva][columnaNuevaInt] != null
 					&& tablero.getTablero()[filaNueva][columnaNuevaInt].getColor() == Turno) 
-					|| tablero.getTablero()[filaNueva][columnaNuevaInt] == tablero.getTablero()[filaOriginal][columnaOriginalInt])
+					|| tablero.getTablero()[filaNueva][columnaNuevaInt] == tablero.getTablero()[filaOriginal][columnaOriginalInt]
+					|| GestionadoraAjedrez.comprobarMovimiento (filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt, tablero.getTablero()[filaOriginal][columnaOriginalInt].getTipo()) == false)
 				{
 					Continuar = false;
+					System.out.println("No puedes mover la pieza a esa posición.");
 				}
 				else
 				{
 					Continuar = true;
 				}
 				
-				if (Continuar == false)
-				{
-					System.out.println("No puedes mover la pieza a esa posición.");
-				}
 			}
 			while (Continuar == false);
 				
@@ -291,4 +306,77 @@ public class GestionadoraAjedrez
 		return resultado;
 	}
 	//Fin transformarFila
+	
+	/* Prototipo: boolean comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo)
+	 * Breve comentario: Comprueba si el tipo de la pieza recibida puede realizar ese movimiento.
+	 * Precondiciones: Ninguna
+	 * Entradas: Dos enteros, dos caracteres y un String
+	 * Salidas: Un booleano
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: True si el movimiento es posible, false sino
+	 * 
+	 * Resguardo: public static boolean comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo)
+		{
+			boolean resultado = false;
+			
+			System.out.println("Llamada al metodo comprobarMovimiento");
+			
+			return resultado;
+		}
+	 */
+	public static boolean comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo)
+	{
+		boolean resultado = false;
+		
+		if (Tipo == "Rey" 
+			&& ((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1))
+				|| ((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 0))
+				|| ((Fila1 - Fila2 == 0) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1)))
+		{
+			resultado = true;
+		}
+		
+		else if (Tipo == "Alfil"
+				&& ((Fila1 - Fila2 == Columna1 - Columna2)
+					|| (Fila1 - Fila2 == Columna2 - Columna1)
+					|| (Fila2 - Fila1 == Columna1 - Columna2)))
+		{
+			resultado = true;
+		}
+		
+		else if (Tipo == "Torre"
+				&& ((Fila1 != Fila2 && Columna1 == Columna2)
+					|| Fila1 == Fila2 && Columna1 != Columna2))
+		{
+			resultado = true;
+		}
+		
+		else if (Tipo == "Caballo"
+				&& (
+						((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 2 || Columna1 - Columna2 == -2))
+					|| ((Fila1 - Fila2 == 2 || Fila1 - Fila2 == -2) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1))
+					)
+				)
+		{
+			resultado = true;
+		}
+		
+		else if (Tipo == "Dama"
+				&& (((Fila1 - Fila2 == Columna1 - Columna2)
+						|| (Fila1 - Fila2 == Columna2 - Columna1)
+						|| (Fila2 - Fila1 == Columna1 - Columna2))
+					|| ((Fila1 != Fila2 && Columna1 == Columna2) 
+						|| Fila1 == Fila2 && Columna1 != Columna2)))
+		{
+			resultado = true;
+		}
+		
+		else if (Tipo == "Peon"
+				&& ((Fila2 - Fila1 == 1) && (Columna1 - Columna2 == 0)))
+		{
+			resultado = true;
+		}
+		return resultado;
+	}
+	//Fin comprobarMovimiento
 }
