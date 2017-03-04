@@ -376,15 +376,21 @@ public class GestionadoraAjedrez
 					|| (Fila1 - Fila2 == - (Columna1 - Columna2))
 					))
 		{
+			resultado = "0";
 			if ((Fila1 - Fila2 == (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
 			{
-				for (int i = Fila1, j = Columna1; i > Fila2; i--, j--)
+				for (int i = Fila1 - 1, j = Columna1 - 1; i > Fila2 && resultado != "-1"; i--, j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -396,13 +402,18 @@ public class GestionadoraAjedrez
 			
 			else if ((Fila1 - Fila2 == Columna1 - Columna2) && (Fila1 - Fila2) < 0)
 			{
-				for (int i = Fila1, j = Columna1; i < Fila2; i++, j++)
+				for (int i = Fila1 + 1, j = Columna1 + 1; i < Fila2 && resultado != "-1"; i++, j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -414,13 +425,18 @@ public class GestionadoraAjedrez
 			
 			else if ((Fila1 - Fila2 == - (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
 			{
-				for (int i = Fila1, j = Columna1; i > Fila2; i--, j++)
+				for (int i = Fila1 - 1, j = Columna1 + 1; i > Fila2 && resultado != "-1"; i--, j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -431,13 +447,18 @@ public class GestionadoraAjedrez
 			}
 			else
 			{
-				for (int i = Fila1, j = Columna1; i < Fila2; i++, j--)
+				for (int i = Fila1 + 1, j = Columna1 - 1; i < Fila2 && resultado != "-1"; i++, j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -452,15 +473,21 @@ public class GestionadoraAjedrez
 				&& ((Fila1 != Fila2 && Columna1 == Columna2)
 					|| Fila1 == Fila2 && Columna1 != Columna2))
 		{
+			resultado = "0";
 			if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) > 0)
 			{
-				for (int i = Fila1, j = Columna1; i > Fila2; i--)
+				for (int i = Fila1 - 1, j = Columna1; i > Fila2 && resultado != "-1"; i--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -472,13 +499,18 @@ public class GestionadoraAjedrez
 			else if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) < 0)
 			{
 
-				for (int i = Fila1, j = Columna1; i < Fila2; i++)
+				for (int i = Fila1 + 1, j = Columna1; i < Fila2 && resultado != "-1"; i++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -491,13 +523,18 @@ public class GestionadoraAjedrez
 			else if ((Fila1 == Fila2 && Columna1 != Columna2) && (Columna1 - Columna2) > 0)
 			{
 
-				for (int i = Fila1, j = Columna1; j > Columna2; j--)
+				for (int i = Fila1, j = Columna1 - 1; j > Columna2 && resultado != "-1"; j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -509,13 +546,18 @@ public class GestionadoraAjedrez
 			
 			else
 			{
-				for (int i = Fila1, j = Columna1; j < Columna2; j++)
+				for (int i = Fila1, j = Columna1 + 1; j < Columna2 && resultado != "-1"; j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -542,16 +584,21 @@ public class GestionadoraAjedrez
 					|| ((Fila1 != Fila2 && Columna1 == Columna2) 
 						|| Fila1 == Fila2 && Columna1 != Columna2)))
 		{
-			
+			resultado = "0";
 			if ((Fila1 - Fila2 == (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
 			{
-				for (int i = Fila1, j = Columna1; i > Fila2; i--, j--)
+				for (int i = Fila1 - 1, j = Columna1 - 1; i > Fila2 && resultado != "-1"; i--, j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -563,13 +610,17 @@ public class GestionadoraAjedrez
 			
 			else if ((Fila1 - Fila2 == Columna1 - Columna2) && (Fila1 - Fila2) < 0)
 			{
-				for (int i = Fila1, j = Columna1; i < Fila2; i++, j++)
+				for (int i = Fila1 + 1, j = Columna1 + 1; i < Fila2 && resultado != "-1"; i++, j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -581,13 +632,18 @@ public class GestionadoraAjedrez
 			
 			else if ((Fila1 - Fila2 == - (Columna1 - Columna2)) && (Fila1 - Fila2) > 0)
 			{
-				for (int i = Fila1, j = Columna1; i > Fila2; i--, j++)
+				for (int i = Fila1 - 1, j = Columna1 + 1; i > Fila2 && resultado != "-1"; i--, j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -598,13 +654,18 @@ public class GestionadoraAjedrez
 			}
 			else if ((Fila1 - Fila2 == - (Columna1 - Columna2)) && (Fila1 - Fila2) < 0)
 			{
-				for (int i = Fila1, j = Columna1; i < Fila2; i++, j--)
+				for (int i = Fila1 + 1, j = Columna1 - 1; i < Fila2 && resultado != "-1"; i++, j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -615,13 +676,18 @@ public class GestionadoraAjedrez
 			}
 			else if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) > 0)
 			{
-				for (int i = Fila1, j = Columna1; i > Fila2; i--)
+				for (int i = Fila1 - 1, j = Columna1; i > Fila2 && resultado != "-1"; i--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -633,13 +699,18 @@ public class GestionadoraAjedrez
 			else if ((Fila1 != Fila2 && Columna1 == Columna2) && (Fila1 - Fila2) < 0)
 			{
 
-				for (int i = Fila1, j = Columna1; i < Fila2; i++)
+				for (int i = Fila1 + 1, j = Columna1; i < Fila2 && resultado != "-1"; i++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -652,13 +723,18 @@ public class GestionadoraAjedrez
 			else if ((Fila1 == Fila2 && Columna1 != Columna2) && (Columna1 - Columna2) > 0)
 			{
 
-				for (int i = Fila1, j = Columna1; j > Columna2; j--)
+				for (int i = Fila1, j = Columna1 - 1; j > Columna2 && resultado != "-1"; j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
@@ -670,13 +746,18 @@ public class GestionadoraAjedrez
 			
 			else
 			{
-				for (int i = Fila1, j = Columna1; j < Columna2; j++)
+				for (int i = Fila1, j = Columna1 + 1; j < Columna2 && resultado != "-1"; j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
 						if (tablero.getTablero()[i][j].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
 						{
 							resultado = (i + "," + j);
+						}
+						
+						else
+						{
+							resultado = "-1";
 						}
 					}
 					else
