@@ -51,7 +51,15 @@ public class GestionadoraAjedrez
 	 				
 	 				do
 	 				{
-	 					filaOriginal = teclado.nextInt();
+	 					try
+	 					{
+	 						filaOriginal = teclado.nextInt();
+	 					}
+	 					catch (InputMismatchException e)
+	 					{
+	 						System.out.print("No intentes petar el programa pls ty. ");
+	 						teclado.next();
+	 					}
 	 					
 	 					if (filaOriginal < 1 || filaOriginal > 8)
 	 					{
@@ -98,7 +106,15 @@ public class GestionadoraAjedrez
 				
 				do
 				{
-					filaNueva = teclado.nextInt();
+					try
+					{
+						filaNueva = teclado.nextInt();
+					}
+					catch (InputMismatchException e)
+					{
+						System.out.print("No intentes petar el programa pls ty. ");
+						teclado.next();
+					}
 					
 					if (filaNueva < 1 || filaNueva > 8)
  					{
@@ -345,7 +361,7 @@ public class GestionadoraAjedrez
 	 */
 	public static String comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo, Tablero tablero)
 	{
-		String resultado = "0";
+		String resultado = "-1";
 		
 		if (Tipo == "Rey" 
 			&& ((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1))
@@ -672,9 +688,132 @@ public class GestionadoraAjedrez
 		}
 		
 		else if (Tipo == "Peon"
-				&& ((Fila2 - Fila1 == 1) && (Columna1 - Columna2 == 0)))
+				&& (((Fila1 - Fila2 == 1) && (Columna1 - Columna2 == 0))
+					|| ((Fila1 - Fila2 == 1) && (Columna1 - Columna2 == 1))
+					|| ((Fila1 - Fila2 == 1) && (Columna1 - Columna2 == -1))
+					|| ((Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 0))
+					|| ((Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 1))
+					|| ((Fila1 - Fila2 == -1) && (Columna1 - Columna2 == -1))
+					|| ((Fila1 - Fila2 == 2) && (Columna1 - Columna2 == 0))
+					|| ((Fila1 - Fila2 == -2) && (Columna1 - Columna2 == 0))))
 		{
-			resultado = "0";
+			if ((Fila1 - Fila2 == 1) && (Columna1 - Columna2 == 0))
+			{
+				
+				if (tablero.getTablero()[Fila2][Columna2] != null)
+				{
+					if (tablero.getTablero()[Fila2][Columna2].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+					{
+						resultado = "-1";
+					}
+				}
+				else
+				{
+					resultado = "0";
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == 1) && (Columna1 - Columna2 == 1))
+			{
+				if (tablero.getTablero()[Fila2][Columna2] != null)
+				{
+					if (tablero.getTablero()[Fila2][Columna2].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+					{
+						resultado = "0";
+					}
+				}
+				else
+				{
+					resultado = "-1";
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == 1) && (Columna1 - Columna2 == -1))
+			{
+				if (tablero.getTablero()[Fila2][Columna2] != null)
+				{
+					if (tablero.getTablero()[Fila2][Columna2].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+					{
+						resultado = "0";
+					}
+				}
+				else
+				{
+					resultado = "-1";
+				}
+			}
+			
+
+			else if ((Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 0))
+			{
+				if (tablero.getTablero()[Fila2][Columna2] != null)
+				{
+					if (tablero.getTablero()[Fila2][Columna2].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+					{
+						resultado = "-1";
+					}
+				}
+				else
+				{
+					resultado = "0";
+				}
+			}
+
+			else if ((Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 1))
+			{
+				if (tablero.getTablero()[Fila2][Columna2] != null)
+				{
+					if (tablero.getTablero()[Fila2][Columna2].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+					{
+						resultado = "0";
+					}
+				}
+				else
+				{
+					resultado = "-1";
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == -1) && (Columna1 - Columna2 == -1))
+			{
+				if (tablero.getTablero()[Fila2][Columna2] != null)
+				{
+					if (tablero.getTablero()[Fila2][Columna2].getColor() != tablero.getTablero()[Fila1][Columna1].getColor())
+					{
+						resultado = "0";
+					}
+				}
+				else
+				{
+					resultado = "-1";
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == 2) && (Columna1 - Columna2 == 0))
+			{
+				if (Fila1 == 6)
+				{
+					resultado = "0";
+				}
+				
+				else
+				{
+					resultado = "-1";
+				}
+			}
+			
+			else if ((Fila1 - Fila2 == -2) && (Columna1 - Columna2 == 0))
+			{
+				if (Fila1 == 1)
+				{
+					resultado = "0";
+				}
+				
+				else
+				{
+					resultado = "-1";
+				}
+			}
 		}
 		return resultado;
 	}
