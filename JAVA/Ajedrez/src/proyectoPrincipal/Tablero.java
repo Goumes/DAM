@@ -155,55 +155,108 @@ public class Tablero
 		for (int i = 0; i < this.tablero.length; i++)
 		{
 			System.out.println("  --------- --------- --------- --------- --------- --------- --------- ---------");
+			System.out.println(" |         |         |         |         |         |         |         |         |");
 			for (int j = 0; j < this.tablero[0].length; j++)
 			{
 				
  				if (this.tablero[i][j] != null)
 				{
-	 				if (this.tablero[i][j].getTipo() == "Torre" || this.tablero[i][j].getTipo () == "Alfil")
-	 				{
-	 					System.out.print(" |  " + this.tablero[i][j].getTipo() + " ");
-	 				}
-					
-	 				else if (this.tablero[i][j].getTipo() == "Rey")
-	 				{
-	 					System.out.print(" |   " + this.tablero[i][j].getTipo() + "  ");
-	 				}
-	 				
-	 				else if (this.tablero[i][j].getTipo() == "Dama" || this.tablero[i][j].getTipo () == "Peon")
-	 				{
-	 					System.out.print(" |   " + this.tablero[i][j].getTipo() + " ");
-	 				}
-	 				
-	 				else
-	 				{
-	 					System.out.print(" | " + this.tablero[i][j].getTipo());
-	 					
-	 				}
+ 					if (this.tablero[i][j].getColor () == false)
+ 					{
+		 				if (this.tablero[i][j].getTipo() == "Torre" || this.tablero[i][j].getTipo () == "Alfil")
+		 				{
+		 					System.out.print(" | *" + this.tablero[i][j].getTipo() + " ");
+		 				}
+						
+		 				else if (this.tablero[i][j].getTipo() == "Rey")
+		 				{
+		 					System.out.print(" |  *" + this.tablero[i][j].getTipo() + "  ");
+		 				}
+		 				
+		 				else if (this.tablero[i][j].getTipo() == "Dama" || this.tablero[i][j].getTipo () == "Peon")
+		 				{
+		 					System.out.print(" |  *" + this.tablero[i][j].getTipo() + " ");
+		 				}
+		 				
+		 				else if (this.tablero[i][j].getTipo() == "Caballo")
+		 				{
+		 					System.out.print(" |*" + this.tablero[i][j].getTipo());
+		 					
+		 				}
+ 					}
+ 					else
+ 					{
+ 						if (this.tablero[i][j].getTipo() == "Torre" || this.tablero[i][j].getTipo () == "Alfil")
+		 				{
+		 					System.out.print(" |  " + this.tablero[i][j].getTipo() + " ");
+		 				}
+						
+		 				else if (this.tablero[i][j].getTipo() == "Rey")
+		 				{
+		 					System.out.print(" |   " + this.tablero[i][j].getTipo() + "  ");
+		 				}
+		 				
+		 				else if (this.tablero[i][j].getTipo() == "Dama" || this.tablero[i][j].getTipo () == "Peon")
+		 				{
+		 					System.out.print(" |   " + this.tablero[i][j].getTipo() + " ");
+		 				}
+		 				
+		 				else if (this.tablero[i][j].getTipo() == "Caballo")
+		 				{
+		 					System.out.print(" | " + this.tablero[i][j].getTipo());
+		 					
+		 				}
+ 					}
 				}
 				else
 				{
 					System.out.print(" |        ");
 				}
 			}
-			System.out.print(" |"); 
-			System.out.println("");
 			
+			System.out.print(" |  "+  (8 - i)); 
+			System.out.println("");
+			System.out.println(" |         |         |         |         |         |         |         |         |");
+				
 			if (i == (this.tablero.length - 1))
 			{
 				System.out.println("  --------- --------- --------- --------- --------- --------- --------- ---------");
+				System.out.println("      A         B         C         D         E         F         G         H    ");
 			}
+			
 		}
-		
-		System.out.println("--------");
-		System.out.println("|      |");
-		System.out.println("|      |");
-		System.out.println("|      |");
-		System.out.println("--------");
 		
 		return resultado;
 	}
-	//Fin
+	//Fin mostrarTablero
+	
+	/* Prototipo: int moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
+	 * Breve comentario: Mueve una pieza de una posición a otra.
+	 * Precondiciones: La primera fila y columna son la posición original.
+	 * Entradas: Cuatro enteros
+	 * Salidas: Un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Devuelve 1 si la pieza se ha movido correctamente, y -1 sino.
+	 * 
+	 * Resguardo: public int moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
+		{
+			int resultado = 1;
+			
+			System.out.println("Llamada al metodo moverPieza");
+			
+			return resultado;
+		}
+	 */
+	public int moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
+	{
+		int resultado = 1;
+		
+		this.tablero [Fila2][Columna2] = this.tablero [Fila1][Columna1];
+		this.tablero [Fila1][Columna1] = null;
+		
+		return resultado;
+	}
+	//Fin moverPieza
 	
 	//Fin Metodos añadidos
 }

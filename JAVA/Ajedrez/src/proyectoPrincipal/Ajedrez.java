@@ -30,9 +30,6 @@ package proyectoPrincipal;
  * 		Repetir
  * 			MoverPieza
  * 		Mientras el movimiento sea incorrecto
- * 		Si Ficha sobreescribe otra
- *  		MoverFichaCementerio
- *  	Fin_si
  * 	Fin_Mientras
  * Fin
  */
@@ -55,6 +52,12 @@ public class Ajedrez
 		Jugador jugador2 = new Jugador ();
 		char Ejecutar = ' ';
 		boolean Acabar = false;
+		boolean Turno = true;
+		boolean Continuar = true;
+		int filaOriginal = 0;
+		int columnaOriginal = 0;
+		int filaNueva = 0;
+		int columnaNueva = 0;
 		
 		 	//LeerValidarEjecutar
 			do
@@ -86,24 +89,24 @@ public class Ajedrez
 	 			
 	 			System.out.println("Introduzca el nombre del Jugador 2");
 	 			jugador2.setNombre(tecladoString.readLine());
-
-		 		System.out.println(jugador1.getNombre()+", "+jugador2.getNombre());
 				//Fin LeerNombresJugadores
 		
 		 		//ElegirColor
-		 		
 		 		jugador1.elegirColor();
 		 		
 		 		if (jugador1.getColor() == true)
 		 		{
 		 			jugador2.setColor(false);
+		 			System.out.println("Las piezas blancas le han tocado a: "+jugador1.getNombre());
+		 			System.out.println();
 		 		}
 		 		
 		 		else
 		 		{
 		 			jugador2.setColor(true);
+		 			System.out.println("Las piezas blancas le han tocado a: "+jugador2.getNombre());
+		 			System.out.println();
 		 		}
-		 		
 				//Fin ElegirColor
 		
 		 		//Mientras PartidaNoAcabada
@@ -111,24 +114,81 @@ public class Ajedrez
 		 		{
 		
 	 		 		//MostrarTablero
+		 			tablero.mostrarTablero();
 					//Fin MostrarTablero
 		
 	 		 		//IndicarJugador
+		 			if (Turno == true)
+		 			{
+		 				if (jugador1.getColor () == true)
+		 				{
+		 					System.out.println("Es el turno de: "+jugador1.getNombre());
+		 				}
+		 				
+		 				else
+		 				{
+		 					System.out.println("Es el turno de: "+jugador2.getNombre());
+		 				}
+		 			}
+		 			
+		 			if (Turno == false)
+		 			{
+		 				if (jugador1.getColor () == false)
+		 				{
+		 					System.out.println("Es el turno de: "+jugador1.getNombre());
+		 				}
+		 				
+		 				else
+		 				{
+		 					System.out.println("Es el turno de: "+jugador2.getNombre());
+		 				}
+		 			}
 					//Fin IndicarJugador
 		
-	 		 		//Repetir
-		
-	 		 			//LeerValidarMovimientoJugador
-						//Fin LeerValidarMovimientoJugador
-		
-	 		 		//Mientras el movimiento sea incorrecto
-		
-	 		 		//Si Ficha sobreescribe otra
-		
-	 		 			//MoverFichaCementerio
-						//Fin MoverFichaCementerio
-		
- 		 		  	//Fin_si
+		 			//LeerValidarMovimientoJugador
+	 				do
+	 				{
+	 					System.out.println();
+		 				System.out.println("Realiza tu movimiento. Indica la posición actual y a la que te gustaría mover la pieza.");
+		 				do
+		 				{
+		 					filaOriginal = teclado.nextInt();
+		 				}
+		 				while (filaOriginal < 0 || filaOriginal > 7);
+		 				
+		 				do
+		 				{
+		 					columnaOriginal = teclado.nextInt();
+		 				}
+		 				while (columnaOriginal < 0 || columnaOriginal > 7);
+		 				
+		 				if (tablero.getTablero()[filaOriginal][columnaOriginal].getColor() != Turno)
+		 				{
+		 					Continuar = false;
+		 				}
+		 				else
+		 				{
+		 					Continuar = true;
+		 				}
+	 				}
+	 				while (Continuar == false);
+	 				
+	 				do
+	 				{
+	 					filaNueva = teclado.nextInt();
+	 				}
+	 				while (filaNueva < 0 || filaNueva > 7);
+	 				
+	 				do
+	 				{
+	 					columnaNueva = teclado.nextInt();
+	 				}
+	 				while (columnaNueva < 0 || columnaNueva > 7);
+	 				
+	 				tablero.moverPieza(filaOriginal, columnaOriginal, filaNueva, columnaNueva);
+	 				
+	 				Turno = !Turno;
+		 			//Fin LeerValidarMovimientoJugador
 		
 		 		}//Fin_Mientras
 		
