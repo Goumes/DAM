@@ -1,3 +1,4 @@
+package utilidades;
 import java.util.*;
 import java.io.*;
 
@@ -21,6 +22,31 @@ public class utilArray
 		for (int i = 0; i < array.length; i++)
 		{
 			System.out.println(array [i]);
+		}
+	}
+	//Fin_imprimirArray
+	
+	/* Prototipo: void imprimirArrayBidimensional (Object [][] array)
+	 * Breve comentario: Imprimir un array bidimensinoal
+	 * Precondiciones: Ninguna
+	 * Entradas: Un array bidimensional de Object
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public static void imprimirArrayBidimenisonal (Object [][] array)
+	 * {
+	 * 		System.out.println("Llamada al metodo imprimirArrayBidimensional");
+	 * }
+	 */
+	public static void imprimirArrayBidimensional (Object [][] array)
+	{
+		for (int i = 0; i < array.length; i++)
+		{
+			for (int j = 0; j < array [0].length; j++)
+			{
+				System.out.println(array [i][j]);
+			}
 		}
 	}
 	//Fin_imprimirArray
