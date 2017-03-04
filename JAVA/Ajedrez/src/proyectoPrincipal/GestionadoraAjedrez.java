@@ -24,10 +24,12 @@ public class GestionadoraAjedrez
 	{
 		Scanner teclado = new Scanner (System.in);
 		boolean Continuar = true;
+		char columnaOriginal = ' ';
 		int filaOriginal = 0;
-		int columnaOriginal = 0;
+		char columnaNueva = ' ';
 		int filaNueva = 0;
-		int columnaNueva = 0;
+		int columnaOriginalInt = 0;
+		int columnaNuevaInt = 0;
 		
 		do
 			{
@@ -39,44 +41,50 @@ public class GestionadoraAjedrez
 						System.out.println();
 		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
 					}
- 				do
- 				{
- 					filaOriginal = teclado.nextInt();
- 				}
- 				while (filaOriginal < 0 || filaOriginal > 7);
- 				
- 				do
- 				{
- 					columnaOriginal = teclado.nextInt();
- 				}
- 				while (columnaOriginal < 0 || columnaOriginal > 7);
- 				
- 				if (tablero.getTablero()[filaOriginal][columnaOriginal].getColor() != Turno)
- 				{
- 					Continuar = false;
- 				}
- 				else
- 				{
- 					Continuar = true;
- 				}
+	 				do
+	 				{
+	 					columnaOriginal = Character.toLowerCase(teclado.next().charAt(0));
+	 				}
+	 				while (columnaOriginal < 'a' || columnaOriginal > 'h');
+	 				
+	 				do
+	 				{
+	 					filaOriginal = teclado.nextInt();
+	 				}
+	 				while (filaOriginal < 1 || filaOriginal > 8);
+	 				
+	 				filaOriginal = GestionadoraAjedrez.transformarFila(filaOriginal);
+	 				columnaOriginalInt = GestionadoraAjedrez.transformarColumna(columnaOriginal);
+	 				
+	 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt].getColor() != Turno)
+	 				{
+	 					Continuar = false;
+	 				}
+	 				else
+	 				{
+	 					Continuar = true;
+	 				}
 				}
 				while (Continuar == false);
 			
 				do
 				{
-					filaNueva = teclado.nextInt();
+					columnaNueva = Character.toLowerCase(teclado.next().charAt(0));
 				}
-				while (filaNueva < 0 || filaNueva > 7);
+				while (columnaNueva < 'a' || columnaNueva > 'h');
 				
 				do
 				{
-					columnaNueva = teclado.nextInt();
+					filaNueva = teclado.nextInt();
 				}
-				while (columnaNueva < 0 || columnaNueva > 7);
+				while (filaNueva < 1 || filaNueva > 8);
 				
-				if ((tablero.getTablero()[filaNueva][columnaNueva] != null
-					&& tablero.getTablero()[filaNueva][columnaNueva].getColor() == Turno) 
-					|| tablero.getTablero()[filaNueva][columnaNueva] == tablero.getTablero()[filaOriginal][columnaOriginal])
+				filaNueva = GestionadoraAjedrez.transformarFila(filaNueva);
+				columnaNuevaInt = GestionadoraAjedrez.transformarColumna(columnaNueva);
+				
+				if ((tablero.getTablero()[filaNueva][columnaNuevaInt] != null
+					&& tablero.getTablero()[filaNueva][columnaNuevaInt].getColor() == Turno) 
+					|| tablero.getTablero()[filaNueva][columnaNuevaInt] == tablero.getTablero()[filaOriginal][columnaOriginalInt])
 				{
 					Continuar = false;
 				}
@@ -92,7 +100,7 @@ public class GestionadoraAjedrez
 			}
 			while (Continuar == false);
 				
-			tablero.moverPieza(filaOriginal, columnaOriginal, filaNueva, columnaNueva);
+			tablero.moverPieza(filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt);
 			
 		return tablero;
 	}
@@ -154,4 +162,133 @@ public class GestionadoraAjedrez
 		return resultado;
 	}
 	//Fin
+	
+	/* Prototipo: int transformaColumna (char Columna)
+	 * Breve comentario: Transforma un caracter a un entero relacionado con la posición en el tablero.
+	 * Precondiciones: Un caracter de la a a la h.
+	 * Entradas: Un caracter
+	 * Salidas: Un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un entero en relación al caracter recibido.
+	 * 
+	 * Resguardo: public static int transformarColumna (char Columna)
+		{
+			int resultado = 0;
+			
+			System.out.println("Llamada al metodo transformarColumna");
+			
+			return resultado;
+		}
+	 */
+	public static int transformarColumna (char Columna)
+	{
+		int resultado = 0;
+		
+		if (Columna == 'a')
+		{
+			resultado = 0;
+		}
+		else if (Columna == 'b')
+		{
+			resultado = 1;
+		}
+		
+		else if (Columna == 'c')
+		{
+			resultado = 2;
+		}
+		
+		else if (Columna == 'd')
+		{
+			resultado = 3;
+		}
+		
+		else if (Columna == 'e')
+		{
+			resultado = 4;
+		}
+		
+		else if (Columna == 'f')
+		{
+			resultado = 5;
+		}
+		
+		else if (Columna == 'g')
+		{
+			resultado = 6;
+		}
+		
+		else
+		{
+			resultado = 7;
+		}
+		
+		return resultado;
+	}
+	//Fin transformarColumna
+	
+	/* Prototipo: int transformarFila (int Fila)
+	 * Breve comentario: Transforma un entero a otro relacionado con la posición en el tablero.
+	 * Precondiciones: Un entero del 1 al 8
+	 * Entradas: Un entero
+	 * Salidas: Un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un entero nuevo en relación al entero recibido.
+	 * 
+	 * Resguardo: public static int transformarFila (int Fila)
+		{
+			int resultado = 0;
+			
+			System.out.println("Llamada al metodo transformarFila");
+			
+			return resultado;
+		}
+	 */
+	public static int transformarFila (int Fila)
+	{
+		int resultado = 0;
+		
+		if (Fila == 1)
+		{
+			resultado = 7;
+		}
+		
+		else if (Fila == 2)
+		{
+			resultado = 6;
+		}
+		
+		else if (Fila == 3)
+		{
+			resultado = 5;
+		}
+		
+		else if (Fila == 4)
+		{
+			resultado = 4;
+		}
+		
+		else if (Fila == 5)
+		{
+			resultado = 3;
+		}
+		
+		else if (Fila == 6)
+		{
+			resultado = 2;
+		}
+		
+		else if (Fila == 7)
+		{
+			resultado = 1;
+		}
+		
+		else if (Fila == 8)
+		{
+			resultado = 0;
+		}
+		
+		return resultado;
+	}
+	//Fin transformarFila
 }
