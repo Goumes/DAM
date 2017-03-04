@@ -146,23 +146,56 @@ public class Ajedrez
 					//Fin IndicarJugador
 		
 		 			//LeerValidarMovimientoJugador
-	 				do
-	 				{
-	 					System.out.println();
-		 				System.out.println("Realiza tu movimiento. Indica la posición actual y a la que te gustaría mover la pieza.");
+		 			System.out.println();
+	 				System.out.println("Realiza tu movimiento. Indica la posición actual y a la que te gustaría mover la pieza.");
+		 			do
+		 			{
+		 				Continuar = true;
 		 				do
 		 				{
-		 					filaOriginal = teclado.nextInt();
+		 					if (Continuar == false)
+		 					{
+		 						System.out.println();
+		 		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
+		 					}
+			 				do
+			 				{
+			 					filaOriginal = teclado.nextInt();
+			 				}
+			 				while (filaOriginal < 0 || filaOriginal > 7);
+			 				
+			 				do
+			 				{
+			 					columnaOriginal = teclado.nextInt();
+			 				}
+			 				while (columnaOriginal < 0 || columnaOriginal > 7);
+			 				
+			 				if (tablero.getTablero()[filaOriginal][columnaOriginal].getColor() != Turno)
+			 				{
+			 					Continuar = false;
+			 				}
+			 				else
+			 				{
+			 					Continuar = true;
+			 				}
 		 				}
-		 				while (filaOriginal < 0 || filaOriginal > 7);
+		 				while (Continuar == false);
+ 					
+		 				do
+		 				{
+		 					filaNueva = teclado.nextInt();
+		 				}
+		 				while (filaNueva < 0 || filaNueva > 7);
 		 				
 		 				do
 		 				{
-		 					columnaOriginal = teclado.nextInt();
+		 					columnaNueva = teclado.nextInt();
 		 				}
-		 				while (columnaOriginal < 0 || columnaOriginal > 7);
+		 				while (columnaNueva < 0 || columnaNueva > 7);
 		 				
-		 				if (tablero.getTablero()[filaOriginal][columnaOriginal].getColor() != Turno)
+		 				if ((tablero.getTablero()[filaNueva][columnaNueva] != null
+		 					&& tablero.getTablero()[filaNueva][columnaNueva].getColor() == Turno) 
+		 					|| tablero.getTablero()[filaNueva][columnaNueva] == tablero.getTablero()[filaOriginal][columnaOriginal])
 		 				{
 		 					Continuar = false;
 		 				}
@@ -170,35 +203,28 @@ public class Ajedrez
 		 				{
 		 					Continuar = true;
 		 				}
+		 				
+		 				if (Continuar == false)
+	 					{
+	 						System.out.println("No puedes mover la pieza a esa posición.");
+	 					}
 	 				}
 	 				while (Continuar == false);
-	 				
-	 				do
-	 				{
-	 					filaNueva = teclado.nextInt();
-	 				}
-	 				while (filaNueva < 0 || filaNueva > 7);
-	 				
-	 				do
-	 				{
-	 					columnaNueva = teclado.nextInt();
-	 				}
-	 				while (columnaNueva < 0 || columnaNueva > 7);
-	 				
+		 				
 	 				tablero.moverPieza(filaOriginal, columnaOriginal, filaNueva, columnaNueva);
 	 				
 	 				Turno = !Turno;
-		 			//Fin LeerValidarMovimientoJugador
-		
-		 		}//Fin_Mientras
-		
-		 		//LeerValidarReiniciar
-				do
-				{
-					System.out.println("Desea jugar otra partida de ajedrez? S/N");
-					Ejecutar = Character.toLowerCase(teclado.next().charAt(0));
-				}
-				while (Ejecutar != 's' && Ejecutar != 'n');
+			 		//Fin LeerValidarMovimientoJugador
+			
+			 		}//Fin_Mientras
+			
+			 		//LeerValidarReiniciar
+					do
+					{
+						System.out.println("Desea jugar otra partida de ajedrez? S/N");
+						Ejecutar = Character.toLowerCase(teclado.next().charAt(0));
+					}
+					while (Ejecutar != 's' && Ejecutar != 'n');
 				//Fin LeerValidarReiniciar
 		
 		}//Fin_Mientras
