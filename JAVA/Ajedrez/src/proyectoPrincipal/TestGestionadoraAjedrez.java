@@ -1,7 +1,5 @@
 package proyectoPrincipal;
 
-import utilidades.utilArray;
-
 public class TestGestionadoraAjedrez 
 {
 	public static void main (String [] args)

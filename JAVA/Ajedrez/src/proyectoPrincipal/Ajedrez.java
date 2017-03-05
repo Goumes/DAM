@@ -36,8 +36,6 @@ package proyectoPrincipal;
 
 import java.util.*;
 
-import utilidades.utilArray;
-
 import java.io.*;
 
 public class Ajedrez
@@ -127,7 +125,7 @@ public class Ajedrez
 		 				}
 		 			}
 		 			
-		 			if (Turno == false)
+		 			else
 		 			{
 		 				if (jugador1.getColor () == false)
 		 				{

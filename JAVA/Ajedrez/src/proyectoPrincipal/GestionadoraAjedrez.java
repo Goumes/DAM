@@ -343,7 +343,7 @@ public class GestionadoraAjedrez
 	//Fin transformarFila
 	
 	/* Prototipo: String comprobarMovimiento (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo, Tablero tablero)
-	 * Breve comentario: Comprueba si el tipo de la pieza recibida puede realizar ese movimiento.
+	 * Breve comentario: Comprueba si la pieza recibida puede realizar ese movimiento.
 	 * Precondiciones: Ninguna
 	 * Entradas: Dos enteros, dos caracteres, un String y un Tablero
 	 * Salidas: Un String
@@ -364,9 +364,9 @@ public class GestionadoraAjedrez
 		String resultado = "-1";
 		
 		if (Tipo == "Rey" 
-			&& ((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1))
+			&& (((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1))
 				|| ((Fila1 - Fila2 == 1 || Fila1 - Fila2 == -1) && (Columna1 - Columna2 == 0))
-				|| ((Fila1 - Fila2 == 0) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1)))
+				|| ((Fila1 - Fila2 == 0) && (Columna1 - Columna2 == 1 || Columna1 - Columna2 == -1))))
 		{
 			resultado = "0";
 		}
