@@ -161,7 +161,6 @@ public class Socio implements Cloneable, Comparable <Socio>
 			try
 			{
 				copia = (Socio) super.clone ();
-				copia.tipoActividad = tipoActividad.clone(); //En profudidad
 			}
 			
 			catch (CloneNotSupportedException error)

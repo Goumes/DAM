@@ -26,7 +26,7 @@
  */
 import java.util.*;
 
-public class Sendero
+public class Sendero implements Cloneable, Comparable <Sendero>
 {
 	private String Nivel;
 	private String Nombre;
@@ -49,13 +49,13 @@ public class Sendero
 	
 	public Sendero (String Nivel, String Nombre, int Duracion) throws ExamenException //Con parametros
 	{
-		if (Nivel != "ALTO" && Nivel != "MEDIO" && Nivel != "BAJO")
+		if (Nivel == "ALTO" || Nivel == "MEDIO" || Nivel == "BAJO")
 		{
-			throw new ExamenException ("El nivel debe ser ALTO, MEDIO, o BAJO");
+			this.Nivel = Nivel;
 		}
 		else
 		{
-			this.Nivel = Nivel;
+			throw new ExamenException ("El nivel debe ser ALTO, MEDIO, o BAJO");
 		}
 		
 		if (Duracion < 1)
@@ -77,15 +77,16 @@ public class Sendero
 		return Nivel;
 	}
 	
-	public void setNivel (String nivel) throws ExamenException
+	public void setNivel (String Nivel) throws ExamenException //Comentar esto
 	{
-		if (Nivel != "ALTO" && Nivel != "MEDIO" && Nivel != "BAJO")
+		if (Nivel == "ALTO" || Nivel == "MEDIO" || Nivel == "BAJO")
 		{
-			throw new ExamenException ("El nivel debe ser ALTO, MEDIO, o BAJO");
+			this.Nivel = Nivel;
 		}
 		else
 		{
-			this.Nivel = Nivel;
+			
+			throw new ExamenException ("El nivel debe ser ALTO, MEDIO, o BAJO");
 		}
 	}
 	

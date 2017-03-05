@@ -1,4 +1,4 @@
-public class TestsClases
+public class TestSocio
 {
 		public static void main (String [] args)
 		{
@@ -6,9 +6,11 @@ public class TestsClases
 			Socio juan = null;
 			Socio copiaPepe = null;
 			Sendero camino = null;
+			Sendero sendero2 = null;
 			try
 			{
 				camino = new Sendero ("BAJO", "Paseo por la montania", 30);
+				sendero2 = new Sendero ("ALTO", "Paseo wapo wapo", 40);
 			}
 			catch (ExamenException error)
 			{
@@ -29,7 +31,11 @@ public class TestsClases
 			System.out.println("----------------------------------");
 			System.out.println("Get y set:");
 			pepe.setApellidosNombre ("Pepe2");
+			pepe.setPeso(45.4);
+			pepe.setTipoActividad(sendero2);
 			System.out.println(pepe.getApellidosNombre ());
+			System.out.println(pepe.getPeso ());
+			System.out.println(pepe.getTipoActividad ());
 			
 			System.out.println("----------------------------------");
 			System.out.println("toString:");
@@ -65,10 +71,5 @@ public class TestsClases
 			System.out.println(copiaPepe.compareTo (pepe));
 			//Fin Prueba compareTo
 			
-			//Test Calculadora
-			System.out.println("----------------------------------");
-			System.out.println("TestCalculadora:");
-			System.out.println(Calculadora.calculoCalorias (pepe));
-			//FIn Test Calculadora
 		}
 }

@@ -34,9 +34,12 @@ import java.io.*;
 
 public class GestionSocios
 {
-	public static void main (String [] args)
+	public static void main (String [] args) throws IOException
 	{
 		Scanner teclado = new Scanner (System.in);
+		Calculadora calculadora = new Calculadora ();
+		InputStreamReader flujo = new InputStreamReader (System.in);
+		BufferedReader tecladoString = new BufferedReader (flujo);
 		char Iniciar = ' ';
 		char Introducir = ' ' ;
 		char Actividad = ' ' ;
@@ -73,23 +76,24 @@ public class GestionSocios
 							Sendero sendero1 = new Sendero ();
 							
 							System.out.println("Introduzca su Nombre y Apellidos");
-							socio1.setApellidosNombre (teclado.nextLine()); //Aqui da fallo porque si usas nextLine en vez de un BufferedReader se salta esta linea.
-																											//No recuerdo cÃ³mo se creaba un BufferedReader pero cambiandolo por el nextLine
-																											//lo arreglaria
+							socio1.setApellidosNombre (tecladoString.readLine());
 							
-							System.out.println("Introduzca la intensidad de la actividad a realizar (BAJO, MEDIO o ALTO)");
-							try
+							do
 							{
-								sendero1.setNivel (teclado.nextLine());
+								try
+								{
+								System.out.println("Introduzca la intensidad de la actividad a realizar (BAJO, MEDIO o ALTO)");
+								sendero1.setNivel (tecladoString.readLine());
+								}
+								catch (ExamenException error)
+								{
+									System.out.println("Error, el nivel sólo puede ser ALTO, MEDIO o BAJO");
+								}
 							}
-							
-							catch (ExamenException error)
-							{
-								System.out.println("El nivel es erroneo");
-							}
+							while (sendero1.getNivel () != "BAJO" && sendero1.getNivel () != "MEDIO" && sendero1.getNivel () != "ALTO");
 							
 							System.out.println("Introduzca el nombre del recorrido");
-							sendero1.setNombre (teclado.nextLine());
+							sendero1.setNombre (tecladoString.readLine());
 							
 							System.out.println("Introduzca la duracion del recorrido");
 							try
@@ -98,17 +102,20 @@ public class GestionSocios
 							}
 							catch (ExamenException error)
 							{
-								System.out.println("La duracion");
+								System.out.println("La duracion es erronea");
 							}
 							
 							socio1.setTipoActividad (sendero1);
 							
-							System.out.println("Introduzca el peso del usuario");
+							System.out.println("Introduzca el peso del usuario (Con decimales)");
 							socio1.setPeso (teclado.nextDouble());
 						//Fin LeerValidarSocios
 						
 						//GastoCaloriasSocios
-						Calorias = Calculadora.calculoCalorias (socio1);
+						calculadora.setDuracion(sendero1.getDuracion());
+						calculadora.setNivelActividad(sendero1.getNivel());
+						calculadora.setPeso(socio1.getPeso());
+						Calorias = calculadora.calculoCalorias();
 						//Fin GastoCaloriasSocios
 						
 						//PrintGastoCalorias
