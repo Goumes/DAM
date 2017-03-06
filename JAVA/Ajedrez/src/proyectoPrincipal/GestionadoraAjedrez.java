@@ -800,7 +800,7 @@ public class GestionadoraAjedrez
 			{
 				if (Fila1 == 1)
 				{
-					if ((tablero.getTablero()[Fila2][Columna2] != null) || (tablero.getTablero()[Fila2 + 1][Columna2] != null))
+					if ((tablero.getTablero()[Fila2][Columna2] != null) || (tablero.getTablero()[Fila2 - 1][Columna2] != null))
 					{
 						resultado = "-1";
 					}

@@ -123,6 +123,19 @@ public class Ajedrez
 		 				}
 		 			}
 		 			
+		 			else
+		 			{
+		 				if (jugador1.getColor () == false)
+		 				{
+		 					System.out.println("Es el turno de: "+jugador1.getNombre());
+		 				}
+		 				
+		 				else
+		 				{
+		 					System.out.println("Es el turno de: "+jugador2.getNombre());
+		 				}
+		 			}
+		 			
 					//Fin IndicarJugador
 		
 		 			//EjecutarTurno
