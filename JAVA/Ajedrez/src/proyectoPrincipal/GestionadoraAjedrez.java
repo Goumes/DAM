@@ -33,124 +33,123 @@ public class GestionadoraAjedrez
 		String resultadoMovimiento = "0";
 		String [] partes = null;
 		
-		do
-			{
-				Continuar = true;
-				do
-				{
-	 				do
-	 				{
-	 					columnaOriginal = Character.toLowerCase(teclado.next().charAt(0));
-	 					
-	 					if (columnaOriginal < 'a' || columnaOriginal > 'h')
-	 					{
-	 						System.out.println("Selecciona una columna válida.");
-	 					}
-	 				}
-	 				while (columnaOriginal < 'a' || columnaOriginal > 'h');
-	 				
-	 				do
-	 				{
-	 					try
-	 					{
-	 						filaOriginal = teclado.nextInt();
-	 					}
-	 					catch (InputMismatchException e)
-	 					{
-	 						System.out.print("No intentes petar el programa pls ty. ");
-	 						teclado.next();
-	 					}
-	 					
-	 					if (filaOriginal < 1 || filaOriginal > 8)
-	 					{
-	 						System.out.println("Selecciona una fila válida.");
-	 					}
-	 				}
-	 				while (filaOriginal < 1 || filaOriginal > 8);
-	 				
-	 				filaOriginal = GestionadoraAjedrez.transformarFila(filaOriginal);
-	 				columnaOriginalInt = GestionadoraAjedrez.transformarColumna(columnaOriginal);
-	 				
-	 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt] != null)
-	 				{
-	 				
-		 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt].getColor() != Turno)
-		 				{
-		 					Continuar = false;
-		 					System.out.println();
-			 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
-		 				}
-		 				else
-		 				{
-		 					Continuar = true;
-		 				}
-	 				}
-	 				else
-	 				{
-	 					Continuar = false;
-	 					System.out.println("No puedes seleccionar una casilla vacía.");
-	 				}
-				}
-				while (Continuar == false);
-			
-				do
-				{
-					columnaNueva = Character.toLowerCase(teclado.next().charAt(0));
-					
-					if (columnaNueva < 'a' || columnaNueva > 'h')
+		do //Movimiento entero
+		{	
+			do //Pieza Inicial
+			{ 
+ 				do
+ 				{
+ 					columnaOriginal = Character.toLowerCase(teclado.next().charAt(0));
+ 					
+ 					if (columnaOriginal < 'a' || columnaOriginal > 'h')
  					{
  						System.out.println("Selecciona una columna válida.");
  					}
-				}
-				while (columnaNueva < 'a' || columnaNueva > 'h');
-				
-				do
-				{
-					try
-					{
-						filaNueva = teclado.nextInt();
-					}
-					catch (InputMismatchException e)
-					{
-						System.out.print("No intentes petar el programa pls ty. ");
-						teclado.next();
-					}
-					
-					if (filaNueva < 1 || filaNueva > 8)
+ 				}
+ 				while (columnaOriginal < 'a' || columnaOriginal > 'h');
+ 				
+ 				do
+ 				{
+ 					try
+ 					{
+ 						filaOriginal = teclado.nextInt();
+ 					}
+ 					catch (InputMismatchException e)
+ 					{
+ 						System.out.print("No intentes petar el programa pls ty. ");
+ 						teclado.next();
+ 					}
+ 					
+ 					if (filaOriginal < 1 || filaOriginal > 8)
  					{
  						System.out.println("Selecciona una fila válida.");
  					}
-				}
-				while (filaNueva < 1 || filaNueva > 8);
-				
-				filaNueva = GestionadoraAjedrez.transformarFila(filaNueva);
-				columnaNuevaInt = GestionadoraAjedrez.transformarColumna(columnaNueva);
-				resultadoMovimiento = GestionadoraAjedrez.comprobarMovimiento (filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt, tablero.getTablero()[filaOriginal][columnaOriginalInt].getTipo(), tablero);
-				
-				if ((tablero.getTablero()[filaNueva][columnaNuevaInt] != null
-					&& tablero.getTablero()[filaNueva][columnaNuevaInt].getColor() == Turno) 
-					|| tablero.getTablero()[filaNueva][columnaNuevaInt] == tablero.getTablero()[filaOriginal][columnaOriginalInt]
-					|| (resultadoMovimiento == "-1"))
-				{
-					Continuar = false;
-					System.out.println("No puedes mover la pieza a esa posición.");
-				}
-				else
-				{
-					Continuar = true;
-				}
-				
+ 				}
+ 				while (filaOriginal < 1 || filaOriginal > 8);
+ 				
+ 				filaOriginal = GestionadoraAjedrez.transformarFila(filaOriginal);
+ 				columnaOriginalInt = GestionadoraAjedrez.transformarColumna(columnaOriginal);
+ 				
+ 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt] != null)
+ 				{
+ 				
+	 				if (tablero.getTablero()[filaOriginal][columnaOriginalInt].getColor() != Turno)
+	 				{
+	 					Continuar = false;
+	 					System.out.println();
+		 				System.out.println("No hagas trampas. Sólo puedes mover tus piezas.");
+	 				}
+	 				else
+	 				{
+	 					Continuar = true;
+	 				}
+ 				}
+ 				else
+ 				{
+ 					Continuar = false;
+ 					System.out.println("No puedes seleccionar una casilla vacía.");
+ 				}
 			}
 			while (Continuar == false);
 		
-			if (resultadoMovimiento != "0" && resultadoMovimiento != "-1")
+			do
 			{
-				partes = resultadoMovimiento.split(",");
-				filaNueva = Integer.valueOf(partes [0]);
-				columnaNuevaInt = Integer.valueOf(partes [1]);
-			}
+				columnaNueva = Character.toLowerCase(teclado.next().charAt(0));
 				
-			tablero.moverPieza(filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt);
+				if (columnaNueva < 'a' || columnaNueva > 'h')
+				{
+					System.out.println("Selecciona una columna válida.");
+				}
+			}
+			while (columnaNueva < 'a' || columnaNueva > 'h');
+			
+			do
+			{
+				try
+				{
+					filaNueva = teclado.nextInt();
+				}
+				catch (InputMismatchException e)
+				{
+					System.out.print("No intentes petar el programa pls ty. ");
+					teclado.next();
+				}
+				
+				if (filaNueva < 1 || filaNueva > 8)
+				{
+					System.out.println("Selecciona una fila válida.");
+				}
+			}
+			while (filaNueva < 1 || filaNueva > 8);
+			
+			filaNueva = GestionadoraAjedrez.transformarFila(filaNueva);
+			columnaNuevaInt = GestionadoraAjedrez.transformarColumna(columnaNueva);
+			resultadoMovimiento = GestionadoraAjedrez.comprobarMovimiento (filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt, tablero.getTablero()[filaOriginal][columnaOriginalInt].getTipo(), tablero);
+			
+			if ((tablero.getTablero()[filaNueva][columnaNuevaInt] != null
+				&& tablero.getTablero()[filaNueva][columnaNuevaInt].getColor() == Turno) 
+				|| tablero.getTablero()[filaNueva][columnaNuevaInt] == tablero.getTablero()[filaOriginal][columnaOriginalInt]
+				|| (resultadoMovimiento == "-1"))
+			{
+				Continuar = false;
+				System.out.println("No puedes mover la pieza a esa posición.");
+			}
+			else
+			{
+				Continuar = true;
+			}
+			
+		}
+		while (Continuar == false);
+	
+		if (resultadoMovimiento != "0" && resultadoMovimiento != "-1")
+		{
+			partes = resultadoMovimiento.split(",");
+			filaNueva = Integer.valueOf(partes [0]);
+			columnaNuevaInt = Integer.valueOf(partes [1]);
+		}
+			
+		tablero.moverPieza(filaOriginal, columnaOriginalInt, filaNueva, columnaNuevaInt);
 			
 		return tablero;
 	}
@@ -899,5 +898,24 @@ public class GestionadoraAjedrez
 		return resultado;
 	}
 	//Fin comprobarMovimiento
+	
+	/* Prototipo: String comprobarMovimientoAlfil (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo, Tablero tablero)
+	 * Breve comentario: Comprueba si un alfil puede realizar ese movimiento.
+	 * Precondiciones: Ninguna
+	 * Entradas: Dos enteros, dos caracteres, un String y un Tablero
+	 * Salidas: Un String
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: La cadena devuelve "0" si se ha movido correctamente, -1 sino o un conjunto de dos numeros separados por "," para indicar la nueva posición si se ha encontrado con un obstaculo.
+	 * 
+	 * Resguardo: public static String comprobarMovimientoAlfil (int Fila1, int Columna1, int Fila2, int Columna2, String Tipo, Tablero tablero)
+		{
+			boolean resultado = false;
+			
+			System.out.println("Llamada al metodo comprobarMovimientoAlfil");
+			
+			return resultado;
+		}
+	 */
+	//Fin comprobarMovimientoAlfil
 	
 }
