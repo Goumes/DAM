@@ -3,7 +3,7 @@ package proyectoPrincipal;
 import java.util.Objects;
 
 /* Propiedades.
- * 		Básicas:		boolean Color 			----------			Consultable / Modificable
+ * 		Básicas:		boolean Color 			----------		Consultable / Modificable
  * 						String Tipo			----------			Consultable / Modificable
  * 		Derivadas:
  * 		Compartidas:

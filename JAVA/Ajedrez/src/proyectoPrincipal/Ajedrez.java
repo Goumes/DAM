@@ -1,7 +1,7 @@
 package proyectoPrincipal;
 
 /* Nombre del programa: Ajedrez
- * Entradas: Movimientos
+ * Entradas: Nombres y movimientos
  * Salidas: Mensajes
  * 
  * Restricciones: Ninguna
@@ -18,8 +18,6 @@ package proyectoPrincipal;
  * 		LeerValidarReiniciar
  * 	Fin_Mientras
  * Fin
- * 
- * ElegirColor es una funcionalidad que con un random asigna el lado blanco a un jugador aleatorio.
  * 
  * JugarAjedrez detallado Nivel 1.
  * 
@@ -125,18 +123,6 @@ public class Ajedrez
 		 				}
 		 			}
 		 			
-		 			else
-		 			{
-		 				if (jugador1.getColor () == false)
-		 				{
-		 					System.out.println("Es el turno de: "+jugador1.getNombre());
-		 				}
-		 				
-		 				else
-		 				{
-		 					System.out.println("Es el turno de: "+jugador2.getNombre());
-		 				}
-		 			}
 					//Fin IndicarJugador
 		
 		 			//EjecutarTurno

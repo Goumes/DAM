@@ -62,6 +62,31 @@ SELECT CAST (AVG (DistanciaRecorrida)AS DECIMAL (12,2)) AS MediaDistanciaRecorri
 	GROUP BY Tren, Dia
 	ORDER BY Tren, Dia
 
+
+/* Ejercicio corregido */
+GO
+CREATE VIEW pepejava AS
+SELECT SUM (I.Distancia) AS DistanciaRecorrida, R.Tren, DAY (R.Momento) AS Dia
+	FROM LM_Recorridos AS R
+	INNER JOIN
+	LM_Estaciones AS E
+	ON R.estacion = E.ID
+	INNER JOIN
+	LM_Itinerarios AS I
+	ON E.ID = I.estacionIni OR E.ID = I.estacionFin
+	INNER JOIN
+	LM_Recorridos AS R2
+	ON R.Momento = R2.Momento
+	INNER JOIN
+	LM_Recorridos AS R3
+	ON R2.Momento = R3.Momento
+	GROUP BY R.Tren, DAY (R.Momento)
+
+SELECT CAST (AVG (DistanciaRecorrida)AS DECIMAL (12,2)) AS MediaDistanciaRecorrida, Tren, Dia -- He reducido el tamaño de los decimales con el CAST AS DECIMAL porque quedaban muchos 0 sin valor.
+	FROM pepejava
+	GROUP BY Tren, Dia
+	ORDER BY Tren, Dia
+
 /* 5. Calcula cuál ha sido el intervalo de tiempo en que más personas registradas han estado en el metro al mismo tiempo.
 Considera intervalos de una hora (de 12:00 a 12:59, de 13:00 a 13:59, etc). Si hay varios momentos con el número máximo de 
 personas, muestra el más reciente.) */
