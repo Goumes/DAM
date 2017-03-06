@@ -49,21 +49,15 @@ public class Sendero implements Cloneable, Comparable <Sendero>
 	
 	public Sendero (String Nivel, String Nombre, int Duracion) throws ExamenException //Con parametros
 	{
-		if (Nivel == "ALTO" || Nivel == "MEDIO" || Nivel == "BAJO")
+		if ((Nivel.equals("ALTO") == false && Nivel.equals ("MEDIO") == false && Nivel.equals("BAJO") == false) 
+			&& (Duracion < 1))
 		{
-			this.Nivel = Nivel;
-		}
-		else
-		{
-			throw new ExamenException ("El nivel debe ser ALTO, MEDIO, o BAJO");
+			throw new ExamenException ("Error. No se ha podido crear el objeto.");
 		}
 		
-		if (Duracion < 1)
-		{
-			throw new ExamenException ("La duracion debe ser positiva y mayor que 0");
-		}
 		else
 		{
+			this.Nivel = Nivel;
 			this.Duracion = Duracion;
 		}
 		
@@ -77,9 +71,9 @@ public class Sendero implements Cloneable, Comparable <Sendero>
 		return Nivel;
 	}
 	
-	public void setNivel (String Nivel) throws ExamenException //Comentar esto
+	public void setNivel (String Nivel) throws ExamenException
 	{
-		if (Nivel == "ALTO" || Nivel == "MEDIO" || Nivel == "BAJO")
+		if (Nivel.equals("ALTO") == true || Nivel.equals ("MEDIO") == true || Nivel.equals("BAJO") == true)
 		{
 			this.Nivel = Nivel;
 		}

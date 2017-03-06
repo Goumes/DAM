@@ -10,8 +10,15 @@ public class TestCalculadora
 			//Prueba Getters, Setters y toString
 			System.out.println("----------------------------------");
 			System.out.println("Getters y setters:");
-			calculadora.setDuracion(50);
-			calculadora.setNivelActividad("ALTO");
+			try
+			{
+				calculadora.setDuracion(50);
+				calculadora.setNivelActividad("ALTO");
+			}
+			catch (ExamenException error)
+			{
+				System.out.println("Error, no se ha podido utilizar este set.");
+			}
 			calculadora.setPeso (45.4);
 			System.out.println(calculadora.getDuracion());
 			System.out.println(calculadora.getNivelActividad());

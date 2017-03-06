@@ -16,14 +16,15 @@
 	 * 			LeerValidarReiniciarSocio
 	 * 		Fin_Mientras2
  * 			PreguntarActividadParticular
- * 			Si QuieroActividadParticular
+ * 			Mientras QuieroActividadParticular
  * 					LeerValidarActividad
  * 					segun (actividad)
  * 						caso 1: Nivel bajo
  * 						caso 2: Nivel medio
  * 						caso 3: Nivel alto
  * 					fin_segun
- * 			Fin_Si
+ * 					VolverPreguntarActividadParticular
+ * 			Fin_mientras
  * 			LeerValidarReiniciar
  * 	Fin_mientras
  * Fin
@@ -48,6 +49,8 @@ public class GestionSocios
 		int contadorMEDIO = 0;
 		int contadorALTO = 0;
 		double Calorias = 0.0;
+		Socio socio1 = null;
+		Sendero sendero1 = null;
 		//PrintLeerValidarIniciar
 		do
 		{
@@ -71,50 +74,57 @@ public class GestionSocios
 						while (Introducir == 's')
 						{
 						
-							//LeerValidarSocio
-							Socio socio1 = new Socio ();
-							Sendero sendero1 = new Sendero ();
-							
-							System.out.println("Introduzca su Nombre y Apellidos");
-							socio1.setApellidosNombre (tecladoString.readLine());
-							
-							do
-							{
-								try
-								{
-								System.out.println("Introduzca la intensidad de la actividad a realizar (BAJO, MEDIO o ALTO)");
-								sendero1.setNivel (tecladoString.readLine());
-								}
-								catch (ExamenException error)
-								{
-									System.out.println("Error, el nivel sólo puede ser ALTO, MEDIO o BAJO");
-								}
-							}
-							while (sendero1.getNivel () != "BAJO" && sendero1.getNivel () != "MEDIO" && sendero1.getNivel () != "ALTO");
-							
-							System.out.println("Introduzca el nombre del recorrido");
-							sendero1.setNombre (tecladoString.readLine());
-							
-							System.out.println("Introduzca la duracion del recorrido");
+						//LeerValidarSocio
+						socio1 = new Socio ();
+						sendero1 = new Sendero ();
+						
+						System.out.println("Introduzca su Nombre y Apellidos");
+						socio1.setApellidosNombre (tecladoString.readLine());
+						
+						do
+						{
 							try
 							{
-								sendero1.setDuracion (teclado.nextInt());
+							System.out.println("Introduzca la intensidad de la actividad a realizar (BAJO, MEDIO o ALTO)");
+							sendero1.setNivel (tecladoString.readLine());
 							}
 							catch (ExamenException error)
 							{
-								System.out.println("La duracion es erronea");
+								System.out.println("Error, el nivel sólo puede ser ALTO, MEDIO o BAJO");
 							}
-							
-							socio1.setTipoActividad (sendero1);
-							
-							System.out.println("Introduzca el peso del usuario (Con decimales)");
-							socio1.setPeso (teclado.nextDouble());
+						}
+						while (sendero1.getNivel ().equals("") == true);
+						
+						System.out.println("Introduzca el nombre del recorrido");
+						sendero1.setNombre (tecladoString.readLine());
+						
+						System.out.println("Introduzca la duracion del recorrido");
+						try
+						{
+							sendero1.setDuracion (teclado.nextInt());
+						}
+						catch (ExamenException error)
+						{
+							System.out.println("La duracion es erronea");
+						}
+						
+						socio1.setTipoActividad (sendero1);
+						
+						System.out.println("Introduzca el peso del usuario (Con decimales)");
+						socio1.setPeso (teclado.nextDouble());
 						//Fin LeerValidarSocios
 						
 						//GastoCaloriasSocios
-						calculadora.setDuracion(sendero1.getDuracion());
-						calculadora.setNivelActividad(sendero1.getNivel());
-						calculadora.setPeso(socio1.getPeso());
+						try
+						{
+							calculadora.setDuracion(sendero1.getDuracion());
+							calculadora.setNivelActividad(sendero1.getNivel());
+							calculadora.setPeso(socio1.getPeso());
+						}
+						catch (ExamenException error)
+						{
+							
+						}
 						Calorias = calculadora.calculoCalorias();
 						//Fin GastoCaloriasSocios
 						
@@ -123,16 +133,16 @@ public class GestionSocios
 						//Fin PrintGastoCalorias
 						
 						//ContarNivel
-						if (socio1.getTipoActividad ().getNivel () == "BAJO")
+						if (socio1.getTipoActividad ().getNivel ().equals("BAJO") == true)
 						{
 							contadorBAJO++;
 						}
-						else if (socio1.getTipoActividad ().getNivel () == "MEDIO")
+						else if (socio1.getTipoActividad ().getNivel ().equals("MEDIO") == true)
 						{
 							contadorMEDIO++;
 						}
 						
-						else if (socio1.getTipoActividad ().getNivel () == "ALTO")
+						else if (socio1.getTipoActividad ().getNivel ().equals( "ALTO") == true)
 						{
 							contadorALTO++;
 						}
@@ -156,8 +166,9 @@ public class GestionSocios
 					Actividad = Character.toLowerCase (teclado.next().charAt(0));
 				}
 				while (Actividad != 's' && Actividad != 'n');
-				//Si QuieroActividadParticular
-				if (Actividad == 's')
+				//Fin PreguntarActividadParticular
+				
+				while (Actividad == 's')
 				{
 						//LeerValidarActividad
 						do
@@ -188,8 +199,19 @@ public class GestionSocios
 							System.out.println("Este tipo de actividad se ha realizado: "+contadorALTO+" veces."); 
 							break;
 							//Fin caso3
-					}//fin_segun
-				}//Fin_Si
+						}//fin_segun
+						
+						//VolverPreguntarActividadParticular
+						do
+						{
+							System.out.println("Desea saber cuantos socios han realizado una actividad en particular? S/N");
+							Actividad = Character.toLowerCase (teclado.next().charAt(0));
+						}
+						while (Actividad != 's' && Actividad != 'n');
+						//Fin VolverPreguntarActividadParticular
+				}//Fin_Mientras
+				
+				
 				//LeerValidarReiniciar
 				do
 				{

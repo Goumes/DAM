@@ -35,16 +35,17 @@ import java.util.*;
 
 public class Socio implements Cloneable, Comparable <Socio>
 {
-		private int Identificador = 0;
+		private int Identificador = Contador;
 		private String apellidosNombre;		//He cambiado el nombre de las variables de "ApellidosNombre" a "apellidosNombre" para seguir con el standard de Java"
 		private Sendero tipoActividad;			//Igual que con apellidosNombre
 		private double Peso;
 		private int Categoria;
+		private static int Contador;
 		
 		//Constructores
 		public Socio () //Por defecto
 		{
-			Identificador++;
+			Contador++;
 			apellidosNombre = "";
 			tipoActividad = new Sendero ();
 			Peso = 0.0;
@@ -62,6 +63,7 @@ public class Socio implements Cloneable, Comparable <Socio>
 		
 		public Socio (String apellidosNombre, Sendero tipoActividad, double Peso, int Categoria) throws ExamenException //Con parametros
 		{
+			Contador++;
 			this.apellidosNombre = apellidosNombre;
 			this.tipoActividad = tipoActividad;
 			this.Peso = Peso;

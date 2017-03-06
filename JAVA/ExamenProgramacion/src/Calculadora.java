@@ -46,11 +46,19 @@ public class Calculadora implements Cloneable, Comparable <Calculadora>
 		this.Peso = calculadora.Peso;
 	}
 	
-	public Calculadora (int Duracion, String nivelActividad, double Peso)
+	public Calculadora (int Duracion, String nivelActividad, double Peso) throws ExamenException
 	{
-		this.Duracion = Duracion;
-		this.nivelActividad = nivelActividad;
-		this.Peso = Peso;
+		if ((nivelActividad.equals("ALTO") == false && nivelActividad.equals ("MEDIO") == false && nivelActividad.equals("BAJO") == false) 
+			&& (Duracion < 1))
+		{
+			throw new ExamenException ("Error no se ha podido crear el objeto");
+		}
+		else
+		{
+			this.Duracion = Duracion;
+			this.nivelActividad = nivelActividad;
+			this.Peso = Peso;
+		}
 	}
 	//Fin Constructores
 	
@@ -60,9 +68,16 @@ public class Calculadora implements Cloneable, Comparable <Calculadora>
 		return Duracion;
 	}
 	
-	public void setDuracion (int Duracion)
+	public void setDuracion (int Duracion) throws ExamenException
 	{
-		this.Duracion = Duracion;
+		if (Duracion < 1)
+		{
+			throw new ExamenException ("La duracion debe ser positiva y mayor que 0");
+		}
+		else
+		{
+			this.Duracion = Duracion;
+		}
 	}
 	
 	public String getNivelActividad ()
@@ -70,9 +85,17 @@ public class Calculadora implements Cloneable, Comparable <Calculadora>
 		return nivelActividad;
 	}
 	
-	public void setNivelActividad (String nivelActividad)
+	public void setNivelActividad (String nivelActividad) throws ExamenException
 	{
-		this.nivelActividad = nivelActividad;
+		if (nivelActividad.equals("ALTO") == true || nivelActividad.equals ("MEDIO") == true || nivelActividad.equals("BAJO") == true)
+		{
+			this.nivelActividad = nivelActividad;
+		}
+		else
+		{
+			
+			throw new ExamenException ("El nivel debe ser ALTO, MEDIO, o BAJO");
+		}
 	}
 	
 	public double getPeso ()
@@ -179,17 +202,17 @@ public class Calculadora implements Cloneable, Comparable <Calculadora>
 		
 		double CTE = 0.0;
 		
-		if (this.getNivelActividad () == "ALTO")
+		if (this.getNivelActividad ().equals("ALTO") == true)
 		{
 			CTE = 0.35;
 		}
 		
-		else if (this.getNivelActividad() == "MEDIO")
+		else if (this.getNivelActividad().equals("MEDIO") == true)
 		{
 			CTE = 0.25;
 		}
 		
-		else if (this.getNivelActividad() == "BAJO")
+		else if (this.getNivelActividad().equals("BAJO"))
 		{
 			CTE = 0.15;
 		}
