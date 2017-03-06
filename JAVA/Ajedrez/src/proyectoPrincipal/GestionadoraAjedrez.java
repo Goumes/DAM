@@ -412,7 +412,7 @@ public class GestionadoraAjedrez
 		{
 			if ((Fila1 - Fila2 == (Columna1 - Columna2)) && (Fila1 - Fila2) > 0) //Movimiento hacia la diagonal superior izquierda
 			{
-				for (int i = Fila1 - 1, j = Columna1 - 1; i > Fila2 && resultado != "-1"; i--, j--)
+				for (int i = Fila1 - 1, j = Columna1 - 1; i > Fila2 && resultado == "0"; i--, j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
@@ -431,7 +431,7 @@ public class GestionadoraAjedrez
 			
 			else if ((Fila1 - Fila2 == Columna1 - Columna2) && (Fila1 - Fila2) < 0) //Movimiento hacia la diagonal inferior derecha
 			{
-				for (int i = Fila1 + 1, j = Columna1 + 1; i < Fila2 && resultado != "-1"; i++, j++)
+				for (int i = Fila1 + 1, j = Columna1 + 1; i < Fila2 && resultado == "0"; i++, j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
@@ -450,7 +450,7 @@ public class GestionadoraAjedrez
 			
 			else if ((Fila1 - Fila2 == - (Columna1 - Columna2)) && (Fila1 - Fila2) > 0) //Movimiento hacia la diagonal superior derecha
 			{
-				for (int i = Fila1 - 1, j = Columna1 + 1; i > Fila2 && resultado != "-1"; i--, j++)
+				for (int i = Fila1 - 1, j = Columna1 + 1; i > Fila2 && resultado == "0"; i--, j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
@@ -468,7 +468,7 @@ public class GestionadoraAjedrez
 			}
 			else //Movimiento hacia la diagonal inferior izquierda
 			{
-				for (int i = Fila1 + 1, j = Columna1 - 1; i < Fila2 && resultado != "-1"; i++, j--)
+				for (int i = Fila1 + 1, j = Columna1 - 1; i < Fila2 && resultado == "0"; i++, j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
@@ -553,7 +553,7 @@ public class GestionadoraAjedrez
 		{
 			if ((Fila1 - Fila2) > 0) //Movimiento hacia arriba
 			{
-				for (int i = Fila1 - 1, j = Columna1; i > Fila2 && resultado != "-1"; i--)
+				for (int i = Fila1 - 1, j = Columna1; i > Fila2 && resultado == "0"; i--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
@@ -572,7 +572,7 @@ public class GestionadoraAjedrez
 			else if ((Fila1 - Fila2) < 0) //Movimiento hacia abajo
 			{
 
-				for (int i = Fila1 + 1, j = Columna1; i < Fila2 && resultado != "-1"; i++)
+				for (int i = Fila1 + 1, j = Columna1; i < Fila2 && resultado == "0"; i++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
@@ -592,7 +592,7 @@ public class GestionadoraAjedrez
 			else if ((Columna1 - Columna2) > 0) //Movimiento hacia la izquierda
 			{
 
-				for (int i = Fila1, j = Columna1 - 1; j > Columna2 && resultado != "-1"; j--)
+				for (int i = Fila1, j = Columna1 - 1; j > Columna2 && resultado == "0"; j--)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
@@ -611,7 +611,7 @@ public class GestionadoraAjedrez
 			
 			else //Movimiento hacia la derecha
 			{
-				for (int i = Fila1, j = Columna1 + 1; j < Columna2 && resultado != "-1"; j++)
+				for (int i = Fila1, j = Columna1 + 1; j < Columna2 && resultado == "0"; j++)
 				{
 					if (tablero.getTablero()[i][j] != null)
 					{
