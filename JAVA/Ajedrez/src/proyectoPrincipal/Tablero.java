@@ -259,22 +259,22 @@ public class Tablero implements Cloneable, Comparable <Tablero>
 				{
  					if (this.tablero[i][j].getColor () == false)
  					{
-		 				if (this.tablero[i][j].getTipo() == "Torre" || this.tablero[i][j].getTipo () == "Alfil")
+		 				if (this.tablero[i][j].getTipo().equals("Torre") == true || this.tablero[i][j].getTipo ().equals("Alfil") == true)
 		 				{
 		 					System.out.print(" | *" + this.tablero[i][j].getTipo() + " ");
 		 				}
 						
-		 				else if (this.tablero[i][j].getTipo() == "Rey")
+		 				else if (this.tablero[i][j].getTipo().equals("Rey") == true)
 		 				{
 		 					System.out.print(" |  *" + this.tablero[i][j].getTipo() + "  ");
 		 				}
 		 				
-		 				else if (this.tablero[i][j].getTipo() == "Dama" || this.tablero[i][j].getTipo () == "Peon")
+		 				else if (this.tablero[i][j].getTipo().equals("Dama") == true || this.tablero[i][j].getTipo ().equals("Peon") == true)
 		 				{
 		 					System.out.print(" |  *" + this.tablero[i][j].getTipo() + " ");
 		 				}
 		 				
-		 				else if (this.tablero[i][j].getTipo() == "Caballo")
+		 				else if (this.tablero[i][j].getTipo().equals("Caballo") == true)
 		 				{
 		 					System.out.print(" |*" + this.tablero[i][j].getTipo());
 		 					
@@ -282,22 +282,22 @@ public class Tablero implements Cloneable, Comparable <Tablero>
  					}
  					else
  					{
- 						if (this.tablero[i][j].getTipo() == "Torre" || this.tablero[i][j].getTipo () == "Alfil")
+ 						if (this.tablero[i][j].getTipo().equals("Torre") == true || this.tablero[i][j].getTipo ().equals("Alfil") == true)
 		 				{
 		 					System.out.print(" |  " + this.tablero[i][j].getTipo() + " ");
 		 				}
 						
-		 				else if (this.tablero[i][j].getTipo() == "Rey")
+		 				else if (this.tablero[i][j].getTipo().equals("Rey") == true)
 		 				{
 		 					System.out.print(" |   " + this.tablero[i][j].getTipo() + "  ");
 		 				}
 		 				
-		 				else if (this.tablero[i][j].getTipo() == "Dama" || this.tablero[i][j].getTipo () == "Peon")
+		 				else if (this.tablero[i][j].getTipo().equals("Dama") == true || this.tablero[i][j].getTipo ().equals("Peon") == true)
 		 				{
 		 					System.out.print(" |   " + this.tablero[i][j].getTipo() + " ");
 		 				}
 		 				
-		 				else if (this.tablero[i][j].getTipo() == "Caballo")
+		 				else if (this.tablero[i][j].getTipo().equals("Caballo") == true)
 		 				{
 		 					System.out.print(" | " + this.tablero[i][j].getTipo());
 		 					
