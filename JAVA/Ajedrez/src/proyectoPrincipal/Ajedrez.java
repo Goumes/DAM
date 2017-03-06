@@ -167,7 +167,9 @@ public class Ajedrez
 					Ejecutar = Character.toLowerCase(teclado.next().charAt(0));	
 				}
 				while (Ejecutar != 's' && Ejecutar != 'n');
+				
 				Acabar = false;
+				Turno = true;
 				//Fin LeerValidarReiniciar
 				
 		}//Fin_Mientras

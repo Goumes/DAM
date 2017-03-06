@@ -15,6 +15,7 @@ public class TestGestionadoraAjedrez
 		{
 			System.out.println("Ha ocurrido un error creando el tablero.");
 		}
+		
 		tablero.mostrarTablero();
 		
 		System.out.println(GestionadoraAjedrez.comprobarVictoria(tablero));

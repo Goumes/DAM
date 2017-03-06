@@ -1,5 +1,7 @@
 package proyectoPrincipal;
 
+import java.util.Objects;
+
 /* Propiedades.
  * 		Básicas:		Pieza [][] tablero			----------			Consultable / Modificable
  * 		Derivadas:
@@ -7,9 +9,14 @@ package proyectoPrincipal;
  * 
  * Restricciones: El tablero debe ser siempre de 8 x 8
  * 
+ * Criterio de comparación: Tamaño del array tablero.
+ * Criterio de igualdad: Tamaño del array tablero.
+ * 
+ * Metodos añadidos: generarTablero, mostrarTablero, moverPieza
+ * 
  */
 
-public class Tablero 
+public class Tablero implements Cloneable, Comparable <Tablero>
 {
 	private Pieza [][] tablero;
 	
@@ -26,7 +33,7 @@ public class Tablero
 	
 	public Tablero (Pieza [][] tablero) throws ExceptionAjedrez
 	{
-		if ((tablero.length != 8) && (tablero [0].length != 8))
+		if ((tablero.length == 8) && (tablero [0].length == 8))
 		{
 			this.tablero = tablero;
 		}
@@ -43,13 +50,107 @@ public class Tablero
 		return tablero;
 	}
 	
-	public void setTablero (Pieza [][] tablero)
+	public void setTablero (Pieza [][] tablero) throws ExceptionAjedrez
 	{
-		this.tablero = tablero;
+		if ((tablero.length == 8) && (tablero [0].length == 8))
+		{
+			this.tablero = tablero;
+		}
+		else
+		{
+			throw new ExceptionAjedrez ("Error, el tablero debe ser de 8 x 8");
+		}
 	}
 	//Fin Getters y setters
 	
 	//Metodos añadidos
+	@Override
+	public boolean equals (Object objeto)
+	{
+		boolean resultado = false;
+		
+		if (objeto != null && objeto instanceof Tablero)
+		{
+			Tablero tablero = (Tablero) objeto;
+			
+			if (this.getTablero ().length == tablero.getTablero ().length
+				&& this.getTablero ()[0].length == tablero.getTablero ()[0].length)
+			{
+				resultado = true;
+			}
+		}
+		
+		return resultado;
+	}
+	
+	@Override
+	public String toString ()
+	{
+		String s = this.getTablero()+"";
+		return s;
+	}
+	
+	@Override
+	public int hashCode ()
+	{
+		return (Objects.hash(this.getTablero()));
+	}
+	
+	@Override
+	public Tablero clone ()
+	{
+		Tablero copia = null;
+		
+		try
+		{
+			copia = (Tablero) super.clone ();
+		}
+		
+		catch (CloneNotSupportedException error)
+		{
+			System.out.println("No se ha podido clonar el objeto");
+		}
+		
+		return copia;
+	}
+	
+	public Tablero cloneProfundidad () //Preguntar esto
+	{
+		Tablero copia = null;
+		
+		try
+		{
+			copia = (Tablero) super.clone ();
+			copia.tablero = this.tablero;
+		}
+		
+		catch (CloneNotSupportedException error)
+		{
+			System.out.println("No se ha podido clonar el objeto");
+		}
+		
+		return copia;
+	}
+	
+	@Override
+	public int compareTo (Tablero tablero)
+	{
+		int resultado = 0;
+		
+		if (this.getTablero().length > tablero.getTablero().length
+			&& this.getTablero()[0].length > tablero.getTablero()[0].length)
+		{
+			resultado = 1;
+		}
+		
+		else if (this.getTablero().length < tablero.getTablero().length
+				&& this.getTablero()[0].length < tablero.getTablero()[0].length)
+		{
+			resultado = -1;
+		}
+		
+		return resultado;
+	}
 	
 	/* Prototipo: Tablero generarTablero ()
 	 * Breve comentario: Funcionalidad que crea un array de Piezas para hacer un tablero inicial.
@@ -65,7 +166,7 @@ public class Tablero
 			return tablero;
 		}
 	 */
-	public  Tablero generarTablero () throws ExceptionAjedrez
+	public Tablero generarTablero () throws ExceptionAjedrez
 	{
 			Pieza torreBlanca1 = new Pieza (true, "Torre");
 			Pieza torreBlanca2 = new Pieza (true, "Torre");
@@ -127,31 +228,26 @@ public class Tablero
 							 };
 		
 		this.setTablero(tablero);
+		
 		return this;
 	}
 	//Fin generarTablero
 	
-	/* Prototipo: int mostrarTablero ()
+	/* Prototipo: void mostrarTablero ()
 	 * Breve comentario: Funcionalidad que muestra el tablero en pantalla
 	 * Precondiciones: Ninguna
 	 * Entradas: Ninguna
-	 * Salidas: Un entero
+	 * Salidas: Ninguna
 	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Un 1 si el tablero se ha mostrado correctamente, un -1 sino.
+	 * Postcondiciones: Ninguna
 	 * 
-	 * Resguardo: public int mostrarTablero ()
+	 * Resguardo: public void mostrarTablero ()
 		{
-			int resultado = -1;
-			
 			System.out.println("Llamada al metodo mostrarTablero");
-			
-			return resultado;
 		}
 	 */
-	public int mostrarTablero ()
+	public void mostrarTablero ()
 	{
-		int resultado = -1;
-		
 		for (int i = 0; i < this.tablero.length; i++)
 		{
 			System.out.println("  --------- --------- --------- --------- --------- --------- --------- ---------");
@@ -226,36 +322,31 @@ public class Tablero
 			}
 			
 		}
-		
-		return resultado;
 	}
 	//Fin mostrarTablero
 	
-	/* Prototipo: int moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
+	/* Prototipo: Tablero moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
 	 * Breve comentario: Mueve una pieza de una posición a otra.
 	 * Precondiciones: La primera fila y columna son la posición original.
 	 * Entradas: Cuatro enteros
-	 * Salidas: Un entero
+	 * Salidas: Un tablero
 	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Devuelve 1 si la pieza se ha movido correctamente, y -1 sino.
+	 * Postcondiciones: El tablero con las piezas movidas.
 	 * 
-	 * Resguardo: public int moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
+	 * Resguardo: public Tablero moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
 		{
-			int resultado = 1;
-			
 			System.out.println("Llamada al metodo moverPieza");
 			
-			return resultado;
+			return this;
 		}
 	 */
-	public int moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
+	public Tablero moverPieza (int Fila1, int Columna1, int Fila2, int Columna2)
 	{
-		int resultado = 1;
 		
-		this.tablero [Fila2][Columna2] = this.tablero [Fila1][Columna1];
-		this.tablero [Fila1][Columna1] = null;
+			this.tablero [Fila2][Columna2] = this.tablero [Fila1][Columna1];
+			this.tablero [Fila1][Columna1] = null;
 		
-		return resultado;
+		return this;
 	}
 	//Fin moverPieza
 	

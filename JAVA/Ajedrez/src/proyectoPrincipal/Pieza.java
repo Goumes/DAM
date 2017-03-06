@@ -3,7 +3,7 @@ package proyectoPrincipal;
 import java.util.Objects;
 
 /* Propiedades.
- * 		Básicas:		boolean Color 			----------		Consultable / Modificable
+ * 		Básicas:		boolean Color 		----------			Consultable / Modificable
  * 						String Tipo			----------			Consultable / Modificable
  * 		Derivadas:
  * 		Compartidas:
@@ -34,12 +34,12 @@ public class Pieza implements Cloneable, Comparable <Pieza>
 	
 	public Pieza (boolean Color, String Tipo) throws ExceptionAjedrez
 	{
-		if (Tipo != "Rey" 
-			&& Tipo != "Dama"
-			&& Tipo != "Torre"
-			&& Tipo != "Alfil"
-			&& Tipo != "Caballo"
-			&& Tipo != "Peon")
+		if (Tipo.equals ("Rey") == false
+			&& Tipo.equals ("Dama") == false
+			&& Tipo.equals ("Torre") == false
+			&& Tipo.equals ("Alfil") == false
+			&& Tipo.equals ("Caballo") == false
+			&& Tipo.equals ("Peon") == false)
 		{
 			throw new ExceptionAjedrez ("Error. No se ha podido crear esta pieza.");
 		}
@@ -70,12 +70,12 @@ public class Pieza implements Cloneable, Comparable <Pieza>
 	
 	public void setTipo (String Tipo) throws ExceptionAjedrez
 	{
-		if (Tipo != "Rey" 
-				&& Tipo != "Dama"
-				&& Tipo != "Torre"
-				&& Tipo != "Alfil"
-				&& Tipo != "Caballo"
-				&& Tipo != "Peon")
+		if	(Tipo.equals ("Rey") == false
+				&& Tipo.equals ("Dama") == false
+				&& Tipo.equals ("Torre") == false
+				&& Tipo.equals ("Alfil") == false
+				&& Tipo.equals ("Caballo") == false
+				&& Tipo.equals ("Peon") == false)
 			{
 				throw new ExceptionAjedrez ("Error. No se ha podido definir este Tipo.");
 			}

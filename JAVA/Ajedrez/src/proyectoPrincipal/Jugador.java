@@ -13,6 +13,8 @@ import java.util.Random;
  * 
  * Criterio de comparación: El color del tablero.
  * Criterio de igualdad: El color del tablero.
+ * 
+ * Metodos añadidos: elegirColor
  */
 
 public class Jugador implements Cloneable
