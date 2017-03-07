@@ -103,7 +103,8 @@ public class TestTablero
 		//Prueba clone
 		System.out.println("----------------------------------");
 		System.out.println("clone:");
-		//tableroCopia = tablero2.cloneProfundidad(); //Preguntar clone de arrays
+		tableroCopia = tablero2.cloneProfundidad(); //Preguntar clone de arrays
+		System.out.println(tableroCopia);
 		
 		//Fin Prueba clone
 		
