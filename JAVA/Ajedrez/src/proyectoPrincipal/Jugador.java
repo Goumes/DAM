@@ -129,7 +129,7 @@ public class Jugador implements Cloneable
 		return resultado;
 	}
 	
-	/* Prototipo: Jugador elegirColor (Jugador jugador)
+	/* Prototipo: Jugador elegirColor ()
 	 * Breve comentario: Funcionalidad que elige el color para un jugador de forma aleatoria.
 	 * Precondiciones: Ninguna
 	 * Entradas: Ninguna

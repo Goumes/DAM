@@ -4,7 +4,7 @@ public class Bucle1
 	{
 		int contador;
 		
-		for (contador = 0; contador < -1; contador++)
+		for (contador = 0; contador > 1; contador++)
 		{
 			System.out.println(contador);
 		}
