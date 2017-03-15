@@ -1,0 +1,105 @@
+<!-- 1. Nombre de la Universidad -->
+
+/universidad/nombre
+
+<!-- 2. Pais de la Universidad -->
+
+/universidad/pais
+
+<!-- 3. Nombres de las Carreras -->
+
+/universidad/carreras/carrera/nombre
+
+<!-- 4. Años de plan de estudio de las carreras -->
+
+/universidad/carreras/carrera/plan || //plan <!-- Se puede poner de ambas maneras porque sólo hay una etiqueta plan en el xml recibido. -->
+
+<!-- 5. Nombres de todos los alumnos -->
+
+/universidad/alumnos/alumno/nombre
+
+<!-- 6. Identificadores de todas las carreras -->
+
+/universidad/carreras/carrera/@id
+
+<!-- 7. Datos de la carrera cuyo id es c01 -->
+
+/universidad/carreras/carrera[@id = 'c01']
+
+<!-- 8. Centro en que se estudia de la carrera cuyo id es c02 -->
+
+/universidad/carreras/carrera[@id = 'c02']/centro
+
+<!-- 9. Nombre de las carreras que tengan subdirector -->
+
+/universidad/carreras/carrera/subdirector/../nombre
+
+<!-- 10. Nombre de los alumnos que estén haciendo proyecto -->
+
+/universidad/alumnos/alumno/estudios/proyecto/../../nombre
+
+<!-- 11. Códigos de las carreras en las que hay algún alumno matriculado -->
+
+/universidad/alumnos/alumno/estudios/carrera/@codigo
+
+<!-- 12. Apellidos y Nombre de los alumnos con beca -->
+
+/universidad/alumnos/alumno[@beca = 'si']/*[(self :: nombre or self :: apellido1 or self :: apellido2)]
+
+<!-- 13. Nombre de las asignaturas de la titulación c04 -->
+
+/universidad/asignaturas/asignatura[@titulacion = 'c04']/nombre
+
+<!-- 14. Nombre de las asignaturas de segundo trimestre -->
+
+/universidad/asignaturas/asignatura[trimestre = 2]/nombre
+
+<!-- 15. Nombre de las asignaturas que no tienen 4 créditos teóricos -->
+
+/universidad/asignaturas/asignatura[creditos_teoricos != 4]/nombre
+
+<!-- 16. Código de la carrera que estudia el último alumno -->
+
+/universidad/alumnos/alumno[last ()]/estudios/carrera/@codigo
+
+<!-- 17. Código de las asignaturas que estudian mujeres -->
+
+/universidad/alumnos/alumno[sexo = 'Mujer']/estudios/asignaturas/asignatura/@codigo
+
+<!-- 18. Nombre de los alumnos que matriculados en la asignatura a02 -->
+
+/universidad/alumnos/alumno/estudios/asignaturas/asignatura[@codigo = 'a02']/../..//../nombre
+
+<!-- 19. Códigos de las carreras que estudian los alumnos matriculados en alguna asignatura -->
+
+/universidad/alumnos/alumno[estudios/asignaturas]/estudios/carrera/@codigo
+
+<!-- 20. Apellidos de todos los hombres -->
+
+
+
+<!-- 21. Nombre de la carrera que estudia Víctor Manuel -->
+
+
+
+<!-- 22. Nombre de las asignaturas que estudia Luisa -->
+
+
+
+<!-- 23. Primer apellido de los alumnos matriculados en Ingeniería del Software -->
+
+
+
+<!-- 24. Nombre de las carreras que estudian los alumnos matriculados en la asignatura Tecnología de los Alimentos -->
+
+
+
+<!-- 25. Nombre de los alumnos matriculados en carreras que no tienen subdirector -->
+
+
+
+<!-- 26. Nombre de las alumnos matriculados en asignaturas con 0 créditos prácticos y que estudien la carrera de I. Pito del Sereno -->
+
+
+
+<!-- 27. Nombre de los alumnos ques estudian carreras cuyos planes son anteriores a 2007 -->
