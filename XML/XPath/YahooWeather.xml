@@ -1,0 +1,80 @@
+<query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng"
+	yahoo:count="1" yahoo:created="2017-03-20T08:19:17Z" yahoo:lang="es-ES">
+	<results>
+		<channel>
+			<yweather:units xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				distance="mi" pressure="in" speed="mph" temperature="F" />
+			<title>Yahoo! Weather - Seville, Andalusia, ES</title>
+			<link>
+				http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-774508/
+			</link>
+			<description>Yahoo! Weather for Seville, Andalusia, ES</description>
+			<language>en-us</language>
+			<lastBuildDate>Mon, 20 Mar 2017 09:19 AM CET</lastBuildDate>
+			<ttl>60</ttl>
+			<yweather:location xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				city="Seville" country="Spain" region=" Andalusia" />
+			<yweather:wind xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				chill="48" direction="0" speed="0" />
+			<yweather:atmosphere xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				humidity="96" pressure="1010.0" rising="0" visibility="9.3" />
+			<yweather:astronomy xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+				sunrise="7:27 am" sunset="7:36 pm" />
+			<image>
+				<title>Yahoo! Weather</title>
+				<width>142</width>
+				<height>18</height>
+				<link>http://weather.yahoo.com</link>
+				<url>
+					http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif
+				</url>
+			</image>
+			<item>
+				<title>
+					Conditions for Seville, Andalusia, ES at 06:00 AM CET
+				</title>
+				<geo:lat xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">37.385639</geo:lat>
+				<geo:long xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">-5.96845</geo:long>
+				<link>
+					http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-774508/
+				</link>
+				<pubDate>Mon, 20 Mar 2017 06:00 AM CET</pubDate>
+				<yweather:condition xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="27" date="Mon, 20 Mar 2017 06:00 AM CET" temp="48" text="Mostly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="34" date="20 Mar 2017" day="Mon" high="77" low="51" text="Mostly Sunny" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="21 Mar 2017" day="Tue" high="67" low="50"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="22 Mar 2017" day="Wed" high="67" low="44"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="23 Mar 2017" day="Thu" high="59" low="42"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="24 Mar 2017" day="Fri" high="59" low="41"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="25 Mar 2017" day="Sat" high="59" low="42"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="26 Mar 2017" day="Sun" high="61" low="44"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="27 Mar 2017" day="Mon" high="64" low="47"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="28 Mar 2017" day="Tue" high="65" low="47"
+					text="Partly Cloudy" />
+				<yweather:forecast xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+					code="30" date="29 Mar 2017" day="Wed" high="67" low="47"
+					text="Partly Cloudy" />
+				<description>
+				<![CDATA[<img src="http://l.yimg.com/a/i/us/we/52/27.gif"/> <BR /> <b>Current Conditions:</b> <BR />Mostly Cloudy <BR /> <BR /> <b>Forecast:</b> <BR /> Mon - Mostly Sunny. High: 77Low: 51 <BR /> Tue - Partly Cloudy. High: 67Low: 50 <BR /> Wed - Partly Cloudy. High: 67Low: 44 <BR /> Thu - Partly Cloudy. High: 59Low: 42 <BR /> Fri - Partly Cloudy. High: 59Low: 41 <BR /> <BR /> <a href="http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-774508/">Full Forecast at Yahoo! Weather</a> <BR /> <BR /> (provided by <a href="http://www.weather.com" >The Weather Channel</a>) <BR /> ]]>
+				</description>
+				<guid isPermaLink="false" />
+			</item>
+		</channel>
+	</results>
+</query>

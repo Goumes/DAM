@@ -1,0 +1,27 @@
+<!-- Latitud de Sevilla -->
+
+//*[local-name () = 'lat']
+
+<!--Longitud de Sevilla -->
+
+//*[local-name () = 'long']
+
+<!--Temperatura máxima prevista para hoy -->
+
+/query/results/channel/item/forecast[@date = "20 Mar 2017"]/@high
+
+<!--Temperatura mínima prevista para mañana -->
+
+/query/results/channel/item/forecast[@date = "21 Mar 2017"]/@low
+
+<!--Hora a la que se pondrá hoy el sol -->
+
+/query/results/channel/astronomy/@sunset
+
+<!--Dias soleados en los próximos diez días -->
+
+
+
+<!--Repite el ejercicio cambiando la ciudad -->
+
+
