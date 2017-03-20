@@ -1,5 +1,7 @@
 package AlgoritmosBase;
 
+import java.util.*;
+
 public class QuickSort 
 {
 	/* Propósito: Metodo rápido de ordenación ascendente para ordenar un array (lista), desde la primera casilla (primero) hasta la última (ultimo), 
@@ -17,19 +19,18 @@ public class QuickSort
 	 * 
 	 */
 	
-	public static int [] QuickSort (int [] array, int primero, int ultimo)
+	public static void QuickSort (Integer [] array, int primero, int ultimo)
 	{
 		int puntoParticion = 0;
 		
 		if (primero < ultimo)
 		{
 			puntoParticion = Partir (array, primero, ultimo);
+		
+			QuickSort (array, primero, puntoParticion - 1);
+			QuickSort (array, puntoParticion + 1, ultimo);
+		
 		}
-		
-		QuickSort (array, primero, puntoParticion - 1);
-		QuickSort (array, puntoParticion + 1, ultimo);
-		
-		return array;
 	}
 	//Fin_QuickSort
 	
@@ -47,7 +48,7 @@ public class QuickSort
 	 * 					Asociado al nombre del subprograma se devuelve el lugar por el que se divide el array. Por tanto, el subprograma se 
 	 * 					diseñará como función.
 	 */
-	public static int Partir (int [] array, int ppio, int fin)
+	public static int Partir (Integer [] array, int ppio, int fin)
 	{
 		int valorParticion, i, j, aux = 0;
 		
@@ -76,26 +77,47 @@ public class QuickSort
 	
 	public static void main (String [] args)
 	{
-int [] array = {35, 23, 11, 5, 13};
+		Scanner teclado = new Scanner (System.in);
+		Character centinela = ' ';
+		ArrayList <Integer> array = new ArrayList <Integer> ();
+		
+		//castear todo a integer y de vuelta a int
+		
+		System.out.println("Comienza la travesía de introducir números, escribe '*' cuando quieras parar. A disfrutar.");
+		
+		do
+		{
+			System.out.println("Introduce un número. Para con '*'.");
+			centinela = teclado.next().charAt(0);
+			
+			if (centinela != '*')
+			{
+				array.add ((Integer)Character.getNumericValue (centinela));
+			}
+			
+		}
+		while (centinela != '*');
 		
 		System.out.println("-----------");
 		System.out.println("Sin ordenar");
 		System.out.println("-----------");
 		
-		for (int i = 0; i < array.length; i++)
+		for (int i = 0; i < array.size (); i++)
 		{
-			System.out.println(array [i]);
+			System.out.println(array.get(i));
 		}
 		
 		System.out.println("-----------");
 		System.out.println("Ya ordenado");
 		System.out.println("-----------");
 		
-		QuickSort (array, 0, 5);
+		Integer[] arrayInteger = array.toArray(new Integer[array.size()]);
 		
-		for (int i = 0; i < array.length; i++)
+		QuickSort (arrayInteger, 0, 4);
+		
+		for (int i = 0; i < arrayInteger.length; i++)
 		{
-			System.out.println(array [i]);
+			System.out.println(arrayInteger[i]);
 		}
 	}
 }
