@@ -1,4 +1,4 @@
-<!-- Latitud de Sevilla -->
+﻿<!-- Latitud de Sevilla -->
 
 //*[local-name () = 'lat']
 
@@ -20,7 +20,7 @@
 
 <!--Dias soleados en los próximos diez días -->
 
-
+/query/results/channel/item/*[local-name () = 'forecast'][@text ='Partly Cloudy'][position() >= last () - 9]
 
 <!--Repite el ejercicio cambiando la ciudad -->
 
