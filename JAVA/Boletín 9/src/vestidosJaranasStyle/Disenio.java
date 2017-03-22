@@ -1,7 +1,9 @@
 package vestidosJaranasStyle;
 
+import java.util.Objects;
+
 /* Propiedades.
- * 		Basicas:			int codDisenio		----------		Consultable / Modificable
+ * 		Básicas:			int codDisenio			----------		Consultable / Modificable
  * 							double precio			----------		Consultable / Modificable
  * 		Derivadas:
  * 		Compartidas:
@@ -14,10 +16,10 @@ package vestidosJaranasStyle;
  * double getPrecio();
  * void setPrecio (double precio);
  * 
- * Criterio de comparacion: codDisenio.
+ * Criterio de comparación: codDisenio.
  * Criterio de igualdad: codDisenio.
  * 
- * Restricciones. El codDisenio son 3 digitos enteros positivos.
+ * Restricciones. El codDisenio son 3 dígitos enteros positivos.
  * 
  */
 
@@ -41,10 +43,17 @@ public class Disenio
 		this.precio = disenio.precio;
 	}
 	
-	public Disenio (int codDisenio, double precio)
+	public Disenio (int codDisenio, double precio) throws JaranasStyleException
 	{
-		this.codDisenio = codDisenio;
-		this.precio = precio;
+		if (codDisenio < 0 || codDisenio > 999)
+		{
+			throw new JaranasStyleException ("El codDisenio debe ser de tres digitos y positivo.");
+		}
+		else
+		{
+			this.codDisenio = codDisenio;
+			this.precio = precio;
+		}
 	}
 	//Fin Constructores
 	
@@ -54,9 +63,16 @@ public class Disenio
 		return codDisenio;
 	}
 	
-	public void setCodDisenio (int codDisenio)
+	public void setCodDisenio (int codDisenio) throws JaranasStyleException
 	{
-		this.codDisenio = codDisenio;
+		if (codDisenio < 0 || codDisenio > 999)
+		{
+			throw new JaranasStyleException ("El codDisenio debe ser de tres digitos y positivo.");
+		}
+		else
+		{
+			this.codDisenio = codDisenio;
+		}
 	}
 	
 	public double getPrecio ()
@@ -70,12 +86,71 @@ public class Disenio
 	}
 	//Fin Getters y setters
 	
-	//Metodos añadidos
+	//Métodos añadidos
 	@Override
 	public String toString ()
 	{
 		return this.getCodDisenio ()+","+this.getPrecio ();
 	}
-	//Fin Metodos añadidos
+	
+	@Override
+	public boolean equals (Object objeto)
+	{
+		boolean resultado = false;
+		
+		if (objeto != null && objeto instanceof Disenio)
+		{
+			Disenio disenio = (Disenio) objeto;
+			
+			if (this.getCodDisenio () == disenio.getCodDisenio ())
+			{
+				resultado = true;
+			}
+		}
+		
+		return resultado;
+	}
+	
+	@Override
+	public int hashCode ()
+	{
+		return Objects.hash(this.getCodDisenio(), this.getPrecio());
+	}
+	
+	@Override
+	public Disenio clone ()
+	{
+		Disenio copia = null;
+		
+		try
+		{
+			copia = (Disenio) super.clone ();
+		}
+		
+		catch (CloneNotSupportedException error)
+		{
+			System.out.println("No se ha podido clonar el objeto.");
+		}
+		
+		return copia;
+	}
+	
+	public int compareTo (Disenio disenio)
+	{
+		int resultado = 0;
+		
+		if (this.getCodDisenio () > disenio.getCodDisenio ())
+		{
+			resultado = 1;
+		}
+		
+		else if (this.getCodDisenio () < disenio.getCodDisenio ())
+		{
+			resultado = -1;
+		}
+		
+		return resultado;
+	}
+	//Fin Métodos añadidos
 	
 }
