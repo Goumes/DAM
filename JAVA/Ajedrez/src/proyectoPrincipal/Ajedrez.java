@@ -165,6 +165,11 @@ public class Ajedrez
  					System.out.println("Ha ganado el jugador: "+jugador1.getNombre()+". Enhorabuena!");
  				}
  				
+ 				else if (Ganador == 3)
+ 				{
+ 					System.out.println("Se han declarado tablas!");
+ 				}
+ 				
  				else
  				{
  					System.out.println("Ha ganado el jugador: "+jugador2.getNombre()+". Enhorabuena!");	

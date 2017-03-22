@@ -161,7 +161,7 @@ public class GestionadoraAjedrez
 	 * Entradas: Un tablero
 	 * Salidas: Un entero
 	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: 1 si la partida ha acabado ganando el jugador blanco, 2 si ha ganado el jugador negro, 0 si sigue en juego.
+	 * Postcondiciones: 1 si la partida ha acabado ganando el jugador blanco, 2 si ha ganado el jugador negro, 0 si sigue en juego, 3 si la partida acaba en empate.
 	 * 
 	 * Resguardo: public static boolean comprobarVictoria (Tablero tablero)
 		{
@@ -176,6 +176,7 @@ public class GestionadoraAjedrez
 	{
 		int resultado = 0;
 		int contadorRey = 0;
+		int contador = 0;
 		boolean ganadorBlanco = false;
 		
 		for (int i = 0; i < tablero.getTablero ().length && contadorRey < 2; i++)
@@ -184,6 +185,8 @@ public class GestionadoraAjedrez
 			{
 				if (tablero.getTablero()[i][j] != null)
 				{
+					contador++;
+					
 					if (tablero.getTablero()[i][j].getTipo().equals("Rey") == true)
 					{
 						contadorRey++;
@@ -193,6 +196,7 @@ public class GestionadoraAjedrez
 							ganadorBlanco = true;
 						}
 					}
+
 				}
 				
 			}
@@ -206,6 +210,11 @@ public class GestionadoraAjedrez
 		else if (contadorRey != 2 && ganadorBlanco == false)
 		{
 			resultado = 2;
+		}
+		
+		else if (contador == 2)
+		{
+			resultado = 3;
 		}
 		
 		return resultado;
