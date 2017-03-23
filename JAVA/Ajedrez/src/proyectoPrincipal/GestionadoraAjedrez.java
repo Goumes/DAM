@@ -829,4 +829,45 @@ public class GestionadoraAjedrez
 		return resultado;
 	}
 	
+	/* Prototipo: int comprobarJaque ()
+	 * Breve comentario: Comprueba si el rey está en jaque.
+	 * Precondiciones: Una partida con el rey en juego.
+	 * Entradas: Un tablero y un booleano
+	 * Salidas: Un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: 0 si el rey no está en jaque, 1 si el rey está en jaque, 2 si es jaque mate.
+	 * 
+	 * Resguardo: public static int comprobarJaque (Tablero tablero)
+			{
+				return -1;
+			}
+	 */
+	public static int comprobarJaque (Tablero tablero, boolean turno)
+	{
+		int resultado = 0;
+		
+		for (int i = 0; i < tablero.getTablero().length; i++)
+		{
+			for (int j = 0; j < tablero.getTablero()[0].length; j++)
+			{
+				if (tablero.getTablero()[i][j] != null)
+				{
+					if (tablero.getTablero()[i][j].getTipo().equals("Rey")
+						&& tablero.getTablero()[i][j].getColor() == turno)
+					{
+						//Comprobar caballos de alrededor
+						for (int k = i - 2, l = j - 2; i <= 7 && j <= 7 && j <= (j + 2); l++) // Mientras la i de K || L sea menor o igual que 7. 
+						{
+							
+						}
+						//Fin Comprobar caballos de alrededor
+					}
+				}
+			}
+		}
+		
+		return resultado;
+	}
+	//fin
+	
 }
