@@ -42,13 +42,13 @@ IF OBJECT_ID ('ProductSales')IS NULL
 		CREATE TABLE ProductSales
 		(
 			ID INT NOT NULL,
-			ProductID INT NULL NULL,
+			ProductID INT NULL,
 			Name NVARCHAR (30) NOT NULL,
 			UnitPrice MONEY NULL,
 			TotalSoldUnits INT NULL,
 			TotalCashed MONEY NULL,
 			CONSTRAINT PK_ProductSales PRIMARY KEY (ID),
-			CONSTRAINT FK_ProductSales_Products FOREIGN KEY (ProductID) REFERENCES (ID) FROM Products
+			CONSTRAINT FK_ProductSales_Products FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
 		)
 	END
 ELSE

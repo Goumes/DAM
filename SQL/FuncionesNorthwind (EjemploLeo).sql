@@ -27,7 +27,7 @@ CREATE FUNCTION NumeroVentas (@ProductName VARCHAR (30))
 RETURNS TABLE AS
 RETURN
 	(
-		SELECT COUNT (OD.ProductID) AS NumeroProductos, Estacion
+		SELECT SUM (OD.Quantity) AS NumeroProductos, Estacion
 			FROM Products AS P
 			INNER JOIN
 			[Order Details] AS OD
