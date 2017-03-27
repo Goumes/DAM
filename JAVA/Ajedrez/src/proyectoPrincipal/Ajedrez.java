@@ -144,6 +144,11 @@ public class Ajedrez
 		 			
 	 				tablero = GestionadoraAjedrez.turnoJugador(tablero, Turno);
 	 				
+	 				if (GestionadoraAjedrez.comprobarJaque(tablero, Turno) == 1)
+	 				{
+	 					System.out.println("Jaque al rey!");
+	 				}
+	 				
 	 				Turno = !Turno;
 			 		//Fin EjecutarTurno
 	 				

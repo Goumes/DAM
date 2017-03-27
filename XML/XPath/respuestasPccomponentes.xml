@@ -1,0 +1,7 @@
+<!-- El nombre de los productos que cuestan más de 200 euros. -->
+
+/html/body/div/div/div/div/section/div/div/article/div/header/h3/a [@data-price > 200]/@data-name
+
+<!-- Articulos en oferta -->
+
+/html/body/div/div/div/div/section/div/div/article/div [/div/div/span [contains(@class, 'label label-pill label-gold')]]/header/h3/a/@data-name

@@ -846,21 +846,76 @@ public class GestionadoraAjedrez
 	{
 		int resultado = 0;
 		
-		for (int i = 0; i < tablero.getTablero().length; i++)
+		for (int i = 0; i < tablero.getTablero().length && resultado == 0; i++)
 		{
-			for (int j = 0; j < tablero.getTablero()[0].length; j++)
+			for (int j = 0; j < tablero.getTablero()[0].length && resultado == 0; j++)
 			{
 				if (tablero.getTablero()[i][j] != null)
 				{
 					if (tablero.getTablero()[i][j].getTipo().equals("Rey")
-						&& tablero.getTablero()[i][j].getColor() == turno)
+						&& tablero.getTablero()[i][j].getColor() != turno)
 					{
+						
 						//Comprobar caballos de alrededor
-						for (int k = i - 2, l = j - 2; i <= 7 && j <= 7 && j <= (j + 2); l++) // Mientras la i de K || L sea menor o igual que 7. 
+						for (int k = i - 2, l = j - 2; (k >= 0 && k <= 7) && (l >= 0 && l <= 7) && l <= (j + 2) && resultado == 0; l++) // Esquina superior izquierda a derecha.
 						{
-							
+							if (tablero.getTablero()[k][l] != null)
+							{
+								if (tablero.getTablero()[k][l].getTipo().equals("Caballo"))
+								{
+									if (GestionadoraAjedrez.comprobarMovimientoCaballo(k, l, i, j, tablero.getTablero()[k][l].getTipo(), tablero).equals("0"))
+									{
+										resultado = 1;
+									}
+								}
+							}
+						}
+						
+						for (int k = i - 2, l = j + 2; (k >= 0 && k <= 7) && (l >= 0 && l <= 7) && k <= (i + 2) && resultado == 0; k++) // Esquina superior derecha a inferior derecha.
+						{
+							if (tablero.getTablero()[k][l] != null)
+							{
+								if (tablero.getTablero()[k][l].getTipo().equals("Caballo"))
+								{
+									if (GestionadoraAjedrez.comprobarMovimientoCaballo(k, l, i, j, tablero.getTablero()[k][l].getTipo(), tablero).equals("0"))
+									{
+										resultado = 1;
+									}
+								}
+							}
+						}
+						
+						for (int k = i + 2, l = j + 2; (k >= 0 && k <= 7) && (l >= 0 && l <= 7) && l >= (j - 2) && resultado == 0; l--) // Esquina inferior derecha a inferior izquierda.
+						{
+							if (tablero.getTablero()[k][l] != null)
+							{
+								if (tablero.getTablero()[k][l].getTipo().equals("Caballo"))
+								{
+									if (GestionadoraAjedrez.comprobarMovimientoCaballo(k, l, i, j, tablero.getTablero()[k][l].getTipo(), tablero).equals("0"))
+									{
+										resultado = 1;
+									}
+								}
+							}
+						}
+						
+						for (int k = i + 2, l = j - 2; (k >= 0 && k <= 7) && (l >= 0 && l <= 7) && l >= (i - 2) && resultado == 0; k--) // Mientras la i de K || L sea menor o igual que 7. 
+						{
+							if (tablero.getTablero()[k][l] != null)
+							{
+								if (tablero.getTablero()[k][l].getTipo().equals("Caballo"))
+								{
+									if (GestionadoraAjedrez.comprobarMovimientoCaballo(k, l, i, j, tablero.getTablero()[k][l].getTipo(), tablero).equals("0"))
+									{
+										resultado = 1;
+									}
+								}
+							}
 						}
 						//Fin Comprobar caballos de alrededor
+						
+						//Comprobar casillasVacias
+						//Fin Comprobar casillasVacias
 					}
 				}
 			}
@@ -869,5 +924,4 @@ public class GestionadoraAjedrez
 		return resultado;
 	}
 	//fin
-	
 }

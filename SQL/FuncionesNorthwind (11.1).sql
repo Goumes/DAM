@@ -54,7 +54,7 @@ IF OBJECT_ID ('ProductSales')IS NULL
 ELSE
 	BEGIN
 		PRINT 'Enhorabuena, la tabla ya existe por lo que tu trabajo aquí ha terminado! Mamá estaría orgullosa... si la verdad
-		no fuera tan dura y su amor hacia ti tan escaso.'
+no fuera tan dura y su amor hacia ti tan escaso.'
 	END
 
 --ROLLBACK
@@ -71,17 +71,19 @@ IF OBJECT_ID ('ShipShip')IS NULL
 		CREATE TABLE ShipShip
 		(
 			ID INT NOT NULL,
+			ShipperID INT NOT NULL,
 			Name NVARCHAR (30) NOT NULL,
 			TotalSentUnits INT NULL,
 			DifferentShippedCountries INT NULL,
 			
-			CONSTRAINT PK_ShipShip PRIMARY KEY (ID)
+			CONSTRAINT PK_ShipShip PRIMARY KEY (ID),
+			CONSTRAINT FK_ShipShip_Shippers FOREIGN KEY (ShipperID) REFERENCES Shippers (ShipperID)
 		)
 	END
 ELSE
 	BEGIN
 		PRINT 'Bien, tras el arduo trabajo de hacer Ctrl+C Y Ctrl+V del ejercicio anterior y cambiar un par de columnas, has conseguido
-		completar el ejercicio. Enhorabuena.'
+completar el ejercicio. Enhorabuena.'
 	END
 
 --ROLLBACK
@@ -97,17 +99,21 @@ IF OBJECT_ID ('EmployeeSales')IS NULL
 	BEGIN
 		CREATE TABLE EmployeeSales
 		(
-			ID INT NOT NULL,
+			EmployeeID INT NOT NULL,
 			Name NVARCHAR (30) NOT NULL,
+			LastName NVARCHAR (30) NOT NULL,
 			TotalSentUnits INT NULL,
-			DifferentShippedCountries INT NULL,
+			DifferentClients INT NULL,
+			TotalSold INT NULL,
 			
-			CONSTRAINT PK_ShipShip PRIMARY KEY (ID)
+			CONSTRAINT PK_EmployeeSales PRIMARY KEY (EmployeeID),
+			CONSTRAINT FK_EmployeeSales_Employees FOREIGN KEY (EmployeeID) REFERENCES Employees (EmployeeID)
 		)
 	END
 ELSE
 	BEGIN
-		PRINT ''
+		PRINT 'Y por fin terminan estos maravillosos ejercicios de copiar y pegar la estructura para cambiar los datos. Has hecho un buen
+trabajo joven Padawan.'
 	END
 
 --ROLLBACK
@@ -122,3 +128,54 @@ Entre 0% y 10%					No varía
 Entre 10% y 50%					+5%
 Mayor del 50%					10% con un máximo de 2,25
 */
+
+BEGIN TRANSACTION
+
+UPDATE Products
+SET UnitPrice =  
+		CASE  
+			WHEN IncrementoVentas.IncrementoVentas < 0 THEN (UnitPrice - UnitPrice * 0.1)
+			WHEN IncrementoVentas.IncrementoVentas BETWEEN 0 AND 10 THEN UnitPrice
+			WHEN IncrementoVentas.IncrementoVentas BETWEEN 10 AND 50 THEN (UnitPrice + UnitPrice * 0.05)
+			ELSE (UnitPrice + UnitPrice * 0.1) -- Con un maximo de 2,25
+		END 
+FROM IncrementoVentas
+WHERE Products.ProductID = IncrementoVentas.IDProducto
+
+--ROLLBACK
+
+COMMIT TRANSACTION
+
+GO
+
+CREATE VIEW Ventas96 AS
+
+SELECT SUM (OD.Quantity) AS VentasPorProducto, YEAR (O.OrderDate) AS Año, OD.ProductID
+	FROM Orders AS O
+	INNER JOIN
+	[Order Details] AS OD
+	ON O.OrderID = OD.OrderID
+	WHERE YEAR (O.OrderDate) = 1996
+	GROUP BY OD.ProductID, YEAR (O.OrderDate)
+
+GO
+
+CREATE VIEW Ventas97 AS
+
+SELECT SUM (OD.Quantity) AS VentasPorProducto, YEAR (O.OrderDate) AS Año, OD.ProductID
+	FROM Orders AS O
+	INNER JOIN
+	[Order Details] AS OD
+	ON O.OrderID = OD.OrderID
+	WHERE YEAR (O.OrderDate) = 1997
+	GROUP BY OD.ProductID, YEAR (O.OrderDate)
+
+GO
+
+CREATE VIEW IncrementoVentas AS
+
+SELECT ((V97.VentasPorProducto / CAST ((V96.VentasPorProducto) AS DECIMAL (12,2)) - 1) * 100) AS IncrementoVentas, V96.ProductID AS IDProducto
+	FROM Ventas96 AS V96
+	INNER JOIN
+	Ventas97 AS V97
+	ON V96.ProductID = V97.ProductID
