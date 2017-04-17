@@ -8,12 +8,12 @@ public class pruebaFileReaderFileWriter
 	{
 		try
 		{
-			FileWriter fw = new FileWriter ("C:\\Users\\aleja\\Documents\\GitHub\\DAM\\JAVA\\Boletín 10\\src\\Pruebas\\pepejava2.txt");
+			FileWriter fw = new FileWriter ("pepejava2.txt");
 			fw.write("Esto es una prueb");
 			fw.write(97);
 			fw.close();
 			
-			FileReader fr = new FileReader ("C:\\Users\\aleja\\Documents\\GitHub\\DAM\\JAVA\\Boletín 10\\src\\Pruebas\\pepejava2.txt");
+			FileReader fr = new FileReader ("pepejava2.txt");
 			int valor = fr.read();
 			
 			while (valor != -1)
