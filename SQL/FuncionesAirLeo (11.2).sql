@@ -38,3 +38,119 @@ GO
 COMMIT TRANSACTION
 
 -- NO EJECUTAR
+
+
+/* 2. Escribe un procedimiento almacenado que reciba como parámetro el ID de un pasajero y devuelva en un parámetro 
+de salida el número de vuelos diferentes que ha tomado ese pasajero. */
+
+BEGIN TRANSACTION
+
+GO
+
+CREATE PROCEDURE NumeroVuelos 
+	@IDPasajero CHAR (9),
+	@NumeroVuelosDiferentes INT OUTPUT
+AS
+	BEGIN
+		SELECT DISTINCT COUNT (Codigo_Vuelo)
+			FROM AL_Pasajeros AS P
+			INNER JOIN
+			AL_Pasajes AS Pa
+			ON P.ID = Pa.ID_Pasajero
+			INNER JOIN
+			AL_Vuelos_Pasajes AS VP
+			ON Pa.Numero = VP.Numero_Pasaje
+			WHERE P.ID = @IDPasajero
+
+		RETURN
+	END
+GO
+
+ROLLBACK
+COMMIT TRANSACTION
+
+DECLARE @NumeroVuelosDiferentesResultados INT
+EXECUTE NumeroVuelos 'A003', @NumeroVuelosDiferentes = @NumeroVuelosDiferentesResultados OUTPUT
+
+/* 3. Escribe un procedimiento almacenado que reciba como parámetro el ID de un pasajero y dos fechas y nos 
+devuelva en otro parámetro (de salida) el número de horas que ese pasajero ha volado durante ese intervalo de fechas.*/
+
+BEGIN TRANSACTION
+
+GO
+
+CREATE PROCEDURE TiempoVolado
+	@IDPasajero CHAR (9),
+	@FechaInicial SMALLDATETIME,
+	@FechaFinal SMALLDATETIME,
+	@TiempoEnVuelo DECIMAL (5,2) OUTPUT
+
+	AS
+
+	BEGIN
+		SELECT SUM (DATEPART (HOUR, (Llegada - Salida)))
+			FROM AL_Vuelos AS V
+			INNER JOIN
+			AL_Vuelos_Pasajes AS VP
+			ON V.Codigo = VP.Codigo_Vuelo
+			INNER JOIN
+			AL_Pasajes AS P
+			ON VP.Numero_Pasaje = P.Numero
+			WHERE P.ID_Pasajero = @IDPasajero AND (Salida BETWEEN @FechaInicial AND @FechaFinal) AND (Llegada BETWEEN @FechaInicial AND @FechaFinal)
+
+		RETURN
+	END
+
+ROLLBACK
+
+COMMIT TRANSACTION
+
+DECLARE @TiempoEnVueloResultado DECIMAL (5,2)
+EXECUTE TiempoVolado 'A003', '01/01/2013 12:30', '01/12/2014 12:30', @TiempoEnVuelo = @TiempoEnVueloResultado OUTPUT
+
+/* 4. Escribe un procedimiento que reciba como parámetro todos los datos de un pasajero y un número de vuelo y realice el siguiente proceso:
+En primer lugar, comprobará si existe el pasajero. Si no es así, lo dará de alta. A continuación comprobará si el vuelo 
+tiene plazas disponibles (hay que consultar la capacidad del avión) y en caso afirmativo creará un nuevo pasaje para ese vuelo.*/
+
+BEGIN TRANSACTION
+
+GO
+
+CREATE PROCEDURE RegistrarVuelo
+	@ID CHAR (9),
+	@Nombre VARCHAR (20),
+	@Apellidos VARCHAR (50),
+	@Direccion VARCHAR (60),
+	@Fecha_Nacimiento DATE,
+	@Nacionalidad VARCHAR (30),
+	@Codigo_Vuelo INT
+
+	AS
+
+	IF NOT EXISTS  (SELECT *
+					FROM AL_Pasajeros
+					WHERE ID = @ID)
+
+		BEGIN TRANSACTION
+
+		BEGIN
+
+			INSERT INTO AL_Pasajeros (ID, Nombre, Apellidos, Direccion, Fecha_Nacimiento, Nacionalidad)
+			VALUES
+					(@ID, @Nombre, @Apellidos, @Direccion, @Fecha_Nacimiento, @Nacionalidad, @Codigo_Vuelo)
+		END
+
+		COMMIT TRANSACTION
+
+	/* La capacidad del avión es el numero de asientos_x_fila * filas. Si el numero de pasajes vendidos en un vuelo es menor al resultado
+	del calculo de la capacidad del avión, significa que hay plazas libres. */
+	DECLARE @Capacidad INT
+	SELECT @Capacidad = Asientos_x_Fila * Filas
+		FROM AL_Aviones AS A
+		INNER JOIN
+		AL_Vuelos AS V
+		ON A.Matricula = V.Matricula_Avion
+		WHERE V.Codigo = @Codigo_Vuelo
+
+ROLLBACK
+COMMIT TRANSACTION
