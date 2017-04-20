@@ -19,13 +19,8 @@ AS
 		BEGIN TRANSACTION
 
 		DELETE FROM AL_Tarjetas WHERE Numero_Pasaje = @IDPasaje
-
-		--ROLLBACK
-		COMMIT TRANSACTION
-
-
-		BEGIN TRANSACTION
 		DELETE FROM AL_Pasajes WHERE Numero = @IDPasaje
+		DELETE FROM AL_Vuelos_Pasajes WHERE Numero_Pasaje = @IDPasaje
 
 		--ROLLBACK
 		COMMIT TRANSACTION
@@ -37,7 +32,11 @@ GO
 --ROLLBACK
 COMMIT TRANSACTION
 
--- NO EJECUTAR
+
+EXECUTE CancelarPasajeEmbarque 209
+
+SELECT *
+	FROm AL_Tarjetas
 
 
 /* 2. Escribe un procedimiento almacenado que reciba como parámetro el ID de un pasajero y devuelva en un parámetro 
@@ -106,7 +105,7 @@ ROLLBACK
 COMMIT TRANSACTION
 
 DECLARE @TiempoEnVueloResultado DECIMAL (5,2)
-EXECUTE TiempoVolado 'A003', '01/01/2013 12:30', '01/12/2014 12:30', @TiempoEnVuelo = @TiempoEnVueloResultado OUTPUT
+EXECUTE TiempoVolado 'A003', '01/01/2008 12:30', '01/12/2015 12:30', @TiempoEnVuelo = @TiempoEnVueloResultado OUTPUT
 
 /* 4. Escribe un procedimiento que reciba como parámetro todos los datos de un pasajero y un número de vuelo y realice el siguiente proceso:
 En primer lugar, comprobará si existe el pasajero. Si no es así, lo dará de alta. A continuación comprobará si el vuelo 
@@ -116,7 +115,7 @@ BEGIN TRANSACTION
 
 GO
 
-CREATE PROCEDURE RegistrarVuelo
+ALTER PROCEDURE RegistrarVuelo
 	@ID CHAR (9),
 	@Nombre VARCHAR (20),
 	@Apellidos VARCHAR (50),
@@ -127,30 +126,84 @@ CREATE PROCEDURE RegistrarVuelo
 
 	AS
 
-	IF NOT EXISTS  (SELECT *
-					FROM AL_Pasajeros
-					WHERE ID = @ID)
+	BEGIN
+		DECLARE @Capacidad INT
+		DECLARE @Pasajes_Vendidos INT
+		DECLARE @NumeroDelPasaje INT
 
-		BEGIN TRANSACTION
+		IF NOT EXISTS  (SELECT *
+						FROM AL_Pasajeros
+						WHERE ID = @ID)
+			BEGIN
 
-		BEGIN
+				INSERT INTO AL_Pasajeros (ID, Nombre, Apellidos, Direccion, Fecha_Nacimiento, Nacionalidad)
+				VALUES
+						(@ID, @Nombre, @Apellidos, @Direccion, @Fecha_Nacimiento, @Nacionalidad)
+			END
 
-			INSERT INTO AL_Pasajeros (ID, Nombre, Apellidos, Direccion, Fecha_Nacimiento, Nacionalidad)
-			VALUES
-					(@ID, @Nombre, @Apellidos, @Direccion, @Fecha_Nacimiento, @Nacionalidad, @Codigo_Vuelo)
-		END
+		ELSE PRINT 'El cliente ya existe'
 
-		COMMIT TRANSACTION
+		/* La capacidad del avión es el numero de asientos_x_fila * filas. Si el numero de pasajes vendidos en un vuelo es menor al resultado
+		del calculo de la capacidad del avión, significa que hay plazas libres. */
 
-	/* La capacidad del avión es el numero de asientos_x_fila * filas. Si el numero de pasajes vendidos en un vuelo es menor al resultado
-	del calculo de la capacidad del avión, significa que hay plazas libres. */
-	DECLARE @Capacidad INT
-	SELECT @Capacidad = Asientos_x_Fila * Filas
-		FROM AL_Aviones AS A
-		INNER JOIN
-		AL_Vuelos AS V
-		ON A.Matricula = V.Matricula_Avion
-		WHERE V.Codigo = @Codigo_Vuelo
+		SELECT @Capacidad = Asientos_x_Fila * Filas
+			FROM AL_Aviones AS A
+			INNER JOIN
+			AL_Vuelos AS V
+			ON A.Matricula = V.Matricula_Avion
+			WHERE V.Codigo = @Codigo_Vuelo
+
+		
+		SELECT @Pasajes_Vendidos = COUNT (Numero)
+			FROM AL_Pasajes AS P
+			INNER JOIN
+			AL_Vuelos_Pasajes AS VP
+			ON P.Numero = VP.Numero_Pasaje
+			WHERE VP.Codigo_Vuelo = @Codigo_Vuelo
+
+		IF (@Capacidad > @Pasajes_Vendidos)
+
+			BEGIN
+		
+				BEGIN TRANSACTION
+
+				INSERT INTO AL_Pasajes (ID_Pasajero)
+				VALUES (@ID)
+
+				SET @NumeroDelPasaje = @@IDENTITY
+
+				INSERT INTO AL_Vuelos_Pasajes (Codigo_Vuelo, Numero_Pasaje, Embarcado)
+				VALUES (@Codigo_Vuelo, @NumeroDelPasaje, 'N')
+
+				COMMIT TRANSACTION
+			END
+
+		ELSE PRINT 'Lo sentimos, todos los asientos están ocupados.'
+	END
+
+--ROLLBACK
+COMMIT TRANSACTION
+
+GO
+
+BEGIN TRANSACTION
+
+SET DATEFORMAT YMD
+DECLARE @ID CHAR (9) = 'P3P3'
+DECLARE	@Nombre VARCHAR (20) = 'pepe'
+DECLARE	@Apellidos VARCHAR (50) = 'java'
+DECLARE	@Direccion VARCHAR (60) = 'el valle de la silicona'
+DECLARE	@Fecha_Nacimiento DATE = '1993-12-25'
+DECLARE	@Nacionalidad VARCHAR (30) = 'Oracle'
+DECLARE	@Codigo_Vuelo INT = '3'
+
+EXECUTE RegistrarVuelo @ID, @Nombre, @Apellidos, @Direccion, @Fecha_Nacimiento, @Nacionalidad, @Codigo_Vuelo
+
 
 ROLLBACK
-COMMIT TRANSACTION
+
+
+ 
+SELECT * FROM AL_Pasajeros
+SELECT * FROM AL_Pasajes
+SELECT * FROM AL_Vuelos
