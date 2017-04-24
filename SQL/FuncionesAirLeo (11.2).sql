@@ -207,3 +207,63 @@ ROLLBACK
 SELECT * FROM AL_Pasajeros
 SELECT * FROM AL_Pasajes
 SELECT * FROM AL_Vuelos
+
+/* 5. Escribe un procedimiento almacenado que cancele un vuelo y reubique a sus pasajeros en otro. 
+Se ocuparán los asientos libres en el vuelo sustituto. Se comprobará que ambos vuelos realicen el mismo recorrido. 
+Se borrarán todos los pasajes y las tarjetas de embarque y se generarán nuevos pasajes. No se generarán nuevas tarjetas 
+de embarque. El vuelo a cancelar y el sustituto se pasarán como parámetros. Si no se pasa el vuelo sustituto, 
+se buscará el primer vuelo inmediatamente posterior al cancelado que realice el mismo recorrido. */
+
+BEGIN TRANSACTION
+
+GO
+
+CREATE PROCEDURE CambiarVuelo
+	@CodigoCancelar INT,
+	@CodigoSustituto INT = NULL
+
+	AS
+
+		BEGIN
+			BEGIN TRANSACTION
+
+				-- Sacamos las IDs de los pasajeros del vuelo cancelado y creamos los pasajes del vuelo nuevo
+
+				INSERT INTO AL_Pasajes (ID_Pasajero)
+
+				(SELECT ID_Pasajero
+					FROM AL_Pasajes
+					WHERE Numero IN (SELECT Numero_Pasaje
+										FROM AL_Vuelos_Pasajes
+										WHERE Codigo_Vuelo = @CodigoCancelar))
+
+				-- Introducimos los pasajeros en el nuevo vuelo
+
+				INSERT INTO AL_Vuelos_Pasajes (Codigo_Vuelo, Numero_Pasaje)
+
+				(SELECT @CodigoSustituto, --Numero_Pasaje
+					FROM AL_Vuelos_Pasajes
+					WHERE Codigo_Vuelo = @CodigoCancelar)
+
+					/* Sacar el ID del ultimo pasajero existente antes del insert, y en el where hacer un between de entre este pasajero
+					y el ultimo despues del insert. Utilizar @@Identity para guardar el ID del pasajero.*/
+
+				-- Borramos los pasajes y las tarjetas del vuelo cancelado
+
+				DELETE FROM AL_Vuelos_Pasajes WHERE Codigo_Vuelo = @CodigoCancelar
+				DELETE FROM AL_Vuelos WHERE Codigo = @CodigoCancelar
+
+			COMMIT TRANSACTION
+		END
+
+--ROLLBACK
+
+COMMIT TRANSACTION
+
+/* 6. Escribe un procedimiento al que se pase como parámetros un código de un avión y un momento (dato fecha-hora) y 
+nos escriba un mensaje que indique dónde se encontraba ese avión en ese momento. El mensaje puede ser "En vuelo entre 
+los aeropuertos de NombreAeropuertoSalida y NombreaeropuertoLlegada” si el avión estaba volando en ese momento, o 
+"En tierra en el aeropuerto NombreAeropuerto” si no está volando. Para saber en qué aeropuerto se encuentra el avión 
+debemos consultar el último vuelo que realizó antes del momento indicado.
+Si se omite el segundo parámetro, se tomará el momento actual.*/
+
