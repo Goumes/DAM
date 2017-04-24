@@ -6,8 +6,8 @@ public class TestUtil
 	{
 		Util util = new Util ();
 		
-		//util.MostrarDirectorio();
+		util.MostrarDirectorio();
 		
-		util.MostrarContenido("win.ini");
+		//util.MostrarContenido("win.ini");
 	}
 }

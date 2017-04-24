@@ -72,4 +72,16 @@ public class Util
 		}
 	}
 	//Fin MostrarContenido
+	
+	/* Prototipo: muestraContenido
+	 * Breve comentario: Método que recibe una ruta y muestra por pantalla un listado con los ficheros 
+	 * y carpetas contenidos en ella, ordenados alfabéticamente.
+	 * Precondiciones:
+	 * Entradas:
+	 * Salidas:
+	 * Entradas/Salidas:
+	 * Postdoncidiones:
+	 * 
+	 * Resguardo:
+	 */
 }
