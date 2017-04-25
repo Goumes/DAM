@@ -225,35 +225,92 @@ CREATE PROCEDURE CambiarVuelo
 	AS
 
 		BEGIN
-			BEGIN TRANSACTION
 
-				-- Sacamos las IDs de los pasajeros del vuelo cancelado y creamos los pasajes del vuelo nuevo
+		DECLARE @PasajeroInicial INT
+		DECLARE @PasajeroFinal INT 
 
-				INSERT INTO AL_Pasajes (ID_Pasajero)
+		DECLARE @Tabla TABLE (
+		pepejava INT,			--   \0_  \0_  \0_
+		pepejava2 CHAR (9)		--	 \0_  \0_  \0_
+		)
 
-				(SELECT ID_Pasajero
-					FROM AL_Pasajes
-					WHERE Numero IN (SELECT Numero_Pasaje
-										FROM AL_Vuelos_Pasajes
-										WHERE Codigo_Vuelo = @CodigoCancelar))
+		IF (@CodigoSustituto IS NULL)
+		BEGIN
+		 /*
+		SET @CodigoSustituto = @CodigoCancelar + 1
+			WHILE ((SELECT Salida, Llegada
+						FROM AL_Vuelos
+						WHERE Codigo = @CodigoSustituto) != (SELECT Salida, Llegada
+																FROM AL_Vuelos
+																WHERE Codigo = @CodigoCancelar))
+			BEGIN
+				SET @CodigoSustituto = @CodigoSustituto + 1
+			END
+		END
+		*/
 
-				-- Introducimos los pasajeros en el nuevo vuelo
+		IF EXISTS (SELECT Salida, Llegada
+						FROM AL_Vuelos
+						WHERE Codigo = @CodigoCancelar)
 
-				INSERT INTO AL_Vuelos_Pasajes (Codigo_Vuelo, Numero_Pasaje)
 
-				(SELECT @CodigoSustituto, --Numero_Pasaje
-					FROM AL_Vuelos_Pasajes
-					WHERE Codigo_Vuelo = @CodigoCancelar)
+		IF ((SELECT Salida, Llegada
+				FROM AL_Vuelos
+				WHERE Codigo = @CodigoSustituto) = (SELECT Salida, Llegada
+														FROM AL_Vuelos
+														WHERE Codigo = @CodigoCancelar))
+			BEGIN
+
+				BEGIN TRANSACTION
+
+					-- Guardamos en una variable el ultimo Numero de los pasajes antes de hacer el insert.
+
+					SET @PasajeroInicial =
+					(SELECT TOP (1) Numero
+						FROM AL_Pasajes
+						ORDER BY Numero DESC)
+
+					-- Sacamos las IDs de los pasajeros del vuelo cancelado y creamos los pasajes del vuelo nuevo
+
+					INSERT INTO AL_Pasajes (ID_Pasajero)
+
+					(SELECT ID_Pasajero
+						FROM AL_Pasajes
+						WHERE Numero IN (SELECT Numero_Pasaje
+											FROM AL_Vuelos_Pasajes
+											WHERE Codigo_Vuelo = @CodigoCancelar))
 
 					/* Sacar el ID del ultimo pasajero existente antes del insert, y en el where hacer un between de entre este pasajero
 					y el ultimo despues del insert. Utilizar @@Identity para guardar el ID del pasajero.*/
 
-				-- Borramos los pasajes y las tarjetas del vuelo cancelado
+					SET @PasajeroFinal = @@IDENTITY
 
-				DELETE FROM AL_Vuelos_Pasajes WHERE Codigo_Vuelo = @CodigoCancelar
-				DELETE FROM AL_Vuelos WHERE Codigo = @CodigoCancelar
+					-- Introducimos los pasajeros en el nuevo vuelo
 
-			COMMIT TRANSACTION
+					INSERT INTO AL_Vuelos_Pasajes (Codigo_Vuelo, Numero_Pasaje)
+
+					(SELECT @CodigoSustituto, (SELECT Numero
+													FROM AL_Pasajes
+													WHERE Numero BETWEEN (@PasajeroInicial + 1) AND @PasajeroFinal)
+						FROM AL_Vuelos_Pasajes
+						WHERE Codigo_Vuelo = @CodigoCancelar)
+
+					-- Borramos los pasajes y las tarjetas del vuelo cancelado
+
+					DELETE FROM AL_Vuelos_Pasajes WHERE Codigo_Vuelo = @CodigoCancelar
+					DELETE FROM AL_Vuelos WHERE Codigo = @CodigoCancelar
+					DELETE FROM AL_Tarjetas WHERE Codigo_Vuelo = @CodigoCancelar
+					DELETE FROM AL_Pasajes WHERE ID_Pasajero IN (SELECT ID_Pasajero
+																	FROM AL_Pasajes
+																	WHERE Numero IN (SELECT Numero_Pasaje
+																						FROM AL_Vuelos_Pasajes
+																						WHERE Codigo_Vuelo = @CodigoCancelar))
+				
+				COMMIT TRANSACTION
+
+			END
+
+			ELSE PRINT 'Los vuelos no tienen el mismo recorrido'
 		END
 
 --ROLLBACK
