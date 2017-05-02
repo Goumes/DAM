@@ -67,8 +67,8 @@ AS
 
 		BEGIN TRANSACTION
 
-		INSERT INTO LM_Recargas (ID_Tarjeta, Cantidad_Recarga, Momento_Recarga, SaldoResultante)
-		VALUES (@ID, @Importe, CAST (CURRENT_TIMESTAMP AS SMALLDATETIME), (SELECT Saldo + @Importe
+		INSERT INTO LM_Recargas (ID,ID_Tarjeta, Cantidad_Recarga, Momento_Recarga, SaldoResultante)
+		VALUES (NEWID (), @ID, @Importe, CAST (CURRENT_TIMESTAMP AS SMALLDATETIME), (SELECT Saldo + @Importe
 																			FROM LM_Tarjetas
 																			WHERE ID = @ID))
 
@@ -115,7 +115,7 @@ AS
 							FROM LM_Viajes
 							WHERE MomentoEntrada IN (SELECT MomentoEntrada
 														FROM LM_Viajes
-														WHERE IDTarjeta = @ID_Tarjeta))
+														WHERE IDTarjeta = @ID_Tarjeta)) -- Cambiar el where del segundo select.
 		BEGIN
 
 			BEGIN TRANSACTION
