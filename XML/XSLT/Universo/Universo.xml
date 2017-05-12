@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="style.xslt"?>
+
+<Universo>
+
+	<galaxia nombre = "Sistema Solar">
+		<estrella>Sol</estrella>
+		<planeta>Tierra</planeta>
+		<satelites>Luna</satelites>
+		<asteroides>Un puñao</asteroides>
+	</galaxia>
+	
+	<galaxia nombre = "Andromeda">
+		<estrella>Sonsol</estrella>
+		<planeta>Tierraluna</planeta>
+		<satelites>Lunatierra</satelites>
+		<asteroides>7</asteroides>
+	</galaxia>
+	
+	<galaxia nombre = "Gran Nube de Magallanes">
+		<estrella>Magallanes I</estrella>
+		<planeta>Magallanes I-A</planeta>
+		<satelites>Magallanes I-A-A</satelites>
+		<asteroides>Otro puñao</asteroides>
+	</galaxia>
+	
+</Universo>
