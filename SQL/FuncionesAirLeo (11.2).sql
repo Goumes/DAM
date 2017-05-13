@@ -323,4 +323,3 @@ los aeropuertos de NombreAeropuertoSalida y NombreaeropuertoLlegada” si el avión
 "En tierra en el aeropuerto NombreAeropuerto” si no está volando. Para saber en qué aeropuerto se encuentra el avión 
 debemos consultar el último vuelo que realizó antes del momento indicado.
 Si se omite el segundo parámetro, se tomará el momento actual.*/
-
