@@ -15,7 +15,7 @@
 		
 			<h2>El Universo es infinito, al igual que Armenia</h2>
 			<table border = "1">
-				<tr>
+				<tr bgcolor="red">
 					<th>Estrella</th>
 					<th>Planeta</th>
 					<th>Satelites</th>
@@ -23,7 +23,10 @@
 				</tr>
 				
 				<xsl:for-each select = "Universo/galaxia">
-					<tr>
+				<xsl:if test="estrella=&quot;Sol&quot;">   <!--(hay dos formas de hacerlo) 
+															xsl:if contains(estrella,'Sol') -->
+				
+					<tr bgcolor="orange">
 					
 						<td>
 							<xsl:value-of select = "estrella"/>
@@ -42,6 +45,7 @@
 						</td>
 					
 					</tr>
+				</xsl:if>
 				</xsl:for-each>
 				
 			</table>

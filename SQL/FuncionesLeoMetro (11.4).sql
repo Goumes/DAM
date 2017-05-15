@@ -251,7 +251,7 @@ AS
 					 ON T.ID = V.IDTarjeta
 					 WHERE V.MomentoEntrada BETWEEN DATEFROMPARTS (YEAR (CURRENT_TIMESTAMP), (MONTH (CURRENT_TIMESTAMP) - 1), 1) AND DATEFROMPARTS (YEAR (CURRENT_TIMESTAMP), (MONTH (CURRENT_TIMESTAMP) - 1), 30) AND IDPasajero =  @IDPasajero
 					 GROUP BY T.ID
-					 HAVING SUM (V.Importe_Viaje) > 30)
+					 HAVING SUM (V.Importe_Viaje) >= 30)
 					 
 
 			BEGIN
@@ -267,7 +267,7 @@ AS
 						ON E.ID = V.IDEstacionEntrada OR E.ID = V.IDEstacionSalida
 						WHERE (IDEstacionEntrada IN (3,4) OR IDEstacionSalida IN (3,4)) AND IDTarjeta = (SELECT ID
 																										FROM LM_Tarjetas
-																										WHERE IDPasajero = 1)
+																										WHERE IDPasajero = @IDPasajero)
 						HAVING COUNT (V.ID) >= 10)
 					 
 
