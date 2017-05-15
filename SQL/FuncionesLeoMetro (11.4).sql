@@ -32,6 +32,7 @@ AS
 
 			UPDATE LM_Tarjetas
 			SET Saldo = 0
+			/* WHERE */
 
 			COMMIT TRANSACTION
 
@@ -164,20 +165,22 @@ AS
 	DECLARE @Importe SMALLMONEY
 
 		SET @Importe = (SELECT Importe_Viaje
-							FROM LM_Viajes
-							WHERE IDTarjeta = (SELECT ID
-													FROM LM_Tarjetas
-													WHERE IDPasajero = @IDPasajero) AND MomentoEntrada = @MomentoEntrada)
+							FROM LM_Viajes AS V
+							INNER JOIN
+							LM_Tarjetas AS T
+							ON V.IDTarjeta = T.ID
+							WHERE T.IDPasajero = @IDPasajero AND MomentoEntrada = @MomentoEntrada)
 
 
 
 		BEGIN TRANSACTION
 
-		DELETE FROM LM_Viajes WHERE ID = (SELECT ID
-											FROM LM_Viajes
-											WHERE IDTarjeta = (SELECT ID
-																	FROM LM_Tarjetas
-																	WHERE IDPasajero = @IDPasajero) AND MomentoEntrada = @MomentoEntrada)
+		DELETE FROM LM_Viajes WHERE ID = (SELECT Importe_Viaje
+											FROM LM_Viajes AS V
+											INNER JOIN
+											LM_Tarjetas AS T
+											ON V.IDTarjeta = T.ID
+											WHERE T.IDPasajero = @IDPasajero AND MomentoEntrada = @MomentoEntrada)
 
 		UPDATE LM_Tarjetas
 		SET Saldo = Saldo + @Importe
@@ -223,7 +226,7 @@ BEGIN TRANSACTION
 
 GO
 
-CREATE PROCEDURE Promocion
+CREATE PROCEDURE Promocion /* FALTA CORREGIR LO DEL PASAJERO, QUE NO SE PASA POR PARAMETROS. AÚN ASÍ LA IDEA DEL EJERCICIO ES LA MISMA.*/
 	@IDPasajero INT,
 	@N1 SMALLMONEY = NULL,
 	@N2 SMALLMONEY = NULL
