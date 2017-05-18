@@ -10,6 +10,7 @@
 			<body>
 			
 				<h2>Armenia mola</h2>
+				
 				<table border = "1">
 					<tr bgcolor = "orange">
 						<th>Nombre</th>
