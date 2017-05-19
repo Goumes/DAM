@@ -55,8 +55,10 @@
  * Restricciones:
  * 
  */
- import java.lang.*;
- import java.util.*;
+package Clases;
+
+import java.lang.*;
+import java.util.*;
  
 public class Jugador implements Cloneable, Comparable <Jugador>
 {
@@ -89,7 +91,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		this.baseDef = jugador.baseDef;
 		this.armadura = jugador.armadura;
 		this.armaEquipada = jugador.armaEquipada;
-		this.Oro = Oro;
+		this.Oro = jugador.Oro;
 	}
 	
 	public Jugador (String Nombre, int Vida, double baseDmg, double baseDef,Item armadura, Arma armaEquipada, int Oro)
@@ -150,7 +152,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return armadura;
 	}
 	
-	public void setArmadura (Item Armadura)
+	public void setArmadura (Item armadura)
 	{
 		this.armadura = armadura;
 	}
@@ -181,17 +183,17 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 	@Override
 	public String toString ()
 	{
-		String s = ("Nombre: "+getNombre ()+
-					", Vida: "+getVida ()+
-					", baseDmg: "+getBaseDmg ()+
-					", baseDef: "+getBaseDef ()+
-					", armadura: "+getArmadura ()+
-					", armaEquipada: "+getArmaEquipada ()+
-					", Oro: "+getOro ());
+		String s = (getNombre ()+
+					","+getVida ()+
+					","+getBaseDmg ()+
+					","+getBaseDef ()+
+					","+getArmadura ()+
+					","+getArmaEquipada ()+
+					","+getOro ());
 		return s;
 	}
 	
-	//Criterio de igualdad: baseDmg, baseDef, Nombre, Vida, armadura, armaEquipada, Oro
+	//Criterio de igualdad: baseDmg, baseDef, Vida
 	@Override
 	public boolean equals (Object objeto)
 	{
@@ -201,13 +203,9 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		{
 			Jugador jugador = (Jugador) objeto;
 			
-			if (this.Nombre.equals (jugador.getNombre ()) 
-				&& this.getVida () == jugador.getVida ()
+			if (this.getVida () == jugador.getVida ()
 				&& this.getBaseDmg () == jugador.getBaseDmg ()
-				&& this.getBaseDef () == jugador.getBaseDef ()
-				&& this.armadura.equals (jugador.getArmadura ())
-				&& this.armaEquipada.equals (jugador.getArmaEquipada ())
-				&& this.getOro () == getOro ())
+				&& this.getBaseDef () == jugador.getBaseDef ())
 			{
 				resultado = true;
 			}
@@ -228,9 +226,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		
 		try
 		{
-		copia = (Jugador) super.clone ();
-		copia.armaEquipada = armaEquipada.clone ();
-		copia.armadura = armadura.clone ();
+			copia = (Jugador) super.clone ();
 		}
 		
 		catch (CloneNotSupportedException error)
@@ -241,7 +237,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return (copia);
 	} 
 	
-	//Criterio de comparación: baseDmg
+	//Criterio de comparacion: Vida, baseDmg, baseDef
 	public int compareTo (Jugador jugador)
 	{
 		int resultado = 0;

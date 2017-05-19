@@ -40,7 +40,6 @@ Restricciones:
  */
 package Clases;
 
-import java.lang.*;
 import java.util.*;
 public class Item implements Cloneable, Comparable <Item>
 {
@@ -119,7 +118,7 @@ public class Item implements Cloneable, Comparable <Item>
 	{
 		return modificadorDef;
 	}
-	public void setModificadorDef (double setModificadorDef)
+	public void setModificadorDef (double modificadorDef)
 	{
 		this.modificadorDef = modificadorDef;
 	}
@@ -189,7 +188,7 @@ public class Item implements Cloneable, Comparable <Item>
 	{
 		
 		
-		return (Objects.hash (getNombre (), getValor (), getModificadorDmg (), getModificadorDef (), getDuracion (), getEfecto ()));
+		return (Objects.hash (this.getNombre (), this.getValor (), this.getModificadorDmg (), this.getModificadorDef (), this.getDuracion (), this.getEfecto ()));
 	}
 	
 	@Override

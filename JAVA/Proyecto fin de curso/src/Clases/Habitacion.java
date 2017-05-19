@@ -31,8 +31,10 @@ Métodos añadidos:
 
 Restricciones:
  */
- import java.util.*;
- import java.lang.*;
+package Clases;
+
+import java.util.*;
+import java.lang.*;
 public class Habitacion
 {
 	private Tienda shop;
@@ -114,10 +116,10 @@ public class Habitacion
 	@Override
 	public String toString ()
 	{
-		String s = ("shop: "+getShop ()+
-					", enemy: "+getEnemy ()+
-					", Entrada: "+getEntrada ()+
-					", Salida: "+getSalida ());
+		String s = (getShop ()+
+					","+getEnemy ()+
+					","+getEntrada ()+
+					","+getSalida ());
 		return s;
 	}
 	
@@ -156,8 +158,6 @@ public class Habitacion
 		try
 		{
 			copia = (Habitacion) super.clone ();
-			copia.shop = shop.clone ();
-			copia.enemy = enemy.clone ();
 			
 		}
 		
@@ -170,7 +170,7 @@ public class Habitacion
 	}
 	
 	//Criterio de comparación: 
-	public int compareTo ()
+	/* public int compareTo ()
 	{
 		int resultado = 0;
 		
@@ -186,6 +186,6 @@ public class Habitacion
 		
 		
 		return resultado;
-	}
+	} */
 	//Fin Metodos añadidos
 }//fin_clase

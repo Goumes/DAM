@@ -41,6 +41,7 @@ Métodos añadidos:
 
 Restricciones:
 */
+package Clases;
 import java.lang.*;
 import java.util.*;
 
@@ -167,13 +168,13 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>
 	@Override
 	public String toString()
 	{
-		String s = ("Nombre: "+getNombre ()+
-					", Vida: "+getVida ()+
-					", Dmg: "+getDmg ()+
-					", Def: "+getDef ()+
-					", dropItem: "+getDropItem ()+
-					", dropDinero: "+getDropDinero ()+
-					", Nivel: "+getNivel ());
+		String s = (getNombre ()+
+					","+getVida ()+
+					","+getDmg ()+
+					","+getDef ()+
+					","+getDropItem ()+
+					","+getDropDinero ()+
+					","+getNivel ());
 		return s;
 	}
 	
@@ -217,7 +218,6 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>
 		try
 		{
 			copia = (Enemigo) super.clone ();
-			copia.dropItem = this.dropItem.clone ();
 		}
 		
 		catch (CloneNotSupportedException error)

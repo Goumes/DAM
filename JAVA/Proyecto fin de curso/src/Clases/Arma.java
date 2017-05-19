@@ -25,6 +25,7 @@
 
  * Restricciones:
  */
+package Clases;
 public class Arma implements Cloneable, Comparable <Arma>
 {
 	private String Nombre;
@@ -95,9 +96,9 @@ public class Arma implements Cloneable, Comparable <Arma>
 	@Override
 	public String toString ()
 	{
-		String s = "Nombre: "+getNombre ()+
-					", Dmg: "+getDmg ()+
-					", Precio: "+getPrecio ();
+		String s = getNombre ()+
+					","+getDmg ()+
+					","+getPrecio ();
 		return s;
 	}
 	

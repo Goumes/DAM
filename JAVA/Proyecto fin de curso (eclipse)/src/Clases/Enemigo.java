@@ -42,7 +42,7 @@ Métodos añadidos:
 Restricciones:
 */
 package Clases;
-import java.lang.*;
+
 import java.util.*;
 
 public class Enemigo implements Cloneable, Comparable <Enemigo>
@@ -207,7 +207,7 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>
 	public int hashCode ()
 	{
 		//return (Objects.hash (Nombre, Vida, Dmg, Def, dropItem, dropDinero, Nivel));
-		return (int)((Math.pow (this.getDef (), this.getDropDinero ())) * this.getDmg ());
+		return (Objects.hash(this.getNombre(), this.getVida(), this.getDmg (), this.getDef (), this.getDropItem(), this.getDropDinero(), this.getNivel()));
 	}
 	
 	@Override

@@ -1,3 +1,7 @@
+package Tests;
+
+import Clases.Item;
+
 public class TestItem
 {
 	public static void main (String []args)

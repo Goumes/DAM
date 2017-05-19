@@ -1,3 +1,8 @@
+package Tests;
+
+import Clases.Item;
+import Clases.Tienda;
+
 public class TestTienda
 {
 	public static void main (String []args)

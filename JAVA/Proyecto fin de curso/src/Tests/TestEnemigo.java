@@ -1,3 +1,8 @@
+package Tests;
+
+import Clases.Enemigo;
+import Clases.Item;
+
 public class TestEnemigo
 {
 	public static void main (String[]args)

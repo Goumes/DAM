@@ -37,7 +37,6 @@ Restricciones:
 package Clases;
 
 import java.util.*;
-import java.lang.*;
 
 public class Tienda implements Cloneable
 {

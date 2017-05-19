@@ -34,6 +34,8 @@ Restricciones:
 
 
 */
+package Clases;
+
 import java.util.*;
 import java.lang.*;
 
@@ -130,11 +132,11 @@ public class Tienda implements Cloneable
 	@Override
 	public String toString ()
 	{
-		String s =("objeto1: "+getObjeto1 ()+
-					", objeto2: "+getObjeto2 ()+
-					", objeto3: "+getObjeto3 ()+
-					", objeto4: "+getObjeto4 ()+
-					", Disponibilidad: "+getDisponibilidad ());
+		String s =(getObjeto1 ()+
+					","+getObjeto2 ()+
+					","+getObjeto3 ()+
+					","+getObjeto4 ()+
+					","+getDisponibilidad ());
 		return s;
 	}
 	
@@ -175,10 +177,6 @@ public class Tienda implements Cloneable
 		try
 		{
 			copia = (Tienda) super.clone ();
-			copia.objeto1 = this.objeto1.clone ();
-			copia.objeto2 = this.objeto2.clone ();
-			copia.objeto3 = this.objeto3.clone ();
-			copia.objeto4 = this.objeto4.clone ();
 		}
 		
 		catch (CloneNotSupportedException error)

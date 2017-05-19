@@ -1,3 +1,7 @@
+package Tests;
+
+import Clases.Arma;
+
 public class TestArma
 {
 	public static void main (String []args)

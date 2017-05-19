@@ -26,49 +26,32 @@
  * Restricciones:
  */
 package Clases;
-public class Arma implements Cloneable, Comparable <Arma>
+
+import java.util.Objects;
+
+public class Arma extends ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>
 {
-	private String Nombre;
 	private double Dmg;
-	private int Precio;
 	
 	//Constructores
-	
 	public Arma ()
 	{
-		Nombre = "";
-		Dmg = 0;
-		Precio = 0;
+		Dmg = 0.0;
 	}
 	
 	public Arma (Arma arma)
 	{
-		this.Nombre = arma.Nombre;
 		this.Dmg = arma.Dmg;
-		this.Precio = arma.Precio;
 	}
 	
-	public Arma (String Nombre, double Dmg, int Precio)
+	public Arma (String nombre, double Dmg, double precio)
 	{
-		this.Nombre = Nombre;
+		super (nombre, precio);
 		this.Dmg = Dmg;
-		this.Precio = Precio;
 	}
-	
 	//Fin Constructores
 	
 	//Getes y setes
-	
-	public String getNombre ()
-	{
-		return Nombre;
-	}
-	
-	public void setNombre (String Nombre)
-	{
-		this.Nombre = Nombre;
-	}
-	
 	public double getDmg ()
 	{
 		return Dmg;
@@ -78,27 +61,13 @@ public class Arma implements Cloneable, Comparable <Arma>
 	{
 		this.Dmg = Dmg;
 	}
-	
-	public int getPrecio ()
-	{
-		return Precio;
-	}
-	
-	public void setPrecio (int Precio)
-	{
-		this.Precio = Precio;
-	}
-	
 	//Fin Getes y setes
 	
 	//Metodos añadidos
-	
 	@Override
 	public String toString ()
 	{
-		String s = getNombre ()+
-					","+getDmg ()+
-					","+getPrecio ();
+		String s =	super.toString()+","+getDmg ();
 		return s;
 	}
 	
@@ -112,9 +81,8 @@ public class Arma implements Cloneable, Comparable <Arma>
 		{
 			Arma arma = (Arma) objeto;
 			
-			if (this.getNombre ().equals (arma.getNombre ()) 
-				&& this.getDmg () == arma.getDmg ()
-				&& this.getPrecio () == arma.getPrecio ())
+			if (super.equals(arma) 
+				&& this.getDmg() == arma.getDmg())
 			{
 				resultado = true;
 			}
@@ -126,14 +94,14 @@ public class Arma implements Cloneable, Comparable <Arma>
 	@Override
 	public int hashCode ()
 	{
-		//return (Objects.hash (this.Nombre, this.Dmg, this.Precio));
-		return (int)(getPrecio() * 623/getDmg ());
+		return (super.hashCode() + Objects.hash(this.getDmg()));
 	}
 	
+	/*
 	@Override
 	public Arma clone ()
 	{
-		Arma copia = new Arma ();
+		Arma copia = null;
 		
 		try
 		{
@@ -146,22 +114,14 @@ public class Arma implements Cloneable, Comparable <Arma>
 		}
 		return (copia);
 	}
+	*/
 	
 	//Criterio de comparación: Precio
 	public int compareTo (Arma arma)
 	{
 		int resultado = 0;
 		
-		
-		if (this.getPrecio () > arma.getPrecio () )
-		{
-			resultado = 1;
-		}
-		
-		else if (this.getPrecio () < arma.getPrecio ())
-		{
-			resultado = -1;
-		}
+		resultado = super.compareTo(arma);
 		
 		return (resultado);
 	}

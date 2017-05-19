@@ -57,7 +57,6 @@
  */
 package Clases;
 
-import java.lang.*;
 import java.util.*;
  
 public class Jugador implements Cloneable, Comparable <Jugador>
@@ -216,7 +215,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 	@Override
 	public int hashCode ()
 	{
-		return (Objects.hash (getNombre (), getVida (), getBaseDmg (), getBaseDef (), getArmadura (), getArmaEquipada (), getOro ()));
+		return (Objects.hash (this.getNombre (), this.getVida (), this.getBaseDmg (), this.getBaseDef (), this.getArmadura (), this.getArmaEquipada (), this.getOro ()));
 	}
 	
 	@Override

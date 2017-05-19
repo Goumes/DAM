@@ -34,7 +34,6 @@ Restricciones:
 package Clases;
 
 import java.util.*;
-import java.lang.*;
 public class Habitacion
 {
 	private Tienda shop;
@@ -133,8 +132,8 @@ public class Habitacion
 		{
 			Habitacion habitacion = (Habitacion) objeto;
 			
-			if (this.getShop () == habitacion.getShop ()
-				&& this.getEnemy () == habitacion.getEnemy ()
+			if (this.getShop ().equals(habitacion.getShop ())
+				&& this.getEnemy ().equals(habitacion.getEnemy ())
 				&& this.getEntrada () == habitacion.getEntrada ()
 				&& this.getSalida () == habitacion.getSalida ())
 			{
