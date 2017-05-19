@@ -116,10 +116,10 @@ public class Habitacion
 	@Override
 	public String toString ()
 	{
-		String s = ("shop: "+getShop ()+
-					", enemy: "+getEnemy ()+
-					", Entrada: "+getEntrada ()+
-					", Salida: "+getSalida ());
+		String s = (getShop ()+
+					","+getEnemy ()+
+					","+getEntrada ()+
+					","+getSalida ());
 		return s;
 	}
 	
@@ -158,8 +158,6 @@ public class Habitacion
 		try
 		{
 			copia = (Habitacion) super.clone ();
-			copia.shop = shop.clone ();
-			copia.enemy = enemy.clone ();
 			
 		}
 		

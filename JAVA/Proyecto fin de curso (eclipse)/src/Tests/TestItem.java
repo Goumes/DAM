@@ -1,4 +1,6 @@
-package Clases;
+package Tests;
+
+import Clases.Item;
 
 public class TestItem
 {

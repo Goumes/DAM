@@ -1,4 +1,7 @@
-package Clases;
+package Tests;
+
+import Clases.Enemigo;
+import Clases.Item;
 
 public class TestEnemigo
 {

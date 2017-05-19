@@ -183,13 +183,13 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 	@Override
 	public String toString ()
 	{
-		String s = ("Nombre: "+getNombre ()+
-					", Vida: "+getVida ()+
-					", baseDmg: "+getBaseDmg ()+
-					", baseDef: "+getBaseDef ()+
-					", armadura: "+getArmadura ()+
-					", armaEquipada: "+getArmaEquipada ()+
-					", Oro: "+getOro ());
+		String s = (getNombre ()+
+					","+getVida ()+
+					","+getBaseDmg ()+
+					","+getBaseDef ()+
+					","+getArmadura ()+
+					","+getArmaEquipada ()+
+					","+getOro ());
 		return s;
 	}
 	
@@ -226,9 +226,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		
 		try
 		{
-		copia = (Jugador) super.clone ();
-		copia.armaEquipada = armaEquipada.clone ();
-		copia.armadura = armadura.clone ();
+			copia = (Jugador) super.clone ();
 		}
 		
 		catch (CloneNotSupportedException error)

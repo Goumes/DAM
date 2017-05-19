@@ -1,4 +1,8 @@
-package Clases;
+package Tests;
+
+import Clases.Arma;
+import Clases.Item;
+import Clases.Jugador;
 
 public class TestJugador
 {

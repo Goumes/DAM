@@ -150,12 +150,12 @@ public class Item implements Cloneable, Comparable <Item>
 	@Override
 	public String toString ()
 	{
-		String s = ("Nombre: "+getNombre ()+
-					", Valor: "+getValor ()+
-					", modificadorDmg: "+getModificadorDmg ()+
-					", modificadorDef: "+getModificadorDef ()+
-					", Duracion: "+getDuracion ()+
-					", Efecto: "+getEfecto ());
+		String s = (getNombre ()+
+					","+getValor ()+
+					","+getModificadorDmg ()+
+					","+getModificadorDef ()+
+					","+getDuracion ()+
+					","+getEfecto ());
 		return s;
 	}
 	
@@ -200,8 +200,6 @@ public class Item implements Cloneable, Comparable <Item>
 		try
 		{
 			copia = (Item) super.clone ();
-			copia.Nombre = (String) this.getNombre ();
-			copia.Efecto = (String) this.getEfecto ();
 			
 		}
 		

@@ -1,4 +1,6 @@
-package Clases;
+package Tests;
+
+import Clases.Arma;
 
 public class TestArma
 {

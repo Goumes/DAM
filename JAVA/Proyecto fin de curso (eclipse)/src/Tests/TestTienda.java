@@ -1,4 +1,7 @@
-package Clases;
+package Tests;
+
+import Clases.Item;
+import Clases.Tienda;
 
 public class TestTienda
 {

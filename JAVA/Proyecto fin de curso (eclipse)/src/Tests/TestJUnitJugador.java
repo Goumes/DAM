@@ -1,8 +1,12 @@
-package Clases;
+package Tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Clases.Arma;
+import Clases.Item;
+import Clases.Jugador;
 
 public class TestJUnitJugador 
 {
