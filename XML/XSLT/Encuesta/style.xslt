@@ -16,10 +16,11 @@
 					<fieldset>
 						<xsl:for-each select = "encuesta/cuestion">
 							<xsl:value-of select = "pregunta"/><br/><br/>
-							<input type="radio" name="radio" value="check" class="agree">
-								<xsl:value-of select = "respuesta"/><br/><br/>
-							</input>
-							
+							<xsl:for-each select = "encuesta/cuestion">
+								<input type="radio" name="radio" value="check" class="agree">
+									<xsl:value-of select = "respuesta"/><br/><br/>
+								</input>
+							</xsl:for-each>
 						</xsl:for-each>
 					</fieldset>
 					<input type="submit" value="Enviar"/>
