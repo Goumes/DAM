@@ -10,8 +10,8 @@
 			</head>
 			
 			<body>
-				<h1>Encuesta</h1>
-				
+				<h1>Encuesta</h1><h6>(Leo no hagas examen PLS)</h6>
+
 				<form action = "http://leo.ciclo.iesnervion.es/muestraDatos.php" method = "get">
 					<fieldset>
 						<xsl:for-each select = "encuesta/cuestion">
@@ -26,9 +26,9 @@
 					</fieldset>
 					<input type="submit" value="Enviar"/>
 				</form>
-				
+
 			</body>
-		
+
 		</html>
 	
 	</xsl:template>
