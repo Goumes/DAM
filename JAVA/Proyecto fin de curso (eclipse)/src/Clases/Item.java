@@ -4,8 +4,8 @@ Propiedades.
 				Int Valor				-----------		Consultable / Modificable
 				Double modificadorDmg	-----------		Consultable / Modificable
 				Double modificadorDef	-----------		Consultable / Modificable
-				Double Duracion			-----------		Consultable / Modificable
-				String Efecto			-----------		Consultable / Modificable
+				Double duracion			-----------		Consultable / Modificable
+				String efecto			-----------		Consultable / Modificable
 	Derivadas:
 	Compartidas:
 
@@ -26,10 +26,10 @@ double getModificadorDef();
 void setModificadorDef (double modificadorDef);
 
 double getDuracion ();
-void setDuracion (doublé Duracion);
+void setDuracion (doublé duracion);
 
 String getEfecto ();
-void setEfecto (String Efecto);
+void setEfecto (String efecto);
 
 
 
@@ -41,69 +41,40 @@ Restricciones:
 package Clases;
 
 import java.util.*;
-public class Item implements Cloneable, Comparable <Item>
+public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>
 {
-	private String Nombre;
-	private int Valor;
 	private double modificadorDmg;
 	private double modificadorDef;
-	private double Duracion;
-	private String Efecto;
+	private double duracion;
+	private String efecto;
 	
 	//Constructores
 	public Item ()
 	{
-		Nombre = "";
-		Valor = 0;
 		modificadorDmg = 0.0;
 		modificadorDef = 0.0;
-		Duracion = 0.0;
-		Efecto = "";
+		duracion = 0.0;
+		efecto = "";
 	}
 	
 	public Item (Item item)
 	{
-		this.Nombre = item.Nombre;
-		this.Valor = item.Valor;
 		this.modificadorDmg = item.modificadorDmg;
 		this.modificadorDef = item.modificadorDef;
-		this.Duracion = item.Duracion;
-		this.Efecto = item.Efecto;
+		this.duracion = item.duracion;
+		this.efecto = item.efecto;
 	}
 	
-	public Item (String Nombre, int Valor, double modificadorDmg, double modificadorDef, double Duracion, String Efecto)
+	public Item (String Nombre, int Valor, double modificadorDmg, double modificadorDef, double duracion, String efecto)
 	{
-		this.Nombre = Nombre;
-		this.Valor = Valor;
 		this.modificadorDmg = modificadorDmg;
 		this.modificadorDef = modificadorDef;
-		this.Duracion = Duracion;
-		this.Efecto = Efecto;
+		this.duracion = duracion;
+		this.efecto = efecto;
 	}
 	//Fin Constructores
 	
 	//Getes y setes
-	
-	public String getNombre ()
-	{
-		return Nombre;
-	}
-	
-	public void setNombre (String Nombre)
-	{
-		this.Nombre = Nombre;
-	}
-	
-	public int getValor ()
-	{
-		return Valor;
-	}
-	
-	public void setValor (int Valor)
-	{
-		this.Valor = Valor;
-	}
-	
 	public double getModificadorDmg ()
 	{
 		return modificadorDmg;
@@ -125,22 +96,22 @@ public class Item implements Cloneable, Comparable <Item>
 	
 	public double getDuracion ()
 	{
-		return Duracion;
+		return duracion;
 	}
 	
-	public void setDuracion (double Duracion)
+	public void setDuracion (double duracion)
 	{
-		this.Duracion = Duracion;
+		this.duracion = duracion;
 	}
 	
 	public String getEfecto ()
 	{
-		return Efecto;
+		return efecto;
 	}
 	
-	public void setEfecto (String Efecto)
+	public void setEfecto (String efecto)
 	{
-		this.Efecto = Efecto;
+		this.efecto = efecto;
 	}
 	//Fin Getes y setes
 	
@@ -149,9 +120,7 @@ public class Item implements Cloneable, Comparable <Item>
 	@Override
 	public String toString ()
 	{
-		String s = (getNombre ()+
-					","+getValor ()+
-					","+getModificadorDmg ()+
+		String s = (super.toString()+","+getModificadorDmg ()+
 					","+getModificadorDef ()+
 					","+getDuracion ()+
 					","+getEfecto ());
@@ -168,12 +137,11 @@ public class Item implements Cloneable, Comparable <Item>
 		{
 			Item item = (Item) objeto;
 			
-			if (this.Nombre.equals (item.getNombre ())
-				&& this.getValor () == item.getValor ()
+			if (super.equals(objeto)
 				&& this.getModificadorDmg () == item.getModificadorDmg ()
 				&& this.getModificadorDef () == item.getModificadorDef ()
 				&& this.getDuracion () == item.getDuracion ()
-				&& this.Efecto.equals(item.getEfecto ()))
+				&& this.efecto.equals(item.getEfecto ()))
 			{
 				resultado = true;
 			}
@@ -188,26 +156,7 @@ public class Item implements Cloneable, Comparable <Item>
 	{
 		
 		
-		return (Objects.hash (this.getNombre (), this.getValor (), this.getModificadorDmg (), this.getModificadorDef (), this.getDuracion (), this.getEfecto ()));
-	}
-	
-	@Override
-	public Item clone ()
-	{
-		Item copia = new Item ();
-		
-		try
-		{
-			copia = (Item) super.clone ();
-			
-		}
-		
-		catch (CloneNotSupportedException error)
-		{
-			System.out.println("No se ha podido clonar el objeto");
-		}
-		
-		return copia;
+		return (super.hashCode() + Objects.hash (this.getModificadorDmg (), this.getModificadorDef (), this.getDuracion (), this.getEfecto ()));
 	}
 	
 	//Criterio de comparacion: Valor del item
@@ -215,15 +164,7 @@ public class Item implements Cloneable, Comparable <Item>
 	{
 		int resultado = 0;
 		
-		if (this.getValor () > item.getValor ())
-		{
-			resultado = 1;
-		}
-		
-		else if (this.getValor () < item.getValor ())
-		{
-			resultado = -1;
-		}
+		resultado = super.compareTo (item);
 		
 		return resultado;
 	}

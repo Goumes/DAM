@@ -2,13 +2,13 @@
  * 
 		Propiedades
 			Básicas: 
-				String Nombre 		 		------------	Consultable / Modificable
-				Int Vida 	      	 		------------	Consultable / Modificable
+				String nombre 		 		------------	Consultable / Modificable
+				Int vida 	      	 		------------	Consultable / Modificable
 				Double baseDmg		 		------------ 	Consultable / Modificable
 				Double baseDef		 		------------ 	Consultable / Modificable
 				Item Armadura		 		------------	Consultable / Modificable
 				Arma armaEquipada    		------------ 	Consultable / Modificable
-				Int Oro		 	 			------------	Consultable / Modificable
+				Int oro		 	 			------------	Consultable / Modificable
 				Inventario inventario 	 	------------	Consultable / Modificable
 			Derivadas: 
 				Double totalDmg		 		------------	Consultable
@@ -22,10 +22,10 @@
  * Getes y Setes: 
  *  
  * String getNombre ();
- * void setNombre (String Nombre);
+ * void setNombre (String nombre);
  * 
  * Int getVida();
- * void setVida (Int Vida);
+ * void setVida (Int vida);
  * 
  * Double getBaseDmg ();
  * void setBaseDmg (double baseDmg);
@@ -40,7 +40,7 @@
  * void setArmaEquipada (Arma armaEquipada);
  * 
  * Int getOro ();
- * Void setOro (Int Oro);
+ * Void setOro (Int oro);
  * 
  * Inventario getInventario ();
  * void setInventario (Inventario inventario);
@@ -61,69 +61,69 @@ import java.util.*;
  
 public class Jugador implements Cloneable, Comparable <Jugador>
 {
-	private String Nombre;
-	private int Vida;
+	private String nombre;
+	private int vida;
 	private double baseDmg;
 	private double baseDef;
 	private Item armadura;
 	private Arma armaEquipada;
-	private int Oro;
+	private int oro;
 	/* private Inventario inventario */
 	
 	//Constructores
 	public Jugador ()
 	{
-		Nombre = "";
-		Vida = 0;
+		nombre = "";
+		vida = 0;
 		baseDmg = 0.0;
 		baseDef = 0.0;
 		armadura = new Item ();
 		armaEquipada = new Arma ();
-		Oro = 0;
+		oro = 0;
 	}
 	
 	public Jugador (Jugador jugador)
 	{
-		this.Nombre = jugador.Nombre;
-		this.Vida = jugador.Vida;
+		this.nombre = jugador.nombre;
+		this.vida = jugador.vida;
 		this.baseDmg = jugador.baseDmg;
 		this.baseDef = jugador.baseDef;
 		this.armadura = jugador.armadura;
 		this.armaEquipada = jugador.armaEquipada;
-		this.Oro = jugador.Oro;
+		this.oro = jugador.oro;
 	}
 	
-	public Jugador (String Nombre, int Vida, double baseDmg, double baseDef,Item armadura, Arma armaEquipada, int Oro)
+	public Jugador (String nombre, int vida, double baseDmg, double baseDef,Item armadura, Arma armaEquipada, int oro)
 	{
-		this.Nombre = Nombre;
-		this.Vida = Vida;
+		this.nombre = nombre;
+		this.vida = vida;
 		this.baseDmg = baseDmg;
 		this.baseDef = baseDef;
 		this.armadura = armadura;
 		this.armaEquipada = armaEquipada;
-		this.Oro = Oro;
+		this.oro = oro;
 	}
 	//Fin Constructores
 	
 	//Getes y setes
 	public String getNombre ()
 	{
-		return Nombre;
+		return nombre;
 	}
 	
-	public void setNombre (String Nombre)
+	public void setNombre (String nombre)
 	{
-		this.Nombre = Nombre;
+		this.nombre = nombre;
 	}
 	
 	public int getVida ()
 	{
-		return Vida;
+		return vida;
 	}
 	
-	public void setVida (int Vida)
+	public void setVida (int vida)
 	{
-		this.Vida = Vida;
+		this.vida = vida;
 	}
 	
 	public double getBaseDmg ()
@@ -168,12 +168,12 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 	
 	public int getOro ()
 	{
-		return Oro;
+		return oro;
 	}
 	
-	public void setOro (int Oro)
+	public void setOro (int oro)
 	{
-		this.Oro = Oro;
+		this.oro = oro;
 	}
 	//Fin Getes y setes
 	
@@ -192,7 +192,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return s;
 	}
 	
-	//Criterio de igualdad: baseDmg, baseDef, Vida
+	//Criterio de igualdad: baseDmg, baseDef, vida
 	@Override
 	public boolean equals (Object objeto)
 	{
@@ -236,7 +236,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return (copia);
 	} 
 	
-	//Criterio de comparacion: Vida, baseDmg, baseDef
+	//Criterio de comparacion: vida, baseDmg, baseDef
 	public int compareTo (Jugador jugador)
 	{
 		int resultado = 0;

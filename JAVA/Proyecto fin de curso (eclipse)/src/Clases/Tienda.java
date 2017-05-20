@@ -4,7 +4,7 @@ Propiedades.
 				Item Objeto2			-----------    Consultable / Modificable
 				Item Objeto3			-----------    Consultable / Modificable
 				Item Objeto4			-----------    Consultable / Modificable
-				Boolean Disponibilidad	-----------    Consultable / Modificable
+				Boolean disponibilidad	-----------    Consultable / Modificable
 	Derivadas:
 	Compartidas:
 
@@ -25,7 +25,7 @@ Item getObjeto4 ();
 void setObjeto4 (Item Objeto4);
 
 Boolean getDisponibilidad ();
-void setDisponibilidad (Boolean Disponibilidad);
+void setDisponibilidad (Boolean disponibilidad);
 
 
 Métodos añadidos:
@@ -44,7 +44,7 @@ public class Tienda implements Cloneable
 	private Item objeto2;
 	private Item objeto3;
 	private Item objeto4;
-	private boolean Disponibilidad;		//Esta variable indica si es posible generar una tienda en la mazmorra. Máximo una por mazmorra.
+	private boolean disponibilidad;		//Esta variable indica si es posible generar una tienda en la mazmorra. Máximo una por mazmorra.
 	
 	//Constructores
 	public Tienda ()
@@ -53,7 +53,7 @@ public class Tienda implements Cloneable
 		objeto2 = new Item ();
 		objeto3 = new Item ();
 		objeto4 = new Item ();
-		Disponibilidad = false;
+		disponibilidad = false;
 	}
 	
 	public Tienda (Tienda tienda)
@@ -62,16 +62,16 @@ public class Tienda implements Cloneable
 		this.objeto2 = tienda.objeto2;
 		this.objeto3 = tienda.objeto3;
 		this.objeto4 = tienda.objeto4;
-		this.Disponibilidad = tienda.Disponibilidad;
+		this.disponibilidad = tienda.disponibilidad;
 	}
 	
-	public Tienda (Item objeto1, Item objeto2, Item objeto3, Item objeto4, boolean Disponibilidad)
+	public Tienda (Item objeto1, Item objeto2, Item objeto3, Item objeto4, boolean disponibilidad)
 	{
 		this.objeto1 = objeto1;
 		this.objeto2 = objeto2;
 		this.objeto3 = objeto3;
 		this.objeto4 = objeto4;
-		this.Disponibilidad = Disponibilidad;
+		this.disponibilidad = disponibilidad;
 	}
 	//Fin Constructores
 	
@@ -118,12 +118,12 @@ public class Tienda implements Cloneable
 	
 	public boolean getDisponibilidad ()
 	{
-		return Disponibilidad;
+		return disponibilidad;
 	}
 	
-	public void setDisponibilidad (boolean Disponibilidad)
+	public void setDisponibilidad (boolean disponibilidad)
 	{
-		this.Disponibilidad = Disponibilidad;
+		this.disponibilidad = disponibilidad;
 	}
 	//Fin Getes y setes
 	

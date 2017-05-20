@@ -48,89 +48,89 @@ import java.util.*;
 public class Enemigo implements Cloneable, Comparable <Enemigo>
 {
 	//Propiedades
-	private String Nombre;
-	private int Vida;
-	private double Dmg;
-	private double Def;
+	private String nombre;
+	private int vida;
+	private double dmg;
+	private double def;
 	private Item dropItem;
 	private int dropDinero;
-	private int Nivel;
+	private int nivel;
 	//Fin Propiedades
 	
 	//Constructores
 	public Enemigo ()
 	{
-		Nombre = "";
-		Vida = 0;
-		Dmg = 0.0;
-		Def = 0.0;
+		nombre = "";
+		vida = 0;
+		dmg = 0.0;
+		def = 0.0;
 		dropItem = new Item ();
 		dropDinero = 0;
-		Nivel = 0;
+		nivel = 0;
 	}
 	
 	public Enemigo (Enemigo enemigo)
 	{
-		this.Nombre = enemigo.Nombre;
-		this.Vida = enemigo.Vida;
-		this.Dmg = enemigo.Dmg;
-		this.Def = enemigo.Def;
+		this.nombre = enemigo.nombre;
+		this.vida = enemigo.vida;
+		this.dmg = enemigo.dmg;
+		this.def = enemigo.def;
 		this.dropItem = enemigo.dropItem;
 		this.dropDinero = enemigo.dropDinero;
-		this.Nivel = enemigo.Nivel;
+		this.nivel = enemigo.nivel;
 	}
 	
-	public Enemigo (String Nombre, int Vida, double Dmg, double Def, Item dropItem, int dropDinero, int Nivel)
+	public Enemigo (String nombre, int vida, double dmg, double def, Item dropItem, int dropDinero, int nivel)
 	{
-		this.Nombre = Nombre;
-		this.Vida = Vida;
-		this.Dmg = Dmg;
-		this.Def = Def;
+		this.nombre = nombre;
+		this.vida = vida;
+		this.dmg = dmg;
+		this.def = def;
 		this.dropItem = dropItem;
 		this.dropDinero = dropDinero;
-		this.Nivel = Nivel;
+		this.nivel = nivel;
 	}
 	//Fin Constructores
 	
 	//Getes y setes
 	public String getNombre ()
 	{
-		return Nombre;
+		return nombre;
 	}
 	
 	public void setNombre (String Nombre)
 	{
-		this.Nombre = Nombre;
+		this.nombre = Nombre;
 	}
 	
 	public int getVida ()
 	{
-		return Vida;
+		return vida;
 	}
 	
-	public void setVida (int Vida)
+	public void setVida (int vida)
 	{
-		this.Vida = Vida;
+		this.vida = vida;
 	}
 	
 	public double getDmg ()
 	{
-		return Dmg;
+		return dmg;
 	}
 	
-	public void setDmg (double Dmg)
+	public void setDmg (double dmg)
 	{
-		this.Dmg = Dmg;
+		this.dmg = dmg;
 	}
 	
 	public double getDef ()
 	{
-		return Def;
+		return def;
 	}
 	
-	public void setDef (double Def)
+	public void setDef (double def)
 	{
-		this.Def = Def;
+		this.def = def;
 	}
 	
 	public Item getDropItem ()
@@ -155,12 +155,12 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>
 	
 	public int getNivel ()
 	{
-		return Nivel;
+		return nivel;
 	}
 	
-	public void setNivel (int Nivel)
+	public void setNivel (int nivel)
 	{
-		this.Nivel = Nivel;
+		this.nivel = nivel;
 	}
 	//Fin Getes y setes
 	
