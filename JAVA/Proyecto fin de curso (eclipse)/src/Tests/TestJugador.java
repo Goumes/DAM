@@ -3,6 +3,7 @@ package Tests;
 import Clases.Arma;
 import Clases.Item;
 import Clases.Jugador;
+import Clases.ObjetoIMPL;
 
 public class TestJugador
 {

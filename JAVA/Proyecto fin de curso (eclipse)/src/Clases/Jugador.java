@@ -68,7 +68,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 	private Item armadura;
 	private Arma armaEquipada;
 	private int oro;
-	/* private Inventario inventario */
+	private ObjetoIMPL [] inventario;
 	
 	//Constructores
 	public Jugador ()
@@ -80,6 +80,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		armadura = new Item ();
 		armaEquipada = new Arma ();
 		oro = 0;
+		inventario = null;
 	}
 	
 	public Jugador (Jugador jugador)
@@ -91,9 +92,10 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		this.armadura = jugador.armadura;
 		this.armaEquipada = jugador.armaEquipada;
 		this.oro = jugador.oro;
+		this.inventario = jugador.inventario;
 	}
 	
-	public Jugador (String nombre, int vida, double baseDmg, double baseDef,Item armadura, Arma armaEquipada, int oro)
+	public Jugador (String nombre, int vida, double baseDmg, double baseDef,Item armadura, Arma armaEquipada, int oro, ObjetoIMPL [] inventario)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
@@ -102,6 +104,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		this.armadura = armadura;
 		this.armaEquipada = armaEquipada;
 		this.oro = oro;
+		this.inventario = inventario;
 	}
 	//Fin Constructores
 	
@@ -175,6 +178,16 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 	{
 		this.oro = oro;
 	}
+	
+	public ObjetoIMPL [] getInventario ()
+	{
+		return inventario;
+	}
+	
+	public void setInventario (ObjetoIMPL [] inventario)
+	{
+		this.inventario = inventario;
+	}
 	//Fin Getes y setes
 	
 	//Metodos Añadidos
@@ -192,7 +205,6 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		return s;
 	}
 	
-	//Criterio de igualdad: baseDmg, baseDef, vida
 	@Override
 	public boolean equals (Object objeto)
 	{
@@ -202,9 +214,14 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		{
 			Jugador jugador = (Jugador) objeto;
 			
-			if (this.getVida () == jugador.getVida ()
+			if (this.getNombre().equals(jugador.getNombre())
+				&& this.getVida () == jugador.getVida ()
 				&& this.getBaseDmg () == jugador.getBaseDmg ()
-				&& this.getBaseDef () == jugador.getBaseDef ())
+				&& this.getBaseDef () == jugador.getBaseDef ()
+				&& this.getArmadura().equals(jugador.getArmadura())
+				&& this.getArmaEquipada().equals(jugador.armaEquipada)
+				&& this.getOro() == jugador.getOro ()
+				&& this.getInventario().equals (jugador.getInventario()))
 			{
 				resultado = true;
 			}
@@ -253,6 +270,32 @@ public class Jugador implements Cloneable, Comparable <Jugador>
 		
 		return (resultado);
 	}
+	
+	/* Prototipo: void addInventario (ObjetoIMPL objeto)
+	 * Breve comentario: Metodo que a�ade un ObjetoIMPL al array inventario
+	 * Precondiciones: Ninguna
+	 * Entradas: Un ObjetoIMPL
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void addInventario (ObjetoIMPL objeto)
+		{
+			System.out.println("Llamada al metodo addInventario");
+		}
+	 */
+	public void addInventario (ObjetoIMPL objeto)
+	{
+		for (int i = 0; i < this.getInventario().length; i++)
+		{
+			if (this.getInventario() [i] == null)
+			{
+				this.getInventario() [i] = objeto;
+			}
+		}
+		
+	}
+	//Fin addInventario
 	
 	//Fin Metodos Añadidos
 }
