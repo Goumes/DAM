@@ -82,7 +82,7 @@ BEGIN
 
 	SELECT @Resultado = COUNT (ID) FROM Palabras
 
-	PRINT 'La tabla tiene ' +CAST (@Resultado AS VARCHAR) + ' filas.'
+	PRINT 'La tabla tiene ' + CAST (@Resultado AS VARCHAR) + ' filas.'
 
 END
 
@@ -98,7 +98,7 @@ BEGIN
 
 	SELECT COUNT (ID) AS NumeroFilas FROM Palabras
 
-	PRINT 'La tabla tiene ' +CAST (@Resultado AS VARCHAR) + ' filas.'
+	PRINT 'La tabla tiene ' + CAST (@Resultado AS VARCHAR) + ' filas.'
 
 END
 
@@ -117,7 +117,14 @@ COMMIT TRANSACTION
 3.-  Cada vez que se inserte una fila queremos que se muestre un mensaje indicando "Insertada la palabra ________”
 */
 --Se usan inserted y deleted. Si es complicado procesar varias filas, supón que se modifica sólo una.
+GO
 
+CREATE TRIGGER palabraInsertada ON Palabras
+AFTER INSERT AS
+
+print ''
+
+GO
 /*
 4.- Cada vez que se inserten filas que nos diga "XX filas insertadas”
 */
