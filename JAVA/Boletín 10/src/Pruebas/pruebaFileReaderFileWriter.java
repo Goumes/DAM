@@ -8,21 +8,27 @@ public class pruebaFileReaderFileWriter
 	{
 		try
 		{
-			FileWriter fw = new FileWriter ("pepejava2.txt");
-			fw.write("Esto es una prueb");
-			fw.write(97);
-			fw.close();
+			String texto = null;
+			FileWriter fw = new FileWriter ("pepejava2.txt", true);
+			BufferedWriter bw = new BufferedWriter (fw);
+			bw.newLine();
+			bw.write("Esto es una prueb");
+			bw.write(97);
+			bw.newLine();
+			bw.write("Esto es una prueba 2");
+			bw.close();
 			
 			FileReader fr = new FileReader ("pepejava2.txt");
-			int valor = fr.read();
+			BufferedReader br = new BufferedReader (fr);
+			texto = br.readLine();
 			
-			while (valor != -1)
+			while (texto != null)
 			{
-				System.out.print((char) valor);
-				valor = fr.read();
+				System.out.println(texto);
+				texto = br.readLine();
 			}
 			
-			fr.close();
+			br.close();
 		}
 		catch (IOException error)
 		{

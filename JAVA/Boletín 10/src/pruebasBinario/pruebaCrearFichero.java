@@ -9,24 +9,63 @@ public class pruebaCrearFichero
 	{
 		String nombreArchivo = "pepejava";
 		File objetoFile = new File (nombreArchivo);
+		ObjectOutputStream oos = null;
+		ObjectInputStream ois = null;
+		FileInputStream fis = null;
+		FileOutputStream fos = null;
 		
 		try
 		{
-			if (objetoFile.createNewFile())
+			fos = new FileOutputStream (nombreArchivo, true);
+			oos = new ObjectOutputStream (fos) 
 			{
-				System.out.println("Se ha creado el objeto");
-			}
+				@Override protected void writeStreamHeader (){}
+			};
 			
-			else
+			fis = new FileInputStream (nombreArchivo);
+			ois = new ObjectInputStream (fis) 
 			{
-				System.out.println("No se ha creado el objeto");
-			}
+				@Override protected void readStreamHeader (){}
+			};
+			
+			ois.readObject();
 		}
 		
+		
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
+		catch (EOFException e)
+		{
+			e.printStackTrace();
+		}
 		catch (IOException error)
 		{
 			System.out.println("fndsjifndasfad: "+error);
 		}
+		
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			if (ois != null)
+			{
+				try 
+				{
+					ois.close();
+				} 
+				catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		
 	}
 }
