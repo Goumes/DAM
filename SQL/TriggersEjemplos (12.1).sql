@@ -119,11 +119,12 @@ COMMIT TRANSACTION
 --Se usan inserted y deleted. Si es complicado procesar varias filas, supón que se modifica sólo una.
 GO
 
-ALTER TRIGGER palabraInsertada ON Palabras
+CREATE TRIGGER palabraInsertada ON Palabras
 AFTER INSERT AS
 BEGIN
 	DECLARE @PalabraInsertada VARCHAR (30)
-	DECLARE cursorInserted CURSOR FOR SELECT Palabra FROM inserted 
+	DECLARE cursorInserted CURSOR FOR SELECT Palabra FROM inserted
+	DECLARE @PalabraImprimir VARCHAR (30) 
 	OPEN cursorInserted
 	FETCH NEXT FROM cursorInserted INTO @PalabraInsertada
 
@@ -131,7 +132,8 @@ BEGIN
 	BEGIN
 		WHILE (@@FETCH_STATUS = 0)
 		BEGIN
-			PRINT 'Insertada la palabra ' + (SELECT Palabra FROM inserted)
+			SELECT @PalabraImprimir = Palabra FROM inserted
+			PRINT 'Insertada la palabra ' + @Palabraimprimir
 			FETCH NEXT FROM cursorInserted INTO @PalabraInsertada
 		END
 		CLOSE cursorInserted
