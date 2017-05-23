@@ -119,20 +119,71 @@ COMMIT TRANSACTION
 --Se usan inserted y deleted. Si es complicado procesar varias filas, supón que se modifica sólo una.
 GO
 
-CREATE TRIGGER palabraInsertada ON Palabras
+ALTER TRIGGER palabraInsertada ON Palabras
 AFTER INSERT AS
+BEGIN
+	DECLARE @PalabraInsertada VARCHAR (30)
+	DECLARE cursorInserted CURSOR FOR SELECT Palabra FROM inserted 
+	OPEN cursorInserted
+	FETCH NEXT FROM cursorInserted INTO @PalabraInsertada
 
-print ''
-
+	IF EXISTS(SELECT * FROM inserted)
+	BEGIN
+		WHILE (@@FETCH_STATUS = 0)
+		BEGIN
+			PRINT 'Insertada la palabra ' + (SELECT Palabra FROM inserted)
+			FETCH NEXT FROM cursorInserted INTO @PalabraInsertada
+		END
+		CLOSE cursorInserted
+		DEALLOCATE cursorInserted
+	END
+END
 GO
+
+BEGIN TRANSACTION
+
+INSERT INTO Palabras (Palabra)
+VALUES ('Prueba1'),
+       ('Prueba2')
+
+--ROLLBACK
+COMMIT TRANSACTION
 /*
 4.- Cada vez que se inserten filas que nos diga "XX filas insertadas”
 */
+GO
+
+CREATE TRIGGER numeroFilas2 ON Palabras
+AFTER INSERT AS
+BEGIN
+	DECLARE @numero INT
+	SELECT @Numero = COUNT (ID)
+		FROM inserted
+
+	PRINT CAST (@Numero AS VARCHAR) + ' filas insertadas'
+END
+
+BEGIN TRANSACTION
+
+INSERT INTO Palabras (Palabra)
+VALUES ('Prueba3'),
+       ('Prueba4')
+
+--ROLLBACK
+COMMIT TRANSACTION
 
 /*
-5.- que no permita introducir palabras repetidas (sin usar UNIQUE).
+5.- Que no permita introducir palabras repetidas (sin usar UNIQUE).
 */
+GO
 
+CREATE TRIGGER palabrasRepetidas ON Palabras
+AFTER INSERT AS
+BEGIN
+	
+END
+
+GO
 -- Sobre LEO METRO
 /*
 6.- Comprueba que un pasajero no pueda entrar o salir por la misma estación más de tres
