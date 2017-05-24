@@ -1,0 +1,36 @@
+El primer diseño que voy a plantear es el que voy a implementar:
+
+Cuatro clases y el main, una UnidadSalida, una Pantalla, Fecha y la gestora.
+
+La UnidadSalida tendrá las siguientes propiedades:
+
+- identificador		tipo int
+- nombreFabricante	tipo String
+- numeroSerie		tipo int
+- unidades			tipo int
+- precio			tipo double
+
+La clase Pantalla tendrá:
+
+- Todos los atributos de unidadSalida
+- resolucion		tipo int
+- tipoTecnologia 	tipo enum
+- fecha				tipo Fecha (implementada por mi)
+
+Pantalla heredará de unidadSalida puesto que comparten todos los atributos de esta.
+
+Habrá una gestora para tratar con los archivos binarios e implementar las funcionalidades 
+de este programa.
+
+
+
+El segundo diseño, el cual no voy a implementar puesto que el primero al incluir herencia y tener
+mi propia clase Fecha me parece más eficiente, es el siguiente:
+
+Tres clases y el main.
+
+UnidadSalida tendrá lo mismo que en el diseño 1, y en clase pantalla no utilizaremos herencia. En
+vez de la clase fecha utilizaremos gregorianCalendar, ya implementada por Java y trabajaremos con
+archivos de texto.
+
+En la segunda pregunta, el diseño de clases y pseudocódigo del main están escritos en sus respectivas clases.
