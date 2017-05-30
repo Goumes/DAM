@@ -34,38 +34,37 @@ Restricciones:
 package Clases;
 
 import java.util.*;
-import java.lang.*;
 public class Habitacion
 {
 	private Tienda shop;
 	private Enemigo enemy;
 	//private Cofre chest;
-	private char Entrada;
-	private char Salida;
+	private char entrada;
+	private char salida;
 	
 	//Constructores
 	public Habitacion ()
 	{
 		shop = new Tienda ();
 		enemy = new Enemigo ();
-		Entrada = ' ';
-		Salida = ' ';
+		entrada = ' ';
+		salida = ' ';
 	}
 	
 	public Habitacion (Habitacion habitacion)
 	{
 		this.shop = habitacion.shop;
 		this.enemy = habitacion.enemy;
-		this.Entrada = habitacion.Entrada;
-		this.Salida = habitacion.Salida;
+		this.entrada = habitacion.entrada;
+		this.salida = habitacion.salida;
 	}
 	
-	public Habitacion (Tienda shop, Enemigo enemy, char Entrada, char Salida)
+	public Habitacion (Tienda shop, Enemigo enemy, char entrada, char salida)
 	{
 		this.shop = shop;
 		this.enemy = enemy;
-		this.Entrada = Entrada;
-		this.Salida = Salida;
+		this.entrada = entrada;
+		this.salida = salida;
 	}
 	//Fin Constructores
 	
@@ -92,22 +91,22 @@ public class Habitacion
 	
 	public char getEntrada ()
 	{
-		return Entrada;
+		return entrada;
 	}
 	
 	public void setEntrada (char Entrada)
 	{
-		this.Entrada = Entrada;
+		this.entrada = Entrada;
 	}
 	
 	public char getSalida ()
 	{
-		return Salida;
+		return salida;
 	}
 	
 	public void setSalida (char Salida)
 	{
-		this.Salida = Salida;
+		this.salida = Salida;
 	}
 	//Fin Getters y setters
 	
@@ -133,8 +132,8 @@ public class Habitacion
 		{
 			Habitacion habitacion = (Habitacion) objeto;
 			
-			if (this.getShop () == habitacion.getShop ()
-				&& this.getEnemy () == habitacion.getEnemy ()
+			if (this.getShop ().equals(habitacion.getShop ())
+				&& this.getEnemy ().equals(habitacion.getEnemy ())
 				&& this.getEntrada () == habitacion.getEntrada ()
 				&& this.getSalida () == habitacion.getSalida ())
 			{

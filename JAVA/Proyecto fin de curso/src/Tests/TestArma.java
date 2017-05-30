@@ -8,7 +8,7 @@ public class TestArma
 	{
 		Arma riflePulsos = new Arma ("Rifle de pulsos", 45.5, 100);
 		Arma cuchilloCombate = new Arma ("Cuchillo de combate", 30.0, 40);
-		Arma riflePulsos2;
+		Arma riflePulsos2 = new Arma ();
 		
 		//Getes setes y toString
 		System.out.println("Getes, setes y toString: ");
@@ -25,7 +25,7 @@ public class TestArma
 		//clone
 		System.out.println("---------------");
 		System.out.println("Clone:");
-		riflePulsos2 = riflePulsos.clone ();
+		//riflePulsos2 = riflePulsos.clone ();
 		System.out.println(riflePulsos2);
 		System.out.println("---------------");
 		//Fin clone

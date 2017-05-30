@@ -3,6 +3,7 @@ package Tests;
 import Clases.Arma;
 import Clases.Item;
 import Clases.Jugador;
+import Clases.ObjetoIMPL;
 
 public class TestJugador
 {
@@ -10,9 +11,10 @@ public class TestJugador
 	{
 		Arma pistola = new Arma ("Rifle de pulsos", 45.5, 100);
 		Item armadura = new Item ("Casco de hierro", 70, 0.0, 20.0, 0.0, "Un casco de hierro que aumenta la defensa en 20 puntos");
-		Jugador pepejava = new Jugador ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0);
-		Jugador pepejava2 = new Jugador ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0);
-		Jugador estoNoEsUnaCopiaDeIsaac = new Jugador ("EstoNoEsUnaCopiaDeIsaac", 3, 3.5, 0.0, armadura, pistola, 0);
+		ObjetoIMPL inventario [] = null;
+		Jugador pepejava = new Jugador ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
+		Jugador pepejava2 = new Jugador ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
+		Jugador estoNoEsUnaCopiaDeIsaac = new Jugador ("EstoNoEsUnaCopiaDeIsaac", 3, 3.5, 0.0, armadura, pistola, 0, inventario);
 		Jugador pepejava3;
 		
 		
