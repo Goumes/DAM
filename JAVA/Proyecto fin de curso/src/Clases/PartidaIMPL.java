@@ -71,149 +71,149 @@ public class PartidaIMPL implements Cloneable, Serializable
 		return jugador.getNombre();
 	}
 
-	public void setNombre(String nombre) 
+	public void setJugadorNombre(String nombre) 
 	{
 		jugador.setNombre(nombre);
 	}
 
-	public int getVida() 
+	public int getJugadorVida() 
 	{
 		return jugador.getVida();
 	}
 
-	public void setVida(int vida) 
+	public void setJugadorVida(int vida) 
 	{
 		jugador.setVida(vida);
 	}
 
-	public double getBaseDmg() 
+	public double getJugadorBaseDmg() 
 	{
 		return jugador.getBaseDmg();
 	}
 
-	public void setBaseDmg(double baseDmg) 
+	public void setJugadorBaseDmg(double baseDmg) 
 	{
 		jugador.setBaseDmg(baseDmg);
 	}
 
-	public double getBaseDef() 
+	public double getJugadorBaseDef() 
 	{
 		return jugador.getBaseDef();
 	}
 
-	public void setBaseDef(double baseDef) 
+	public void setJugadorBaseDef(double baseDef) 
 	{
 		jugador.setBaseDef(baseDef);
 	}
 
-	public ItemIMPL getArmadura() 
+	public ItemIMPL getJugadorArmadura() 
 	{
 		return jugador.getArmadura();
 	}
 
-	public void setArmadura(ItemIMPL armadura) 
+	public void setJugadorArmadura(ItemIMPL armadura) 
 	{
 		jugador.setArmadura(armadura);
 	}
 
-	public ArmaIMPL getArmaEquipada() 
+	public ArmaIMPL getJugadorArmaEquipada() 
 	{
 		return jugador.getArmaEquipada();
 	}
 
-	public void setArmaEquipada(ArmaIMPL armaEquipada) 
+	public void setJugadorArmaEquipada(ArmaIMPL armaEquipada) 
 	{
 		jugador.setArmaEquipada(armaEquipada);
 	}
 
-	public int getOro() 
+	public int getJugadorOro() 
 	{
 		return jugador.getOro();
 	}
 
-	public void setOro(int oro) 
+	public void setJugadorOro(int oro) 
 	{
 		jugador.setOro(oro);
 	}
 
-	public ObjetoIMPL[] getInventario() 
+	public ObjetoIMPL[] getJugadorInventario() 
 	{
 		return jugador.getInventario();
 	}
 
-	public void setInventario(ObjetoIMPL[] inventario) 
+	public void setJugadorInventario(ObjetoIMPL[] inventario) 
 	{
 		jugador.setInventario(inventario);
 	}
 
-	public double getModificadorDmg() 
+	public double getJugadorModificadorDmg() 
 	{
-		return jugador.getModificadorDmg();
+		return jugador.getArmaduraModificadorDmg();
 	}
 
-	public void setModificadorDmg(double modificadorDmg) 
+	public void setJugadorModificadorDmg(double modificadorDmg) 
 	{
-		jugador.setModificadorDmg(modificadorDmg);
+		jugador.setArmaduraModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef() 
+	public double getJugadorModificadorDef() 
 	{
-		return jugador.getModificadorDef();
+		return jugador.getArmaduraModificadorDef();
 	}
 
-	public void setModificadorDef(double modificadorDef) 
+	public void setJugadorModificadorDef(double modificadorDef) 
 	{
-		jugador.setModificadorDef(modificadorDef);
+		jugador.setArmaduraModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion() 
+	public double getJugadorDuracion() 
 	{
-		return jugador.getDuracion();
+		return jugador.getArmaduraDuracion();
 	}
 
-	public void setDuracion(double duracion) 
+	public void setJugadorDuracion(double duracion) 
 	{
-		jugador.setDuracion(duracion);
+		jugador.setArmaduraDuracion(duracion);
 	}
 
-	public String getEfecto() 
+	public String getJugadorEfecto() 
 	{
-		return jugador.getEfecto();
+		return jugador.getArmaduraEfecto();
 	}
 
-	public void setEfecto(String efecto) 
+	public void setJugadorEfecto(String efecto) 
 	{
-		jugador.setEfecto(efecto);
+		jugador.setArmaduraEfecto(efecto);
 	}
 
-	public double getPrecioArmadura() 
+	public double getJugadorArmaduraPrecio() 
 	{
-		return jugador.getPrecioArmadura();
+		return jugador.getArmaduraPrecio();
 	}
 
-	public void setPrecioArmadura(double precio) 
+	public void setJugadorArmaduraPrecio(double precio) 
 	{
-		jugador.setPrecioArmadura(precio);
+		jugador.setArmaduraPrecio(precio);
 	}
 
-	public double getDmg() 
+	public double getJugadorDmg() 
 	{
-		return jugador.getDmg();
+		return jugador.getBaseDmg();
 	}
 
-	public void setDmg(double dmg) 
+	public void setJugadorDmg(double dmg) 
 	{
-		jugador.setDmg(dmg);
+		jugador.setBaseDmg(dmg);
 	}
 
-	public double getPrecioArma() 
+	public double getJugadorArmaPrecio() 
 	{
-		return jugador.getPrecioArma();
+		return jugador.getArmaEquipadaPrecio();
 	}
 
-	public void setPrecioArma(double precio) 
+	public void setJugadorArmaPrecio(double precio) 
 	{
-		jugador.setPrecioArma(precio);
+		jugador.setArmaEquipadaPrecio(precio);
 	}
 	//Fin Getters y setters
 	

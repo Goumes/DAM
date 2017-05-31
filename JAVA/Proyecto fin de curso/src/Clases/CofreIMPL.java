@@ -62,12 +62,12 @@ public class CofreIMPL implements Serializable, Cofre
 		drop.setNombre(nombre);
 	}
 
-	public double getPrecio() 
+	public double getDropPrecio() 
 	{
 		return drop.getPrecio();
 	}
 
-	public void setPrecio(double precio) 
+	public void setDropPrecio(double precio) 
 	{
 		drop.setPrecio(precio);
 	}

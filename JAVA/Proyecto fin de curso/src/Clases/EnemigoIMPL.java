@@ -124,52 +124,52 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		this.nivel = nivel;
 	}
 	
-	public double getPrecio() 
+	public double getDropItemPrecio() 
 	{
 		return dropItem.getPrecio();
 	}
 
-	public void setPrecio(double precio) 
+	public void setDropItemPrecio(double precio) 
 	{
 		dropItem.setPrecio(precio);
 	}
 
-	public double getModificadorDmg() 
+	public double getDropItemModificadorDmg() 
 	{
 		return dropItem.getModificadorDmg();
 	}
 
-	public void setModificadorDmg(double modificadorDmg) 
+	public void setDropItemModificadorDmg(double modificadorDmg) 
 	{
 		dropItem.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef() 
+	public double getDropItemModificadorDef() 
 	{
 		return dropItem.getModificadorDef();
 	}
 
-	public void setModificadorDef(double modificadorDef) 
+	public void setDropItemModificadorDef(double modificadorDef) 
 	{
 		dropItem.setModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion() 
+	public double getDropItemDuracion() 
 	{
 		return dropItem.getDuracion();
 	}
 
-	public void setDuracion(double duracion) 
+	public void setDropItemDuracion(double duracion) 
 	{
 		dropItem.setDuracion(duracion);
 	}
 
-	public String getEfecto() 
+	public String getDropItemEfecto() 
 	{
 		return dropItem.getEfecto();
 	}
 
-	public void setEfecto(String efecto) 
+	public void setDropItemEfecto(String efecto) 
 	{
 		dropItem.setEfecto(efecto);
 	}

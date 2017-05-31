@@ -192,72 +192,72 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	}
 	
 
-	public double getModificadorDmg() 
+	public double getArmaduraModificadorDmg() 
 	{
 		return armadura.getModificadorDmg();
 	}
 
-	public void setModificadorDmg(double modificadorDmg) 
+	public void setArmaduraModificadorDmg(double modificadorDmg) 
 	{
 		armadura.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef() 
+	public double getArmaduraModificadorDef() 
 	{
 		return armadura.getModificadorDef();
 	}
 
-	public void setModificadorDef(double modificadorDef) 
+	public void setArmaduraModificadorDef(double modificadorDef) 
 	{
 		armadura.setModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion() 
+	public double getArmaduraDuracion() 
 	{
 		return armadura.getDuracion();
 	}
 
-	public void setDuracion(double duracion) 
+	public void setArmaduraDuracion(double duracion) 
 	{
 		armadura.setDuracion(duracion);
 	}
 
-	public String getEfecto() 
+	public String getArmaduraEfecto() 
 	{
 		return armadura.getEfecto();
 	}
 
-	public void setEfecto(String efecto) 
+	public void setArmaduraEfecto(String efecto) 
 	{
 		armadura.setEfecto(efecto);
 	}
 	
-	public double getPrecioArmadura ()
+	public double getArmaduraPrecio ()
 	{
 		return armadura.getPrecio();
 	}
 	
-	public void setPrecioArmadura (double precio)
+	public void setArmaduraPrecio (double precio)
 	{
 		armadura.setPrecio(precio);
 	}
 
-	public double getDmg() 
+	public double getArmaEquipadaDmg() 
 	{
 		return armaEquipada.getDmg();
 	}
 
-	public void setDmg(double dmg) 
+	public void setArmaEquipadaDmg(double dmg) 
 	{
 		armaEquipada.setDmg(dmg);
 	}
 	
-	public double getPrecioArma ()
+	public double getArmaEquipadaPrecio ()
 	{
 		return armaEquipada.getPrecio();
 	}
 	
-	public void setPrecioArma (double precio)
+	public void setArmaEquipadaPrecio (double precio)
 	{
 		armaEquipada.setPrecio(precio);
 	}

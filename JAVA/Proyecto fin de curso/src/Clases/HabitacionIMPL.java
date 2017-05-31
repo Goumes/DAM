@@ -95,72 +95,72 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.salida = Salida;
 	}
 	
-	public ItemIMPL getObjeto1() 
+	public ItemIMPL getShopObjeto1() 
 	{
 		return shop.getObjeto1();
 	}
 
-	public void setObjeto1(ItemIMPL objeto1) 
+	public void setShopObjeto1(ItemIMPL objeto1) 
 	{
 		shop.setObjeto1(objeto1);
 	}
 
-	public ItemIMPL getObjeto2() 
+	public ItemIMPL getShopObjeto2() 
 	{
 		return shop.getObjeto2();
 	}
 
-	public void setObjeto2(ItemIMPL objeto2) 
+	public void setShopObjeto2(ItemIMPL objeto2) 
 	{
 		shop.setObjeto2(objeto2);
 	}
 
-	public ItemIMPL getObjeto3() 
+	public ItemIMPL getShopObjeto3() 
 	{
 		return shop.getObjeto3();
 	}
 
-	public void setObjeto3(ItemIMPL objeto3) 
+	public void setShopObjeto3(ItemIMPL objeto3) 
 	{
 		shop.setObjeto3(objeto3);
 	}
 
-	public ItemIMPL getObjeto4() 
+	public ItemIMPL getShopObjeto4() 
 	{
 		return shop.getObjeto4();
 	}
 
-	public void setObjeto4(ItemIMPL objeto4) 
+	public void setShopObjeto4(ItemIMPL objeto4) 
 	{
 		shop.setObjeto4(objeto4);
 	}
 
-	public boolean getDisponibilidad() 
+	public boolean getShopDisponibilidad() 
 	{
 		return shop.getDisponibilidad();
 	}
 
-	public void setDisponibilidad(boolean disponibilidad) 
+	public void setShopDisponibilidad(boolean disponibilidad) 
 	{
 		shop.setDisponibilidad(disponibilidad);
 	}
 
-	public double getDmg() 
+	public double getEnemyDmg() 
 	{
 		return enemy.getDmg();
 	}
 
-	public void setDmg(double dmg) 
+	public void setEnemyDmg(double dmg) 
 	{
 		enemy.setDmg(dmg);
 	}
 
-	public double getDef() 
+	public double getEnemyDef() 
 	{
 		return enemy.getDef();
 	}
 
-	public void setDef(double def) 
+	public void setEnemyDef(double def) 
 	{
 		enemy.setDef(def);
 	}
@@ -197,82 +197,82 @@ public class HabitacionIMPL implements Serializable, Habitacion
 
 	public double getModificadorDmg() 
 	{
-		return enemy.getModificadorDmg();
+		return enemy.getDropItemModificadorDmg();
 	}
 
 	public void setModificadorDmg(double modificadorDmg) 
 	{
-		enemy.setModificadorDmg(modificadorDmg);
+		enemy.setDropItemModificadorDmg(modificadorDmg);
 	}
 
 	public double getModificadorDef() 
 	{
-		return enemy.getModificadorDef();
+		return enemy.getDropItemModificadorDef();
 	}
 
 	public void setModificadorDef(double modificadorDef) 
 	{
-		enemy.setModificadorDef(modificadorDef);
+		enemy.setDropItemModificadorDef(modificadorDef);
 	}
 
 	public double getDuracion() 
 	{
-		return enemy.getDuracion();
+		return enemy.getDropItemDuracion();
 	}
 
 	public void setDuracion(double duracion) 
 	{
-		enemy.setDuracion(duracion);
+		enemy.setDropItemDuracion(duracion);
 	}
 
 	public String getEfecto() 
 	{
-		return enemy.getEfecto();
+		return enemy.getDropItemEfecto();
 	}
 
 	public void setEfecto(String efecto) 
 	{
-		enemy.setEfecto(efecto);
+		enemy.setDropItemEfecto(efecto);
 	}
 
-	public double getValor() 
+	public double getCofreValor() 
 	{
 		return cofre.getValor();
 	}
 
-	public void setValor(double valor) 
+	public void setCofreValor(double valor) 
 	{
 		cofre.setValor(valor);
 	}
 
-	public ObjetoIMPL getDrop() 
+	public ObjetoIMPL getCofreDrop() 
 	{
 		return cofre.getDrop();
 	}
 
-	public void setDrop(ObjetoIMPL drop) 
+	public void setCofreDrop(ObjetoIMPL drop) 
 	{
 		cofre.setDrop(drop);
 	}
 
-	public String getNombre() 
+	public String getCofreNombre() 
 	{
 		return cofre.getNombre();
 	}
 
-	public void setNombre(String nombre) 
+	public void setCofreNombre(String nombre) 
 	{
 		cofre.setNombre(nombre);
 	}
 
-	public double getPrecio() 
+	public double getCofrePrecio() 
 	{
-		return cofre.getPrecio();
+		return cofre.getDropPrecio();
 	}
 
-	public void setPrecio(double precio) 
+	public void setCofrePrecio(double precio) 
 	{
-		cofre.setPrecio(precio);
+		cofre.setDropPrecio(precio);
 	}
 	//Fin Getters y setters
 	

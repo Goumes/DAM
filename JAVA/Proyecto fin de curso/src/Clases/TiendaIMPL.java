@@ -128,245 +128,247 @@ public class TiendaIMPL implements Cloneable, Serializable
 		this.disponibilidad = disponibilidad;
 	}
 	
-	public String getNombre1() 
+	
+	public String getObjeto1Nombre() 
 	{
 		return objeto1.getNombre();
 	}
 
-	public void setNombre1(String nombre) 
+	public void setObjeto1Nombre(String nombre) 
 	{
 		objeto1.setNombre(nombre);
 	}
 
-	public double getPrecio1() 
+	public double getObjeto1Precio() 
 	{
 		return objeto1.getPrecio();
 	}
 
-	public void setPrecio1(double precio) 
+	public void setObjeto1Precio(double precio) 
 	{
 		objeto1.setPrecio(precio);
 	}
 
-	public double getModificadorDmg1() 
+	public double getObjeto1ModificadorDmg() 
 	{
 		return objeto1.getModificadorDmg();
 	}
 
-	public void setModificadorDmg1(double modificadorDmg) 
+	public void setObjeto1ModificadorDmg(double modificadorDmg) 
 	{
 		objeto1.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef1() 
+	public double getObjeto1ModificadorDef() 
 	{
 		return objeto1.getModificadorDef();
 	}
 
-	public void setModificadorDef1(double modificadorDef) 
+	public void setObjeto1ModificadorDef(double modificadorDef) 
 	{
 		objeto1.setModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion1() 
+	public double getObjeto1Duracion() 
 	{
 		return objeto1.getDuracion();
 	}
 
-	public void setDuracion1(double duracion) 
+	public void setObjeto1Duracion(double duracion) 
 	{
 		objeto1.setDuracion(duracion);
 	}
 
-	public String getEfecto1() 
+	public String getObjeto1Efecto() 
 	{
 		return objeto1.getEfecto();
 	}
 
-	public void setEfecto1(String efecto) 
+	public void setObjeto1Efecto(String efecto) 
 	{
 		objeto1.setEfecto(efecto);
 	}
 	
-	public String getNombre2() 
+	public String getObjeto2Nombre() 
 	{
-		return objeto1.getNombre();
+		return objeto2.getNombre();
 	}
 
-	public void setNombre2(String nombre) 
+	public void setObjeto2Nombre(String nombre) 
 	{
-		objeto1.setNombre(nombre);
+		objeto2.setNombre(nombre);
 	}
 
-	public double getPrecio2() 
+	public double getObjeto2Precio() 
 	{
-		return objeto1.getPrecio();
+		return objeto2.getPrecio();
 	}
 
-	public void setPrecio2(double precio) 
+	public void setObjeto2Precio(double precio) 
 	{
-		objeto1.setPrecio(precio);
+		objeto2.setPrecio(precio);
 	}
 
-	public double getModificadorDmg2() 
+	public double getObjeto2ModificadorDmg() 
 	{
-		return objeto1.getModificadorDmg();
+		return objeto2.getModificadorDmg();
 	}
 
-	public void setModificadorDmg2(double modificadorDmg) 
+	public void setObjeto2ModificadorDmg(double modificadorDmg) 
 	{
-		objeto1.setModificadorDmg(modificadorDmg);
+		objeto2.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef2() 
+	public double getObjeto2ModificadorDef() 
 	{
-		return objeto1.getModificadorDef();
+		return objeto2.getModificadorDef();
 	}
 
-	public void setModificadorDef2(double modificadorDef) 
+	public void setObjeto2ModificadorDef(double modificadorDef) 
 	{
-		objeto1.setModificadorDef(modificadorDef);
+		objeto2.setModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion2() 
+	public double getObjeto2Duracion() 
 	{
-		return objeto1.getDuracion();
+		return objeto2.getDuracion();
 	}
 
-	public void setDuracion2(double duracion) 
+	public void setObjeto2Duracion(double duracion) 
 	{
-		objeto1.setDuracion(duracion);
+		objeto2.setDuracion(duracion);
 	}
 
-	public String getEfecto2() 
+	public String getObjeto2Efecto() 
 	{
-		return objeto1.getEfecto();
+		return objeto2.getEfecto();
 	}
 
-	public void setEfecto2(String efecto) 
+	public void setObjeto2Efecto(String efecto) 
 	{
-		objeto1.setEfecto(efecto);
+		objeto2.setEfecto(efecto);
 	}
 	
-	public String getNombre3() 
+	public String getObjeto3Nombre() 
 	{
-		return objeto1.getNombre();
+		return objeto3.getNombre();
 	}
 
-	public void setNombre3(String nombre) 
+	public void setObjeto3Nombre(String nombre) 
 	{
-		objeto1.setNombre(nombre);
+		objeto3.setNombre(nombre);
 	}
 
-	public double getPrecio3() 
+	public double getObjeto3Precio() 
 	{
-		return objeto1.getPrecio();
+		return objeto3.getPrecio();
 	}
 
-	public void setPrecio3(double precio) 
+	public void setObjeto3Precio(double precio) 
 	{
-		objeto1.setPrecio(precio);
+		objeto3.setPrecio(precio);
 	}
 
-	public double getModificadorDmg3() 
+	public double getObjeto3ModificadorDmg() 
 	{
-		return objeto1.getModificadorDmg();
+		return objeto3.getModificadorDmg();
 	}
 
-	public void setModificadorDmg3(double modificadorDmg) 
+	public void setObjeto3ModificadorDmg(double modificadorDmg) 
 	{
-		objeto1.setModificadorDmg(modificadorDmg);
+		objeto3.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef3() 
+	public double getObjeto3ModificadorDef() 
 	{
-		return objeto1.getModificadorDef();
+		return objeto3.getModificadorDef();
 	}
 
-	public void setModificadorDef3(double modificadorDef) 
+	public void setObjeto3ModificadorDef(double modificadorDef) 
 	{
-		objeto1.setModificadorDef(modificadorDef);
+		objeto3.setModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion3() 
+	public double getObjeto3Duracion() 
 	{
-		return objeto1.getDuracion();
+		return objeto3.getDuracion();
 	}
 
-	public void setDuracion3(double duracion) 
+	public void setObjeto3Duracion(double duracion) 
 	{
-		objeto1.setDuracion(duracion);
+		objeto3.setDuracion(duracion);
 	}
 
-	public String getEfecto3() 
+	public String getObjeto3Efecto() 
 	{
-		return objeto1.getEfecto();
+		return objeto3.getEfecto();
 	}
 
-	public void setEfecto3(String efecto) 
+	public void setObjeto3Efecto(String efecto) 
 	{
-		objeto1.setEfecto(efecto);
+		objeto3.setEfecto(efecto);
 	}
 	
-	public String getNombre4() 
+	public String getObjeto4Nombre() 
 	{
-		return objeto1.getNombre();
+		return objeto4.getNombre();
 	}
 
-	public void setNombre4(String nombre) 
+	public void setObjeto4Nombre(String nombre) 
 	{
-		objeto1.setNombre(nombre);
+		objeto4.setNombre(nombre);
 	}
 
-	public double getPrecio4() 
+	public double getObjeto4Precio() 
 	{
-		return objeto1.getPrecio();
+		return objeto4.getPrecio();
 	}
 
-	public void setPrecio4(double precio) 
+	public void setObjeto4Precio(double precio) 
 	{
-		objeto1.setPrecio(precio);
+		objeto4.setPrecio(precio);
 	}
 
-	public double getModificadorDmg4() 
+	public double getObjeto4ModificadorDmg() 
 	{
-		return objeto1.getModificadorDmg();
+		return objeto4.getModificadorDmg();
 	}
 
-	public void setModificadorDmg4(double modificadorDmg) 
+	public void setObjeto4ModificadorDmg(double modificadorDmg) 
 	{
-		objeto1.setModificadorDmg(modificadorDmg);
+		objeto4.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef4() 
+	public double getObjeto4ModificadorDef() 
 	{
-		return objeto1.getModificadorDef();
+		return objeto4.getModificadorDef();
 	}
 
-	public void setModificadorDef4(double modificadorDef) 
+	public void setObjeto4ModificadorDef(double modificadorDef) 
 	{
-		objeto1.setModificadorDef(modificadorDef);
+		objeto4.setModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion4() 
+	public double getObjeto4Duracion() 
 	{
-		return objeto1.getDuracion();
+		return objeto4.getDuracion();
 	}
 
-	public void setDuracion4(double duracion) 
+	public void setObjeto4Duracion(double duracion) 
 	{
-		objeto1.setDuracion(duracion);
+		objeto4.setDuracion(duracion);
 	}
 
-	public String getEfecto4() 
+	public String getObjeto4Efecto() 
 	{
-		return objeto1.getEfecto();
+		return objeto4.getEfecto();
 	}
 
-	public void setEfecto4(String efecto) 
+	public void setObjeto4Efecto(String efecto) 
 	{
-		objeto1.setEfecto(efecto);
+		objeto4.setEfecto(efecto);
 	}
+	
 	
 	//Fin Getes y setes
 	
