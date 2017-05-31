@@ -63,7 +63,14 @@ public class MainJuego
 	public static void printPartidas (Partida partida1, Partida partida2, Partida partida3)
 	{
 		System.out.println("Seleccione una partida:");
-		System.out.println("Partida 1: "+partida1.toString());
+		if (partida1.equals(null))
+		{
+			System.out.println("Partida 1: Crear nueva partida");
+		}
+		else
+		{
+			System.out.println("Partida 1: "+partida1.toString());
+		}
 		System.out.println("Partida 2: "+partida2.toString());
 		System.out.println("Partida 3: "+partida3.toString ());
 	}
@@ -79,6 +86,8 @@ public class MainJuego
 		Partida partida3 = new Partida ();
 		Partida partidaDefinitiva = new Partida ();
 		GestoraJuego gestora = new GestoraJuego ();
+		Mazmorra mazmorra = new Mazmorra ();
+		Jugador jugador = new Jugador ();
 		
 		//LeerValidarJugar
 		do
@@ -122,6 +131,7 @@ public class MainJuego
 					//Fin CrearPersonaje
 					
 					//GuardarPartida *
+					gestora.guardarPartida(mazmorra, jugador);
 					//Fin GuardarPartida
 				
 				}//fin_si
