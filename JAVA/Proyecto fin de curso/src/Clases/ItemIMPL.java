@@ -43,7 +43,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 
-public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable
+public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable
 {
 	private static final long serialVersionUID = -1109388286406543710L;
 	private double modificadorDmg;
@@ -52,7 +52,7 @@ public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 	private String efecto;
 	
 	//Constructores
-	public Item ()
+	public ItemIMPL ()
 	{
 		modificadorDmg = 0.0;
 		modificadorDef = 0.0;
@@ -60,7 +60,7 @@ public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 		efecto = "";
 	}
 	
-	public Item (Item item)
+	public ItemIMPL (ItemIMPL item)
 	{
 		this.modificadorDmg = item.modificadorDmg;
 		this.modificadorDef = item.modificadorDef;
@@ -68,7 +68,7 @@ public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 		this.efecto = item.efecto;
 	}
 	
-	public Item (String Nombre, int Valor, double modificadorDmg, double modificadorDef, double duracion, String efecto)
+	public ItemIMPL (String Nombre, int Valor, double modificadorDmg, double modificadorDef, double duracion, String efecto)
 	{
 		this.modificadorDmg = modificadorDmg;
 		this.modificadorDef = modificadorDef;
@@ -136,9 +136,9 @@ public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 	{
 		boolean resultado = false;
 		
-		if (objeto != null && objeto instanceof Item)
+		if (objeto != null && objeto instanceof ItemIMPL)
 		{
-			Item item = (Item) objeto;
+			ItemIMPL item = (ItemIMPL) objeto;
 			
 			if (super.equals(objeto)
 				&& this.getModificadorDmg () == item.getModificadorDmg ()
@@ -163,7 +163,7 @@ public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 	}
 	
 	//Criterio de comparacion: Valor del item
-	public int compareTo (Item item)
+	public int compareTo (ItemIMPL item)
 	{
 		int resultado = 0;
 		

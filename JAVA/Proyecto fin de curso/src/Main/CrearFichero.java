@@ -2,12 +2,12 @@ package Main;
 
 import java.util.*;
 
-import Clases.Arma;
-import Clases.Item;
-import Clases.Jugador;
-import Clases.Mazmorra;
+import Clases.ArmaIMPL;
+import Clases.ItemIMPL;
+import Clases.JugadorIMPL;
+import Clases.MazmorraIMPL;
 import Clases.ObjetoIMPL;
-import Clases.Partida;
+import Clases.PartidaIMPL;
 
 import java.io.*;
 
@@ -35,9 +35,9 @@ public class CrearFichero
 				@Override protected void writeStreamHeader () {}
 			};
 			
-			oos.writeObject(new Partida (new Mazmorra (), new Jugador ()));
-			oos.writeObject(new Partida (new Mazmorra (), new Jugador ("pepejavaSlayer", 450, 10.0, 10.0,new Item (), new Arma (), 100, new ObjetoIMPL [] {})));
-			oos.writeObject(new Partida (new Mazmorra (), new Jugador ("XxnoScoper360xX", 550, 12.0, 12.0,new Item (), new Arma (), 100, new ObjetoIMPL [] {})));
+			oos.writeObject(new PartidaIMPL (new MazmorraIMPL (), new JugadorIMPL ()));
+			oos.writeObject(new PartidaIMPL (new MazmorraIMPL (), new JugadorIMPL ("pepejavaSlayer", 450, 10.0, 10.0,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
+			oos.writeObject(new PartidaIMPL (new MazmorraIMPL (), new JugadorIMPL ("XxnoScoper360xX", 550, 12.0, 12.0,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
 		}
 		
 		catch (FileNotFoundException e)

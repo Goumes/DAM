@@ -1,52 +1,27 @@
-/* 
- * Propiedades.
-	 * Básicas: 	String Nombre 	-----------	Consultable / Modificable
- * 					double Dmg		-----------	Consultable / Modificable
- * 					Int Precio		-----------	Consultable / Modificable
-			
- * Derivadas:
- * Compartidas:
-
- * Fórmulas:
-
- * Getes y Setes: 
-
- * String getNombre ();
- * void setNombre (String Nombre);
-
- * Double getDmg ();
- * void setDmg (double Dmg);
-
- * Int getPrecio ();
- * void setPrecio (int Precio);
-
-
- * Métodos añadidos:
-
- * Restricciones:
- */
 package Clases;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Arma extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable
+import Interfaces.Arma;
+
+public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Cloneable, Serializable, Arma
 {
 	private static final long serialVersionUID = 551200043961558334L;
 	private double dmg;
 	
 	//Constructores
-	public Arma ()
+	public ArmaIMPL ()
 	{
 		dmg = 0.0;
 	}
 	
-	public Arma (Arma arma)
+	public ArmaIMPL (ArmaIMPL arma)
 	{
 		this.dmg = arma.dmg;
 	}
 	
-	public Arma (String nombre, double Dmg, double precio)
+	public ArmaIMPL (String nombre, double Dmg, double precio)
 	{
 		super (nombre, precio);
 		this.dmg = Dmg;
@@ -62,6 +37,26 @@ public class Arma extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 	public void setDmg (double dmg)
 	{
 		this.dmg = dmg;
+	}
+	
+	public String getNombre ()
+	{
+		return nombre;
+	}
+	
+	public void setNombre (String nombre)
+	{
+		this.nombre = nombre;
+	}
+	
+	public double getPrecio ()
+	{
+		return precio;
+	}
+	
+	public void setPrecio (double precio)
+	{
+		this.precio = precio;
 	}
 	//Fin Getes y setes
 	
@@ -79,9 +74,9 @@ public class Arma extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 	{
 		boolean resultado = false;
 		
-		if (objeto != null && objeto instanceof Arma)
+		if (objeto != null && objeto instanceof ArmaIMPL)
 		{
-			Arma arma = (Arma) objeto;
+			ArmaIMPL arma = (ArmaIMPL) objeto;
 			
 			if (super.equals(arma) 
 				&& this.getDmg() == arma.getDmg())
@@ -93,6 +88,24 @@ public class Arma extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 		return (resultado);
 	}
 	
+	/* No se si poner un throws en la clase padre
+	@Override
+	public ArmaIMPL clone ();
+	{
+		ArmaIMPL copia = null;
+		
+		try
+		{
+			copia = (ArmaIMPL) super.clone();
+		}
+		
+		catch (CloneNotSupportedException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	*/
+	
 	@Override
 	public int hashCode ()
 	{
@@ -100,7 +113,7 @@ public class Arma extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Seriali
 	}
 	
 	//Criterio de comparación: Precio
-	public int compareTo (Arma arma)
+	public int compareTo (ArmaIMPL arma)
 	{
 		int resultado = 0;
 		

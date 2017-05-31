@@ -39,29 +39,26 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 
-public class Tienda implements Cloneable, Serializable
+public class TiendaIMPL implements Cloneable, Serializable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9063051013414155572L;
-	private Item objeto1;
-	private Item objeto2;
-	private Item objeto3;
-	private Item objeto4;
+	private ItemIMPL objeto1;
+	private ItemIMPL objeto2;
+	private ItemIMPL objeto3;
+	private ItemIMPL objeto4;
 	private boolean disponibilidad;		//Esta variable indica si es posible generar una tienda en la mazmorra. Máximo una por mazmorra.
 	
 	//Constructores
-	public Tienda ()
+	public TiendaIMPL ()
 	{
-		objeto1 = new Item ();
-		objeto2 = new Item ();
-		objeto3 = new Item ();
-		objeto4 = new Item ();
+		objeto1 = new ItemIMPL ();
+		objeto2 = new ItemIMPL ();
+		objeto3 = new ItemIMPL ();
+		objeto4 = new ItemIMPL ();
 		disponibilidad = false;
 	}
 	
-	public Tienda (Tienda tienda)
+	public TiendaIMPL (TiendaIMPL tienda)
 	{
 		this.objeto1 = tienda.objeto1;
 		this.objeto2 = tienda.objeto2;
@@ -70,7 +67,7 @@ public class Tienda implements Cloneable, Serializable
 		this.disponibilidad = tienda.disponibilidad;
 	}
 	
-	public Tienda (Item objeto1, Item objeto2, Item objeto3, Item objeto4, boolean disponibilidad)
+	public TiendaIMPL (ItemIMPL objeto1, ItemIMPL objeto2, ItemIMPL objeto3, ItemIMPL objeto4, boolean disponibilidad)
 	{
 		this.objeto1 = objeto1;
 		this.objeto2 = objeto2;
@@ -81,42 +78,42 @@ public class Tienda implements Cloneable, Serializable
 	//Fin Constructores
 	
 	//Getes y setes
-	public Item getObjeto1 ()
+	public ItemIMPL getObjeto1 ()
 	{
 		return objeto1;
 	}
 	
-	public void setObjeto1 (Item objeto1)
+	public void setObjeto1 (ItemIMPL objeto1)
 	{
 		this.objeto1 = objeto1;
 	}
 	
-	public Item getObjeto2 ()
+	public ItemIMPL getObjeto2 ()
 	{
 		return objeto2;
 	}
 	
-	public void setObjeto2 (Item objeto2)
+	public void setObjeto2 (ItemIMPL objeto2)
 	{
 		this.objeto2 = objeto2;
 	}
 	
-	public Item getObjeto3 ()
+	public ItemIMPL getObjeto3 ()
 	{
 		return objeto3;
 	}
 	
-	public void setObjeto3 (Item objeto3)
+	public void setObjeto3 (ItemIMPL objeto3)
 	{
 		this.objeto3 = objeto3;
 	}
 	
-	public Item getObjeto4 ()
+	public ItemIMPL getObjeto4 ()
 	{
 		return objeto4;
 	}
 	
-	public void setObjeto4 (Item objeto4)
+	public void setObjeto4 (ItemIMPL objeto4)
 	{
 		this.objeto4 = objeto4;
 	}
@@ -150,9 +147,9 @@ public class Tienda implements Cloneable, Serializable
 	{
 		boolean resultado = false;
 		
-		if (objeto != null && objeto instanceof Tienda)
+		if (objeto != null && objeto instanceof TiendaIMPL)
 		{
-			Tienda tienda = (Tienda) objeto;
+			TiendaIMPL tienda = (TiendaIMPL) objeto;
 			
 			if (this.getObjeto1 ().equals (tienda.getObjeto1 ()) 
 				&& this.getObjeto2 ().equals (tienda.getObjeto2 ())
@@ -174,13 +171,13 @@ public class Tienda implements Cloneable, Serializable
 	}
 	
 	@Override
-	public Tienda clone ()
+	public TiendaIMPL clone ()
 	{
-		Tienda copia = new Tienda ();
+		TiendaIMPL copia = new TiendaIMPL ();
 		
 		try
 		{
-			copia = (Tienda) super.clone ();
+			copia = (TiendaIMPL) super.clone ();
 		}
 		
 		catch (CloneNotSupportedException error)

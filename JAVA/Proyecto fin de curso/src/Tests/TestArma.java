@@ -1,14 +1,14 @@
 package Tests;
 
-import Clases.Arma;
+import Clases.ArmaIMPL;
 
 public class TestArma
 {
 	public static void main (String []args)
 	{
-		Arma riflePulsos = new Arma ("Rifle de pulsos", 45.5, 100);
-		Arma cuchilloCombate = new Arma ("Cuchillo de combate", 30.0, 40);
-		Arma riflePulsos2 = new Arma ();
+		ArmaIMPL riflePulsos = new ArmaIMPL ("Rifle de pulsos", 45.5, 100);
+		ArmaIMPL cuchilloCombate = new ArmaIMPL ("Cuchillo de combate", 30.0, 40);
+		ArmaIMPL riflePulsos2 = new ArmaIMPL ();
 		
 		//Getes setes y toString
 		System.out.println("Getes, setes y toString: ");

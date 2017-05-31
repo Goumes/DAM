@@ -4,24 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 import Interfaces.Objeto;
 
-/* Propiedades:
- * 
- * 		Basicas: 				String nombre		-----------		Consultable / Modificable
- * 								double precio		----------- 	Consultable / Modificable
- * 		Derivadas:
- * 		Compartidas:
- * 
- * 
- * String getNombre ();
- * void setNombre (String nombre);
- * 
- * double getPrecio ();
- * void setPrecio (double precio);
- * 
- * Metodos añadidos: Ninguno
- * 
- * Criterio de comparación : precio
- */
 
 public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, Serializable
 {

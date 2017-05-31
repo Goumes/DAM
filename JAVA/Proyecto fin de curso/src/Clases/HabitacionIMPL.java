@@ -1,95 +1,78 @@
-/*
-Propiedades.
-	Básicas: 	Tienda Shop		----------	Consultable / Modificable
-				Enemigo Enemy	----------	Consultable / Modificable
-				Cofre Chest		----------	Consultable / Modificable
-				char Entrada	----------	Consultable / Modificable
-				char Salida		----------	Consultable / Modificable
-	Derivadas:
-	Compartidas:
-
-Fórmulas:
-
-Getes y Setes: 
-
-Tienda getShop ();
-void setShop (Tienda shop);
- 
-Enemigo getEnemy ();
-void setEnemy (Enemigo enemy);
- 
-Cofre getChest ();
-void setChest (Cofre chest);
-
-char getEntrada();
-void setEntrada (char entrada)
- 
-char getSalida();
-void setSalida (char salida)
-
-Métodos añadidos:
-
-Restricciones:
- */
 package Clases;
 
 import java.io.Serializable;
 import java.util.*;
 
-public class Habitacion implements Serializable
+import Interfaces.Cofre;
+import Interfaces.Habitacion;
+
+public class HabitacionIMPL implements Serializable, Habitacion
 {
 	private static final long serialVersionUID = 7059421015933648577L;
-	private Tienda shop;
-	private Enemigo enemy;
-	//private Cofre chest;
+	private TiendaIMPL shop;
+	private EnemigoIMPL enemy;
+	private CofreIMPL cofre;
 	private char entrada;
 	private char salida;
 	
 	//Constructores
-	public Habitacion ()
+	public HabitacionIMPL ()
 	{
-		shop = new Tienda ();
-		enemy = new Enemigo ();
+		shop = new TiendaIMPL ();
+		enemy = new EnemigoIMPL ();
+		cofre = new CofreIMPL ();
 		entrada = ' ';
 		salida = ' ';
 	}
 	
-	public Habitacion (Habitacion habitacion)
+	public HabitacionIMPL (HabitacionIMPL habitacion)
 	{
 		this.shop = habitacion.shop;
 		this.enemy = habitacion.enemy;
+		this.cofre = habitacion.cofre;
 		this.entrada = habitacion.entrada;
 		this.salida = habitacion.salida;
 	}
 	
-	public Habitacion (Tienda shop, Enemigo enemy, char entrada, char salida)
+	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, char entrada, char salida)
 	{
 		this.shop = shop;
 		this.enemy = enemy;
+		this.cofre = cofre;
 		this.entrada = entrada;
 		this.salida = salida;
 	}
 	//Fin Constructores
 	
 	//Getters y setters
-	public Tienda getShop ()
+	public TiendaIMPL getShop ()
 	{
 		return shop;
 	}
 	
-	public void setShop (Tienda shop)
+	public void setShop (TiendaIMPL shop)
 	{
 		this.shop = shop;
 	}
 	
-	public Enemigo getEnemy ()
+	public EnemigoIMPL getEnemy ()
 	{
 		return enemy;
 	}
 	
-	public void setEnemy (Enemigo enemy)
+	public void setEnemy (EnemigoIMPL enemy)
 	{
 		this.enemy = enemy;
+	}
+	
+	public CofreIMPL getCofre ()
+	{
+		return cofre;
+	}
+	
+	public void setCofreIMPL (CofreIMPL cofre)
+	{
+		this.cofre = cofre;
 	}
 	
 	public char getEntrada ()
@@ -118,8 +101,9 @@ public class Habitacion implements Serializable
 	@Override
 	public String toString ()
 	{
-		String s = (getShop ()+
-					","+getEnemy ()+
+		String s = (getShop ().toString()+
+					","+getEnemy ().toString()+
+					","+getCofre ().toString()+
 					","+getEntrada ()+
 					","+getSalida ());
 		return s;
@@ -131,12 +115,13 @@ public class Habitacion implements Serializable
 	{
 		boolean resultado = false;
 		
-		if (objeto != null && objeto instanceof Habitacion)
+		if (objeto != null && objeto instanceof HabitacionIMPL)
 		{
-			Habitacion habitacion = (Habitacion) objeto;
+			HabitacionIMPL habitacion = (HabitacionIMPL) objeto;
 			
 			if (this.getShop ().equals(habitacion.getShop ())
 				&& this.getEnemy ().equals(habitacion.getEnemy ())
+				&& this.getCofre ().equals(habitacion.getCofre())
 				&& this.getEntrada () == habitacion.getEntrada ()
 				&& this.getSalida () == habitacion.getSalida ())
 			{
@@ -149,17 +134,17 @@ public class Habitacion implements Serializable
 	@Override
 	public int hashCode ()
 	{
-		return (Objects.hash (this.getShop (), this.getEnemy (), this.getEntrada (), this.getSalida ()));
+		return (Objects.hash (this.getShop (), this.getEnemy (), this.getCofre(), this.getEntrada (), this.getSalida ()));
 	}
 	
 	@Override
-	public Habitacion clone ()
+	public HabitacionIMPL clone ()
 	{
-		Habitacion copia = new Habitacion ();
+		HabitacionIMPL copia = new HabitacionIMPL ();
 		
 		try
 		{
-			copia = (Habitacion) super.clone ();
+			copia = (HabitacionIMPL) super.clone ();
 			
 		}
 		

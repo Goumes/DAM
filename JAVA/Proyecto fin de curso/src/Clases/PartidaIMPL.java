@@ -19,26 +19,26 @@ import java.util.Objects;
  * void setJugador (Jugador jugador);
  */
 
-public class Partida implements Cloneable, Serializable
+public class PartidaIMPL implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = 4877091961554436191L;
-	private Mazmorra mazmorra;
-	private Jugador jugador;
+	private MazmorraIMPL mazmorra;
+	private JugadorIMPL jugador;
 	
 	//Constructores
-	public Partida ()
+	public PartidaIMPL ()
 	{
-		mazmorra = new Mazmorra ();
-		jugador = new Jugador ();
+		mazmorra = new MazmorraIMPL ();
+		jugador = new JugadorIMPL ();
 	}
 	
-	public Partida (Partida partida)
+	public PartidaIMPL (PartidaIMPL partida)
 	{
 		this.mazmorra = partida.mazmorra;
 		this.jugador = partida.jugador;
 	}
 	
-	public Partida (Mazmorra mazmorra, Jugador jugador)
+	public PartidaIMPL (MazmorraIMPL mazmorra, JugadorIMPL jugador)
 	{
 		this.mazmorra = mazmorra;
 		this.jugador = jugador;
@@ -46,22 +46,22 @@ public class Partida implements Cloneable, Serializable
 	//Fin Constructores
 	
 	//Getters y setters
-	public Mazmorra getMazmorra ()
+	public MazmorraIMPL getMazmorra ()
 	{
 		return mazmorra;
 	}
 	
-	public void setMazmorra (Mazmorra mazmorra)
+	public void setMazmorra (MazmorraIMPL mazmorra)
 	{
 		this.mazmorra = mazmorra;
 	}
 	
-	public Jugador getJugador ()
+	public JugadorIMPL getJugador ()
 	{
 		return jugador;
 	}
 	
-	public void setJugador (Jugador jugador)
+	public void setJugador (JugadorIMPL jugador)
 	{
 		this.jugador = jugador;
 	}
@@ -79,9 +79,9 @@ public class Partida implements Cloneable, Serializable
 	{
 		boolean resultado = false;
 		
-		if (object != null && object instanceof Partida)
+		if (object != null && object instanceof PartidaIMPL)
 		{
-			Partida partida = (Partida) object;
+			PartidaIMPL partida = (PartidaIMPL) object;
 			
 			if (this.getJugador().equals(partida.getJugador())
 				&& this.getMazmorra().equals(partida.getMazmorra()))
@@ -100,13 +100,13 @@ public class Partida implements Cloneable, Serializable
 	}
 	
 	@Override /* Hecho en profundidad porque en superficie no tiene sentido */
-	public Partida clone ()
+	public PartidaIMPL clone ()
 	{
-		Partida copia = null;
+		PartidaIMPL copia = null;
 		
 		try
 		{
-			copia = (Partida) super.clone();
+			copia = (PartidaIMPL) super.clone();
 			this.jugador = copia.getJugador();
 			this.mazmorra = copia.getMazmorra();
 		}

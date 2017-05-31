@@ -1,80 +1,36 @@
-/*
-Propiedades.
-	Básicas: 
-				String Nombre		------------	Consultable / Modificable
-				Int Vida			------------	Consultable / Modificable
-				Item dropItem		------------	Consultable / Modificable
-				Int dropDinero		------------	Consultable / Modificable
-				Double Dmg			------------	Consultable / Modificable
-				Double Def			------------	Consultable / Modificable
-				Int Nivel			------------	Consultable / Modificable
-	Derivadas:
-	Compartidas:
-
-Fórmulas:
-
-Getes y Setes: 
-string getNombre ();
-void setNombre (string Nombre);
-
-Int getVida ();
-void setVida (Int Vida); 
-
-Double getDmg ();
-void setDmg (double Dmg);
-
-Double getDef ();
-void setDef (double Def);
-
-Item getDropItem ();
-void setDropItem (Item dropItem);
-
-Int getDropDinero ();
-void setDropDinero (Int dropDinero);
-
-Int getNivel ();
-void setNivel (Int Nivel);
-
-
-
-Métodos añadidos:
-
-Restricciones:
-*/
 package Clases;
 
 import java.io.Serializable;
 import java.util.*;
 
-public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
+import Interfaces.Enemigo;
+
+public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Serializable, Enemigo
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2100044698054182393L;
 	//Propiedades
 	private String nombre;
 	private int vida;
 	private double dmg;
 	private double def;
-	private Item dropItem;
+	private ItemIMPL dropItem;
 	private int dropDinero;
 	private int nivel;
 	//Fin Propiedades
 	
 	//Constructores
-	public Enemigo ()
+	public EnemigoIMPL ()
 	{
 		nombre = "";
 		vida = 0;
 		dmg = 0.0;
 		def = 0.0;
-		dropItem = new Item ();
+		dropItem = new ItemIMPL ();
 		dropDinero = 0;
 		nivel = 0;
 	}
 	
-	public Enemigo (Enemigo enemigo)
+	public EnemigoIMPL (EnemigoIMPL enemigo)
 	{
 		this.nombre = enemigo.nombre;
 		this.vida = enemigo.vida;
@@ -85,7 +41,7 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
 		this.nivel = enemigo.nivel;
 	}
 	
-	public Enemigo (String nombre, int vida, double dmg, double def, Item dropItem, int dropDinero, int nivel)
+	public EnemigoIMPL (String nombre, int vida, double dmg, double def, ItemIMPL dropItem, int dropDinero, int nivel)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
@@ -138,12 +94,12 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
 		this.def = def;
 	}
 	
-	public Item getDropItem ()
+	public ItemIMPL getDropItem ()
 	{
 		return dropItem;
 	}
 	
-	public void setDropItem (Item dropItem)
+	public void setDropItem (ItemIMPL dropItem)
 	{
 		this.dropItem = dropItem;
 	}
@@ -189,9 +145,9 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
 	{
 		boolean resultado = false;
 		
-		if (objeto != null && objeto instanceof Enemigo)
+		if (objeto != null && objeto instanceof EnemigoIMPL)
 		{
-			Enemigo enemigo = (Enemigo) objeto;
+			EnemigoIMPL enemigo = (EnemigoIMPL) objeto;
 			
 			if (this.getNombre ().equals (enemigo.getNombre ())
 				&& this.getVida () == enemigo.getVida () 
@@ -216,13 +172,13 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
 	}
 	
 	@Override
-	public Enemigo clone ()
+	public EnemigoIMPL clone ()
 	{
-		Enemigo copia = new Enemigo ();
+		EnemigoIMPL copia = new EnemigoIMPL ();
 		
 		try
 		{
-			copia = (Enemigo) super.clone ();
+			copia = (EnemigoIMPL) super.clone ();
 		}
 		
 		catch (CloneNotSupportedException error)
@@ -234,7 +190,7 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
 	}
 	
 	//Criterio de comparación: Nivel
-	public int compareTo (Enemigo enemigo)
+	public int compareTo (EnemigoIMPL enemigo)
 	{
 		int resultado = 0;
 		
@@ -251,5 +207,11 @@ public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
 		return resultado;
 	}
 	//Fin Metodos añadidos
+
+	@Override
+	public void setDropDInero(int dinero) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }//fin_clase

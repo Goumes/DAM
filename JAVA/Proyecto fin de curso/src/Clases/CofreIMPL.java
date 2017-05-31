@@ -2,35 +2,28 @@ package Clases;
 
 import java.io.Serializable;
 import java.util.*;
+import Interfaces.Cofre;
 
-/* Propiedades.
- * 		Basicas: 		double valor		----------		Consultable / Modificable
- * 						ObjetoIMPL drop			----------		Consultable / Modificable
- * 		Derivadas:
- * 		Compartidas:
- * 
- */
-
-public class Cofre implements Serializable
+public class CofreIMPL implements Serializable, Cofre
 {
 	private static final long serialVersionUID = 1416960979169236387L;
 	private double valor;
 	private ObjetoIMPL drop;
 	
 	//Constructores
-	public Cofre ()
+	public CofreIMPL ()
 	{
 		valor = 0.0;
 		drop = new ObjetoIMPL ();
 	}
 	
-	public Cofre (Cofre cofre)
+	public CofreIMPL (CofreIMPL cofre)
 	{
 		this.valor = cofre.valor;
 		this.drop = cofre.drop;
 	}
 	
-	public Cofre (double valor, ObjetoIMPL drop)
+	public CofreIMPL (double valor, ObjetoIMPL drop)
 	{
 		this.valor = valor;
 		this.drop = drop;
@@ -67,7 +60,7 @@ public class Cofre implements Serializable
 		
 		if (object != null && object instanceof Object)
 		{
-			Cofre cofre = (Cofre) object;
+			CofreIMPL cofre = (CofreIMPL) object;
 			
 			if (this.getValor() == cofre.getValor ()
 				&& this.getDrop().equals(cofre.getDrop ()))
@@ -92,13 +85,13 @@ public class Cofre implements Serializable
 	}
 	
 	@Override
-	public Cofre clone ()
+	public CofreIMPL clone ()
 	{
-		Cofre copia = null;
+		CofreIMPL copia = null;
 		
 		try
 		{
-			copia = (Cofre) super.clone ();
+			copia = (CofreIMPL) super.clone ();
 		}
 		
 		catch (CloneNotSupportedException e)
@@ -109,7 +102,7 @@ public class Cofre implements Serializable
 		return copia;
 	}
 	
-	public int compareTo (Cofre cofre)
+	public int compareTo (CofreIMPL cofre)
 	{
 		int resultado = 0;
 		
@@ -126,4 +119,5 @@ public class Cofre implements Serializable
 		return resultado;
 	}
 	//Fin Metodos añadidos
+		
 }

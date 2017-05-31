@@ -1,26 +1,26 @@
 package Tests;
 
-import Clases.Item;
-import Clases.Tienda;
+import Clases.ItemIMPL;
+import Clases.TiendaIMPL;
 
 public class TestTienda
 {
 	public static void main (String []args)
 	{
-		Item objeto1 = new Item ("a", 1, 1.0, 1.0, 1.0, "aa");
-		Item objeto2 = new Item ("b", 2, 2.0, 2.0, 2.0, "ba");
+		ItemIMPL objeto1 = new ItemIMPL ("a", 1, 1.0, 1.0, 1.0, "aa");
+		ItemIMPL objeto2 = new ItemIMPL ("b", 2, 2.0, 2.0, 2.0, "ba");
 		
-		Item objeto3 = new Item ("c", 3, 3.0, 3.0, 3.0, "ca");
-		Item objeto4 = new Item ("d", 4, 4.0, 4.0, 4.0, "da");
-		Item objeto5 = new Item ("e", 5, 5.0, 5.0, 5.0, "ea");
-		Item objeto6 = new Item ("f", 6, 6.0, 6.0, 6.0, "fa");
-		Item objeto7 = new Item ("g", 7, 7.0, 7.0, 7.0, "ga");
-		Item objeto8 = new Item ("h", 8, 8.0, 8.0, 8.0, "ha");
+		ItemIMPL objeto3 = new ItemIMPL ("c", 3, 3.0, 3.0, 3.0, "ca");
+		ItemIMPL objeto4 = new ItemIMPL ("d", 4, 4.0, 4.0, 4.0, "da");
+		ItemIMPL objeto5 = new ItemIMPL ("e", 5, 5.0, 5.0, 5.0, "ea");
+		ItemIMPL objeto6 = new ItemIMPL ("f", 6, 6.0, 6.0, 6.0, "fa");
+		ItemIMPL objeto7 = new ItemIMPL ("g", 7, 7.0, 7.0, 7.0, "ga");
+		ItemIMPL objeto8 = new ItemIMPL ("h", 8, 8.0, 8.0, 8.0, "ha");
 		
 		
-		Tienda tienda1 = new Tienda (objeto1, objeto2, objeto3, objeto4, true);
-		Tienda tienda2 = new Tienda (objeto5, objeto6, objeto7, objeto8, false);
-		Tienda copiaTienda;
+		TiendaIMPL tienda1 = new TiendaIMPL (objeto1, objeto2, objeto3, objeto4, true);
+		TiendaIMPL tienda2 = new TiendaIMPL (objeto5, objeto6, objeto7, objeto8, false);
+		TiendaIMPL copiaTienda;
 		
 		//Getes, setes y toString
 		System.out.println(tienda1.getObjeto1 ());

@@ -1,14 +1,14 @@
 package Tests;
 
-import Clases.Item;
+import Clases.ItemIMPL;
 
 public class TestItem
 {
 	public static void main (String []args)
 	{
-		Item pocion = new Item ("Pocion de vida", 30, 0.0, 0.0, 0.0, "El jugador se bebe la pocion y se cura 25 de vida");
-		Item casco = new Item ("Casco de hierro", 70, 0.0, 20.0, 0.0, "Un casco de hierro que aumenta la defensa en 20 puntos");
-		Item pocionCopia = new Item ();
+		ItemIMPL pocion = new ItemIMPL ("Pocion de vida", 30, 0.0, 0.0, 0.0, "El jugador se bebe la pocion y se cura 25 de vida");
+		ItemIMPL casco = new ItemIMPL ("Casco de hierro", 70, 0.0, 20.0, 0.0, "Un casco de hierro que aumenta la defensa en 20 puntos");
+		ItemIMPL pocionCopia = new ItemIMPL ();
 		
 		//Getes, setes y toString
 		System.out.println("----------------");

@@ -1,21 +1,21 @@
 package Tests;
 
-import Clases.Arma;
-import Clases.Item;
-import Clases.Jugador;
+import Clases.ArmaIMPL;
+import Clases.ItemIMPL;
+import Clases.JugadorIMPL;
 import Clases.ObjetoIMPL;
 
 public class TestJugador
 {
 	public static void main (String []args)
 	{
-		Arma pistola = new Arma ("Rifle de pulsos", 45.5, 100);
-		Item armadura = new Item ("Casco de hierro", 70, 0.0, 20.0, 0.0, "Un casco de hierro que aumenta la defensa en 20 puntos");
+		ArmaIMPL pistola = new ArmaIMPL ("Rifle de pulsos", 45.5, 100);
+		ItemIMPL armadura = new ItemIMPL ("Casco de hierro", 70, 0.0, 20.0, 0.0, "Un casco de hierro que aumenta la defensa en 20 puntos");
 		ObjetoIMPL inventario [] = null;
-		Jugador pepejava = new Jugador ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
-		Jugador pepejava2 = new Jugador ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
-		Jugador estoNoEsUnaCopiaDeIsaac = new Jugador ("EstoNoEsUnaCopiaDeIsaac", 3, 3.5, 0.0, armadura, pistola, 0, inventario);
-		Jugador pepejava3;
+		JugadorIMPL pepejava = new JugadorIMPL ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
+		JugadorIMPL pepejava2 = new JugadorIMPL ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
+		JugadorIMPL estoNoEsUnaCopiaDeIsaac = new JugadorIMPL ("EstoNoEsUnaCopiaDeIsaac", 3, 3.5, 0.0, armadura, pistola, 0, inventario);
+		JugadorIMPL pepejava3;
 		
 		
 		//Getes, setes y toString

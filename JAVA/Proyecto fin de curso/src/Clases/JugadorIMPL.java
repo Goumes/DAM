@@ -60,32 +60,32 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
  
-public class Jugador implements Cloneable, Comparable <Jugador>, Serializable
+public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Serializable
 {
 	private static final long serialVersionUID = 1888313045729668467L;
 	private String nombre;
 	private int vida;
 	private double baseDmg;
 	private double baseDef;
-	private Item armadura;
-	private Arma armaEquipada;
+	private ItemIMPL armadura;
+	private ArmaIMPL armaEquipada;
 	private int oro;
 	private ObjetoIMPL [] inventario;
 	
 	//Constructores
-	public Jugador ()
+	public JugadorIMPL ()
 	{
 		nombre = "";
 		vida = 0;
 		baseDmg = 0.0;
 		baseDef = 0.0;
-		armadura = new Item ();
-		armaEquipada = new Arma ();
+		armadura = new ItemIMPL ();
+		armaEquipada = new ArmaIMPL ();
 		oro = 0;
 		inventario = null;
 	}
 	
-	public Jugador (Jugador jugador)
+	public JugadorIMPL (JugadorIMPL jugador)
 	{
 		this.nombre = jugador.nombre;
 		this.vida = jugador.vida;
@@ -97,7 +97,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>, Serializable
 		this.inventario = jugador.inventario;
 	}
 	
-	public Jugador (String nombre, int vida, double baseDmg, double baseDef,Item armadura, Arma armaEquipada, int oro, ObjetoIMPL [] inventario)
+	public JugadorIMPL (String nombre, int vida, double baseDmg, double baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ObjetoIMPL [] inventario)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
@@ -151,22 +151,22 @@ public class Jugador implements Cloneable, Comparable <Jugador>, Serializable
 		this.baseDef = baseDef;
 	}
 	
-	public Item getArmadura ()
+	public ItemIMPL getArmadura ()
 	{
 		return armadura;
 	}
 	
-	public void setArmadura (Item armadura)
+	public void setArmadura (ItemIMPL armadura)
 	{
 		this.armadura = armadura;
 	}
 	
-	public Arma getArmaEquipada ()
+	public ArmaIMPL getArmaEquipada ()
 	{
 		return armaEquipada;
 	}
 	
-	public void setArmaEquipada (Arma armaEquipada)
+	public void setArmaEquipada (ArmaIMPL armaEquipada)
 	{
 		this.armaEquipada = armaEquipada;
 	}
@@ -212,9 +212,9 @@ public class Jugador implements Cloneable, Comparable <Jugador>, Serializable
 	{
 		boolean resultado = false;
 		
-		if (objeto != null && objeto instanceof Jugador)
+		if (objeto != null && objeto instanceof JugadorIMPL)
 		{
-			Jugador jugador = (Jugador) objeto;
+			JugadorIMPL jugador = (JugadorIMPL) objeto;
 			
 			if (this.getNombre().equals(jugador.getNombre())
 				&& this.getVida () == jugador.getVida ()
@@ -238,13 +238,13 @@ public class Jugador implements Cloneable, Comparable <Jugador>, Serializable
 	}
 	
 	@Override
-	public Jugador clone ()
+	public JugadorIMPL clone ()
 	{
-		Jugador copia = new Jugador ();
+		JugadorIMPL copia = new JugadorIMPL ();
 		
 		try
 		{
-			copia = (Jugador) super.clone ();
+			copia = (JugadorIMPL) super.clone ();
 		}
 		
 		catch (CloneNotSupportedException error)
@@ -256,7 +256,7 @@ public class Jugador implements Cloneable, Comparable <Jugador>, Serializable
 	} 
 	
 	//Criterio de comparacion: vida, baseDmg, baseDef
-	public int compareTo (Jugador jugador)
+	public int compareTo (JugadorIMPL jugador)
 	{
 		int resultado = 0;
 		

@@ -1,16 +1,16 @@
 package Tests;
 
-import Clases.Enemigo;
-import Clases.Item;
+import Clases.EnemigoIMPL;
+import Clases.ItemIMPL;
 
 public class TestEnemigo
 {
 	public static void main (String[]args)
 	{
-		Item ataqueDefensaX = new Item ("Ataque y Defensa X", 40, 5.0, 2.0, 5.0, "Aumenta tu ataque en 5 puntos y tu defensa en 2");
-		Enemigo aseolake = new Enemigo ("Jaranator", 100, 45.0, 25.0, ataqueDefensaX, 10, 3);
-		Enemigo aseolake2 = new Enemigo ("ElHipervinculos", 150, 60.0, 35.0, ataqueDefensaX, 20, 7);
-		Enemigo aseolake3;
+		ItemIMPL ataqueDefensaX = new ItemIMPL ("Ataque y Defensa X", 40, 5.0, 2.0, 5.0, "Aumenta tu ataque en 5 puntos y tu defensa en 2");
+		EnemigoIMPL aseolake = new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, ataqueDefensaX, 10, 3);
+		EnemigoIMPL aseolake2 = new EnemigoIMPL ("ElHipervinculos", 150, 60.0, 35.0, ataqueDefensaX, 20, 7);
+		EnemigoIMPL aseolake3;
 		
 		//Getes, setes y toString
 		System.out.println("-------------------");
