@@ -40,9 +40,12 @@ Restricciones:
  */
 package Clases;
 
+import java.io.Serializable;
 import java.util.*;
-public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>
+
+public class Item extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable
 {
+	private static final long serialVersionUID = -1109388286406543710L;
 	private double modificadorDmg;
 	private double modificadorDef;
 	private double duracion;

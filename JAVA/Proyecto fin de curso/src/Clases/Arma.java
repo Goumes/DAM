@@ -27,10 +27,12 @@
  */
 package Clases;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Arma extends ObjetoIMPL implements Comparable <ObjetoIMPL>
+public class Arma extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable
 {
+	private static final long serialVersionUID = 551200043961558334L;
 	private double dmg;
 	
 	//Constructores

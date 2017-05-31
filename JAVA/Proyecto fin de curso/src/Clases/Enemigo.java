@@ -43,10 +43,15 @@ Restricciones:
 */
 package Clases;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Enemigo implements Cloneable, Comparable <Enemigo>
+public class Enemigo implements Cloneable, Comparable <Enemigo>, Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2100044698054182393L;
 	//Propiedades
 	private String nombre;
 	private int vida;

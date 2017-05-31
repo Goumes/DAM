@@ -1,6 +1,8 @@
 package Main;
 
 import Clases.*;
+import Gestoras.GestoraJuego;
+
 import java.util.*;
 import java.io.*;
 
@@ -75,6 +77,8 @@ public class MainJuego
 		Partida partida1 = new Partida ();
 		Partida partida2 = new Partida ();
 		Partida partida3 = new Partida ();
+		Partida partidaDefinitiva = new Partida ();
+		GestoraJuego gestora = new GestoraJuego ();
 		
 		//LeerValidarJugar
 		do
@@ -89,9 +93,9 @@ public class MainJuego
 		{
 		
 			//LeerPartidas
-			partida1 = Gestorajuego.leerPartida (1);
-			partida2 = Gestorajuego.leerPartida (2);
-			partida3 = Gestorajuego.leerPartida (3);
+			partida1 = gestora.leerPartida (1);
+			partida2 = gestora.leerPartida (2);
+			partida3 = gestora.leerPartida (3);
 			//Fin LeerPartidas
 			
 			//PrintElegirPartidas
@@ -101,12 +105,14 @@ public class MainJuego
 				numeroPartida = teclado.nextInt();
 			}
 			while (numeroPartida < 0 || numeroPartida > 3);
+			
+			partidaDefinitiva = gestora.asignarPartida (partida1, partida2, partida3, numeroPartida);
 			//Fin PrintElegirPartidas
 		
 			//EjecutarJuego
 			
 				//si Partida no creada
-				if (partida1 == null)
+				if (partidaDefinitiva.equals(null))
 				{
 				
 					//GenerarMazmorra *

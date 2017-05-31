@@ -57,10 +57,12 @@
  */
 package Clases;
 
+import java.io.Serializable;
 import java.util.*;
  
-public class Jugador implements Cloneable, Comparable <Jugador>
+public class Jugador implements Cloneable, Comparable <Jugador>, Serializable
 {
+	private static final long serialVersionUID = 1888313045729668467L;
 	private String nombre;
 	private int vida;
 	private double baseDmg;

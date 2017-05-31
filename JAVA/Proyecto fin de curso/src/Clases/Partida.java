@@ -1,5 +1,6 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /* Propiedades.
@@ -18,8 +19,9 @@ import java.util.Objects;
  * void setJugador (Jugador jugador);
  */
 
-public class Partida implements Cloneable
+public class Partida implements Cloneable, Serializable
 {
+	private static final long serialVersionUID = 4877091961554436191L;
 	private Mazmorra mazmorra;
 	private Jugador jugador;
 	

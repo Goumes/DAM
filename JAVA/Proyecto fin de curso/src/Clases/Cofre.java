@@ -1,5 +1,6 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.*;
 
 /* Propiedades.
@@ -10,8 +11,9 @@ import java.util.*;
  * 
  */
 
-public class Cofre 
+public class Cofre implements Serializable
 {
+	private static final long serialVersionUID = 1416960979169236387L;
 	private double valor;
 	private ObjetoIMPL drop;
 	

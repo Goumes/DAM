@@ -1,5 +1,6 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.Objects;
 import Interfaces.Objeto;
 
@@ -22,8 +23,9 @@ import Interfaces.Objeto;
  * Criterio de comparación : precio
  */
 
-public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto
+public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, Serializable
 {
+	private static final long serialVersionUID = -8016225400798258794L;
 	String nombre;
 	double precio;
 	

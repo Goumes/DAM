@@ -33,9 +33,12 @@ Restricciones:
  */
 package Clases;
 
+import java.io.Serializable;
 import java.util.*;
-public class Habitacion
+
+public class Habitacion implements Serializable
 {
+	private static final long serialVersionUID = 7059421015933648577L;
 	private Tienda shop;
 	private Enemigo enemy;
 	//private Cofre chest;

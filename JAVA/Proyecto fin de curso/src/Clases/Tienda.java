@@ -36,10 +36,15 @@ Restricciones:
 */
 package Clases;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Tienda implements Cloneable
+public class Tienda implements Cloneable, Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9063051013414155572L;
 	private Item objeto1;
 	private Item objeto2;
 	private Item objeto3;

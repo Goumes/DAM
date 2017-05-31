@@ -27,10 +27,6 @@ AS
 			SET FechaAbandono = @FechaDisolucion
 			WHERE IDBanda = @IDBanda
 
-			COMMIT TRANSACTION
-
-			BEGIN TRANSACTION
-
 			UPDATE LFBandas
 			SET FechaDisolucion = @FechaDisolucion
 			WHERE ID = @IDBanda
@@ -71,32 +67,20 @@ GO
    Salidas: Una tabla*/
 
 CREATE FUNCTION NumeroInterpretacionesAñoAnterior ()
-RETURNS @resultado TABLE (
-							numeroInterpretaciones INT,
-							Estilo VARCHAR (30)
-						 )
-AS
-
-	BEGIN
-		
-		INSERT INTO @resultado (numeroInterpretaciones, Estilo)
-		SELECT COUNT (IDTema), T.IDEstilo
-			FROM LFTemas AS T 
-			INNER JOIN
-			LFTemasBandasEdiciones AS TBE
-			ON TBE.IDTema = T.ID
-			INNER JOIN
-			LFEdiciones AS E
-			ON TBE.IDFestival = E.IDFestival AND TBE.Ordinal = E.Ordinal
-			WHERE FechaHoraInicio BETWEEN DATEFROMPARTS (((YEAR (CURRENT_TIMESTAMP)) - 1), 1, 1) 
-			AND DATEFROMPARTS (((YEAR (CURRENT_TIMESTAMP)) - 1), 12, 31) -- Entre el primer dia del año anterior y el ultimo
-			GROUP BY T.IDEstilo
-			ORDER BY T.IDEstilo
-
-		RETURN
-
-	END
-
+RETURNS TABLE
+AS		
+	RETURN
+	(SELECT COUNT (IDTema), T.IDEstilo
+		FROM LFTemas AS T 
+		INNER JOIN
+		LFTemasBandasEdiciones AS TBE
+		ON TBE.IDTema = T.ID
+		INNER JOIN
+		LFEdiciones AS E
+		ON TBE.IDFestival = E.IDFestival AND TBE.Ordinal = E.Ordinal
+		WHERE FechaHoraInicio BETWEEN DATEFROMPARTS (((YEAR (CURRENT_TIMESTAMP)) - 1), 1, 1) 
+		AND DATEFROMPARTS (((YEAR (CURRENT_TIMESTAMP)) - 1), 12, 31) -- Entre el primer dia del año anterior y el ultimo
+		GROUP BY T.IDEstilo)
 GO
 
 /* Breve comentario: Funcionalidad que calcula el numero de interpretaciones de un año concreto
@@ -104,32 +88,20 @@ GO
    Salidas: Una tabla*/
 
 CREATE FUNCTION NumeroInterpretacionesAñoConcreto (@Año INT)
-RETURNS @resultado TABLE (
-							numeroInterpretaciones INT,
-							Estilo VARCHAR (30)
-						 )
+RETURNS TABLE 
 AS
-
-	BEGIN
-		
-		INSERT INTO @resultado (numeroInterpretaciones, Estilo)
-		SELECT COUNT (IDTema), T.IDEstilo
-			FROM LFTemas AS T 
-			INNER JOIN
-			LFTemasBandasEdiciones AS TBE
-			ON TBE.IDTema = T.ID
-			INNER JOIN
-			LFEdiciones AS E
-			ON TBE.IDFestival = E.IDFestival AND TBE.Ordinal = E.Ordinal
-			WHERE FechaHoraInicio BETWEEN DATEFROMPARTS (@Año, 1, 1) 
-			AND DATEFROMPARTS (@Año, 12, 31) -- Entre el primer dia del año deseado y el ultimo
-			GROUP BY T.IDEstilo
-			ORDER BY T.IDEstilo
-
-		RETURN
-
-	END
-
+	RETURN
+	(SELECT COUNT (IDTema), T.IDEstilo
+		FROM LFTemas AS T 
+		INNER JOIN
+		LFTemasBandasEdiciones AS TBE
+		ON TBE.IDTema = T.ID
+		INNER JOIN
+		LFEdiciones AS E
+		ON TBE.IDFestival = E.IDFestival AND TBE.Ordinal = E.Ordinal
+		WHERE FechaHoraInicio BETWEEN DATEFROMPARTS (@Año, 1, 1) 
+		AND DATEFROMPARTS (@Año, 12, 31) -- Entre el primer dia del año deseado y el ultimo
+		GROUP BY T.IDEstilo)
 GO
 
 /* Breve comentario: Funcionalidad que calcula indica el simbolo de aumento
@@ -286,18 +258,15 @@ AS
 						  FROM LFEstilos
 						  WHERE Estilo = @Estilo)
 
-				BEGIN
+		BEGIN
 
-					BEGIN TRANSACTION
 					
-					INSERT INTO LFEstilos (ID, Estilo)
-					VALUES ((SELECT TOP 1 ID
-								FROM LFEstilos
-								ORDER BY ID DESC) + 1, @Estilo) --Insertamos el estilo nuevo siguiendo el orden de ID ya establecido. Puesto que no es identity hay que hacerlo a mano.
+			INSERT INTO LFEstilos (ID, Estilo)
+			VALUES ((SELECT MAX (ID)
+						FROM LFEstilos) + 1, @Estilo) --Insertamos el estilo nuevo siguiendo el orden de ID ya establecido. Puesto que no es identity hay que hacerlo a mano.
 
-					COMMIT TRANSACTION
 
-				END
+		END
 
 		-- Si el tema introducido no existe, lo creamos.
 
@@ -305,44 +274,37 @@ AS
 						FROM LFTemas
 						WHERE Titulo = @Titulo)
 
-				BEGIN
+		BEGIN
 
-					BEGIN TRANSACTION
+			INSERT INTO LFTemas (ID, Titulo, IDAutor, IDEstilo, Duracion)
+			VALUES (NEWID (), @Titulo, @IDAutor, (SELECT ID
+													FROM LFEstilos
+													WHERE Estilo = @Estilo), @Duracion) -- Utilizo el NEWID () ya que la clave primera de LFTemas es un Uniqueidentifier.
 
-					INSERT INTO LFTemas (ID, Titulo, IDAutor, IDEstilo, Duracion)
-					VALUES (NEWID (), @Titulo, @IDAutor, (SELECT ID
-															FROM LFEstilos
-															WHERE Estilo = @Estilo), @Duracion) -- Utilizo el NEWID () ya que la clave primera de LFTemas es un Uniqueidentifier.
 
-					COMMIT TRANSACTION
-
-				END
+		END
 
 		-- A continuación comprobamos el caso en el que si exista la canción pero el estilo no, asignandole el estilo el Tema en caso de que no lo tenga.
 		IF NOT EXISTS (SELECT IDEstilo
 							FROM LFTemas
 							WHERE Titulo = @Titulo)
-					BEGIN
-
-						BEGIN TRANSACTION
-
-						UPDATE LFTemas
-						SET IDEstilo = (SELECT ID
-											FROM LFEstilos
-											WHERE Estilo = @Estilo)
-						WHERE Titulo = @Titulo
-
-						COMMIT TRANSACTION
-
-					END
-
+		BEGIN
 		BEGIN TRANSACTION
+
+			UPDATE LFTemas
+			SET IDEstilo = (SELECT ID
+								FROM LFEstilos
+								WHERE Estilo = @Estilo)
+			WHERE Titulo = @Titulo
+
+
+		END
+
 
 		INSERT INTO LFTemasBandasEdiciones (IDBanda, IDFestival, Ordinal, IDTema)
 		VALUES (@IDBanda, @IDFestival, @Ordinal, (SELECT ID
 													FROM LFTemas
 													WHERE Titulo = @Titulo))
-
 		COMMIT TRANSACTION
 
 	END
@@ -404,8 +366,7 @@ RETURNS SMALLMONEY AS
 			LFEdiciones AS E
 			ON BE.IDFestival = E.IDFestival AND BE.Ordinal = E.Ordinal
 			WHERE IDBanda = @IDBanda AND FechaHoraInicio BETWEEN CAST (CURRENT_TIMESTAMP AS SMALLDATETIME) 
-			AND CAST (DATEFROMPARTS (((YEAR (CURRENT_TIMESTAMP)) - 3), MONTH (CURRENT_TIMESTAMP), DAY (CURRENT_TIMESTAMP)) AS SMALLDATETIME)
-			-- Utilizo DATEFROMPARTS para conseguir la fecha de 3 años antes de la actual.
+			AND CAST (DATEADD (YEAR, -3, CURRENT_TIMESTAMP) AS SMALLDATETIME)
 
 		RETURN @Resultado
 
