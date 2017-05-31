@@ -3,42 +3,26 @@ package Clases;
 import java.io.Serializable;
 import java.util.Objects;
 
-/* Propiedades.
- * 		Basicas:			Mazmorra mazmorra		----------		CONSULTABLE / MODIFICABLE
- * 							Jugador jugador 		----------		CONSULTABLE / MODIFICABLE
- * 							
- * 		Derivadas:
- * 		Compartidas:
- * 
- * Getters y setters:
- * 
- * Mazmorra getMazmorra ();
- * void setMazmorra (Mazmorra mazmorra);
- * 
- * Jugador getJugador ();
- * void setJugador (Jugador jugador);
- */
-
-public class PartidaIMPL implements Cloneable, Serializable
+public class Partida implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = 4877091961554436191L;
 	private MazmorraIMPL mazmorra;
 	private JugadorIMPL jugador;
 	
 	//Constructores
-	public PartidaIMPL ()
+	public Partida ()
 	{
 		mazmorra = new MazmorraIMPL ();
 		jugador = new JugadorIMPL ();
 	}
 	
-	public PartidaIMPL (PartidaIMPL partida)
+	public Partida (Partida partida)
 	{
 		this.mazmorra = partida.mazmorra;
 		this.jugador = partida.jugador;
 	}
 	
-	public PartidaIMPL (MazmorraIMPL mazmorra, JugadorIMPL jugador)
+	public Partida (MazmorraIMPL mazmorra, JugadorIMPL jugador)
 	{
 		this.mazmorra = mazmorra;
 		this.jugador = jugador;
@@ -229,9 +213,9 @@ public class PartidaIMPL implements Cloneable, Serializable
 	{
 		boolean resultado = false;
 		
-		if (object != null && object instanceof PartidaIMPL)
+		if (object != null && object instanceof Partida)
 		{
-			PartidaIMPL partida = (PartidaIMPL) object;
+			Partida partida = (Partida) object;
 			
 			if (this.getJugador().equals(partida.getJugador())
 				&& this.getMazmorra().equals(partida.getMazmorra()))
@@ -250,13 +234,13 @@ public class PartidaIMPL implements Cloneable, Serializable
 	}
 	
 	@Override /* Hecho en profundidad porque en superficie no tiene sentido */
-	public PartidaIMPL clone ()
+	public Partida clone ()
 	{
-		PartidaIMPL copia = null;
+		Partida copia = null;
 		
 		try
 		{
-			copia = (PartidaIMPL) super.clone();
+			copia = (Partida) super.clone();
 			this.jugador = copia.getJugador();
 			this.mazmorra = copia.getMazmorra();
 		}

@@ -60,7 +60,7 @@ public class MainJuego
 			System.out.println("Llamada al metodo printPartidas");
 		}
 	 */
-	public static void printPartidas (PartidaIMPL partida1, PartidaIMPL partida2, PartidaIMPL partida3)
+	public static void printPartidas (Partida partida1, Partida partida2, Partida partida3)
 	{
 		System.out.println("Seleccione una partida:");
 		if (partida1.equals(null))
@@ -81,10 +81,10 @@ public class MainJuego
 		Scanner teclado = new Scanner (System.in);
 		char ejecutar = ' ';
 		int numeroPartida = 0;
-		PartidaIMPL partida1 = new PartidaIMPL ();
-		PartidaIMPL partida2 = new PartidaIMPL ();
-		PartidaIMPL partida3 = new PartidaIMPL ();
-		PartidaIMPL partidaDefinitiva = new PartidaIMPL ();
+		Partida partida1 = new Partida ();
+		Partida partida2 = new Partida ();
+		Partida partida3 = new Partida ();
+		Partida partidaDefinitiva = new Partida ();
 		GestoraJuego gestora = new GestoraJuego ();
 		MazmorraIMPL mazmorra = new MazmorraIMPL ();
 		JugadorIMPL jugador = new JugadorIMPL ();

@@ -1,45 +1,11 @@
-/*
-Propiedades.
-	Básicas: 	Item Objeto1			-----------    Consultable / Modificable
-				Item Objeto2			-----------    Consultable / Modificable
-				Item Objeto3			-----------    Consultable / Modificable
-				Item Objeto4			-----------    Consultable / Modificable
-				Boolean disponibilidad	-----------    Consultable / Modificable
-	Derivadas:
-	Compartidas:
-
-Fórmulas:
-
-Getes y Setes: 
-
-Item getObjeto1 ();
-void setObjeto1 (Item Objeto1);
-
-Item getObjeto2 ();
-void setObjeto2 (Item Objeto2);
-
-Item getObjeto3 ();
-void setObjeto3 (Item Objeto3);
-
-Item getObjeto4 ();
-void setObjeto4 (Item Objeto4);
-
-Boolean getDisponibilidad ();
-void setDisponibilidad (Boolean disponibilidad);
-
-
-Métodos añadidos:
-
-Restricciones:
-
-
-*/
 package Clases;
 
 import java.io.Serializable;
 import java.util.*;
 
-public class TiendaIMPL implements Cloneable, Serializable
+import Interfaces.Tienda;
+
+public class TiendaIMPL implements Cloneable, Serializable, Tienda
 {
 	private static final long serialVersionUID = -9063051013414155572L;
 	private ItemIMPL objeto1;
@@ -372,7 +338,7 @@ public class TiendaIMPL implements Cloneable, Serializable
 	
 	//Fin Getes y setes
 	
-	//Metodos añadidos
+	//Metodos a�adidos
 	@Override
 	public String toString ()
 	{

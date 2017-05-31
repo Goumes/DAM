@@ -18,13 +18,13 @@ public class GestoraJuego
 	 * 		System.out.println("Llamada al metodo leerpartida");
 	 * }
 	 */
-	public PartidaIMPL leerPartida (int numero)
+	public Partida leerPartida (int numero)
 	{
 		File partidas = new File ("./src/Archivos/partidas.dat");
-		PartidaIMPL partida = null;
+		Partida partida = null;
 		ObjectInputStream ois = null;
 		int contador = 1;
-		PartidaIMPL resultado = null;
+		Partida resultado = null;
 		
 		try
 		{
@@ -33,7 +33,7 @@ public class GestoraJuego
 				@Override protected void readStreamHeader () {}
 			};
 			
-			partida = (PartidaIMPL) ois.readObject();
+			partida = (Partida) ois.readObject();
 			
 			while (!partida.equals(null))
 			{
@@ -42,7 +42,7 @@ public class GestoraJuego
 					resultado = partida.clone();
 				}
 				
-				partida = (PartidaIMPL) ois.readObject ();
+				partida = (Partida) ois.readObject ();
 				contador++;
 			}
 		}
@@ -100,9 +100,9 @@ public class GestoraJuego
 	 * 		System.out.println("Llamada al metodo asignarPartida");
 	 * }
 	 */
-	public PartidaIMPL asignarPartida (PartidaIMPL partida1, PartidaIMPL partida2, PartidaIMPL partida3, int numero)
+	public Partida asignarPartida (Partida partida1, Partida partida2, Partida partida3, int numero)
 	{
-		PartidaIMPL partidaDefinitiva = null;
+		Partida partidaDefinitiva = null;
 		
 		switch (numero)
 		{
@@ -136,7 +136,7 @@ public class GestoraJuego
 	public void guardarPartida (MazmorraIMPL mazmorra, JugadorIMPL jugador)
 	{
 		File partidas = new File ("./src/Archivos/partidas.dat");
-		PartidaIMPL partida = null;
+		Partida partida = null;
 		ObjectOutputStream oos = null;
 		
 		try
