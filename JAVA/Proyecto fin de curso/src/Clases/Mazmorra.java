@@ -76,7 +76,7 @@ public class Mazmorra implements Serializable, Cloneable
 	@Override
 	public int hashCode ()
 	{
-		return (Objects.hash (this.getMapa()));
+		return (Objects.hash ((Object [])this.getMapa()));
 	}
 	
 	
