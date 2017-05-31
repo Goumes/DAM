@@ -35,7 +35,7 @@ public class GestoraJuego
 			
 			partida = (Partida) ois.readObject();
 			
-			while (!partida.equals(null) && resultado.equals(null))
+			while (!partida.equals(null))
 			{
 				if (contador == numero)
 				{
@@ -59,7 +59,7 @@ public class GestoraJuego
 		
 		catch (EOFException e)
 		{
-			System.out.println("EOFException");
+			
 		}
 		
 		catch (IOException e)
@@ -83,7 +83,7 @@ public class GestoraJuego
 			}
 		}
 		
-		return partida;
+		return resultado;
 	}
 	//Fin leerPartida
 	
