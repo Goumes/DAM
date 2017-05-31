@@ -94,6 +94,186 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	{
 		this.salida = Salida;
 	}
+	
+	public ItemIMPL getObjeto1() 
+	{
+		return shop.getObjeto1();
+	}
+
+	public void setObjeto1(ItemIMPL objeto1) 
+	{
+		shop.setObjeto1(objeto1);
+	}
+
+	public ItemIMPL getObjeto2() 
+	{
+		return shop.getObjeto2();
+	}
+
+	public void setObjeto2(ItemIMPL objeto2) 
+	{
+		shop.setObjeto2(objeto2);
+	}
+
+	public ItemIMPL getObjeto3() 
+	{
+		return shop.getObjeto3();
+	}
+
+	public void setObjeto3(ItemIMPL objeto3) 
+	{
+		shop.setObjeto3(objeto3);
+	}
+
+	public ItemIMPL getObjeto4() 
+	{
+		return shop.getObjeto4();
+	}
+
+	public void setObjeto4(ItemIMPL objeto4) 
+	{
+		shop.setObjeto4(objeto4);
+	}
+
+	public boolean getDisponibilidad() 
+	{
+		return shop.getDisponibilidad();
+	}
+
+	public void setDisponibilidad(boolean disponibilidad) 
+	{
+		shop.setDisponibilidad(disponibilidad);
+	}
+
+	public double getDmg() 
+	{
+		return enemy.getDmg();
+	}
+
+	public void setDmg(double dmg) 
+	{
+		enemy.setDmg(dmg);
+	}
+
+	public double getDef() 
+	{
+		return enemy.getDef();
+	}
+
+	public void setDef(double def) 
+	{
+		enemy.setDef(def);
+	}
+
+	public ItemIMPL getDropItem() 
+	{
+		return enemy.getDropItem();
+	}
+
+	public void setDropItem(ItemIMPL dropItem) 
+	{
+		enemy.setDropItem(dropItem);
+	}
+
+	public int getDropDinero() 
+	{
+		return enemy.getDropDinero();
+	}
+
+	public void setDropDinero(int dropDinero) 
+	{
+		enemy.setDropDinero(dropDinero);
+	}
+
+	public int getNivel() 
+	{
+		return enemy.getNivel();
+	}
+
+	public void setNivel(int nivel) 
+	{
+		enemy.setNivel(nivel);
+	}
+
+	public double getModificadorDmg() 
+	{
+		return enemy.getModificadorDmg();
+	}
+
+	public void setModificadorDmg(double modificadorDmg) 
+	{
+		enemy.setModificadorDmg(modificadorDmg);
+	}
+
+	public double getModificadorDef() 
+	{
+		return enemy.getModificadorDef();
+	}
+
+	public void setModificadorDef(double modificadorDef) 
+	{
+		enemy.setModificadorDef(modificadorDef);
+	}
+
+	public double getDuracion() 
+	{
+		return enemy.getDuracion();
+	}
+
+	public void setDuracion(double duracion) 
+	{
+		enemy.setDuracion(duracion);
+	}
+
+	public String getEfecto() 
+	{
+		return enemy.getEfecto();
+	}
+
+	public void setEfecto(String efecto) 
+	{
+		enemy.setEfecto(efecto);
+	}
+
+	public double getValor() 
+	{
+		return cofre.getValor();
+	}
+
+	public void setValor(double valor) 
+	{
+		cofre.setValor(valor);
+	}
+
+	public ObjetoIMPL getDrop() 
+	{
+		return cofre.getDrop();
+	}
+
+	public void setDrop(ObjetoIMPL drop) 
+	{
+		cofre.setDrop(drop);
+	}
+
+	public String getNombre() 
+	{
+		return cofre.getNombre();
+	}
+
+	public void setNombre(String nombre) 
+	{
+		cofre.setNombre(nombre);
+	}
+
+	public double getPrecio() 
+	{
+		return cofre.getPrecio();
+	}
+
+	public void setPrecio(double precio) 
+	{
+		cofre.setPrecio(precio);
+	}
 	//Fin Getters y setters
 	
 	//Metodos añadidos

@@ -50,6 +50,27 @@ public class CofreIMPL implements Serializable, Cofre
 	{
 		this.drop = drop;
 	}
+	
+
+	public String getNombre() 
+	{
+		return drop.getNombre();
+	}
+
+	public void setNombre(String nombre) 
+	{
+		drop.setNombre(nombre);
+	}
+
+	public double getPrecio() 
+	{
+		return drop.getPrecio();
+	}
+
+	public void setPrecio(double precio) 
+	{
+		drop.setPrecio(precio);
+	}
 	//Fin Getters y setters
 	
 	//Metodos añadidos
@@ -119,5 +140,6 @@ public class CofreIMPL implements Serializable, Cofre
 		return resultado;
 	}
 	//Fin Metodos añadidos
+
 		
 }

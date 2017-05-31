@@ -61,7 +61,7 @@ public interface Enemigo
 	void setDef (double def);
 	
 	int getDropDinero ();
-	void setDropDInero (int dinero);
+	void setDropDinero (int dinero);
 	
 	int getNivel ();
 	void setNivel (int nivel);

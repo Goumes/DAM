@@ -1,49 +1,11 @@
-/*
-Propiedades.
-	Básicas:	String Nombre			-----------		Consultable / Modificable
-				Int Valor				-----------		Consultable / Modificable
-				Double modificadorDmg	-----------		Consultable / Modificable
-				Double modificadorDef	-----------		Consultable / Modificable
-				Double duracion			-----------		Consultable / Modificable
-				String efecto			-----------		Consultable / Modificable
-	Derivadas:
-	Compartidas:
-
-Fórmulas:
-
-Getes y Setes: 
-
-String getNombre ();
-void setNombre (String Nombre);
-
-Int getValor();
-void setValor (int Valor);
-
-double getModificadorDmg();
-void setModificadorDmg (double modificadorDmg);
-
-double getModificadorDef();
-void setModificadorDef (double modificadorDef);
-
-double getDuracion ();
-void setDuracion (doublé duracion);
-
-String getEfecto ();
-void setEfecto (String efecto);
-
-
-
-Métodos añadidos:
-
-Restricciones:
-
- */
 package Clases;
 
 import java.io.Serializable;
 import java.util.*;
 
-public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable
+import Interfaces.Item;
+
+public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable, Item
 {
 	private static final long serialVersionUID = -1109388286406543710L;
 	private double modificadorDmg;

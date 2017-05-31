@@ -123,6 +123,56 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 	{
 		this.nivel = nivel;
 	}
+	
+	public double getPrecio() 
+	{
+		return dropItem.getPrecio();
+	}
+
+	public void setPrecio(double precio) 
+	{
+		dropItem.setPrecio(precio);
+	}
+
+	public double getModificadorDmg() 
+	{
+		return dropItem.getModificadorDmg();
+	}
+
+	public void setModificadorDmg(double modificadorDmg) 
+	{
+		dropItem.setModificadorDmg(modificadorDmg);
+	}
+
+	public double getModificadorDef() 
+	{
+		return dropItem.getModificadorDef();
+	}
+
+	public void setModificadorDef(double modificadorDef) 
+	{
+		dropItem.setModificadorDef(modificadorDef);
+	}
+
+	public double getDuracion() 
+	{
+		return dropItem.getDuracion();
+	}
+
+	public void setDuracion(double duracion) 
+	{
+		dropItem.setDuracion(duracion);
+	}
+
+	public String getEfecto() 
+	{
+		return dropItem.getEfecto();
+	}
+
+	public void setEfecto(String efecto) 
+	{
+		dropItem.setEfecto(efecto);
+	}
 	//Fin Getes y setes
 	
 	//Metodos añadidos
@@ -207,11 +257,5 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		return resultado;
 	}
 	//Fin Metodos añadidos
-
-	@Override
-	public void setDropDInero(int dinero) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }//fin_clase
