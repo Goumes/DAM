@@ -127,6 +127,247 @@ public class TiendaIMPL implements Cloneable, Serializable
 	{
 		this.disponibilidad = disponibilidad;
 	}
+	
+	public String getNombre1() 
+	{
+		return objeto1.getNombre();
+	}
+
+	public void setNombre1(String nombre) 
+	{
+		objeto1.setNombre(nombre);
+	}
+
+	public double getPrecio1() 
+	{
+		return objeto1.getPrecio();
+	}
+
+	public void setPrecio1(double precio) 
+	{
+		objeto1.setPrecio(precio);
+	}
+
+	public double getModificadorDmg1() 
+	{
+		return objeto1.getModificadorDmg();
+	}
+
+	public void setModificadorDmg1(double modificadorDmg) 
+	{
+		objeto1.setModificadorDmg(modificadorDmg);
+	}
+
+	public double getModificadorDef1() 
+	{
+		return objeto1.getModificadorDef();
+	}
+
+	public void setModificadorDef1(double modificadorDef) 
+	{
+		objeto1.setModificadorDef(modificadorDef);
+	}
+
+	public double getDuracion1() 
+	{
+		return objeto1.getDuracion();
+	}
+
+	public void setDuracion1(double duracion) 
+	{
+		objeto1.setDuracion(duracion);
+	}
+
+	public String getEfecto1() 
+	{
+		return objeto1.getEfecto();
+	}
+
+	public void setEfecto1(String efecto) 
+	{
+		objeto1.setEfecto(efecto);
+	}
+	
+	public String getNombre2() 
+	{
+		return objeto1.getNombre();
+	}
+
+	public void setNombre2(String nombre) 
+	{
+		objeto1.setNombre(nombre);
+	}
+
+	public double getPrecio2() 
+	{
+		return objeto1.getPrecio();
+	}
+
+	public void setPrecio2(double precio) 
+	{
+		objeto1.setPrecio(precio);
+	}
+
+	public double getModificadorDmg2() 
+	{
+		return objeto1.getModificadorDmg();
+	}
+
+	public void setModificadorDmg2(double modificadorDmg) 
+	{
+		objeto1.setModificadorDmg(modificadorDmg);
+	}
+
+	public double getModificadorDef2() 
+	{
+		return objeto1.getModificadorDef();
+	}
+
+	public void setModificadorDef2(double modificadorDef) 
+	{
+		objeto1.setModificadorDef(modificadorDef);
+	}
+
+	public double getDuracion2() 
+	{
+		return objeto1.getDuracion();
+	}
+
+	public void setDuracion2(double duracion) 
+	{
+		objeto1.setDuracion(duracion);
+	}
+
+	public String getEfecto2() 
+	{
+		return objeto1.getEfecto();
+	}
+
+	public void setEfecto2(String efecto) 
+	{
+		objeto1.setEfecto(efecto);
+	}
+	
+	public String getNombre3() 
+	{
+		return objeto1.getNombre();
+	}
+
+	public void setNombre3(String nombre) 
+	{
+		objeto1.setNombre(nombre);
+	}
+
+	public double getPrecio3() 
+	{
+		return objeto1.getPrecio();
+	}
+
+	public void setPrecio3(double precio) 
+	{
+		objeto1.setPrecio(precio);
+	}
+
+	public double getModificadorDmg3() 
+	{
+		return objeto1.getModificadorDmg();
+	}
+
+	public void setModificadorDmg3(double modificadorDmg) 
+	{
+		objeto1.setModificadorDmg(modificadorDmg);
+	}
+
+	public double getModificadorDef3() 
+	{
+		return objeto1.getModificadorDef();
+	}
+
+	public void setModificadorDef3(double modificadorDef) 
+	{
+		objeto1.setModificadorDef(modificadorDef);
+	}
+
+	public double getDuracion3() 
+	{
+		return objeto1.getDuracion();
+	}
+
+	public void setDuracion3(double duracion) 
+	{
+		objeto1.setDuracion(duracion);
+	}
+
+	public String getEfecto3() 
+	{
+		return objeto1.getEfecto();
+	}
+
+	public void setEfecto3(String efecto) 
+	{
+		objeto1.setEfecto(efecto);
+	}
+	
+	public String getNombre4() 
+	{
+		return objeto1.getNombre();
+	}
+
+	public void setNombre4(String nombre) 
+	{
+		objeto1.setNombre(nombre);
+	}
+
+	public double getPrecio4() 
+	{
+		return objeto1.getPrecio();
+	}
+
+	public void setPrecio4(double precio) 
+	{
+		objeto1.setPrecio(precio);
+	}
+
+	public double getModificadorDmg4() 
+	{
+		return objeto1.getModificadorDmg();
+	}
+
+	public void setModificadorDmg4(double modificadorDmg) 
+	{
+		objeto1.setModificadorDmg(modificadorDmg);
+	}
+
+	public double getModificadorDef4() 
+	{
+		return objeto1.getModificadorDef();
+	}
+
+	public void setModificadorDef4(double modificadorDef) 
+	{
+		objeto1.setModificadorDef(modificadorDef);
+	}
+
+	public double getDuracion4() 
+	{
+		return objeto1.getDuracion();
+	}
+
+	public void setDuracion4(double duracion) 
+	{
+		objeto1.setDuracion(duracion);
+	}
+
+	public String getEfecto4() 
+	{
+		return objeto1.getEfecto();
+	}
+
+	public void setEfecto4(String efecto) 
+	{
+		objeto1.setEfecto(efecto);
+	}
+	
 	//Fin Getes y setes
 	
 	//Metodos añadidos
@@ -187,7 +428,7 @@ public class TiendaIMPL implements Cloneable, Serializable
 		
 		return copia;
 	}
-	
+
 	//No tiene sentido hacer el compareTo en este caso.
 	//public int compareTo ()
 	//{

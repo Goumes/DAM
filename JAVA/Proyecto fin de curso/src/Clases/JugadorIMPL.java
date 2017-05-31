@@ -190,6 +190,77 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	{
 		this.inventario = inventario;
 	}
+	
+
+	public double getModificadorDmg() 
+	{
+		return armadura.getModificadorDmg();
+	}
+
+	public void setModificadorDmg(double modificadorDmg) 
+	{
+		armadura.setModificadorDmg(modificadorDmg);
+	}
+
+	public double getModificadorDef() 
+	{
+		return armadura.getModificadorDef();
+	}
+
+	public void setModificadorDef(double modificadorDef) 
+	{
+		armadura.setModificadorDef(modificadorDef);
+	}
+
+	public double getDuracion() 
+	{
+		return armadura.getDuracion();
+	}
+
+	public void setDuracion(double duracion) 
+	{
+		armadura.setDuracion(duracion);
+	}
+
+	public String getEfecto() 
+	{
+		return armadura.getEfecto();
+	}
+
+	public void setEfecto(String efecto) 
+	{
+		armadura.setEfecto(efecto);
+	}
+	
+	public double getPrecioArmadura ()
+	{
+		return armadura.getPrecio();
+	}
+	
+	public void setPrecioArmadura (double precio)
+	{
+		armadura.setPrecio(precio);
+	}
+
+	public double getDmg() 
+	{
+		return armaEquipada.getDmg();
+	}
+
+	public void setDmg(double dmg) 
+	{
+		armaEquipada.setDmg(dmg);
+	}
+	
+	public double getPrecioArma ()
+	{
+		return armaEquipada.getPrecio();
+	}
+	
+	public void setPrecioArma (double precio)
+	{
+		armaEquipada.setPrecio(precio);
+	}
 	//Fin Getes y setes
 	
 	//Metodos Añadidos
