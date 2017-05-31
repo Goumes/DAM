@@ -6,13 +6,13 @@ import java.util.Objects;
 public class Partida implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = 4877091961554436191L;
-	private MazmorraIMPL mazmorra;
+	private Mazmorra mazmorra;
 	private JugadorIMPL jugador;
 	
 	//Constructores
 	public Partida ()
 	{
-		mazmorra = new MazmorraIMPL ();
+		mazmorra = new Mazmorra ();
 		jugador = new JugadorIMPL ();
 	}
 	
@@ -22,7 +22,7 @@ public class Partida implements Cloneable, Serializable
 		this.jugador = partida.jugador;
 	}
 	
-	public Partida (MazmorraIMPL mazmorra, JugadorIMPL jugador)
+	public Partida (Mazmorra mazmorra, JugadorIMPL jugador)
 	{
 		this.mazmorra = mazmorra;
 		this.jugador = jugador;
@@ -30,12 +30,12 @@ public class Partida implements Cloneable, Serializable
 	//Fin Constructores
 	
 	//Getters y setters
-	public MazmorraIMPL getMazmorra ()
+	public Mazmorra getMazmorra ()
 	{
 		return mazmorra;
 	}
 	
-	public void setMazmorra (MazmorraIMPL mazmorra)
+	public void setMazmorra (Mazmorra mazmorra)
 	{
 		this.mazmorra = mazmorra;
 	}

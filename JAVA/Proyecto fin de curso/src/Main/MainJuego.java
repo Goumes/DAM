@@ -86,7 +86,7 @@ public class MainJuego
 		Partida partida3 = new Partida ();
 		Partida partidaDefinitiva = new Partida ();
 		GestoraJuego gestora = new GestoraJuego ();
-		MazmorraIMPL mazmorra = new MazmorraIMPL ();
+		Mazmorra mazmorra = new Mazmorra ();
 		JugadorIMPL jugador = new JugadorIMPL ();
 		
 		//LeerValidarJugar

@@ -12,8 +12,8 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	private TiendaIMPL shop;
 	private EnemigoIMPL enemy;
 	private CofreIMPL cofre;
-	private char entrada;
-	private char salida;
+	private boolean entrada;
+	private boolean salida;
 	
 	//Constructores
 	public HabitacionIMPL ()
@@ -21,8 +21,8 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		shop = new TiendaIMPL ();
 		enemy = new EnemigoIMPL ();
 		cofre = new CofreIMPL ();
-		entrada = ' ';
-		salida = ' ';
+		entrada = false;
+		salida = false;
 	}
 	
 	public HabitacionIMPL (HabitacionIMPL habitacion)
@@ -34,7 +34,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.salida = habitacion.salida;
 	}
 	
-	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, char entrada, char salida)
+	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, boolean entrada, boolean salida)
 	{
 		this.shop = shop;
 		this.enemy = enemy;
@@ -75,22 +75,22 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.cofre = cofre;
 	}
 	
-	public char getEntrada ()
+	public boolean getEntrada ()
 	{
 		return entrada;
 	}
 	
-	public void setEntrada (char Entrada)
+	public void setEntrada (boolean Entrada)
 	{
 		this.entrada = Entrada;
 	}
 	
-	public char getSalida ()
+	public boolean getSalida ()
 	{
 		return salida;
 	}
 	
-	public void setSalida (char Salida)
+	public void setSalida (boolean Salida)
 	{
 		this.salida = Salida;
 	}

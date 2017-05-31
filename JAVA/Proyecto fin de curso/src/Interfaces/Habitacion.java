@@ -4,8 +4,8 @@ Propiedades.
 	Básicas: 	Tienda Shop		----------	Consultable / Modificable
 				Enemigo Enemy	----------	Consultable / Modificable
 				Cofre Chest		----------	Consultable / Modificable
-				char Entrada	----------	Consultable / Modificable
-				char Salida		----------	Consultable / Modificable
+				boolean Entrada	----------	Consultable / Modificable
+				boolean Salida		----------	Consultable / Modificable
 	Derivadas:
 	Compartidas:
 
@@ -22,11 +22,11 @@ void setEnemy (Enemigo enemy);
 Cofre getChest ();
 void setChest (Cofre chest);
 
-char getEntrada();
-void setEntrada (char entrada)
+boolean getEntrada();
+void setEntrada (boolean entrada)
  
-char getSalida();
-void setSalida (char salida)
+boolean getSalida();
+void setSalida (boolean salida)
 
 Métodos añadidos:
 
@@ -34,9 +34,9 @@ Restricciones:
  */
 public interface Habitacion 
 {
-	char getEntrada ();
-	void setEntrada (char entrada);
+	boolean getEntrada ();
+	void setEntrada (boolean entrada);
 	
-	char getSalida ();
-	void setSalida (char salida);
+	boolean getSalida ();
+	void setSalida (boolean salida);
 }

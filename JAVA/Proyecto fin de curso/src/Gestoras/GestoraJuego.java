@@ -133,7 +133,7 @@ public class GestoraJuego
 	 * 
 	 * Resguardo:
 	 */
-	public void guardarPartida (MazmorraIMPL mazmorra, JugadorIMPL jugador)
+	public void guardarPartida (Mazmorra mazmorra, JugadorIMPL jugador)
 	{
 		File partidas = new File ("./src/Archivos/partidas.dat");
 		Partida partida = null;
