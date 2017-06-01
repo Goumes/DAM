@@ -418,7 +418,7 @@ AS
 
 	UPDATE LFBandas
 	SET CacheMinimo = @NuevoCache
-	WHERE ID = @IDBanda
+	WHERE ID IN @IDBanda
 
 	COMMIT TRANSACTION
 
