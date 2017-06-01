@@ -1,4 +1,7 @@
 package Interfaces;
+
+import Exceptions.JuegoException;
+
 /* Interfaz:
  * 
 		Propiedades
@@ -59,19 +62,20 @@ package Interfaces;
 public interface Jugador 
 {
 	String getNombre ();
-	 void setNombre (String nombre);
+	 void setNombre (String nombre) throws JuegoException;
 	 
 	 int getVida();
-	 void setVida (int vida);
+	 void setVida (int vida) throws JuegoException;
 	 
 	 double getBaseDmg ();
-	 void setBaseDmg (double baseDmg);
+	 void setBaseDmg (double baseDmg) throws JuegoException;
 	 
 	 double getBaseDef ();
-	 void setBaseDef (double baseDef);
+	 void setBaseDef (double baseDef) throws JuegoException;
  
 	 int getOro ();
-	 void setOro (int oro);
+	 void setOro (int oro) throws JuegoException;
+	 
 	 double getTotalDmg ();
 	 
 	 double getTotalDef ();

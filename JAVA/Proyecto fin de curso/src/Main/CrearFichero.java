@@ -8,6 +8,7 @@ import Clases.JugadorIMPL;
 import Clases.Mazmorra;
 import Clases.ObjetoIMPL;
 import Clases.Partida;
+import Exceptions.JuegoException;
 
 import java.io.*;
 
@@ -50,6 +51,10 @@ public class CrearFichero
 		}
 		
 		catch (IOException e)
+		{
+			System.out.println(e);
+		}
+		catch (JuegoException e)
 		{
 			System.out.println(e);
 		}

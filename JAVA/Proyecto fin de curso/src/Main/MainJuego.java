@@ -62,7 +62,7 @@ public class MainJuego
 	 */
 	public static void printPartidas (Partida partida1, Partida partida2, Partida partida3)
 	{
-		System.out.println("Seleccione una partida:");
+		System.out.println("Selecciona una partida:");
 		
 		if (partida1.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
 		{
@@ -140,17 +140,18 @@ public class MainJuego
 			//EjecutarJuego
 			
 				//si Partida no creada
-				if (partidaDefinitiva.equals(null))
+				if (partidaDefinitiva.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
 				{
 				
 					//GenerarMazmorra *
 					//Fin GenerarMazmorra
 					
 					//CrearPersonaje *
+					jugador = gestora.crearJugador();
 					//Fin CrearPersonaje
 					
 					//GuardarPartida *
-					gestora.guardarPartida(mazmorra, jugador);
+					gestora.guardarPartida(mazmorra, jugador, numeroPartida);
 					//Fin GuardarPartida
 				
 				}//fin_si

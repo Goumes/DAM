@@ -2,6 +2,8 @@ package Clases;
 
 import java.io.Serializable;
 import java.util.Objects;
+
+import Exceptions.JuegoException;
 import Interfaces.Objeto;
 
 
@@ -24,10 +26,27 @@ public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, S
 		this.precio = objeto.precio;
 	}
 	
-	public ObjetoIMPL (String nombre, double precio)
+	public ObjetoIMPL (String nombre, double precio) throws JuegoException
 	{
-		this.nombre = nombre;
-		this.precio = precio;
+		if (nombre.equals(null) || nombre.equals("")
+			|| precio < 0)
+		{
+			if ((nombre.equals(null) || nombre.equals("")))
+			{
+				throw new JuegoException ("El nombre no debe estar vacio");
+			}
+			
+			else if (precio < 0)
+			{
+				throw new JuegoException ("El precio no puede ser menor a 0");
+			}
+		}
+		
+		else
+		{
+			this.nombre = nombre;
+			this.precio = precio;
+		}
 	}
 	//Fin Constructores
 	
@@ -37,9 +56,16 @@ public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, S
 		return nombre;
 	}
 	
-	public void setNombre (String nombre)
+	public void setNombre (String nombre) throws JuegoException
 	{
-		this.nombre = nombre;
+		if (nombre.equals(null) || nombre.equals(""))
+		{
+			throw new JuegoException ("El nombre no debe estar vacio");
+		}
+		else
+		{
+			this.nombre = nombre;
+		}
 	}
 	
 	public double getPrecio ()
@@ -47,9 +73,16 @@ public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, S
 		return precio;
 	}
 	
-	public void setPrecio (double precio)
+	public void setPrecio (double precio) throws JuegoException
 	{
-		this.precio = precio;
+		if (precio < 0)
+		{
+			throw new JuegoException ("El precio no puede ser menor a 0");
+		}
+		else
+		{
+			this.precio = precio;
+		}
 	}
 	//Fin Getters y setters
 	

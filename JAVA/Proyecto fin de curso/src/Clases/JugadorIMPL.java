@@ -3,6 +3,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 
+import Exceptions.JuegoException;
 import Interfaces.Jugador;
  
 public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Serializable, Jugador
@@ -42,16 +43,50 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		this.inventario = jugador.inventario;
 	}
 	
-	public JugadorIMPL (String nombre, int vida, double baseDmg, double baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ObjetoIMPL [] inventario)
+	public JugadorIMPL (String nombre, int vida, double baseDmg, double baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ObjetoIMPL [] inventario) throws JuegoException
 	{
-		this.nombre = nombre;
-		this.vida = vida;
-		this.baseDmg = baseDmg;
-		this.baseDef = baseDef;
-		this.armadura = armadura;
-		this.armaEquipada = armaEquipada;
-		this.oro = oro;
-		this.inventario = inventario;
+		if ((nombre.equals(null) || nombre.equals(""))
+			|| (vida < 1 )
+			|| (baseDmg < 0)
+			|| (baseDef < 0)
+			|| (oro < 0))
+		{
+			if (nombre.equals(null) || nombre.equals(""))
+			{
+				throw new JuegoException ("El nombre no debe estar vacío");
+			}
+			
+			else if (vida < 1) 
+			{
+				throw new JuegoException ("La vida no puede ser 0 o menor que 0");
+			}
+			
+			else if (baseDmg < 0) 
+			{
+				throw new JuegoException ("El daño base no puede ser menor que 0");
+			}
+			
+			else if (baseDef < 0) 
+			{
+				throw new JuegoException ("La defensa base no puede ser menor que 0");
+			}
+			
+			else if (oro < 0) 
+			{
+				throw new JuegoException ("El oro no puede ser menor que 0");
+			}
+		}
+		else
+		{
+			this.nombre = nombre;
+			this.vida = vida;
+			this.baseDmg = baseDmg;
+			this.baseDef = baseDef;
+			this.armadura = armadura;
+			this.armaEquipada = armaEquipada;
+			this.oro = oro;
+			this.inventario = inventario;
+		}
 	}
 	//Fin Constructores
 	
@@ -61,9 +96,16 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		return nombre;
 	}
 	
-	public void setNombre (String nombre)
+	public void setNombre (String nombre) throws JuegoException
 	{
-		this.nombre = nombre;
+		if (nombre.equals(null) || nombre.equals(""))
+		{
+			throw new JuegoException ("El nombre no debe estar vacío");
+		}
+		else
+		{
+			this.nombre = nombre;
+		}
 	}
 	
 	public int getVida ()
@@ -71,9 +113,16 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		return vida;
 	}
 	
-	public void setVida (int vida)
+	public void setVida (int vida) throws JuegoException
 	{
-		this.vida = vida;
+		if (vida < 0)
+		{
+			throw new JuegoException ("La vida no puede ser menor a 0");
+		}
+		else
+		{
+			this.vida = vida;
+		}
 	}
 	
 	public double getBaseDmg ()
@@ -81,9 +130,16 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		return baseDmg;
 	}
 	
-	public void setBaseDmg (double baseDmg)
+	public void setBaseDmg (double baseDmg) throws JuegoException
 	{
-		this.baseDmg = baseDmg;
+		if (baseDmg < 0)
+		{
+			throw new JuegoException ("El daño base no puede ser menor a 0");
+		}
+		else
+		{
+			this.baseDmg = baseDmg;
+		}
 	}
 	
 	public double getBaseDef ()
@@ -91,9 +147,16 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		return baseDef;
 	}
 	
-	public void setBaseDef (double baseDef)
+	public void setBaseDef (double baseDef) throws JuegoException
 	{
-		this.baseDef = baseDef;
+		if (baseDef < 0)
+		{
+			throw new JuegoException ("La defensa base no puede ser menor a 0");
+		}
+		else
+		{
+			this.baseDef = baseDef;
+		}
 	}
 	
 	public ItemIMPL getArmadura ()
@@ -121,9 +184,16 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		return oro;
 	}
 	
-	public void setOro (int oro)
+	public void setOro (int oro) throws JuegoException
 	{
-		this.oro = oro;
+		if (oro < 0)
+		{
+			throw new JuegoException ("El oro no puede ser menor a 0");
+		}
+		else
+		{
+			this.oro = oro;
+		}
 	}
 	
 	public ObjetoIMPL [] getInventario ()
@@ -192,7 +262,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		return armadura.getPrecio();
 	}
 	
-	public void setArmaduraPrecio (double precio)
+	public void setArmaduraPrecio (double precio) throws JuegoException
 	{
 		armadura.setPrecio(precio);
 	}

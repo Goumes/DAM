@@ -3,6 +3,8 @@ package Clases;
 import java.io.Serializable;
 import java.util.Objects;
 
+import Exceptions.JuegoException;
+
 public class Partida implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = 4877091961554436191L;
@@ -55,7 +57,7 @@ public class Partida implements Cloneable, Serializable
 		return jugador.getNombre();
 	}
 
-	public void setJugadorNombre(String nombre) 
+	public void setJugadorNombre(String nombre) throws JuegoException
 	{
 		jugador.setNombre(nombre);
 	}
@@ -65,7 +67,7 @@ public class Partida implements Cloneable, Serializable
 		return jugador.getVida();
 	}
 
-	public void setJugadorVida(int vida) 
+	public void setJugadorVida(int vida) throws JuegoException
 	{
 		jugador.setVida(vida);
 	}
@@ -75,7 +77,7 @@ public class Partida implements Cloneable, Serializable
 		return jugador.getBaseDmg();
 	}
 
-	public void setJugadorBaseDmg(double baseDmg) 
+	public void setJugadorBaseDmg(double baseDmg) throws JuegoException
 	{
 		jugador.setBaseDmg(baseDmg);
 	}
@@ -85,7 +87,7 @@ public class Partida implements Cloneable, Serializable
 		return jugador.getBaseDef();
 	}
 
-	public void setJugadorBaseDef(double baseDef) 
+	public void setJugadorBaseDef(double baseDef) throws JuegoException
 	{
 		jugador.setBaseDef(baseDef);
 	}
@@ -115,7 +117,7 @@ public class Partida implements Cloneable, Serializable
 		return jugador.getOro();
 	}
 
-	public void setJugadorOro(int oro) 
+	public void setJugadorOro(int oro) throws JuegoException
 	{
 		jugador.setOro(oro);
 	}
@@ -175,7 +177,7 @@ public class Partida implements Cloneable, Serializable
 		return jugador.getArmaduraPrecio();
 	}
 
-	public void setJugadorArmaduraPrecio(double precio) 
+	public void setJugadorArmaduraPrecio(double precio) throws JuegoException
 	{
 		jugador.setArmaduraPrecio(precio);
 	}
@@ -185,7 +187,7 @@ public class Partida implements Cloneable, Serializable
 		return jugador.getBaseDmg();
 	}
 
-	public void setJugadorDmg(double dmg) 
+	public void setJugadorDmg(double dmg) throws JuegoException
 	{
 		jugador.setBaseDmg(dmg);
 	}

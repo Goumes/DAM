@@ -3,6 +3,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.Objects;
 
+import Exceptions.JuegoException;
 import Interfaces.Arma;
 
 public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Cloneable, Serializable, Arma
@@ -21,7 +22,7 @@ public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Clo
 		this.dmg = arma.dmg;
 	}
 	
-	public ArmaIMPL (String nombre, double Dmg, double precio)
+	public ArmaIMPL (String nombre, double Dmg, double precio) throws JuegoException
 	{
 		super (nombre, precio);
 		this.dmg = Dmg;

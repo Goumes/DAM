@@ -18,11 +18,13 @@ package Interfaces;
  * Criterio de comparación : precio
  */
 
+import Exceptions.JuegoException;
+
 public interface Objeto 
 {
 	String getNombre ();
-	void setNombre (String nombre);
+	void setNombre (String nombre) throws JuegoException;
 	
 	double getPrecio ();
-	void setPrecio (double precio);
+	void setPrecio (double precio) throws JuegoException;
 }

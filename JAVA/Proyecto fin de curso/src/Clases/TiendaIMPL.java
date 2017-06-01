@@ -3,6 +3,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 
+import Exceptions.JuegoException;
 import Interfaces.Tienda;
 
 public class TiendaIMPL implements Cloneable, Serializable, Tienda
@@ -100,7 +101,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto1.getNombre();
 	}
 
-	public void setObjeto1Nombre(String nombre) 
+	public void setObjeto1Nombre(String nombre) throws JuegoException
 	{
 		objeto1.setNombre(nombre);
 	}
@@ -110,7 +111,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto1.getPrecio();
 	}
 
-	public void setObjeto1Precio(double precio) 
+	public void setObjeto1Precio(double precio) throws JuegoException
 	{
 		objeto1.setPrecio(precio);
 	}
@@ -160,7 +161,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto2.getNombre();
 	}
 
-	public void setObjeto2Nombre(String nombre) 
+	public void setObjeto2Nombre(String nombre) throws JuegoException
 	{
 		objeto2.setNombre(nombre);
 	}
@@ -170,7 +171,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto2.getPrecio();
 	}
 
-	public void setObjeto2Precio(double precio) 
+	public void setObjeto2Precio(double precio) throws JuegoException
 	{
 		objeto2.setPrecio(precio);
 	}
@@ -220,7 +221,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto3.getNombre();
 	}
 
-	public void setObjeto3Nombre(String nombre) 
+	public void setObjeto3Nombre(String nombre) throws JuegoException
 	{
 		objeto3.setNombre(nombre);
 	}
@@ -230,7 +231,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto3.getPrecio();
 	}
 
-	public void setObjeto3Precio(double precio) 
+	public void setObjeto3Precio(double precio) throws JuegoException
 	{
 		objeto3.setPrecio(precio);
 	}
@@ -280,7 +281,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto4.getNombre();
 	}
 
-	public void setObjeto4Nombre(String nombre) 
+	public void setObjeto4Nombre(String nombre) throws JuegoException
 	{
 		objeto4.setNombre(nombre);
 	}
@@ -290,7 +291,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		return objeto4.getPrecio();
 	}
 
-	public void setObjeto4Precio(double precio) 
+	public void setObjeto4Precio(double precio) throws JuegoException
 	{
 		objeto4.setPrecio(precio);
 	}

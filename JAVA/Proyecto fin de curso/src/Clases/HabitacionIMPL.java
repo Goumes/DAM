@@ -3,6 +3,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 
+import Exceptions.JuegoException;
 import Interfaces.Cofre;
 import Interfaces.Habitacion;
 
@@ -260,7 +261,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		return cofre.getNombre();
 	}
 
-	public void setCofreNombre(String nombre) 
+	public void setCofreNombre(String nombre) throws JuegoException
 	{
 		cofre.setNombre(nombre);
 	}
@@ -270,7 +271,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		return cofre.getDropPrecio();
 	}
 
-	public void setCofrePrecio(double precio) 
+	public void setCofrePrecio(double precio) throws JuegoException
 	{
 		cofre.setDropPrecio(precio);
 	}

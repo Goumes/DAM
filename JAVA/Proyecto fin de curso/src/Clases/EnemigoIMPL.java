@@ -3,6 +3,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 
+import Exceptions.JuegoException;
 import Interfaces.Enemigo;
 
 public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Serializable, Enemigo
@@ -129,7 +130,7 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		return dropItem.getPrecio();
 	}
 
-	public void setDropItemPrecio(double precio) 
+	public void setDropItemPrecio(double precio) throws JuegoException
 	{
 		dropItem.setPrecio(precio);
 	}
