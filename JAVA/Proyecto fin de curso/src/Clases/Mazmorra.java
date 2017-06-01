@@ -3,6 +3,7 @@ package Clases;
 import java.io.Serializable;
 import java.util.Objects;
 
+import Exceptions.JuegoException;
 import Interfaces.Habitacion;
 
 /* Propiedades:
@@ -36,9 +37,16 @@ public class Mazmorra implements Serializable, Cloneable
 		this.mapa = mazmorra.mapa;
 	}
 	
-	public Mazmorra (Habitacion [][] mapa)
+	public Mazmorra (Habitacion [][] mapa) throws JuegoException
 	{
-		this.mapa = mapa;
+		if ((mapa.length == 5) && (mapa [0].length == 5))
+		{
+			this.mapa = mapa;
+		}
+		else
+		{
+			throw new JuegoException ("Error, el tablero debe ser de 5 x 5");
+		}
 	}
 	//Fin Constructores
 	
@@ -48,9 +56,16 @@ public class Mazmorra implements Serializable, Cloneable
 		return mapa;
 	}
 	
-	public void setMapa (Habitacion [][] mapa)
+	public void setMapa (Habitacion [][] mapa) throws JuegoException
 	{
-		this.mapa = mapa;
+		if ((mapa.length == 5) && (mapa [0].length == 5))
+		{
+			this.mapa = mapa;
+		}
+		else
+		{
+			throw new JuegoException ("Error, el tablero debe ser de 5 x 5");
+		}
 	}
 	//Fin Getters y setters
 	
@@ -95,7 +110,7 @@ public class Mazmorra implements Serializable, Cloneable
 	 */
 	public void generarMazmorraAleatoria ()
 	{
-		
+		 
 	}
 	//Fin generarMazmorraAleatoria
 	

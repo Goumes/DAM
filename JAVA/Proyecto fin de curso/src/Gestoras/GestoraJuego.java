@@ -211,6 +211,19 @@ public class GestoraJuego
 					System.out.println("IOException close");
 				}
 			}
+			
+			if (ois != null)
+			{
+				try
+				{
+					ois.close();
+				}
+				
+				catch (IOException e)
+				{
+					System.out.println("IOException close");
+				}
+			}
 		}
 		
 		partidas.delete();

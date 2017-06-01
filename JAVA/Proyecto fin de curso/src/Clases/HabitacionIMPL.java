@@ -337,6 +337,25 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		return copia;
 	}
 	
+	/* /* Prototipo: generarHabitacionAleatoria ()
+	 * Breve comentario: Metodo dedicado a la generación aleatoria de una habitacion
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void generarHabitacionAleatoria ()
+		{
+			System.out.println("Llamada al metodo generarHabitacionAleatoria");
+		}
+	 */
+	public void generarHabitacionAleatoria ()
+	{
+		 
+	}
+	//Fin generarMazmorraAleatoria
+	
 	//Criterio de comparaciÃ³n: 
 	/* public int compareTo ()
 	{

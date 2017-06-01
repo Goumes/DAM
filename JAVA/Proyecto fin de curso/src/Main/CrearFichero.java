@@ -78,6 +78,68 @@ public class CrearFichero
 	}
 	//Fin crearPartidas
 	
+	/* Prototipo: void crearArmas ()
+	 * Breve comentario: Metodo dedicado a la creación del fichero de armas.
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo:
+	 */
+	public static void crearArmas ()
+	{
+		File armas = new File ("./src/Archivos/armas.dat");
+		ObjectOutputStream oos = null;
+		
+		try
+		{
+			oos = new ObjectOutputStream (new FileOutputStream (armas))
+			{
+				@Override protected void writeStreamHeader () {}
+			};
+			
+			
+		}
+		
+		catch (FileNotFoundException e)
+		{
+			System.out.println(e);
+		}
+		
+		catch (EOFException e)
+		{
+		}
+		
+		catch (IOException e)
+		{
+			System.out.println(e);
+		}
+		catch (JuegoException e)
+		{
+			System.out.println(e);
+		}
+		
+		
+		finally
+		{
+			if (oos != null)
+			{
+				try
+				{
+					oos.close();
+				}
+				
+				catch (IOException e)
+				{
+					System.out.println(e);
+				}
+			}
+		}
+	}
+	//Fin crearArmas
+	
 	/* Prototipo: void menuCrear ()
 	 * Breve comentario: Menu de crear del programa.
 	 * Precondiciones: Ninguna
