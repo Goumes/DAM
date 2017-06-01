@@ -64,7 +64,7 @@ public class Mazmorra implements Serializable, Cloneable
 		{
 			Mazmorra mazmorra = (Mazmorra) objeto;
 			
-			if (this.getMapa().equals(mapa))
+			if (this.getMapa ().length == mazmorra.getMapa ().length)
 			{
 				resultado = true;
 			}

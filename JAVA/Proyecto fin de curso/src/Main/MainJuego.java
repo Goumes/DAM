@@ -63,7 +63,8 @@ public class MainJuego
 	public static void printPartidas (Partida partida1, Partida partida2, Partida partida3)
 	{
 		System.out.println("Seleccione una partida:");
-		if (partida1.equals(null))
+		
+		if (partida1.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
 		{
 			System.out.println("Partida 1: Crear nueva partida");
 		}
@@ -71,8 +72,26 @@ public class MainJuego
 		{
 			System.out.println("Partida 1: "+partida1.toString());
 		}
-		System.out.println("Partida 2: "+partida2.toString());
-		System.out.println("Partida 3: "+partida3.toString ());
+		
+		if (partida2.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
+		{
+			System.out.println("Partida 2: Crear nueva partida");
+		}
+		
+		else
+		{
+			System.out.println("Partida 2: "+partida2.toString());
+		}
+		
+		if (partida3.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
+		{
+			System.out.println("Partida 3: Crear nueva partida");
+		}
+		
+		else
+		{
+			System.out.println("Partida 3: "+partida3.toString ());
+		}
 	}
 	//Fin printPartidas
 	

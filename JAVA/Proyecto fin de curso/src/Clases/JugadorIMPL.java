@@ -27,7 +27,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		armadura = new ItemIMPL ();
 		armaEquipada = new ArmaIMPL ();
 		oro = 0;
-		inventario = null;
+		inventario = new ObjetoIMPL [] {};
 	}
 	
 	public JugadorIMPL (JugadorIMPL jugador)
@@ -248,8 +248,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 				&& this.getBaseDef () == jugador.getBaseDef ()
 				&& this.getArmadura().equals(jugador.getArmadura())
 				&& this.getArmaEquipada().equals(jugador.armaEquipada)
-				&& this.getOro() == jugador.getOro ()
-				&& this.getInventario().equals (jugador.getInventario()))
+				&& this.getOro() == jugador.getOro ())
 			{
 				resultado = true;
 			}
