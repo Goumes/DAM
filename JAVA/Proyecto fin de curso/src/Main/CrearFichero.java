@@ -100,7 +100,7 @@ public class CrearFichero
 				@Override protected void writeStreamHeader () {}
 			};
 			
-			
+			oos.writeObject(new ArmaIMPL ()); //Aquí va toda la tralla
 		}
 		
 		catch (FileNotFoundException e)
@@ -116,11 +116,6 @@ public class CrearFichero
 		{
 			System.out.println(e);
 		}
-		catch (JuegoException e)
-		{
-			System.out.println(e);
-		}
-		
 		
 		finally
 		{

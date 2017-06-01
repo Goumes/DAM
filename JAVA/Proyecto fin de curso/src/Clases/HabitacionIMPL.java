@@ -126,12 +126,12 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		shop.setObjeto3(objeto3);
 	}
 
-	public ItemIMPL getShopObjeto4() 
+	public ArmaIMPL getShopObjeto4() 
 	{
 		return shop.getObjeto4();
 	}
 
-	public void setShopObjeto4(ItemIMPL objeto4) 
+	public void setShopObjeto4(ArmaIMPL objeto4) 
 	{
 		shop.setObjeto4(objeto4);
 	}

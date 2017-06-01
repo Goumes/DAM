@@ -12,7 +12,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 	private ItemIMPL objeto1;
 	private ItemIMPL objeto2;
 	private ItemIMPL objeto3;
-	private ItemIMPL objeto4;
+	private ArmaIMPL objeto4;
 	private boolean disponibilidad;		//Esta variable indica si es posible generar una tienda en la mazmorra. MÃ¡ximo una por mazmorra.
 	
 	//Constructores
@@ -21,7 +21,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		objeto1 = new ItemIMPL ();
 		objeto2 = new ItemIMPL ();
 		objeto3 = new ItemIMPL ();
-		objeto4 = new ItemIMPL ();
+		objeto4 = new ArmaIMPL ();
 		disponibilidad = false;
 	}
 	
@@ -34,7 +34,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		this.disponibilidad = tienda.disponibilidad;
 	}
 	
-	public TiendaIMPL (ItemIMPL objeto1, ItemIMPL objeto2, ItemIMPL objeto3, ItemIMPL objeto4, boolean disponibilidad)
+	public TiendaIMPL (ItemIMPL objeto1, ItemIMPL objeto2, ItemIMPL objeto3, ArmaIMPL objeto4, boolean disponibilidad)
 	{
 		this.objeto1 = objeto1;
 		this.objeto2 = objeto2;
@@ -75,12 +75,12 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		this.objeto3 = objeto3;
 	}
 	
-	public ItemIMPL getObjeto4 ()
+	public ArmaIMPL getObjeto4 ()
 	{
 		return objeto4;
 	}
 	
-	public void setObjeto4 (ItemIMPL objeto4)
+	public void setObjeto4 (ArmaIMPL objeto4)
 	{
 		this.objeto4 = objeto4;
 	}
@@ -296,46 +296,16 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		objeto4.setPrecio(precio);
 	}
 
-	public double getObjeto4ModificadorDmg() 
+	public double getObjeto4Dmg() 
 	{
-		return objeto4.getModificadorDmg();
+		return objeto4.getDmg();
 	}
 
-	public void setObjeto4ModificadorDmg(double modificadorDmg) 
+	public void setObjeto4Dmg(double dmg) 
 	{
-		objeto4.setModificadorDmg(modificadorDmg);
+		objeto4.setDmg(dmg);
 	}
 
-	public double getObjeto4ModificadorDef() 
-	{
-		return objeto4.getModificadorDef();
-	}
-
-	public void setObjeto4ModificadorDef(double modificadorDef) 
-	{
-		objeto4.setModificadorDef(modificadorDef);
-	}
-
-	public double getObjeto4Duracion() 
-	{
-		return objeto4.getDuracion();
-	}
-
-	public void setObjeto4Duracion(double duracion) 
-	{
-		objeto4.setDuracion(duracion);
-	}
-
-	public String getObjeto4Efecto() 
-	{
-		return objeto4.getEfecto();
-	}
-
-	public void setObjeto4Efecto(String efecto) 
-	{
-		objeto4.setEfecto(efecto);
-	}
-	
 	
 	//Fin Getes y setes
 	
@@ -397,6 +367,59 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		
 		return copia;
 	}
+	
+	/* Prototipo: generarTiendaAleatoria ()
+	 * Breve comentario: Metodo dedicado a la generación aleatoria de la tienda
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void generarTiendaAleatoria ()
+		{
+			System.out.println("Llamada al metodo generarTiendaAleatoria");
+		}
+	 */
+	public void generarTiendaAleatoria ()
+	{
+		 Random aleatorio = new Random ();
+		 int numero = 0;
+		 ItemIMPL item = null;
+		 ArmaIMPL arma = null;
+		 int contador = 0;
+		 
+		 while (this.getObjeto1().equals(new ItemIMPL ())
+				 || this.getObjeto2().equals(new ItemIMPL ())
+				 || this.getObjeto3().equals(new ItemIMPL ()))
+		 {
+		 
+			 numero = aleatorio.nextInt (15) + 1;
+			 item = itemAleatorio (numero);
+			 
+			 if (contador == 0)
+			 {
+				 this.setObjeto1(item);
+			 }
+			 
+			 else if (contador == 1)
+			 {
+				 this.setObjeto2(item);
+			 }
+			 
+			 else
+			 {
+				 this.setObjeto3(item);
+			 }
+			 
+			 contador++;
+		 }
+		 
+		 numero = aleatorio.nextInt (15) + 1;
+		 arma = armaAleatoria (numero);
+		
+	}
+	//Fin generarTiendaAleatoria
 
 	//No tiene sentido hacer el compareTo en este caso.
 	//public int compareTo ()
