@@ -210,6 +210,11 @@ public class Partida implements Cloneable, Serializable
 		return (this.getJugador().toString()+","+this.getMazmorra().toString());
 	}
 	
+	public void imprimirJugador() 
+	{
+		jugador.imprimirJugador();
+	}
+
 	@Override
 	public boolean equals (Object object)
 	{

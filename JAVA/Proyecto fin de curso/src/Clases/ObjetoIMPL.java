@@ -119,20 +119,12 @@ public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, S
 	}
 	
 	@Override
-	public ObjetoIMPL clone ()
+	public ObjetoIMPL clone () throws CloneNotSupportedException
 	{
 		ObjetoIMPL copia = null;
 		
-		try
-		{
 			copia = (ObjetoIMPL) super.clone();
-		}
-		
-		catch (CloneNotSupportedException e)
-		{
-			e.printStackTrace();
-		}
-		
+
 		return copia;
 	}
 	

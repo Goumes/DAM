@@ -303,6 +303,32 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		return s;
 	}
 	
+	/* Prototipo: void imprimirJugador
+	 * Breve comentario: Metodo dedicado a imprimir un jugador
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void imprimirJugador ()
+	 * {
+	 * 		System.out.println("imprimirJugador");
+	 * }
+	 */
+	public void imprimirJugador ()
+	{
+		System.out.println(" _______________________________________________________________________________________________________________________");
+		System.out.println("|                               |                |                      |                       |                       |");
+		System.out.println("|            Nombre             |      Vida      |       Daño base      |      Defensa base     |         Riqueza       |");
+		System.out.println("|_______________________________|________________|______________________|_______________________|_______________________|");
+		System.out.println("|                               |                |                      |                       |                       |");
+		System.out.println(this.toString());
+		System.out.println("|_______________________________|________________|______________________|_______________________|_______________________|");
+		System.out.println();
+	}
+	
+	
 	@Override
 	public boolean equals (Object objeto)
 	{

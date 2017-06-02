@@ -70,7 +70,8 @@ public class MainJuego
 		}
 		else
 		{
-			System.out.println("Partida 1: "+partida1.toString());
+			System.out.println("Partida 1: ");
+			partida1.imprimirJugador ();
 		}
 		
 		if (partida2.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
@@ -80,7 +81,8 @@ public class MainJuego
 		
 		else
 		{
-			System.out.println("Partida 2: "+partida2.toString());
+			System.out.println("Partida 2: ");
+			partida2.imprimirJugador();
 		}
 		
 		if (partida3.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
@@ -90,7 +92,8 @@ public class MainJuego
 		
 		else
 		{
-			System.out.println("Partida 3: "+partida3.toString ());
+			System.out.println("Partida 3: ");
+			partida3.imprimirJugador ();
 		}
 	}
 	//Fin printPartidas

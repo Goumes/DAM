@@ -89,9 +89,8 @@ public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Clo
 		return (resultado);
 	}
 	
-	/* No se si poner un throws en la clase padre
 	@Override
-	public ArmaIMPL clone ();
+	public ArmaIMPL clone ()
 	{
 		ArmaIMPL copia = null;
 		
@@ -104,8 +103,9 @@ public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Clo
 		{
 			e.printStackTrace();
 		}
+		
+		return copia;
 	}
-	*/
 	
 	@Override
 	public int hashCode ()

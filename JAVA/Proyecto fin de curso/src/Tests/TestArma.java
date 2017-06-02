@@ -1,14 +1,27 @@
 package Tests;
 
 import Clases.ArmaIMPL;
+import Exceptions.JuegoException;
 
 public class TestArma
 {
 	public static void main (String []args)
 	{
-		ArmaIMPL riflePulsos = new ArmaIMPL ("Rifle de pulsos", 45.5, 100);
-		ArmaIMPL cuchilloCombate = new ArmaIMPL ("Cuchillo de combate", 30.0, 40);
-		ArmaIMPL riflePulsos2 = new ArmaIMPL ();
+		ArmaIMPL riflePulsos = null;
+		ArmaIMPL cuchilloCombate = null;
+		ArmaIMPL riflePulsos2 = null;
+		
+		try
+		{
+			riflePulsos = new ArmaIMPL ("Rifle de pulsos", 45.5, 100);
+			cuchilloCombate = new ArmaIMPL ("Cuchillo de combate", 30.0, 40);
+			riflePulsos2 = new ArmaIMPL ();
+		}
+		
+		catch (JuegoException e)
+		{
+			System.out.println(e);
+		}
 		
 		//Getes setes y toString
 		System.out.println("Getes, setes y toString: ");
@@ -25,7 +38,7 @@ public class TestArma
 		//clone
 		System.out.println("---------------");
 		System.out.println("Clone:");
-		//riflePulsos2 = riflePulsos.clone ();
+		riflePulsos2 = riflePulsos.clone ();
 		System.out.println(riflePulsos2);
 		System.out.println("---------------");
 		//Fin clone

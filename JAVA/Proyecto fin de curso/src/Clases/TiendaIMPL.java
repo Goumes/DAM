@@ -417,7 +417,6 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		 
 		 numero = aleatorio.nextInt (15) + 1;
 		 arma = armaAleatoria (numero);
-		
 	}
 	//Fin generarTiendaAleatoria
 
