@@ -155,7 +155,7 @@ public class Mazmorra implements Serializable, Cloneable
 		
 		for (int i = 0; i < this.getMapa().length; i++)
 		{
-			System.out.println("  --------- --------- --------- --------- --------- ");
+			System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
 			
 			for (int j = 0; j < this.getMapa()[0].length; j++)
 			{
@@ -163,27 +163,115 @@ public class Mazmorra implements Serializable, Cloneable
 				{
 					if (this.getMapa()[i][j].getCofre() != new CofreIMPL ())
 					{
-						System.out.print(" | S     C ");
+						if (this.getMapa()[i][j].getSalida () == false)
+						{
+							System.out.print(" |               C");
+						}
+						
+						else
+						{
+							System.out.print(" |S              C");
+						}
+						
 					}
 					
 					else
 					{
-						System.out.print(" | S       ");
+						if (this.getMapa()[i][j].getSalida () == false)
+						{
+							System.out.print(" |                 ");
+						}
+						
+						else
+						{
+							System.out.print(" | S               ");
+						}
 					}
+				}
+				
+			}
+			
+			System.out.print("|");
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				System.out.print(" |                 ");
+				System.out.print(" |                 ");
+			}
+			
+			System.out.print("|");
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				
+				if (this.getMapa()[i][j] != null)
+				{
+					System.out.print(" |        X        ");
 				}
 				
 				else
 				{
-					System.out.println(" |         |");
-					System.out.println(" |         |");
-					System.out.println(" |         |");
+					System.out.print(" |                 ");
 				}
 			}
 			
-		}
+			System.out.print("|");
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				
+				System.out.print(" |                 ");
+				System.out.print(" |                 ");
+			}
+			
+			System.out.print("|");
+			System.out.println();
+					
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (this.getMapa()[i][j] != null)
+				{
+					if (this.getMapa()[i][j].getShop() != new TiendaIMPL ())
+					{
+						if (this.getMapa()[i][j].getEnemy() != new EnemigoIMPL ())
+						{
+							System.out.print(" |  T            E ");
+						}
+						
+						else
+						{
+							System.out.print(" |  T              ");
+						}
+					}
+					
+					else
+					{
+						if (this.getMapa()[i][j].getEnemy() != new EnemigoIMPL ())
+						{
+							System.out.print(" |               E ");
+						}
+						
+						else
+						{
+							System.out.print(" |                 ");
+						}
+					}
+				}
+			}
+			
+			System.out.print("|");
+			System.out.println();
+			if (i == (this.getMapa().length - 1))
+			{
+				System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+			}
+		}	
+	}
 		
 
-	}
 	//Fin printMazmorra ()
 	
 	//Fin Metodos añadidos
