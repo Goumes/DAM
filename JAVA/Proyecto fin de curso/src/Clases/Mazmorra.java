@@ -24,12 +24,12 @@ import Interfaces.Habitacion;
 public class Mazmorra implements Serializable, Cloneable
 {
 	private static final long serialVersionUID = 5099384049691550127L;
-	Habitacion [] [] mapa;
+	HabitacionIMPL [] [] mapa;
 	
 	//Constructores
 	public Mazmorra ()
 	{
-		mapa = new Habitacion [][] {};
+		mapa = new HabitacionIMPL [][] {};
 	}
 	
 	public Mazmorra (Mazmorra mazmorra)
@@ -37,7 +37,7 @@ public class Mazmorra implements Serializable, Cloneable
 		this.mapa = mazmorra.mapa;
 	}
 	
-	public Mazmorra (Habitacion [][] mapa) throws JuegoException
+	public Mazmorra (HabitacionIMPL [][] mapa) throws JuegoException
 	{
 		if ((mapa.length == 5) && (mapa [0].length == 5))
 		{
@@ -51,12 +51,12 @@ public class Mazmorra implements Serializable, Cloneable
 	//Fin Constructores
 	
 	//Getters y setters
-	public Habitacion [] [] getMapa ()
+	public HabitacionIMPL [] [] getMapa ()
 	{
 		return mapa;
 	}
 	
-	public void setMapa (Habitacion [][] mapa) throws JuegoException
+	public void setMapa (HabitacionIMPL [][] mapa) throws JuegoException
 	{
 		if ((mapa.length == 5) && (mapa [0].length == 5))
 		{
@@ -93,26 +93,6 @@ public class Mazmorra implements Serializable, Cloneable
 	{
 		return (Objects.hash ((Object [])this.getMapa()));
 	}
-	
-	
-	/* Prototipo: generarMazmorraAleatoria ()
-	 * Breve comentario: Metodo dedicado a la generación aleatoria de la mazmorra
-	 * Precondiciones: Ninguna
-	 * Entradas: Ninguna
-	 * Salidas: Ninguna
-	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Ninguna
-	 * 
-	 * Resguardo: public void generarMazmorraAleatoria ()
-		{
-			System.out.println("Llamada al metodo generarMazmorraAleatoria");
-		}
-	 */
-	public void generarMazmorraAleatoria ()
-	{
-		 
-	}
-	//Fin generarMazmorraAleatoria
 	
 	//Fin Metodos añadidos
 	

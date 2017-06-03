@@ -122,6 +122,5 @@ public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Clo
 		
 		return (resultado);
 	}
-	//Fin Metodos Añadidos
 		
 }//fin_pp

@@ -13,7 +13,6 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	private TiendaIMPL shop;
 	private EnemigoIMPL enemy;
 	private CofreIMPL cofre;
-	private boolean entrada;
 	private boolean salida;
 	
 	//Constructores
@@ -22,7 +21,6 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		shop = new TiendaIMPL ();
 		enemy = new EnemigoIMPL ();
 		cofre = new CofreIMPL ();
-		entrada = false;
 		salida = false;
 	}
 	
@@ -31,16 +29,14 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.shop = habitacion.shop;
 		this.enemy = habitacion.enemy;
 		this.cofre = habitacion.cofre;
-		this.entrada = habitacion.entrada;
 		this.salida = habitacion.salida;
 	}
 	
-	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, boolean entrada, boolean salida)
+	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, boolean salida)
 	{
 		this.shop = shop;
 		this.enemy = enemy;
 		this.cofre = cofre;
-		this.entrada = entrada;
 		this.salida = salida;
 	}
 	//Fin Constructores
@@ -74,16 +70,6 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	public void setCofreIMPL (CofreIMPL cofre)
 	{
 		this.cofre = cofre;
-	}
-	
-	public boolean getEntrada ()
-	{
-		return entrada;
-	}
-	
-	public void setEntrada (boolean Entrada)
-	{
-		this.entrada = Entrada;
 	}
 	
 	public boolean getSalida ()
@@ -285,7 +271,6 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		String s = (getShop ().toString()+
 					","+getEnemy ().toString()+
 					","+getCofre ().toString()+
-					","+getEntrada ()+
 					","+getSalida ());
 		return s;
 	}
@@ -303,7 +288,6 @@ public class HabitacionIMPL implements Serializable, Habitacion
 			if (this.getShop ().equals(habitacion.getShop ())
 				&& this.getEnemy ().equals(habitacion.getEnemy ())
 				&& this.getCofre ().equals(habitacion.getCofre())
-				&& this.getEntrada () == habitacion.getEntrada ()
 				&& this.getSalida () == habitacion.getSalida ())
 			{
 				resultado = true;
@@ -315,7 +299,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	@Override
 	public int hashCode ()
 	{
-		return (Objects.hash (this.getShop (), this.getEnemy (), this.getCofre(), this.getEntrada (), this.getSalida ()));
+		return (Objects.hash (this.getShop (), this.getEnemy (), this.getCofre(), this.getSalida ()));
 	}
 	
 	@Override

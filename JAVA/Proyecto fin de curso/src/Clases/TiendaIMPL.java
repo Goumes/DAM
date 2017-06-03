@@ -366,59 +366,7 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		}
 		
 		return copia;
-	}
-	
-	/* Prototipo: generarTiendaAleatoria ()
-	 * Breve comentario: Metodo dedicado a la generación aleatoria de la tienda
-	 * Precondiciones: Ninguna
-	 * Entradas: Ninguna
-	 * Salidas: Ninguna
-	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Ninguna
-	 * 
-	 * Resguardo: public void generarTiendaAleatoria ()
-		{
-			System.out.println("Llamada al metodo generarTiendaAleatoria");
-		}
-	 */
-	public void generarTiendaAleatoria ()
-	{
-		 Random aleatorio = new Random ();
-		 int numero = 0;
-		 ItemIMPL item = null;
-		 ArmaIMPL arma = null;
-		 int contador = 0;
-		 
-		 while (this.getObjeto1().equals(new ItemIMPL ())
-				 || this.getObjeto2().equals(new ItemIMPL ())
-				 || this.getObjeto3().equals(new ItemIMPL ()))
-		 {
-		 
-			 numero = aleatorio.nextInt (15) + 1;
-			 item = itemAleatorio (numero);
-			 
-			 if (contador == 0)
-			 {
-				 this.setObjeto1(item);
-			 }
-			 
-			 else if (contador == 1)
-			 {
-				 this.setObjeto2(item);
-			 }
-			 
-			 else
-			 {
-				 this.setObjeto3(item);
-			 }
-			 
-			 contador++;
-		 }
-		 
-		 numero = aleatorio.nextInt (15) + 1;
-		 arma = armaAleatoria (numero);
-	}
-	//Fin generarTiendaAleatoria
+	}	
 
 	//No tiene sentido hacer el compareTo en este caso.
 	//public int compareTo ()

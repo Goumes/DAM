@@ -1,7 +1,5 @@
 Creación de archivo de armas
 Creación de archivo de items
 Creación de archivo de enemigos
-Generación aleatoria tiendas
-Generación aleatoria cofres
 Generación aleatoria de habitaciones
 Generación aleatoria mazmorras

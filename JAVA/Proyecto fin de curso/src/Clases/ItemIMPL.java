@@ -117,6 +117,24 @@ public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Ser
 	}
 	
 	@Override
+	public ItemIMPL clone ()
+	{
+		ItemIMPL copia = null;
+		
+		try
+		{
+			copia = (ItemIMPL) super.clone();
+		}
+		
+		catch (CloneNotSupportedException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return copia;
+	}
+	
+	@Override
 	public int hashCode ()
 	{
 		

@@ -9,6 +9,7 @@ import Clases.Mazmorra;
 import Clases.ObjetoIMPL;
 import Clases.Partida;
 import Exceptions.JuegoException;
+import Gestoras.GestoraArchivos;
 import Gestoras.GestoraJuego;
 
 import java.io.*;
@@ -65,7 +66,7 @@ public class CrearFichero
 	{
 		int opcion = 0;
 		Scanner teclado = new Scanner (System.in);
-		GestoraJuego gestora = new GestoraJuego ();
+		GestoraArchivos gestora = new GestoraArchivos ();
 		
 		//ImprimirMenuLeerValidarOpcion
 		do
