@@ -109,6 +109,7 @@ public class Mazmorra implements Serializable, Cloneable
 	 */
 	public void printMazmorra ()
 	{
+		/*
 		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
 		System.out.println(" | S             C |                 |                 |                 |                 |");
 		System.out.println(" |                 |                 |                 |                 |                 |");
@@ -151,26 +152,31 @@ public class Mazmorra implements Serializable, Cloneable
 		System.out.println(" |                 |                 |                 |                 |                 |");
 		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
 		
-		
+		*/
 		
 		for (int i = 0; i < this.getMapa().length; i++)
 		{
-			System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+			if (i == 0)
+			{
+				System.out.print(" ");
+			}
+			System.out.println(" ----------------- ----------------- ----------------- ----------------- ----------------- ");
+			System.out.print(" ");
 			
 			for (int j = 0; j < this.getMapa()[0].length; j++)
 			{
 				if (this.getMapa()[i][j] != null)
 				{
-					if (this.getMapa()[i][j].getCofre() != new CofreIMPL ())
+					if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 					{
 						if (this.getMapa()[i][j].getSalida () == false)
 						{
-							System.out.print(" |               C");
+							System.out.print("|               C ");
 						}
 						
 						else
 						{
-							System.out.print(" |S              C");
+							System.out.print("| S             C ");
 						}
 						
 					}
@@ -179,94 +185,124 @@ public class Mazmorra implements Serializable, Cloneable
 					{
 						if (this.getMapa()[i][j].getSalida () == false)
 						{
-							System.out.print(" |                 ");
+							System.out.print("|                 ");
 						}
 						
 						else
 						{
-							System.out.print(" | S               ");
+							System.out.print("| S               ");
 						}
 					}
-				}
-				
-			}
-			
-			System.out.print("|");
-			System.out.println();
-			
-			for (int j = 0; j < this.getMapa()[0].length; j++)
-			{
-				System.out.print(" |                 ");
-				System.out.print(" |                 ");
-			}
-			
-			System.out.print("|");
-			System.out.println();
-			
-			for (int j = 0; j < this.getMapa()[0].length; j++)
-			{
-				
-				if (this.getMapa()[i][j] != null)
-				{
-					System.out.print(" |        X        ");
 				}
 				
 				else
 				{
-					System.out.print(" |                 ");
+					System.out.print("|                 ");
+				}
+				
+			}
+			
+			System.out.print("|");
+			System.out.println();
+			System.out.print(" ");
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				System.out.print("|                 ");
+			}
+			
+			System.out.print("|");
+			System.out.println();
+			System.out.print(" ");
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				System.out.print("|                 ");
+			}
+			
+			System.out.print("|");
+			System.out.println();
+			System.out.print(" ");
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				
+				if (this.getMapa()[i][j] != null)
+				{
+					System.out.print("|        X        ");
+				}
+				
+				else
+				{
+					System.out.print("|                 ");
 				}
 			}
 			
 			System.out.print("|");
 			System.out.println();
+			System.out.print(" ");
 			
 			for (int j = 0; j < this.getMapa()[0].length; j++)
 			{
-				
-				System.out.print(" |                 ");
-				System.out.print(" |                 ");
+				System.out.print("|                 ");
 			}
 			
 			System.out.print("|");
 			System.out.println();
+			System.out.print(" ");
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				System.out.print("|                 ");
+			}
+			
+			System.out.print("|");
+			System.out.println();
+			System.out.print(" ");
 					
 			for (int j = 0; j < this.getMapa()[0].length; j++)
 			{
 				if (this.getMapa()[i][j] != null)
 				{
-					if (this.getMapa()[i][j].getShop() != new TiendaIMPL ())
+					if (!this.getMapa()[i][j].getShop().equals(new TiendaIMPL ()))
 					{
-						if (this.getMapa()[i][j].getEnemy() != new EnemigoIMPL ())
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
 						{
-							System.out.print(" |  T            E ");
+							System.out.print("|  T            E ");
 						}
 						
 						else
 						{
-							System.out.print(" |  T              ");
+							System.out.print("|  T              ");
 						}
 					}
 					
 					else
 					{
-						if (this.getMapa()[i][j].getEnemy() != new EnemigoIMPL ())
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
 						{
-							System.out.print(" |               E ");
+							System.out.print("|               E ");
 						}
 						
 						else
 						{
-							System.out.print(" |                 ");
+							System.out.print("|                 ");
 						}
 					}
+				}
+				
+				else
+				{
+					System.out.print("|                 ");
 				}
 			}
 			
 			System.out.print("|");
 			System.out.println();
+			System.out.print(" ");
 			if (i == (this.getMapa().length - 1))
 			{
-				System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+				System.out.println(" ----------------- ----------------- ----------------- ----------------- ----------------- ");
 			}
 		}	
 	}

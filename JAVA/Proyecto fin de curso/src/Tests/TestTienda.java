@@ -1,5 +1,6 @@
 package Tests;
 
+import Clases.ArmaIMPL;
 import Clases.ItemIMPL;
 import Clases.TiendaIMPL;
 
@@ -11,7 +12,7 @@ public class TestTienda
 		ItemIMPL objeto2 = new ItemIMPL ("b", 2, 2.0, 2.0, 2.0, "ba");
 		
 		ItemIMPL objeto3 = new ItemIMPL ("c", 3, 3.0, 3.0, 3.0, "ca");
-		ItemIMPL objeto4 = new ItemIMPL ("d", 4, 4.0, 4.0, 4.0, "da");
+		ArmaIMPL objeto4 = new ItemIMPL ("d", 4, 4.0, 4.0, 4.0, "da");
 		ItemIMPL objeto5 = new ItemIMPL ("e", 5, 5.0, 5.0, 5.0, "ea");
 		ItemIMPL objeto6 = new ItemIMPL ("f", 6, 6.0, 6.0, 6.0, "fa");
 		ItemIMPL objeto7 = new ItemIMPL ("g", 7, 7.0, 7.0, 7.0, "ga");
