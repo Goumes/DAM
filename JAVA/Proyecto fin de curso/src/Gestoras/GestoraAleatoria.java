@@ -125,7 +125,6 @@ public class GestoraAleatoria
 		TiendaIMPL tienda = new TiendaIMPL ();
 		EnemigoIMPL enemigo = new EnemigoIMPL ();
 		CofreIMPL cofre = new CofreIMPL ();
-		boolean salida = false;
 		
 		if (aleatorio.nextBoolean())
 		{
@@ -144,9 +143,6 @@ public class GestoraAleatoria
 			cofre = generarCofreAleatorio ();
 			habitacion.setCofreIMPL(cofre);
 		}
-		
-		salida = aleatorio.nextBoolean();
-		habitacion.setSalida(salida);
 		
 		return habitacion;
 	}
@@ -169,51 +165,55 @@ public class GestoraAleatoria
 	 */
 	public Mazmorra generarMazmorraAleatoria ()
 	{
+		Random aleatorio = new Random ();
 		 Mazmorra mazmorra = new Mazmorra ();
 		 
-		 HabitacionIMPL habitacionInicial = null;
+		 HabitacionIMPL habitacion1 = null;
 		 HabitacionIMPL habitacion2 = null;
 		 HabitacionIMPL habitacion3 = null;
-		 HabitacionIMPL habitacion4 = null;
-		 HabitacionIMPL habitacion5 = null;
+		 HabitacionIMPL habitacion4 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion5 = new HabitacionIMPL ();
 		 HabitacionIMPL habitacion6 = null;
 		 HabitacionIMPL habitacion7 = null;
-		 HabitacionIMPL habitacion8 = null;
-		 HabitacionIMPL habitacion9 = null;
+		 HabitacionIMPL habitacion8 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion9 = new HabitacionIMPL ();
 		 HabitacionIMPL habitacion10 = null;
 		 HabitacionIMPL habitacion11 = null;
 		 HabitacionIMPL habitacion12 = null;
 		 HabitacionIMPL habitacion13 = null;
-		 HabitacionIMPL habitacion14 = null;
+		 HabitacionIMPL habitacion14 = new HabitacionIMPL ();
 		 HabitacionIMPL habitacion15 = null;
 		 HabitacionIMPL habitacion16 = null;
 		 HabitacionIMPL habitacion17 = null;
-		 HabitacionIMPL habitacion18 = null;
-		 HabitacionIMPL habitacion19 = null;
-		 HabitacionIMPL habitacion20 = null;
+		 HabitacionIMPL habitacion18 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion19 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion20 = new HabitacionIMPL ();
 		 HabitacionIMPL habitacion21 = null;
 		 HabitacionIMPL habitacion22 = null;
 		 HabitacionIMPL habitacion23 = null;
-		 HabitacionIMPL habitacion24 = null;
-		 HabitacionIMPL habitacionFinal = null;
+		 HabitacionIMPL habitacion24 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion25 = null;
 		 
 		 HabitacionIMPL [][] mapa = {
-										{habitacionInicial, habitacion2, habitacion3, habitacion4, habitacion5},
+										{habitacion1, habitacion2, habitacion3, habitacion4, habitacion5},
 										{habitacion6, habitacion7, habitacion8, habitacion9, habitacion10},
 										{habitacion11, habitacion12, habitacion13, habitacion14, habitacion15},
 										{habitacion16, habitacion17, habitacion18, habitacion19, habitacion20},
-										{habitacion21, habitacion22, habitacion23, habitacion24, habitacionFinal}
+										{habitacion21, habitacion22, habitacion23, habitacion24, habitacion25}
 									};
 		 
-		 habitacionInicial = generarHabitacionAleatoria ();
 		 
-		 for (int i = 0; i < mapa.length; i++)
-		 {
-			 for (int j = 0; j < mapa [0].length; j++)
-			 {
-				 
-			 }
-		 }
+	 	habitacion5.setCofreIMPL(new CofreIMPL (3, new ItemIMPL ()));
+		habitacion5.setEnemy(new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, new ItemIMPL (), 10, 3));
+		habitacion5.setShop(new TiendaIMPL (new ItemIMPL (), new ItemIMPL (), new ItemIMPL (), new ArmaIMPL (), true));
+		habitacion5.setSalida (true);
+		
+		//habitacion8.setCofreIMPL(new CofreIMPL (3, new ItemIMPL ()));
+		habitacion8.setEnemy(new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, new ItemIMPL (), 10, 3));
+		habitacion8.setShop(new TiendaIMPL (new ItemIMPL (), new ItemIMPL (), new ItemIMPL (), new ArmaIMPL (), true));
+		//habitacion8.setSalida (true);
+		
+		habitacion19.setEnemy(new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, new ItemIMPL (), 10, 3));
 		 
 		 try
 		 {
@@ -227,6 +227,58 @@ public class GestoraAleatoria
 		 return mazmorra;
 	}
 	//Fin generarMazmorraAleatoria
+	
+	/* Prototipo: int [][] generarEstructuraMazmorra ()
+	 * Breve comentario: Metodo dedicado a generar la estructura de las mazmorras de forma recursiva
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Un array de enteros
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un Array bidimensional de enteros indicando 1 si hay una habitación, 2 si es la final y 0 si no hay ninguna.
+	 * 
+	 * Resguardo: 	public int [][] generarEstructuraMazmorra ()
+		{
+			System.out.println("Llamada al metodo generarEstructuraMazmorra");
+			
+			return (new int [][] {});
+		}
+	 */
+	public int [][] generarEstructuraMazmorra ()
+	{
+		int [][] resultado = {
+								{0,0,0,0,0},
+								{0,0,0,0,0},
+								{0,0,0,0,0},
+								{0,0,0,0,0},
+								{0,0,0,0,0}
+				};
+		
+		for (int i = 0; i < resultado.length; i++)
+		{
+			for (int j = 0; j < resultado[0].length; j++)
+			{
+				if (i == 0 & j == 0)
+				{
+					resultado[i][j] = 1;
+				}
+				
+				else if (resultado[i + 1][j] == 0
+						|| resultado [i - 1][j] == 0
+						|| resultado [i][j + 1] == 0
+						|| resultado [i][j-1] == 0)
+				{
+					if (resultado[i + 1][j] == 0)
+					{
+						i = i+1;
+						resultado [i][j] = 1;
+					}
+				}
+			}
+		}
+		
+		return (resultado);
+	}
+	//Fin generarEstructuraMazmorra ()
 	
 	/* Prototipo: ItemIMPL itemAleatorio ()
 	 * Breve comentario: Metodo dedicado a devolver un item con posición aleatoria del archivo de items

@@ -1,6 +1,7 @@
 package Main;
 
 import Clases.*;
+import Gestoras.GestoraAleatoria;
 import Gestoras.GestoraJuego;
 
 import java.util.*;
@@ -33,7 +34,7 @@ import java.io.*;
  *		GuardarPartida *
  * 	fin_si
  * 	CargarPartida *
- * 	Jugar *
+ * 	Jugar
  * 	GuardarPartida *
  * 	PrintEstadoPartida *
  * Fin
@@ -42,6 +43,21 @@ import java.io.*;
  * Inicio
  * 	PrintPartidasDisponibles *
  * 	LeerValidarElegirPartida *
+ * Fin
+ * 
+ * Modulo Jugar Nivel 1
+ * Inicio
+ * 	PrintMenuLeerValidarAcciones
+ * 	Mientras Accion != 0
+ * 		Segun (accion)
+ * 			Caso 1: Abrir cofre
+ * 			Caso 2: Ir tienda
+ * 			Caso 3: Pelear enemigo
+ * 			Caso 4: Avanzar
+ * 			Caso 5: Abrir Inventario
+ * 			Caso 6: Ver mapa
+ * 		Fin_segun
+ * 	Fin_Mientras
  * Fin
  */
 
@@ -98,6 +114,18 @@ public class MainJuego
 	}
 	//Fin printPartidas
 	
+	/* Prototipo:
+	 * Breve comentario:
+	 * Precondiciones:
+	 * Entradas:
+	 * Salidas:
+	 * Entradas/Salidas:
+	 * Postcondiciones:
+	 * 
+	 * Resguardo
+	 */
+	//Fin MenuAcciones
+	
 	public static void main (String [] args)
 	{
 		Scanner teclado = new Scanner (System.in);
@@ -108,6 +136,7 @@ public class MainJuego
 		Partida partida3 = new Partida ();
 		Partida partidaDefinitiva = new Partida ();
 		GestoraJuego gestora = new GestoraJuego ();
+		GestoraAleatoria gestoraAleatoria = new GestoraAleatoria ();
 		Mazmorra mazmorra = new Mazmorra ();
 		JugadorIMPL jugador = new JugadorIMPL ();
 		
@@ -147,6 +176,7 @@ public class MainJuego
 				{
 				
 					//GenerarMazmorra *
+					mazmorra = gestoraAleatoria.generarMazmorraAleatoria ();
 					//Fin GenerarMazmorra
 					
 					//CrearPersonaje *
@@ -162,13 +192,15 @@ public class MainJuego
 				//CargarPartida *
 				//Fin CargarPartida
 				
-				//Jugar *
+				//Jugar 
 				//Fin Jugar
 				
 				//GuardarPartida *
+				gestora.guardarPartida(mazmorra, jugador, numeroPartida);
 				//Fin GuardarPartida
 				
 				//PrintEstadoPartida *
+				partidaDefinitiva.imprimirJugador();
 				//Fin PrintEstadoPartida
 			
 			//Fin EjecutarJuego

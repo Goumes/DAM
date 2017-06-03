@@ -1,6 +1,7 @@
 Creación de archivo de armas
 Creación de archivo de items
 Creación de archivo de enemigos
-Generación aleatoria de habitaciones
 Generación aleatoria mazmorras
 Habitacion necesita un jugador
+Menu acciones
+Juego principal

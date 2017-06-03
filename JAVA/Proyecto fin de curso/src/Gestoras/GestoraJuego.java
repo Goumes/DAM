@@ -108,15 +108,15 @@ public class GestoraJuego
 		switch (numero)
 		{
 			case 1:
-				partidaDefinitiva = partida1;
+				partidaDefinitiva = partida1.clone();
 			break;
 				
 			case 2:
-				partidaDefinitiva = partida2;
+				partidaDefinitiva = partida2.clone();
 			break;
 				
 			case 3:
-				partidaDefinitiva = partida3;
+				partidaDefinitiva = partida3.clone();
 			break;
 		}
 		
@@ -367,5 +367,17 @@ public class GestoraJuego
 	}
 	//Fin crearJugador
 	
-	//Fin Metodos AÃ±adidos
+	/* Prototipo:
+	 * Breve comentario:
+	 * Precondiciones:
+	 * Entradas:
+	 * Salidas:
+	 * Entradas/Salidas:
+	 * Postcondiciones:
+	 * 
+	 * Resguardo:
+	 */
+	//Fin crearPartida
+	
+	//Fin Metodos Añadidos
 }
