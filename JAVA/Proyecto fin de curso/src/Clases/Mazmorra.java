@@ -94,6 +94,97 @@ public class Mazmorra implements Serializable, Cloneable
 		return (Objects.hash ((Object [])this.getMapa()));
 	}
 	
-	//Fin Metodos añadidos
+	/* Prototipo: void printMazmorra ()
+	 * Breve comentario: Metodo dedicado a mostrar en pantalla la mazmorra
+	 * Precondiciones:
+	 * Entradas:
+	 * Salidas:
+	 * Entradas/Salidas:
+	 * Postcondiciones:
+	 * 
+	 * Resguardo: public void printMazmorra ()
+		{
+			System.out.println ("Llamada al metodo printMazmorra");
+		}
+	 */
+	public void printMazmorra ()
+	{
+		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+		System.out.println(" | S             C |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |        X        |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" | T             E |                 |                 |                 |                 |");
+		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println(" |                 |                 |                 |                 |                 |");
+		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
+		
+		
+		
+		for (int i = 0; i < this.getMapa().length; i++)
+		{
+			System.out.println("  --------- --------- --------- --------- --------- ");
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (this.getMapa()[i][j] != null)
+				{
+					if (this.getMapa()[i][j].getCofre() != new CofreIMPL ())
+					{
+						System.out.print(" | S     C ");
+					}
+					
+					else
+					{
+						System.out.print(" | S       ");
+					}
+				}
+				
+				else
+				{
+					System.out.println(" |         |");
+					System.out.println(" |         |");
+					System.out.println(" |         |");
+				}
+			}
+			
+		}
+		
+
+	}
+	//Fin printMazmorra ()
 	
+	//Fin Metodos añadidos
 }

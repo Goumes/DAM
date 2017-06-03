@@ -205,6 +205,8 @@ public class GestoraAleatoria
 										{habitacion21, habitacion22, habitacion23, habitacion24, habitacionFinal}
 									};
 		 
+		 habitacionInicial = generarHabitacionAleatoria ();
+		 
 		 for (int i = 0; i < mapa.length; i++)
 		 {
 			 for (int j = 0; j < mapa [0].length; j++)
