@@ -33,7 +33,6 @@ import java.io.*;
  *		CrearPersonaje *
  *		GuardarPartida *
  * 	fin_si
- * 	CargarPartida *
  * 	Jugar
  * 	GuardarPartida *
  * 	PrintEstadoPartida *
@@ -52,7 +51,7 @@ import java.io.*;
  * 		Segun (accion)
  * 			Caso 1: Abrir cofre
  * 			Caso 2: Ir tienda
- * 			Caso 3: Pelear enemigo
+ * 			Caso 3: Pelear
  * 			Caso 4: Avanzar
  * 			Caso 5: Abrir Inventario
  * 			Caso 6: Ver mapa
@@ -114,17 +113,31 @@ public class MainJuego
 	}
 	//Fin printPartidas
 	
-	/* Prototipo:
-	 * Breve comentario:
-	 * Precondiciones:
-	 * Entradas:
-	 * Salidas:
-	 * Entradas/Salidas:
-	 * Postcondiciones:
+	/* Prototipo: void menuAcciones ()
+	 * Breve comentario: Menu de acciones del programa.
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
 	 * 
-	 * Resguardo
+	 * Resguardo: public void menuAcciones ()
+		{
+			System.out.println("Llamada al metodo menuAcciones");
+		}
 	 */
-	//Fin MenuAcciones
+	public static void menuAcciones ()
+	{
+		System.out.println("Esta es tu interfaz de acciones. Selecciona una opción.");
+		System.out.println("1. Abrir cofre");
+		System.out.println("2. Ir a tienda");
+		System.out.println("3. Pelear");
+		System.out.println("4. Avanzar");
+		System.out.println("5. Abrir inventario");
+		System.out.println("6. Ver mapa");
+		System.out.println("0. Guardar y salir");
+	}
+	//Fin menuAcciones
 	
 	public static void main (String [] args)
 	{
@@ -139,6 +152,7 @@ public class MainJuego
 		GestoraAleatoria gestoraAleatoria = new GestoraAleatoria ();
 		Mazmorra mazmorra = new Mazmorra ();
 		JugadorIMPL jugador = new JugadorIMPL ();
+		int accion = 0;
 		
 		//LeerValidarJugar
 		do
@@ -176,30 +190,65 @@ public class MainJuego
 				{
 				
 					//GenerarMazmorra *
-					mazmorra = gestoraAleatoria.generarMazmorraAleatoria ();
+					partidaDefinitiva.setMazmorra(gestoraAleatoria.generarMazmorraAleatoria ());
 					//Fin GenerarMazmorra
 					
 					//CrearPersonaje *
-					jugador = gestora.crearJugador();
+					partidaDefinitiva.setJugador(gestora.crearJugador());
 					//Fin CrearPersonaje
 					
 					//GuardarPartida *
-					gestora.guardarPartida(mazmorra, jugador, numeroPartida);
+					gestora.guardarPartida(partidaDefinitiva.getMazmorra (), partidaDefinitiva.getJugador (), numeroPartida);
 					//Fin GuardarPartida
 				
 				}//fin_si
 				
-				//CargarPartida *
-				//Fin CargarPartida
-				
 				//Jugar 
+				
+				// PrintMenuLeerValidarAcciones
+				do
+				{
+					menuAcciones ();
+					accion = teclado.nextInt();
+				}
+				while (accion < 0 || accion > 6);
+				//Fin PrintMenuLeerValidarAcciones
+				
+				while (accion != 0)
+				{
+				
+					switch (accion)
+					{
+						// Caso 1: Abrir cofre
+						case 1:
+						break;
+						// Caso 2: Ir tienda
+						case 2:
+						break;
+						// Caso 3: Pelear
+						case 3:
+						break;
+						// Caso 4: Avanzar
+						case 4:
+						break;
+						// Caso 5: Abrir Inventario
+						case 5:
+						break;
+						// Caso 6: Ver mapa
+						case 6:
+						break;
+					}// Fin_segun
+				}// Fin_Mientras
+				
 				//Fin Jugar
 				
 				//GuardarPartida *
-				gestora.guardarPartida(mazmorra, jugador, numeroPartida);
+				gestora.guardarPartida(partidaDefinitiva.getMazmorra (), partidaDefinitiva.getJugador (), numeroPartida);
 				//Fin GuardarPartida
 				
 				//PrintEstadoPartida *
+				System.out.println("Este es el estado de tu partida actual:");
+				System.out.println();
 				partidaDefinitiva.imprimirJugador();
 				//Fin PrintEstadoPartida
 			
