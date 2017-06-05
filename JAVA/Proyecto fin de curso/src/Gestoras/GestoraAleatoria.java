@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.lang.reflect.Array;
 import java.util.Random;
 
 import Clases.ArmaIMPL;
@@ -128,19 +129,19 @@ public class GestoraAleatoria
 		
 		if (aleatorio.nextBoolean())
 		{
-			tienda = generarTiendaAleatoria ();
+			//tienda = generarTiendaAleatoria ();
 			habitacion.setShop(tienda);
 		}
 		
 		else if (aleatorio.nextBoolean())
 		{
-			enemigo = enemigoAleatorio ();
+			//enemigo = enemigoAleatorio ();
 			habitacion.setEnemy(enemigo);
 		}
 		
 		else if (aleatorio.nextBoolean())
 		{
-			cofre = generarCofreAleatorio ();
+			//cofre = generarCofreAleatorio ();
 			habitacion.setCofreIMPL(cofre);
 		}
 		
@@ -171,27 +172,27 @@ public class GestoraAleatoria
 		 HabitacionIMPL habitacion1 = null;
 		 HabitacionIMPL habitacion2 = null;
 		 HabitacionIMPL habitacion3 = null;
-		 HabitacionIMPL habitacion4 = new HabitacionIMPL ();
-		 HabitacionIMPL habitacion5 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion4 = null;
+		 HabitacionIMPL habitacion5 = null;
 		 HabitacionIMPL habitacion6 = null;
 		 HabitacionIMPL habitacion7 = null;
-		 HabitacionIMPL habitacion8 = new HabitacionIMPL ();
-		 HabitacionIMPL habitacion9 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion8 = null;
+		 HabitacionIMPL habitacion9 = null;
 		 HabitacionIMPL habitacion10 = null;
 		 HabitacionIMPL habitacion11 = null;
 		 HabitacionIMPL habitacion12 = null;
 		 HabitacionIMPL habitacion13 = null;
-		 HabitacionIMPL habitacion14 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion14 = null;
 		 HabitacionIMPL habitacion15 = null;
 		 HabitacionIMPL habitacion16 = null;
 		 HabitacionIMPL habitacion17 = null;
-		 HabitacionIMPL habitacion18 = new HabitacionIMPL ();
-		 HabitacionIMPL habitacion19 = new HabitacionIMPL ();
-		 HabitacionIMPL habitacion20 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion18 = null;
+		 HabitacionIMPL habitacion19 = null;
+		 HabitacionIMPL habitacion20 = null;
 		 HabitacionIMPL habitacion21 = null;
 		 HabitacionIMPL habitacion22 = null;
 		 HabitacionIMPL habitacion23 = null;
-		 HabitacionIMPL habitacion24 = new HabitacionIMPL ();
+		 HabitacionIMPL habitacion24 = null;
 		 HabitacionIMPL habitacion25 = null;
 		 
 		 HabitacionIMPL [][] mapa = {
@@ -257,38 +258,67 @@ public class GestoraAleatoria
 		//Crear entrada aleatoria
 		if (i == 0 && j == 0)
 		{
-			i = aleatorio.nextInt(0) + (mapa.length - 1);
-			j = aleatorio.nextInt(0) + (mapa[0].length - 1);
+			i = aleatorio.nextInt((mapa.length - 1)) + 0;
+			j = aleatorio.nextInt((mapa[0].length - 1)) + 0;
 			mapa[i][j] = new HabitacionIMPL ();
 		}
 		
 		mapa[i][j].setVisitada(true);
 
-		if (mapa[i + 1][j].equals(null)
-			|| mapa [i - 1][j].equals(null)
-			|| mapa [i][j+1].equals (null)
-			|| mapa [i][j-1].equals(null))
+		while (!avanzar 
+				&& i < mapa.length
+				&& j < mapa[0].length
+				&& i >= 0
+				&& j >= 0)
 		{
-			while (!avanzar)
+			
+			if (mapa[i + 1][j] == null
+				|| mapa [i - 1][j] == null
+				|| mapa [i][j+1] == null
+				|| mapa [i][j-1] == null)
 			{
-				direccion = aleatorio.nextInt (1) + 4;
+			
+				direccion = aleatorio.nextInt (4) + 1;
 				
 				switch (direccion)
 				{
 					case 1:
-						if (!mapa[i + 1][j].equals(null))
+						if (i  + 1< mapa.length
+							&& j < mapa[0].length
+							&& i + 1>= 0
+							&& j >= 0
+							&& mapa[i + 1][j] != null) //Arreglar esto
 						{
-							avanzar = true;
 							mapa[i][j].setArriba (true);
 							i++;
 							mapa[i][j] = generarHabitacionAleatoria ();
 							mapa[i][j].setAbajo(true);
 							backtracking (mapa, i, j);
+							
+							if (mapa[i][j] != null 
+								&& (mapa[i][j].getArriba()
+									|| mapa[i][j].getIzquierda()
+									|| mapa[i][j].getDerecha()))
+							{
+								avanzar = true;
+							}
+							
+							else if (mapa[i][j] != null 
+									&& (!mapa[i][j].getArriba()
+									&& !mapa[i][j].getIzquierda()
+									&& !mapa[i][j].getDerecha()))
+							{
+								i = i--;
+							}
 						}
 					break;
 					
 					case 2:
-						if (!mapa[i - 1][j].equals(null))
+						if (i - 1< mapa.length
+							&& j < mapa[0].length
+							&& i - 1>= 0
+							&& j >= 0
+							&& mapa[i - 1][j] != null)
 						{
 							avanzar = true;
 							mapa[i][j].setAbajo (true);
@@ -300,7 +330,11 @@ public class GestoraAleatoria
 					break;
 					
 					case 3:
-						if (!mapa[i][j + 1].equals(null))
+						if (i < mapa.length
+							&& j + 1< mapa[0].length
+							&& i >= 0
+							&& j + 1>= 0
+							&& mapa[i][j + 1] == null)
 						{
 							avanzar = true;
 							mapa[i][j].setDerecha (true);
@@ -312,7 +346,11 @@ public class GestoraAleatoria
 					break;
 					
 					case 4:
-						if (!mapa[i][j - 1].equals(null))
+						if (i < mapa.length
+							&& j - 1< mapa[0].length
+							&& i >= 0
+							&& j - 1>= 0
+							&& mapa[i][j - 1] == null)
 						{
 							avanzar = true;
 							mapa[i][j].setIzquierda (true);
@@ -324,14 +362,7 @@ public class GestoraAleatoria
 					break;
 				}
 			}
-		}
-		
-		else
-		{
-			backtracking (mapa, i, j);
-		}
-		
-		
+		}		
 		
 		return mapa;
 		/*
@@ -398,7 +429,7 @@ public class GestoraAleatoria
 			
 			item = (ItemIMPL) ois.readObject();
 			
-			while (!item.equals(null) && resultado.equals(null))
+			while (item != null && resultado == null)
 			{
 				if (numero == contador)
 				{
@@ -485,7 +516,7 @@ public class GestoraAleatoria
 			
 			arma = (ArmaIMPL) ois.readObject();
 			
-			while (!arma.equals(null) && resultado.equals(null))
+			while (arma != null && resultado == null)
 			{
 				if (numero == contador)
 				{
@@ -572,7 +603,7 @@ public class GestoraAleatoria
 			
 			enemigo = (EnemigoIMPL) ois.readObject();
 			
-			while (!enemigo.equals(null) && resultado.equals(null))
+			while (enemigo != null && resultado == null)
 			{
 				if (numero == contador)
 				{
