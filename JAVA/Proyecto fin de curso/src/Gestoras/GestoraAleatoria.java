@@ -218,7 +218,7 @@ public class GestoraAleatoria
 		 
 		 */
 		 
-		 backtracking (mapa);
+		 backtracking (mapa, 0, 0);
 		 
 		 try
 		 {
@@ -248,12 +248,91 @@ public class GestoraAleatoria
 			return (new int [][] {});
 		}
 	 */
-	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa)
+	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j)
 	{
-		for (int i = 0;)
+		Random aleatorio = new Random ();
+		int direccion = 0;
+		boolean avanzar = false;
+		
+		//Crear entrada aleatoria
+		if (i == 0 && j == 0)
 		{
-			
+			i = aleatorio.nextInt(0) + (mapa.length - 1);
+			j = aleatorio.nextInt(0) + (mapa[0].length - 1);
+			mapa[i][j] = new HabitacionIMPL ();
 		}
+		
+		mapa[i][j].setVisitada(true);
+
+		if (mapa[i + 1][j].equals(null)
+			|| mapa [i - 1][j].equals(null)
+			|| mapa [i][j+1].equals (null)
+			|| mapa [i][j-1].equals(null))
+		{
+			while (!avanzar)
+			{
+				direccion = aleatorio.nextInt (1) + 4;
+				
+				switch (direccion)
+				{
+					case 1:
+						if (!mapa[i + 1][j].equals(null))
+						{
+							avanzar = true;
+							mapa[i][j].setArriba (true);
+							i++;
+							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j].setAbajo(true);
+							backtracking (mapa, i, j);
+						}
+					break;
+					
+					case 2:
+						if (!mapa[i - 1][j].equals(null))
+						{
+							avanzar = true;
+							mapa[i][j].setAbajo (true);
+							i--;
+							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j].setArriba (true);
+							backtracking (mapa, i, j);
+						}
+					break;
+					
+					case 3:
+						if (!mapa[i][j + 1].equals(null))
+						{
+							avanzar = true;
+							mapa[i][j].setDerecha (true);
+							j++;
+							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j].setIzquierda (true);
+							backtracking (mapa, i, j);
+						}
+					break;
+					
+					case 4:
+						if (!mapa[i][j - 1].equals(null))
+						{
+							avanzar = true;
+							mapa[i][j].setIzquierda (true);
+							j--;
+							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j].setDerecha (true);
+							backtracking (mapa, i, j);
+						}
+					break;
+				}
+			}
+		}
+		
+		else
+		{
+			backtracking (mapa, i, j);
+		}
+		
+		
+		
 		return mapa;
 		/*
 		for (int i = 0; i < resultado.length; i++)
