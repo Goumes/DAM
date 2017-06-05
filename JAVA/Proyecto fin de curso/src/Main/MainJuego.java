@@ -56,6 +56,7 @@ import java.io.*;
  * 			Caso 5: Abrir Inventario
  * 			Caso 6: Ver mapa
  * 		Fin_segun
+ *		PrintMenuLeerValidarAcciones
  * 	Fin_Mientras
  * Fin
  */
@@ -221,6 +222,7 @@ public class MainJuego
 					{
 						// Caso 1: Abrir cofre
 						case 1:
+							//gestora.abrirCofre (partidaDefinitiva);
 						break;
 						// Caso 2: Ir tienda
 						case 2:
@@ -236,8 +238,19 @@ public class MainJuego
 						break;
 						// Caso 6: Ver mapa
 						case 6:
+							partidaDefinitiva.getMazmorra ().printMazmorra ();
 						break;
 					}// Fin_segun
+					
+					// PrintMenuLeerValidarAcciones
+					do
+					{
+						menuAcciones ();
+						accion = teclado.nextInt();
+					}
+					while (accion < 0 || accion > 6);
+					//Fin PrintMenuLeerValidarAcciones
+					
 				}// Fin_Mientras
 				
 				//Fin Jugar

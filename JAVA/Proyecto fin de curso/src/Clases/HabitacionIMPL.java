@@ -13,7 +13,13 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	private TiendaIMPL shop;
 	private EnemigoIMPL enemy;
 	private CofreIMPL cofre;
+	private JugadorIMPL jugador;
 	private boolean salida;
+	private boolean arriba;
+	private boolean abajo;
+	private boolean izquierda;
+	private boolean derecha;
+	private boolean visitada;
 	
 	//Constructores
 	public HabitacionIMPL ()
@@ -21,7 +27,13 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		shop = new TiendaIMPL ();
 		enemy = new EnemigoIMPL ();
 		cofre = new CofreIMPL ();
+		jugador = new JugadorIMPL ();
 		salida = false;
+		arriba = false;
+		abajo = false;
+		izquierda = false;
+		derecha = false;
+		visitada = false;
 	}
 	
 	public HabitacionIMPL (HabitacionIMPL habitacion)
@@ -29,15 +41,29 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.shop = habitacion.shop;
 		this.enemy = habitacion.enemy;
 		this.cofre = habitacion.cofre;
+		this.jugador = habitacion.jugador;
 		this.salida = habitacion.salida;
+		this.arriba = habitacion.arriba;
+		this.abajo = habitacion.abajo;
+		this.izquierda = habitacion.izquierda;
+		this.derecha = habitacion.derecha;
+		this.visitada = habitacion.visitada;
 	}
 	
-	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, boolean salida)
+	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, JugadorIMPL jugador, 
+							boolean salida, boolean arriba, boolean abajo, boolean izquierda, boolean derecha, 
+							boolean visitada)
 	{
 		this.shop = shop;
 		this.enemy = enemy;
 		this.cofre = cofre;
+		this.jugador = jugador;
 		this.salida = salida;
+		this.arriba = arriba;
+		this.abajo = abajo;
+		this.izquierda = izquierda;
+		this.derecha = derecha;
+		this.visitada = visitada;
 	}
 	//Fin Constructores
 	
@@ -72,6 +98,16 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.cofre = cofre;
 	}
 	
+	public JugadorIMPL getJugador ()
+	{
+		return jugador;
+	}
+	
+	public void setJugador (JugadorIMPL jugador)
+	{
+		this.jugador = jugador;
+	}
+	
 	public boolean getSalida ()
 	{
 		return salida;
@@ -80,6 +116,56 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	public void setSalida (boolean Salida)
 	{
 		this.salida = Salida;
+	}
+	
+	public boolean getArriba ()
+	{
+		return arriba;
+	}
+	
+	public void setArriba (boolean arriba)
+	{
+		this.arriba = arriba;
+	}
+	
+	public boolean getAbajo ()
+	{
+		return abajo;
+	}
+	
+	public void setAbajo (boolean abajo)
+	{
+		this.abajo = abajo;
+	}
+	
+	public boolean getIzquierda ()
+	{
+		return izquierda;
+	}
+	
+	public void setIzquierda (boolean izquierda)
+	{
+		this.izquierda = izquierda;
+	}
+	
+	public boolean getDerecha ()
+	{
+		return derecha;
+	}
+	
+	public void setDerecha (boolean derecha)
+	{
+		this.derecha = derecha;
+	}
+	
+	public boolean getVisitada ()
+	{
+		return visitada;
+	}
+	
+	public void setVisitada (boolean visitada)
+	{
+		this.visitada = visitada;
 	}
 	
 	public ItemIMPL getShopObjeto1() 
@@ -271,7 +357,13 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		String s = (getShop ().toString()+
 					","+getEnemy ().toString()+
 					","+getCofre ().toString()+
-					","+getSalida ());
+					","+getJugador ().toString()+
+					","+getSalida ()+
+					","+getArriba ()+
+					","+getAbajo ()+
+					","+getIzquierda ()+
+					","+getDerecha ()+
+					","+getVisitada ());
 		return s;
 	}
 	
@@ -288,7 +380,13 @@ public class HabitacionIMPL implements Serializable, Habitacion
 			if (this.getShop ().equals(habitacion.getShop ())
 				&& this.getEnemy ().equals(habitacion.getEnemy ())
 				&& this.getCofre ().equals(habitacion.getCofre())
-				&& this.getSalida () == habitacion.getSalida ())
+				&& this.getJugador ().equals(habitacion.getJugador ())
+				&& this.getSalida () == habitacion.getSalida ()
+				&& this.getArriba() == habitacion.getArriba ()
+				&& this.getAbajo () == habitacion.getAbajo ()
+				&& this.getIzquierda () == habitacion.getIzquierda()
+				&& this.getDerecha() == habitacion.getDerecha()
+				&& this.getVisitada () == habitacion.getVisitada())
 			{
 				resultado = true;
 			}
@@ -299,7 +397,9 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	@Override
 	public int hashCode ()
 	{
-		return (Objects.hash (this.getShop (), this.getEnemy (), this.getCofre(), this.getSalida ()));
+		return (Objects.hash (this.getShop (), this.getEnemy (), this.getCofre(), this.getJugador (), 
+				this.getSalida (), this.getArriba(), this.getAbajo(), this.getIzquierda(), this.getDerecha(), 
+				this.getVisitada()));
 	}
 	
 	@Override
@@ -320,43 +420,5 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		
 		return copia;
 	}
-	
-	/* /* Prototipo: generarHabitacionAleatoria ()
-	 * Breve comentario: Metodo dedicado a la generaci�n aleatoria de una habitacion
-	 * Precondiciones: Ninguna
-	 * Entradas: Ninguna
-	 * Salidas: Ninguna
-	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Ninguna
-	 * 
-	 * Resguardo: public void generarHabitacionAleatoria ()
-		{
-			System.out.println("Llamada al metodo generarHabitacionAleatoria");
-		}
-	 */
-	public void generarHabitacionAleatoria ()
-	{
-		 
-	}
-	//Fin generarMazmorraAleatoria
-	
-	//Criterio de comparación: 
-	/* public int compareTo ()
-	{
-		int resultado = 0;
-		
-		if ()
-		{
-			resultado = 1;
-		}
-		
-		else if ()
-		{
-			resultado = -1;
-		}
-		
-		
-		return resultado;
-	} */
 	//Fin Metodos añadidos
 }//fin_clase

@@ -202,6 +202,7 @@ public class GestoraAleatoria
 										{habitacion21, habitacion22, habitacion23, habitacion24, habitacion25}
 									};
 		 
+		 /*
 		 
 	 	habitacion5.setCofreIMPL(new CofreIMPL (3, new ItemIMPL ()));
 		habitacion5.setEnemy(new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, new ItemIMPL (), 10, 3));
@@ -214,6 +215,10 @@ public class GestoraAleatoria
 		//habitacion8.setSalida (true);
 		
 		habitacion19.setEnemy(new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, new ItemIMPL (), 10, 3));
+		 
+		 */
+		 
+		 backtracking (mapa);
 		 
 		 try
 		 {
@@ -232,9 +237,9 @@ public class GestoraAleatoria
 	 * Breve comentario: Metodo dedicado a generar la estructura de las mazmorras de forma recursiva
 	 * Precondiciones: Ninguna
 	 * Entradas: Ninguna
-	 * Salidas: Un array de enteros
-	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Un Array bidimensional de enteros indicando 1 si hay una habitación, 2 si es la final y 0 si no hay ninguna.
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Un array de HabitacionIMPL
+	 * Postcondiciones: Un Array bidimensional de HabitacionIMPL
 	 * 
 	 * Resguardo: 	public int [][] generarEstructuraMazmorra ()
 		{
@@ -243,16 +248,14 @@ public class GestoraAleatoria
 			return (new int [][] {});
 		}
 	 */
-	public int [][] generarEstructuraMazmorra ()
+	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa)
 	{
-		int [][] resultado = {
-								{0,0,0,0,0},
-								{0,0,0,0,0},
-								{0,0,0,0,0},
-								{0,0,0,0,0},
-								{0,0,0,0,0}
-				};
-		
+		for (int i = 0;)
+		{
+			
+		}
+		return mapa;
+		/*
 		for (int i = 0; i < resultado.length; i++)
 		{
 			for (int j = 0; j < resultado[0].length; j++)
@@ -277,6 +280,7 @@ public class GestoraAleatoria
 		}
 		
 		return (resultado);
+		*/
 	}
 	//Fin generarEstructuraMazmorra ()
 	
