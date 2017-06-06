@@ -272,10 +272,26 @@ public class GestoraAleatoria
 				&& j >= 0)
 		{
 			
-			if (mapa[i + 1][j] == null
-				|| mapa [i - 1][j] == null
-				|| mapa [i][j+1] == null
-				|| mapa [i][j-1] == null)
+			if ((i  + 1< mapa.length
+					&& j < mapa[0].length
+					&& i + 1>= 0
+					&& j >= 0
+					&& mapa[i + 1][j] == null)
+				||(i - 1< mapa.length
+						&& j < mapa[0].length
+						&& i - 1>= 0
+						&& j >= 0
+						&& mapa[i - 1][j] == null)
+				|| (i < mapa.length
+						&& j + 1< mapa[0].length
+						&& i >= 0
+						&& j + 1>= 0
+						&& mapa[i][j + 1] == null)
+				|| (i < mapa.length
+						&& j - 1< mapa[0].length
+						&& i >= 0
+						&& j - 1>= 0
+						&& mapa[i][j - 1] == null))
 			{
 			
 				direccion = aleatorio.nextInt (4) + 1;
@@ -283,11 +299,7 @@ public class GestoraAleatoria
 				switch (direccion)
 				{
 					case 1:
-						if (i  + 1< mapa.length
-							&& j < mapa[0].length
-							&& i + 1>= 0
-							&& j >= 0
-							&& mapa[i + 1][j] != null) //Arreglar esto
+						if (mapa[i + 1][j] == null) //Arreglar esto
 						{
 							mapa[i][j].setArriba (true);
 							i++;
@@ -295,6 +307,7 @@ public class GestoraAleatoria
 							mapa[i][j].setAbajo(true);
 							backtracking (mapa, i, j);
 							
+							/*
 							if (mapa[i][j] != null 
 								&& (mapa[i][j].getArriba()
 									|| mapa[i][j].getIzquierda()
@@ -310,6 +323,7 @@ public class GestoraAleatoria
 							{
 								i = i--;
 							}
+							*/
 						}
 					break;
 					
@@ -318,7 +332,7 @@ public class GestoraAleatoria
 							&& j < mapa[0].length
 							&& i - 1>= 0
 							&& j >= 0
-							&& mapa[i - 1][j] != null)
+							&& mapa[i - 1][j] == null)
 						{
 							avanzar = true;
 							mapa[i][j].setAbajo (true);
@@ -362,6 +376,7 @@ public class GestoraAleatoria
 					break;
 				}
 			}
+			avanzar = true;
 		}		
 		
 		return mapa;
