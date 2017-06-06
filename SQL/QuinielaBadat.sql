@@ -8,7 +8,7 @@ GO
 
 CREATE TABLE Temporadas
 (
-	ID INT NOT NULL,
+	ID INT IDENTITY (1,1) NOT NULL,
 	Numero INT NOT NULL,
 
 	CONSTRAINT PK_Temporadas PRIMARY KEY (ID)
@@ -20,9 +20,9 @@ GO
 
 CREATE TABLE Jornadas
 (
-	ID INT NOT NULL,
+	ID INT IDENTITY (1,1) NOT NULL,
 	Fecha DATE NOT NULL,
-	IDTemporada INT
+	IDTemporada INT NOT NULL,
 
 	CONSTRAINT PK_Jornadas PRIMARY KEY (ID),
 	CONSTRAINT FK_Jornadas_Temporadas FOREIGN KEY (IDTemporada) REFERENCES Temporadas (ID) ON UPDATE CASCADE ON DELETE NO ACTION
@@ -30,7 +30,7 @@ CREATE TABLE Jornadas
 
 CREATE TABLE Sorteos
 (
-	ID INT NOT NULL,
+	ID INT IDENTITY (1,1) NOT NULL,
 	Estado BIT NOT NULL,
 
 	CONSTRAINT PK_Sorteo PRIMARY KEY (ID)
@@ -39,12 +39,13 @@ CREATE TABLE Sorteos
 GO
 CREATE TABLE Boletos
 (
-	ID INT NOT NULL,
+	ID INT IDENTITY (1,1) NOT NULL,
 	IDJornada INT NOT NULL,
 	IDSorteo INT NOT NULL,
 	NumeroApuestas INT NOT NULL,
 
-	CONSTRAINT PK_Boletos PRIMARY KEY (ID), -- Pensar más atributos
+	CONSTRAINT PK_Boletos PRIMARY KEY (ID),
+	CONSTRAINT UQ_Boletos_ID UNIQUE (ID),
 	CONSTRAINT FK_Boletos_Jornadas FOREIGN KEY (IDJornada) REFERENCES Jornadas (ID) ON UPDATE CASCADE ON DELETE NO ACTION,
 	CONSTRAINT FK_Boletos_Sorteos FOREIGN KEY (IDSorteo) REFERENCES Sorteos (ID) ON UPDATE CASCADE ON DELETE NO ACTION
 )
@@ -54,7 +55,7 @@ GO
 
 CREATE TABLE Partidos
 (
-	ID INT NOT NULL,
+	ID INT IDENTITY (1,1) NOT NULL,
 	Equipo1 VARCHAR (50) NOT NULL,
 	Equipo2 VARCHAR (50) NOT NULL,
 	Resultado VARCHAR (3) NULL,
@@ -71,9 +72,8 @@ GO
 
 CREATE TABLE Apuestas
 (
-	ID INT NOT NULL,
+	ID INT IDENTITY (1,1) NOT NULL,
 	IDBoleto INT NOT NULL,
-	Valor DECIMAL (6,2) NOT NULL,
 	Tipo VARCHAR (7) NOT NULL,
 	Prediccion1 VARCHAR (3) NOT NULL,
 	Prediccion2 VARCHAR (3) NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE Apuestas
 	Prediccion12 VARCHAR (3) NOT NULL,
 	Prediccion13 VARCHAR (3) NOT NULL,
 	Prediccion14 VARCHAR (3) NOT NULL,
-	PrediccionPleno VARCHAR (4) NOT NULL,
+	PrediccionPleno VARCHAR (4) NULL,
 
 	CONSTRAINT PK_Apuesta PRIMARY KEY (ID, IDBoleto),
 	CONSTRAINT FK_Apuestas_Boletos FOREIGN KEY (IDBoleto) REFERENCES Boletos (ID) ON UPDATE CASCADE ON DELETE CASCADE
@@ -170,21 +170,85 @@ ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Longitud14 CHECK ((Tipo = 'Simpl
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_LongitudPleno CHECK ((Tipo = 'Simple' AND LEN (PrediccionPleno) = 1)
 																	OR (Tipo = 'Multiple' AND LEN (PrediccionPleno) IN (2, 3, 4)))
 
-ALTER TABLE Boletos ADD CONSTRAINT CK_Boletos_NumeroApuesta CHECK (NumeroApuesta > 0 AND NumeroApuesta < 9)
+ALTER TABLE Boletos ADD CONSTRAINT CK_Boletos_NumeroApuesta CHECK (NumeroApuestas > 0 AND NumeroApuestas < 9)
 
 GO
 
 CREATE TRIGGER numeroApuestas ON Apuestas
 AFTER INSERT AS
 
-IF EXISTS (SELECT I.Tipo
+IF EXISTS (SELECT COUNT (I.Tipo)
 				FROM inserted AS I
 				INNER JOIN
 				Boletos AS B
 				ON I.IDBoleto = B.ID
-				WHERE B.NumeroApuestas > 1 AND I.Tipo = 'Multiple')
+				WHERE B.NumeroApuestas > 1 AND I.Tipo = 'Multiple'
+				HAVING COUNT (I.Tipo) > 1)
 BEGIN
 	ROLLBACK
 END
 
+/* Crea un procedimiento que grabe una apuesta simple. Los parámetros de entrada
+
+serán los pronósticos para los quince partidos, el número del sorteo, el número del
+
+boleto y el id de la jornada. Si el boleto se deja en NULL, se generará uno nuevo y si se introduce un
+
+código válido se añadirá la apuesta al boleto, comprobando que no haya más de
+
+ocho simples ni más de una múltiple.*/
 GO
+
+CREATE PROCEDURE grabarApuestaSimple
+	@Pronostico1 CHAR (1),
+	@Pronostico2 CHAR (1),
+	@Pronostico3 CHAR (1),
+	@Pronostico4 CHAR (1),
+	@Pronostico5 CHAR (1),
+	@Pronostico6 CHAR (1),
+	@Pronostico7 CHAR (1),
+	@Pronostico8 CHAR (1),
+	@Pronostico9 CHAR (1),
+	@Pronostico10 CHAR (1),
+	@Pronostico11 CHAR (1),
+	@Pronostico12 CHAR (1),
+	@Pronostico13 CHAR (1),
+	@Pronostico14 CHAR (1),
+	@Pronostico15 CHAR (1),
+	@NumeroSorteo INT,
+	@IDJornada INT,
+	@NumeroBoleto INT = NULL
+AS
+BEGIN
+
+	IF EXISTS (SELECT ID
+					FROM Sorteos
+					WHERE Estado = 'Abierto' AND ID = @NumeroBoleto)
+	BEGIN
+
+		IF (@NumeroBoleto IS NULL)
+		BEGIN
+			BEGIN TRANSACTION
+
+			INSERT INTO Boletos (IDJornada, IDSorteo, NumeroApuestas)
+			VALUES (@IDJornada, @NumeroSorteo, 1)
+
+			SET @NumeroBoleto = (SELECT MAX (ID) FROM Boletos) -- Necesito la transacción para que esta consulta no de fallo
+
+			COMMIT TRANSACTION
+		END
+
+		INSERT INTO Apuestas (IDBoleto, Tipo, Prediccion1, Prediccion2, Prediccion3, Prediccion4, Prediccion5, Prediccion6,
+							Prediccion7, Prediccion8, Prediccion9, Prediccion10, Prediccion11, Prediccion12, Prediccion13,
+							Prediccion14, PrediccionPleno)
+		VALUES(@NumeroBoleto, 'Simple', @Pronostico1, @Pronostico2, @Pronostico3, @Pronostico4, @Pronostico5, @Pronostico6,
+			@Pronostico7, @Pronostico8, @Pronostico9, @Pronostico10, @Pronostico11, @Pronostico12, @Pronostico13, @Pronostico14, @Pronostico15)
+
+	END
+
+	ELSE
+	BEGIN
+		--RAISEERROR ()
+		Print 'Error, el sorteo no está abierto'
+	END
+END
