@@ -3,7 +3,7 @@ package Interfaces;
 import Clases.ObjetoIMPL;
 
 /* Propiedades.
- * 		Basicas: 		double valor		----------		Consultable / Modificable
+ * 		Basicas: 		int valor		----------		Consultable / Modificable
  * 						ObjetoIMPL drop			----------		Consultable / Modificable
  * 		Derivadas:
  * 		Compartidas:
@@ -19,6 +19,6 @@ import Clases.ObjetoIMPL;
 
 public interface Cofre 
 {
-	double getValor ();
-	void setValor (double valor);
+	int getValor ();
+	void setValor (int valor);
 }

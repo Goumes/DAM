@@ -67,7 +67,8 @@ public class TestMazmorra
 				};
 		
 		*/
-		 mazmorra = ga.generarMazmorraAleatoria();
+		//mazmorra = ga.generarMazmorraAleatoria();
+		mazmorra = ga.generarMazmorraAleatoria();
 
 		 //mazmorra.setMapa(mapa);
 		 mazmorra.printMazmorra();

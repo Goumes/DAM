@@ -92,9 +92,9 @@ public class GestoraAleatoria
 		Random aleatorio = new Random ();
 		CofreIMPL cofre = new CofreIMPL ();
 		ItemIMPL item = null;
-		double dinero = 0.0;
+		int dinero = 0;
 		
-		dinero = aleatorio.nextDouble() * 20.0;
+		dinero = aleatorio.nextInt(20) + 1;
 		
 		item = itemAleatorio ();
 		
@@ -166,7 +166,6 @@ public class GestoraAleatoria
 	 */
 	public Mazmorra generarMazmorraAleatoria ()
 	{
-		Random aleatorio = new Random ();
 		 Mazmorra mazmorra = new Mazmorra ();
 		 
 		 HabitacionIMPL habitacion1 = null;
@@ -237,7 +236,7 @@ public class GestoraAleatoria
 	/* Prototipo: int [][] generarEstructuraMazmorra ()
 	 * Breve comentario: Metodo dedicado a generar la estructura de las mazmorras de forma recursiva
 	 * Precondiciones: Ninguna
-	 * Entradas: Ninguna
+	 * Entradas: Dos enteros
 	 * Salidas: Ninguna
 	 * Entradas/Salidas: Un array de HabitacionIMPL
 	 * Postcondiciones: Un Array bidimensional de HabitacionIMPL
@@ -254,6 +253,7 @@ public class GestoraAleatoria
 		Random aleatorio = new Random ();
 		int direccion = 0;
 		boolean avanzar = false;
+		int contador = 0;
 		
 		//Crear entrada aleatoria
 		if (i == 5 && j == 5)
@@ -262,6 +262,7 @@ public class GestoraAleatoria
 			j = aleatorio.nextInt ((mapa[0].length - 1)) + 0;
 			mapa [i][j] = new HabitacionIMPL ();
 			mapa [i][j].setEntrada(true);
+			mapa [i][j].setJugador(true);
 		}
 		
 		mapa[i][j].setVisitada(true);
@@ -302,7 +303,6 @@ public class GestoraAleatoria
 								&& j >= 0
 								&& mapa[i + 1][j] == null)
 						{
-							avanzar = true;
 							mapa[i][j].setArriba (true);
 							i++;
 							mapa[i][j] = generarHabitacionAleatoria ();
@@ -318,7 +318,6 @@ public class GestoraAleatoria
 							&& j >= 0
 							&& mapa[i - 1][j] == null)
 						{
-							avanzar = true;
 							mapa[i][j].setAbajo (true);
 							i--;
 							mapa[i][j] = generarHabitacionAleatoria ();
@@ -334,7 +333,6 @@ public class GestoraAleatoria
 							&& j + 1>= 0
 							&& mapa[i][j + 1] == null)
 						{
-							avanzar = true;
 							mapa[i][j].setDerecha (true);
 							j++;
 							mapa[i][j] = generarHabitacionAleatoria ();
@@ -350,7 +348,6 @@ public class GestoraAleatoria
 							&& j - 1>= 0
 							&& mapa[i][j - 1] == null)
 						{
-							avanzar = true;
 							mapa[i][j].setIzquierda (true);
 							j--;
 							mapa[i][j] = generarHabitacionAleatoria ();
@@ -365,6 +362,24 @@ public class GestoraAleatoria
 			else
 			{
 				avanzar = true;
+				
+				/*
+				for (int k = 0; k < mapa.length; k++)
+				{
+					for (int l = 0; l < mapa[0].length; l++)
+					{
+						if (mapa[k][l] == null)
+						{
+							contador++;
+						}
+						
+						else if (k == 4 && l == 4 && contador == 0)
+						{
+							mapa[i][j].setSalida(true);
+						}
+					}
+				}
+				*/
 			}
 		}		
 		
@@ -482,7 +497,7 @@ public class GestoraAleatoria
 		ObjectInputStream ois = null;
 		int numero = 0;
 		int contador = 1;
-		numero = aleatorio.nextInt(15) + 1;
+		numero = aleatorio.nextInt(13) + 1;
 		
 		try
 		{

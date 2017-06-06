@@ -338,7 +338,7 @@ public class GestoraJuego
 						
 						do
 						{
-							System.out.println("¿Cuántos puntos quieres asignar a la defensa base?");
+							System.out.println("¿Cuántos puntos quieres asignar a la riqueza?");
 							cantidad = teclado.nextInt();
 						}
 						while (cantidad > puntos);
@@ -367,8 +367,61 @@ public class GestoraJuego
 	}
 	//Fin crearJugador
 	
+	/* Prototipo: Partida abrirCofre (Partida partida)
+	 * Breve comentario: Metodo dedicado a abrir un cofre
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Una Partida
+	 * Postcondiciones: Una Mazmorra con el cofre abierto y el jugador con los items del mismo
+	 * 
+	 * Resguardo: public Partida abrirCofre (Partida partida)
+		{
+			System.out.println("Llamada al metodo abrirCofre");
+			return partida;
+		}
+	 */
+	public Partida abrirCofre (Partida partida)
+	{
+		boolean añadido = false;
+		
+		for (int i = 0; i < partida.getMazmorra ().getMapa().length; i++)
+		{
+			for (int j = 0; j < partida.getMazmorra ().getMapa()[0].length; j++)
+			{
+				if (!partida.getMazmorra().getMapa()[i][j].getJugador())
+				{
+					añadido = true;
+					try
+					{
+						System.out.println("WOW! Has encontrado: ");
+						System.out.println();
+						System.out.println(partida.getMazmorra ().getMapa()[i][j].getCofreDrop().toString());
+						System.out.println();
+						System.out.println("Lo recoges y añades a tu inventario");
+						
+						partida.getJugador().addInventario(partida.getMazmorra().getMapa()[i][j].getDropItem());
+						partida.getJugador().setOro (partida.getJugador().getOro() + partida.getMazmorra ().getMapa()[i][j].getCofreValor());
+					}
+					catch (JuegoException e)
+					{
+						System.out.println(e);
+					}
+				}
+			}
+		}
+		
+		if (!añadido)
+		{
+			System.out.println("No puedes abrir un cofre en una habitación que no contiene cofre. CRACK.");
+		}
+		
+		return partida;
+	}
+	//Fin abrirCofre
+	
 	/* Prototipo:
-	 * Breve comentario:
+	 * Breve comentario: Metodo dedicado a mostrar
 	 * Precondiciones:
 	 * Entradas:
 	 * Salidas:
@@ -377,7 +430,8 @@ public class GestoraJuego
 	 * 
 	 * Resguardo:
 	 */
-	//Fin crearPartida
+	
+	//Fin
 	
 	//Fin Metodos Añadidos
 }

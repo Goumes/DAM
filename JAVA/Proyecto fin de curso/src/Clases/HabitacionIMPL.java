@@ -13,7 +13,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	private TiendaIMPL shop;
 	private EnemigoIMPL enemy;
 	private CofreIMPL cofre;
-	private JugadorIMPL jugador;
+	private boolean jugador;
 	private boolean salida;
 	private boolean entrada;
 	private boolean arriba;
@@ -28,7 +28,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		shop = new TiendaIMPL ();
 		enemy = new EnemigoIMPL ();
 		cofre = new CofreIMPL ();
-		jugador = new JugadorIMPL ();
+		jugador = false;
 		salida = false;
 		entrada = false;
 		arriba = false;
@@ -53,7 +53,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.visitada = habitacion.visitada;
 	}
 	
-	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, JugadorIMPL jugador, 
+	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, boolean jugador, 
 							boolean salida, boolean entrada, boolean arriba, boolean abajo, boolean izquierda, boolean derecha, 
 							boolean visitada)
 	{
@@ -102,12 +102,12 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.cofre = cofre;
 	}
 	
-	public JugadorIMPL getJugador ()
+	public boolean getJugador ()
 	{
 		return jugador;
 	}
 	
-	public void setJugador (JugadorIMPL jugador)
+	public void setJugador (boolean jugador)
 	{
 		this.jugador = jugador;
 	}
@@ -322,12 +322,12 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		enemy.setDropItemEfecto(efecto);
 	}
 
-	public double getCofreValor() 
+	public int getCofreValor() 
 	{
 		return cofre.getValor();
 	}
 
-	public void setCofreValor(double valor) 
+	public void setCofreValor(int valor) 
 	{
 		cofre.setValor(valor);
 	}
@@ -371,7 +371,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		String s = (getShop ().toString()+
 					","+getEnemy ().toString()+
 					","+getCofre ().toString()+
-					","+getJugador ().toString()+
+					","+getJugador ()+
 					","+getSalida ()+
 					","+getEntrada ()+
 					","+getArriba ()+
@@ -395,7 +395,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 			if (this.getShop ().equals(habitacion.getShop ())
 				&& this.getEnemy ().equals(habitacion.getEnemy ())
 				&& this.getCofre ().equals(habitacion.getCofre())
-				&& this.getJugador ().equals(habitacion.getJugador ())
+				&& this.getJugador () == habitacion.getJugador()
 				&& this.getSalida () == habitacion.getSalida ()
 				&& this.getArriba() == habitacion.getArriba ()
 				&& this.getAbajo () == habitacion.getAbajo ()

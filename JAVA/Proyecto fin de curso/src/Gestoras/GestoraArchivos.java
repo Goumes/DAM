@@ -111,7 +111,19 @@ public class GestoraArchivos
 				@Override protected void writeStreamHeader () {}
 			};
 			
-			oos.writeObject(new ArmaIMPL ()); //Aquí va toda la tralla
+			oos.writeObject(new ArmaIMPL ("Hacha estándar", 70, 300)); 
+			oos.writeObject(new ArmaIMPL ("Hacha de combate", 150, 500)); 
+			oos.writeObject(new ArmaIMPL ("RotChopper", 300, 1000)); //Cortador de putrefacción (??????????????????????)
+			oos.writeObject(new ArmaIMPL ("Arco estándar", 50, 200)); 
+			oos.writeObject(new ArmaIMPL ("Arco de la federación", 100, 400)); 
+			oos.writeObject(new ArmaIMPL ("Pertinax", 250, 800)); //El nombre de un tio
+			oos.writeObject(new ArmaIMPL ("Mandoble estándar", 60, 250)); 
+			oos.writeObject(new ArmaIMPL ("Frenzyedge", 150, 500));	//Filo del frenesí
+			oos.writeObject(new ArmaIMPL ("Woecleaver", 700, 2000)); //Cuchillo del dolor fuerte o algo así yo que se Jarana me dio estos nombres y yo los traduzco
+			oos.writeObject(new ArmaIMPL ("Bastón estándar", 40, 100)); 
+			oos.writeObject(new ArmaIMPL ("Tuskrender", 170, 600)); //Generador de colmillos
+			oos.writeObject(new ArmaIMPL ("Bastón del guardián", 600, 1500)); 
+			oos.writeObject(new ArmaIMPL ("Acero armenio pa los barcos", 9999, 5000)); //Este puño es capaz de destruir de un golpe a cualquier enemigo del juego
 		}
 		
 		catch (FileNotFoundException e)
@@ -124,6 +136,11 @@ public class GestoraArchivos
 		}
 		
 		catch (IOException e)
+		{
+			System.out.println(e);
+		}
+		
+		catch (JuegoException e)
 		{
 			System.out.println(e);
 		}

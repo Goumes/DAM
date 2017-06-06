@@ -9,13 +9,13 @@ import Interfaces.Cofre;
 public class CofreIMPL implements Serializable, Cofre
 {
 	private static final long serialVersionUID = 1416960979169236387L;
-	private double valor;
+	private int valor;
 	private ObjetoIMPL drop;
 	
 	//Constructores
 	public CofreIMPL ()
 	{
-		valor = 0.0;
+		valor = 0;
 		drop = new ObjetoIMPL ();
 	}
 	
@@ -25,7 +25,7 @@ public class CofreIMPL implements Serializable, Cofre
 		this.drop = cofre.drop;
 	}
 	
-	public CofreIMPL (double valor, ObjetoIMPL drop)
+	public CofreIMPL (int valor, ObjetoIMPL drop)
 	{
 		this.valor = valor;
 		this.drop = drop;
@@ -33,12 +33,12 @@ public class CofreIMPL implements Serializable, Cofre
 	//Fin Constructores
 	
 	//Getters y setters
-	public double getValor ()
+	public int getValor ()
 	{
 		return valor;
 	}
 	
-	public void setValor (double valor)
+	public void setValor (int valor)
 	{
 		this.valor = valor;
 	}

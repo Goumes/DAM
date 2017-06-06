@@ -222,7 +222,7 @@ public class MainJuego
 					{
 						// Caso 1: Abrir cofre
 						case 1:
-							//gestora.abrirCofre (partidaDefinitiva);
+							gestora.abrirCofre (partidaDefinitiva);
 						break;
 						// Caso 2: Ir tienda
 						case 2:
@@ -235,6 +235,7 @@ public class MainJuego
 						break;
 						// Caso 5: Abrir Inventario
 						case 5:
+							//gestora.abrirInventario (partidaDefinitiva);
 						break;
 						// Caso 6: Ver mapa
 						case 6:
