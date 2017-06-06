@@ -1,0 +1,16 @@
+MONSTRUOS:
+
+Débiles: Guilliedhu, Slinking Sabertooth, Hulking Sabertooh, Gorila, Mugato, Kariagon, Disc Reaper
+Fuertes: Basilisk, Ancient golem, Naga battlemaster, Fimbrilisk , Indolent Kuma, Desert Lightning Kuma, Lurking Ovolith
+Bosses: Fulminar, Verno, Dakurion, Akayan, Banyakas, Karascha, Akasha
+
+ARMAS:
+
+Hachas: Standard Issue Axe, Oathbreaker Axe, Rotchopper
+Arcos: Standard Issue Bow, Federation Argass Bow, Pertinax Longbow
+Espadas: Standard Issue Greatsword, Frenzyedge, Woecleaver
+Bastones(Magos y eso): Standard Issue Staff, Tuskrender, Staff of the Warden
+
+ITEMS:
+
+Encantamientos armas, pociones, armaduras...
