@@ -14,9 +14,10 @@ public class TestMazmorra
 {
 	public static void main (String [] args) throws JuegoException
 	{
-		Mazmorra mazmorra = null;
+		Mazmorra mazmorra = new Mazmorra ();
 		GestoraAleatoria ga = new GestoraAleatoria ();
 		 
+		/*
 		HabitacionIMPL habitacionInicial = null;
 		HabitacionIMPL habitacion2 = null;
 		HabitacionIMPL habitacion3 = null;
@@ -43,11 +44,11 @@ public class TestMazmorra
 		HabitacionIMPL habitacion24 = new HabitacionIMPL ();
 		HabitacionIMPL habitacionFinal = null;
 		
-		/*
 		habitacion5.setCofreIMPL(new CofreIMPL (3, new ItemIMPL ()));
 		habitacion5.setEnemy(new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, new ItemIMPL (), 10, 3));
 		habitacion5.setShop(new TiendaIMPL (new ItemIMPL (), new ItemIMPL (), new ItemIMPL (), new ArmaIMPL (), true));
 		habitacion5.setSalida (true);
+		habitacion19.setEntrada(true);
 		
 		//habitacion8.setCofreIMPL(new CofreIMPL (3, new ItemIMPL ()));
 		habitacion8.setEnemy(new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, new ItemIMPL (), 10, 3));
@@ -64,11 +65,11 @@ public class TestMazmorra
 					{habitacion16, habitacion17, habitacion18, habitacion19, habitacion20},
 					{habitacion21, habitacion22, habitacion23, habitacion24, habitacionFinal}
 				};
-		 */
 		
+		*/
 		 mazmorra = ga.generarMazmorraAleatoria();
-		// mazmorra.setMapa(mapa);
-		 
+
+		 //mazmorra.setMapa(mapa);
 		 mazmorra.printMazmorra();
 	}
 }

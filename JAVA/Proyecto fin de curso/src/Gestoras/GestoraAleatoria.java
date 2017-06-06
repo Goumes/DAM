@@ -219,7 +219,7 @@ public class GestoraAleatoria
 		 
 		 */
 		 
-		 backtracking (mapa, 0, 0);
+		 backtracking (mapa, 5, 5);
 		 
 		 try
 		 {
@@ -256,20 +256,17 @@ public class GestoraAleatoria
 		boolean avanzar = false;
 		
 		//Crear entrada aleatoria
-		if (i == 0 && j == 0)
+		if (i == 5 && j == 5)
 		{
-			i = aleatorio.nextInt((mapa.length - 1)) + 0;
-			j = aleatorio.nextInt((mapa[0].length - 1)) + 0;
-			mapa[i][j] = new HabitacionIMPL ();
+			i = aleatorio.nextInt ((mapa.length - 1)) + 0;
+			j = aleatorio.nextInt ((mapa[0].length - 1)) + 0;
+			mapa [i][j] = new HabitacionIMPL ();
+			mapa [i][j].setEntrada(true);
 		}
 		
 		mapa[i][j].setVisitada(true);
 
-		while (!avanzar 
-				&& i < mapa.length
-				&& j < mapa[0].length
-				&& i >= 0
-				&& j >= 0)
+		while (!avanzar)
 		{
 			
 			if ((i  + 1< mapa.length
@@ -299,31 +296,18 @@ public class GestoraAleatoria
 				switch (direccion)
 				{
 					case 1:
-						if (mapa[i + 1][j] == null) //Arreglar esto
+						if (i  + 1< mapa.length
+								&& j < mapa[0].length
+								&& i + 1>= 0
+								&& j >= 0
+								&& mapa[i + 1][j] == null)
 						{
+							avanzar = true;
 							mapa[i][j].setArriba (true);
 							i++;
 							mapa[i][j] = generarHabitacionAleatoria ();
 							mapa[i][j].setAbajo(true);
 							backtracking (mapa, i, j);
-							
-							/*
-							if (mapa[i][j] != null 
-								&& (mapa[i][j].getArriba()
-									|| mapa[i][j].getIzquierda()
-									|| mapa[i][j].getDerecha()))
-							{
-								avanzar = true;
-							}
-							
-							else if (mapa[i][j] != null 
-									&& (!mapa[i][j].getArriba()
-									&& !mapa[i][j].getIzquierda()
-									&& !mapa[i][j].getDerecha()))
-							{
-								i = i--;
-							}
-							*/
 						}
 					break;
 					
@@ -375,37 +359,16 @@ public class GestoraAleatoria
 						}
 					break;
 				}
+				
 			}
-			avanzar = true;
+			
+			else
+			{
+				avanzar = true;
+			}
 		}		
 		
 		return mapa;
-		/*
-		for (int i = 0; i < resultado.length; i++)
-		{
-			for (int j = 0; j < resultado[0].length; j++)
-			{
-				if (i == 0 & j == 0)
-				{
-					resultado[i][j] = 1;
-				}
-				
-				else if (resultado[i + 1][j] == 0
-						|| resultado [i - 1][j] == 0
-						|| resultado [i][j + 1] == 0
-						|| resultado [i][j-1] == 0)
-				{
-					if (resultado[i + 1][j] == 0)
-					{
-						i = i+1;
-						resultado [i][j] = 1;
-					}
-				}
-			}
-		}
-		
-		return (resultado);
-		*/
 	}
 	//Fin generarEstructuraMazmorra ()
 	

@@ -169,28 +169,46 @@ public class Mazmorra implements Serializable, Cloneable
 				{
 					if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 					{
-						if (this.getMapa()[i][j].getSalida () == false)
+						if (this.getMapa()[i][j].getSalida () == false
+							&& this.getMapa()[i][j].getEntrada() == false)
 						{
 							System.out.print("|               C ");
 						}
 						
 						else
 						{
-							System.out.print("| S             C ");
+							if (this.getMapa () [i][j].getSalida())
+							{
+								System.out.print("| S             C ");
+							}
+							
+							else if (this.getMapa () [i][j].getEntrada())
+							{
+								System.out.print("| E             C ");
+							}
 						}
 						
 					}
 					
 					else
 					{
-						if (this.getMapa()[i][j].getSalida () == false)
+						if (this.getMapa()[i][j].getSalida () == false
+							&& !this.getMapa()[i][j].getEntrada())
 						{
 							System.out.print("|                 ");
 						}
 						
 						else
 						{
-							System.out.print("| S               ");
+							if (this.getMapa () [i][j].getSalida())
+							{
+								System.out.print("| S               ");
+							}
+							
+							else if (this.getMapa () [i][j].getEntrada())
+							{
+								System.out.print("| E               ");
+							}
 						}
 					}
 				}

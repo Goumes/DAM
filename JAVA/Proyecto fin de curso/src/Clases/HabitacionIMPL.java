@@ -15,6 +15,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	private CofreIMPL cofre;
 	private JugadorIMPL jugador;
 	private boolean salida;
+	private boolean entrada;
 	private boolean arriba;
 	private boolean abajo;
 	private boolean izquierda;
@@ -29,6 +30,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		cofre = new CofreIMPL ();
 		jugador = new JugadorIMPL ();
 		salida = false;
+		entrada = false;
 		arriba = false;
 		abajo = false;
 		izquierda = false;
@@ -43,6 +45,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.cofre = habitacion.cofre;
 		this.jugador = habitacion.jugador;
 		this.salida = habitacion.salida;
+		this.entrada = habitacion.entrada;
 		this.arriba = habitacion.arriba;
 		this.abajo = habitacion.abajo;
 		this.izquierda = habitacion.izquierda;
@@ -51,7 +54,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	}
 	
 	public HabitacionIMPL (TiendaIMPL shop, EnemigoIMPL enemy, CofreIMPL cofre, JugadorIMPL jugador, 
-							boolean salida, boolean arriba, boolean abajo, boolean izquierda, boolean derecha, 
+							boolean salida, boolean entrada, boolean arriba, boolean abajo, boolean izquierda, boolean derecha, 
 							boolean visitada)
 	{
 		this.shop = shop;
@@ -59,6 +62,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		this.cofre = cofre;
 		this.jugador = jugador;
 		this.salida = salida;
+		this.entrada = entrada;
 		this.arriba = arriba;
 		this.abajo = abajo;
 		this.izquierda = izquierda;
@@ -116,6 +120,16 @@ public class HabitacionIMPL implements Serializable, Habitacion
 	public void setSalida (boolean Salida)
 	{
 		this.salida = Salida;
+	}
+	
+	public boolean getEntrada ()
+	{
+		return entrada;
+	}
+	
+	public void setEntrada (boolean entrada)
+	{
+		this.entrada = entrada;
 	}
 	
 	public boolean getArriba ()
@@ -359,6 +373,7 @@ public class HabitacionIMPL implements Serializable, Habitacion
 					","+getCofre ().toString()+
 					","+getJugador ().toString()+
 					","+getSalida ()+
+					","+getEntrada ()+
 					","+getArriba ()+
 					","+getAbajo ()+
 					","+getIzquierda ()+
