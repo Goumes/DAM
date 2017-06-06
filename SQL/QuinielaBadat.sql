@@ -23,31 +23,23 @@ CREATE TABLE Jornadas
 	ID INT IDENTITY (1,1) NOT NULL,
 	Fecha DATE NOT NULL,
 	IDTemporada INT NOT NULL,
+	Estado BIT NOT NULL,
 
 	CONSTRAINT PK_Jornadas PRIMARY KEY (ID),
 	CONSTRAINT FK_Jornadas_Temporadas FOREIGN KEY (IDTemporada) REFERENCES Temporadas (ID) ON UPDATE CASCADE ON DELETE NO ACTION
 )
 
-CREATE TABLE Sorteos
-(
-	ID INT IDENTITY (1,1) NOT NULL,
-	Estado BIT NOT NULL,
-
-	CONSTRAINT PK_Sorteo PRIMARY KEY (ID)
-)
-
 GO
+
 CREATE TABLE Boletos
 (
 	ID INT IDENTITY (1,1) NOT NULL,
 	IDJornada INT NOT NULL,
-	IDSorteo INT NOT NULL,
 	NumeroApuestas INT NOT NULL,
 
 	CONSTRAINT PK_Boletos PRIMARY KEY (ID),
 	CONSTRAINT UQ_Boletos_ID UNIQUE (ID),
-	CONSTRAINT FK_Boletos_Jornadas FOREIGN KEY (IDJornada) REFERENCES Jornadas (ID) ON UPDATE CASCADE ON DELETE NO ACTION,
-	CONSTRAINT FK_Boletos_Sorteos FOREIGN KEY (IDSorteo) REFERENCES Sorteos (ID) ON UPDATE CASCADE ON DELETE NO ACTION
+	CONSTRAINT FK_Boletos_Jornadas FOREIGN KEY (IDJornada) REFERENCES Jornadas (ID) ON UPDATE CASCADE ON DELETE NO ACTION
 )
 
 GO
@@ -188,6 +180,21 @@ BEGIN
 	ROLLBACK
 END
 
+GO
+
+CREATE TRIGGER numeroApuestasTotales ON Apuestas
+AFTER INSERT AS
+
+IF EXISTS (SELECT COUNT (I.ID)
+				FROM inserted AS I
+				INNER JOIN
+				Boletos AS B
+				ON I.IDBoleto = B.ID
+				HAVING COUNT (I.ID) > NumeroApuestas)
+BEGIN
+	ROLLBACK
+END
+
 /* Crea un procedimiento que grabe una apuesta simple. Los parámetros de entrada
 
 serán los pronósticos para los quince partidos, el número del sorteo, el número del
@@ -215,23 +222,22 @@ CREATE PROCEDURE grabarApuestaSimple
 	@Pronostico13 CHAR (1),
 	@Pronostico14 CHAR (1),
 	@Pronostico15 CHAR (1),
-	@NumeroSorteo INT,
 	@IDJornada INT,
 	@NumeroBoleto INT = NULL
 AS
 BEGIN
 
 	IF EXISTS (SELECT ID
-					FROM Sorteos
-					WHERE Estado = 'Abierto' AND ID = @NumeroBoleto)
+					FROM Jornadas
+					WHERE Estado = 'Abierto' AND ID = @IDJornada)
 	BEGIN
 
 		IF (@NumeroBoleto IS NULL)
 		BEGIN
 			BEGIN TRANSACTION
 
-			INSERT INTO Boletos (IDJornada, IDSorteo, NumeroApuestas)
-			VALUES (@IDJornada, @NumeroSorteo, 1)
+			INSERT INTO Boletos (IDJornada, NumeroApuestas)
+			VALUES (@IDJornada, 1)
 
 			SET @NumeroBoleto = (SELECT MAX (ID) FROM Boletos) -- Necesito la transacción para que esta consulta no de fallo
 
@@ -249,6 +255,6 @@ BEGIN
 	ELSE
 	BEGIN
 		--RAISEERROR ()
-		Print 'Error, el sorteo no está abierto'
+		Print 'El sorteo debe estar abierto'
 	END
 END
