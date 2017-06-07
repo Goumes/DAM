@@ -137,6 +137,7 @@ public class MainJuego
 	{
 		System.out.println();
 		System.out.println("Esta es tu interfaz de acciones. Selecciona una opción.");
+		System.out.println();
 		System.out.println("1. Abrir cofre");
 		System.out.println("2. Ir a tienda");
 		System.out.println("3. Pelear");
@@ -144,6 +145,7 @@ public class MainJuego
 		System.out.println("5. Abrir inventario");
 		System.out.println("6. Ver mapa");
 		System.out.println("0. Guardar y salir");
+		System.out.println();
 	}
 	//Fin menuAcciones
 	
@@ -159,11 +161,15 @@ public class MainJuego
 		GestoraJuego gestora = new GestoraJuego ();
 		GestoraAleatoria gestoraAleatoria = new GestoraAleatoria ();
 		int accion = 0;
+		int eleccionInventario = 0;
+		int numeroInventario = -1;
+		char utilizar = ' ';
+		boolean resultadoInventario = false;
 		
 		//LeerValidarJugar
 		do
 		{
-			System.out.println("Desea jugar a 'UnknownName'? S/N");
+			System.out.println("Quieres jugar a 'UnknownName'? S/N");
 			ejecutar = Character.toLowerCase(teclado.next().charAt(0));
 		}
 		while (ejecutar != 's' && ejecutar != 'n');
@@ -240,7 +246,55 @@ public class MainJuego
 						break;
 						// Caso 5: Abrir Inventario
 						case 5:
-							//gestora.abrirInventario (partidaDefinitiva);
+							
+							do
+							{
+								numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+								eleccionInventario = teclado.nextInt();
+							}
+							while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+							
+								while (eleccionInventario != 0)
+								{
+								
+									
+									
+									do
+									{
+										System.out.println();
+										System.out.println("¿Quieres utilizar este objeto?");
+										System.out.println();
+										utilizar = Character.toLowerCase(teclado.next().charAt(0));
+									}
+									while (utilizar != 's' && utilizar != 'n');
+									
+									if (utilizar == 's')
+									{
+										resultadoInventario = gestora.utilizarItem (partidaDefinitiva.getJugador(), eleccionInventario);
+										
+										if (resultadoInventario)
+										{
+											System.out.println();
+											System.out.println("Haz utilizado el item con éxito!");
+											System.out.println();
+										}
+										
+										else
+										{
+											System.out.println();
+											System.out.println("No puedes utilizar una poción de efecto temporal fuera de combate!");
+											System.out.println();
+										}
+									}
+									
+									do
+									{
+										numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+										eleccionInventario = teclado.nextInt();
+									}
+									while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+								}
+							
 						break;
 						// Caso 6: Ver mapa
 						case 6:
@@ -276,7 +330,7 @@ public class MainJuego
 			//Preguntar JugarOtraVez
 			do
 			{
-				System.out.println("Desea volver a jugar a 'UnknownName'? S/N");
+				System.out.println("Quieres volver a jugar a 'UnknownName'? S/N");
 				ejecutar = Character.toLowerCase(teclado.next().charAt(0));
 			}
 			while (ejecutar != 's' && ejecutar != 'n');

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import Clases.ArmaIMPL;
 import Clases.EnemigoIMPL;
@@ -36,6 +37,8 @@ public class GestoraArchivos
 		File partidas = new File ("./src/Archivos/partidas.dat");
 		ObjectOutputStream oos = null;
 		GestoraAleatoria gestora = new GestoraAleatoria ();
+		ArrayList <ObjetoIMPL> partida2 = new ArrayList <ObjetoIMPL> ();
+		ArrayList <ObjetoIMPL> partida3 = new ArrayList <ObjetoIMPL> ();
 		
 		try
 		{
@@ -43,10 +46,20 @@ public class GestoraArchivos
 			{
 				@Override protected void writeStreamHeader () {}
 			};
+			partida2.add(gestora.itemAleatorio ());
+			partida2.add(gestora.itemAleatorio ());
+			partida2.add(gestora.armaAleatoria ());
+			partida2.add(gestora.itemAleatorio ());
+			partida3.add(gestora.itemAleatorio ());
+			partida3.add(gestora.itemAleatorio ());
+			partida3.add(gestora.armaAleatoria ());
+			partida3.add(gestora.itemAleatorio ());
 			
 			oos.writeObject(new Partida (new Mazmorra (), new JugadorIMPL ()));
-			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("pepejava", 450, 10, 10,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
-			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("XnoScoperX", 550, 12, 12,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
+			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("pepejava", 450, 10, 10,new ItemIMPL (), new ArmaIMPL (), 100,partida2)));
+			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("XnoScoperX", 550, 12, 12,new ItemIMPL (), new ArmaIMPL (), 100, partida3 )));
+			
+
 		}
 		
 		catch (FileNotFoundException e)

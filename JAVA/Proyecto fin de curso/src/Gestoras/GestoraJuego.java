@@ -421,16 +421,140 @@ public class GestoraJuego
 	}
 	//Fin abrirCofre
 	
-	/* Prototipo:
-	 * Breve comentario: Metodo dedicado a mostrar
-	 * Precondiciones:
-	 * Entradas:
-	 * Salidas:
-	 * Entradas/Salidas:
-	 * Postcondiciones:
+	/* Prototipo: void mostrarInventario (JugadorIMPL jugador)
+	 * Breve comentario: Metodo dedicado a mostrar el inventario
+	 * Precondiciones: Ninguna
+	 * Entradas: Un JugadorIMPL
+	 * Salidas: Un entero
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un entero indicando el número de objetos que hay en el inventario
 	 * 
-	 * Resguardo:
+	 * Resguardo: public void monstrarInventario (JugadorIMPL jugador)
+		{
+			System.out.println("Llamada al metodo mostrarInventario");
+		}	
 	 */
+	public int monstrarInventario (JugadorIMPL jugador)
+	{
+		ItemIMPL item = new ItemIMPL ();
+		ArmaIMPL arma = new ArmaIMPL ();
+		int numeroObjetos = jugador.getInventario().size ();
+		
+		for (int i = 0; i < numeroObjetos; i++)
+		{
+			if (jugador.getInventario().get(i) instanceof ItemIMPL)
+			{
+				item = (ItemIMPL) jugador.getInventario().get(i);
+				System.out.println ();
+				
+				System.out.print((i + 1) + ". " + item.getNombre ());
+				System.out.print(", valor de " + String.valueOf(item.getPrecio ()) + " oros. ");
+				System.out.print("Descripción: " + String.valueOf(item.getEfecto()));
+				
+				System.out.println ();
+			}
+			
+			else if (jugador.getInventario().get(i) instanceof ArmaIMPL)
+			{
+				arma = (ArmaIMPL) jugador.getInventario().get(i);
+				System.out.println ();
+				
+				System.out.print((i + 1) + ". " + arma.getNombre ());
+				System.out.print(", valor de " + String.valueOf (arma.getPrecio ()) + " oros. ");
+				System.out.print("Daño: " + String.valueOf (arma.getDmg()));
+				
+				System.out.println ();
+			}
+		}
+		
+		System.out.println ();
+		System.out.println("0. Salir del inventario");
+		System.out.println ();
+		
+		return (numeroObjetos);
+	}
+	
+
+	/* Prototipo: boolean utilizarItem (JugadorIMPL jugador, int posicion)
+	 * Breve comentario: Metodo dedicado a utilizar un objeto del inventario
+	 * Precondiciones: Ninguna
+	 * Entradas: Un entero y un JugadorIMPL
+	 * Salidas: Un booleano
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un booleano indicando si se ha añadido correctamente
+	 * 
+	 * Resguardo: public boolean utilizarItem (JugadorIMPL jugador, int posicion)
+		{
+			System.out.println("Llamada al metodo utilizarItem");
+		}	
+	 */
+	public boolean utilizarItem (JugadorIMPL jugador, int posicion)
+	{
+		boolean resultado = false;
+		ArmaIMPL armaAntigua = new ArmaIMPL ();
+		ItemIMPL armaduraAntigua = new ItemIMPL ();
+		ItemIMPL item = new ItemIMPL ();
+		try
+		{
+			for (int i = 0; i < jugador.getInventario().size (); i++)
+			{
+				if ((i) == (posicion - 1))
+				{
+					if (jugador.getInventario().get (i) instanceof ArmaIMPL)
+					{
+						if (!jugador.getArmaEquipada().equals (new ArmaIMPL ()))
+						{
+							armaAntigua = jugador.getArmaEquipada ();
+							jugador.addInventario(armaAntigua);
+						}
+						
+						jugador.setArmaEquipada ((ArmaIMPL) jugador.getInventario().get (i));
+						jugador.removeInventario(i);
+						
+						resultado = true;
+					}
+					
+					else if (jugador.getInventario().get (i) instanceof ItemIMPL)
+					{
+						item = (ItemIMPL) jugador.getInventario().get (i);
+						
+						if (!item.getDuracion())
+						{
+							if (item.getModificadorVida() != 0)
+							{
+								jugador.setVida(jugador.getVida() + item.getModificadorVida());
+								jugador.removeInventario(i);
+								resultado = true;
+							}
+							
+							else
+							{
+
+								if (!jugador.getArmadura ().equals (new ItemIMPL ()))
+								{
+									armaduraAntigua = jugador.getArmadura ();
+									jugador.addInventario(armaduraAntigua);
+								}
+								
+								jugador.setArmadura(item);
+								jugador.removeInventario(i);
+								
+								resultado = true;
+							}
+						}
+					}
+				}
+			}
+		}
+		catch (JuegoException e)
+		{
+			System.out.println(e);
+		}
+			
+		
+		return resultado;
+	}
+	//Fin utilizarItem
 	
 	//Fin
 	

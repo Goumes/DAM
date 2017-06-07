@@ -1,6 +1,7 @@
 package Clases;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import Exceptions.JuegoException;
@@ -122,12 +123,12 @@ public class Partida implements Cloneable, Serializable
 		jugador.setOro(oro);
 	}
 
-	public ObjetoIMPL[] getJugadorInventario() 
+	public ArrayList <ObjetoIMPL> getJugadorInventario() 
 	{
 		return jugador.getInventario();
 	}
 
-	public void setJugadorInventario(ObjetoIMPL[] inventario) 
+	public void setJugadorInventario(ArrayList <ObjetoIMPL>  inventario) 
 	{
 		jugador.setInventario(inventario);
 	}

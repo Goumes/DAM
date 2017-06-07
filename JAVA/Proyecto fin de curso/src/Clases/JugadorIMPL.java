@@ -16,7 +16,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	private ItemIMPL armadura;
 	private ArmaIMPL armaEquipada;
 	private int oro;
-	private ObjetoIMPL [] inventario;
+	private ArrayList <ObjetoIMPL> inventario;
 	
 	//Constructores
 	public JugadorIMPL ()
@@ -28,7 +28,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		armadura = new ItemIMPL ();
 		armaEquipada = new ArmaIMPL ();
 		oro = 0;
-		inventario = new ObjetoIMPL [] {};
+		inventario = new ArrayList <ObjetoIMPL> () {};
 	}
 	
 	public JugadorIMPL (JugadorIMPL jugador)
@@ -43,7 +43,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		this.inventario = jugador.inventario;
 	}
 	
-	public JugadorIMPL (String nombre, int vida, int baseDmg, int baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ObjetoIMPL [] inventario) throws JuegoException
+	public JugadorIMPL (String nombre, int vida, int baseDmg, int baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ArrayList<ObjetoIMPL> inventario) throws JuegoException
 	{
 		if ((nombre.equals(null) || nombre.equals(""))
 			|| (vida < 1 )
@@ -196,12 +196,12 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		}
 	}
 	
-	public ObjetoIMPL [] getInventario ()
+	public ArrayList <ObjetoIMPL> getInventario ()
 	{
 		return inventario;
 	}
 	
-	public void setInventario (ObjetoIMPL [] inventario)
+	public void setInventario (ArrayList <ObjetoIMPL> inventario)
 	{
 		this.inventario = inventario;
 	}
@@ -453,16 +453,28 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	 */
 	public void addInventario (ObjetoIMPL objeto)
 	{
-		for (int i = 0; i < this.getInventario().length; i++)
-		{
-			if (this.getInventario() [i] == null)
-			{
-				this.getInventario() [i] = objeto;
-			}
-		}
-		
+			this.getInventario().add(objeto);
 	}
 	//Fin addInventario
+	
+	/* Prototipo: void removeInventario (int i)
+	 * Breve comentario: Metodo que borra un ObjetoIMPL del array inventario
+	 * Precondiciones: Ninguna
+	 * Entradas: Un entero
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void removeInventario (int i)
+		{
+			System.out.println("Llamada al metodo removeInventario");
+		}
+	 */
+	public void removeInventario (int i)
+	{
+			this.getInventario().remove (i);
+	}
+	//Fin removeInventario
 	
 	//Fin Metodos Añadidos
 }

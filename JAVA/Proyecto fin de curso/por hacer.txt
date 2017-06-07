@@ -1,4 +1,4 @@
-Creación de archivo de items
-Creación de archivo de enemigos
 Menu acciones
 Cosas relacionadas con inventario
+
+Corregir lo de las pociones de vida para que restauren, no sumen.
