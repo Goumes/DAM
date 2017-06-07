@@ -45,8 +45,8 @@ public class GestoraArchivos
 			};
 			
 			oos.writeObject(new Partida (new Mazmorra (), new JugadorIMPL ()));
-			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("pepejavaSlayer", 450, 10, 10,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
-			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("XxnoScoper360xX", 550, 12, 12,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
+			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("pepejava", 450, 10, 10,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
+			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("XnoScoperX", 550, 12, 12,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
 		}
 		
 		catch (FileNotFoundException e)

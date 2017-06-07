@@ -86,7 +86,9 @@ public class MainJuego
 		}
 		else
 		{
+			System.out.println();
 			System.out.println("Partida 1: ");
+			System.out.println();
 			partida1.imprimirJugador ();
 		}
 		
@@ -97,7 +99,9 @@ public class MainJuego
 		
 		else
 		{
+			System.out.println();
 			System.out.println("Partida 2: ");
+			System.out.println();
 			partida2.imprimirJugador();
 		}
 		
@@ -108,7 +112,9 @@ public class MainJuego
 		
 		else
 		{
+			System.out.println();
 			System.out.println("Partida 3: ");
+			System.out.println();
 			partida3.imprimirJugador ();
 		}
 	}

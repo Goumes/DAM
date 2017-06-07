@@ -108,7 +108,7 @@ public class GestoraAleatoria
 	/* Prototipo: generarHabitacionAleatoria ()
 	 * Breve comentario: Metodo dedicado a la generación aleatoria de una habitacion
 	 * Precondiciones: Ninguna
-	 * Entradas: Ninguna
+	 * Entradas: Un booleano indicando si existe ya una tienda en la mazmorra o no
 	 * Salidas: Una HabitacionIMPL
 	 * Entradas/Salidas: Ninguna
 	 * Postcondiciones: Una HabitacionIMPL generada aleatoriamente
@@ -119,14 +119,13 @@ public class GestoraAleatoria
 			return (new HabitacionIMPL ());
 		}
 	 */
-	public HabitacionIMPL generarHabitacionAleatoria ()
+	public HabitacionIMPL generarHabitacionAleatoria (boolean existeTienda)
 	{
 		Random aleatorio = new Random ();
 		HabitacionIMPL habitacion = new HabitacionIMPL ();
 		TiendaIMPL tienda = new TiendaIMPL ();
 		EnemigoIMPL enemigo = new EnemigoIMPL ();
 		CofreIMPL cofre = new CofreIMPL ();
-		boolean existeTienda = false;
 		
 		if (aleatorio.nextBoolean())
 		{
@@ -223,7 +222,7 @@ public class GestoraAleatoria
 		 
 		 */
 		 
-		 backtracking (mapa, 5, 5);
+		 backtracking (mapa, 5, 5, false);
 		 
 		 try
 		 {
@@ -238,22 +237,22 @@ public class GestoraAleatoria
 	}
 	//Fin generarMazmorraAleatoria
 	
-	/* Prototipo: int [][] generarEstructuraMazmorra ()
+	/* Prototipo: HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j, boolean tiendaGenerada)
 	 * Breve comentario: Metodo dedicado a generar la estructura de las mazmorras de forma recursiva
 	 * Precondiciones: Ninguna
-	 * Entradas: Dos enteros
+	 * Entradas: Dos enteros y un booleano
 	 * Salidas: Ninguna
 	 * Entradas/Salidas: Un array de HabitacionIMPL
-	 * Postcondiciones: Un Array bidimensional de HabitacionIMPL
+	 * Postcondiciones: Un Array bidimensional de HabitacionIMPL con las mismas ya generadas aleatoriamente
 	 * 
-	 * Resguardo: 	public int [][] generarEstructuraMazmorra ()
+	 * Resguardo: 	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j, boolean tiendaGenerada)
 		{
-			System.out.println("Llamada al metodo generarEstructuraMazmorra");
+			System.out.println("Llamada al metodo backtracking");
 			
 			return (new int [][] {});
 		}
 	 */
-	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j)
+	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j, boolean tiendaGenerada)
 	{
 		Random aleatorio = new Random ();
 		int direccion = 0;
@@ -310,9 +309,15 @@ public class GestoraAleatoria
 						{
 							mapa[i][j].setArriba (true);
 							i++;
-							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j] = generarHabitacionAleatoria (tiendaGenerada);
+							
+							if (!mapa[i][j].getShop ().equals(new TiendaIMPL ()))
+							{
+								tiendaGenerada = true;
+							}
+							
 							mapa[i][j].setAbajo(true);
-							backtracking (mapa, i, j);
+							backtracking (mapa, i, j, tiendaGenerada);
 						}
 					break;
 					
@@ -325,9 +330,15 @@ public class GestoraAleatoria
 						{
 							mapa[i][j].setAbajo (true);
 							i--;
-							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j] = generarHabitacionAleatoria (tiendaGenerada);
+							
+							if (!mapa[i][j].getShop ().equals(new TiendaIMPL ()))
+							{
+								tiendaGenerada = true;
+							}
+							
 							mapa[i][j].setArriba (true);
-							backtracking (mapa, i, j);
+							backtracking (mapa, i, j, tiendaGenerada);
 						}
 					break;
 					
@@ -340,9 +351,15 @@ public class GestoraAleatoria
 						{
 							mapa[i][j].setDerecha (true);
 							j++;
-							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j] = generarHabitacionAleatoria (tiendaGenerada);
+							
+							if (!mapa[i][j].getShop ().equals(new TiendaIMPL ()))
+							{
+								tiendaGenerada = true;
+							}
+							
 							mapa[i][j].setIzquierda (true);
-							backtracking (mapa, i, j);
+							backtracking (mapa, i, j, tiendaGenerada);
 						}
 					break;
 					
@@ -355,9 +372,15 @@ public class GestoraAleatoria
 						{
 							mapa[i][j].setIzquierda (true);
 							j--;
-							mapa[i][j] = generarHabitacionAleatoria ();
+							mapa[i][j] = generarHabitacionAleatoria (tiendaGenerada);
+							
+							if (!mapa[i][j].getShop ().equals(new TiendaIMPL ()))
+							{
+								tiendaGenerada = true;
+							}
+							
 							mapa[i][j].setDerecha (true);
-							backtracking (mapa, i, j);
+							backtracking (mapa, i, j, tiendaGenerada);
 						}
 					break;
 				}

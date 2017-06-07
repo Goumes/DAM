@@ -318,14 +318,58 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	 */
 	public void imprimirJugador ()
 	{
+		Object [][] tabla = new String[2][5];
+		tabla[0] = new String[] { "| Nombre", "| Vida", "| Daño Base", "| Defensa base", "| Riqueza" };
+		tabla[1] = new String[] {"| " + this.getNombre(), "| " + String.valueOf (this.getVida ()), "| " + String.valueOf (this.getBaseDmg()), 
+								"| " + String.valueOf (this.getBaseDef ()), "| " + String.valueOf (this.getOro ())  };
+
+		for (Object[] fila : tabla) 
+		{
+			System.out.format("%-20s%-20s%-20s%-20s%-20s\n", fila);
+		}
+		
+		System.out.println();
+		/*
+		int longitudVida = String.valueOf(this.getVida ()).length();
+		int longitudDmg = String.valueOf(1000).length();
+		int longitudDef = String.valueOf(1000).length();
+		int longitudOro = String.valueOf(1000).length();
+		
 		System.out.println(" _______________________________________________________________________________________________________________________");
 		System.out.println("|                               |                |                      |                       |                       |");
 		System.out.println("|            Nombre             |      Vida      |       Daño base      |      Defensa base     |         Riqueza       |");
 		System.out.println("|_______________________________|________________|______________________|_______________________|_______________________|");
 		System.out.println("|                               |                |                      |                       |                       |");
-		System.out.println(this.toString());
+
+		if (longitudDmg == 2)
+		{
+			System.out.println("|                               |                |          "+this.getBaseDmg ()+"          |                       |                       |");
+		}
+
+		else if (longitudDmg == 3)
+		{
+			System.out.println("|                               |                |         "+this.getBaseDmg ()+"          |                       |                       |");
+		}
+		
+		else if (longitudDmg == 4)
+		{
+			System.out.println("|                               |                |         "+this.getBaseDmg ()+"         |                       |                       |");
+		}
+		
+		
+		if (longitudVida == 3)
+		{
+			System.out.println("|                               |      "+this.getVida()+"       |                      |                       |                       |");
+		}
+		
+		else if (longitudVida == 4)
+		{
+			System.out.println("|                               |      "+this.getVida()+"      |                      |                       |                       |");
+		}
+		
 		System.out.println("|_______________________________|________________|______________________|_______________________|_______________________|");
 		System.out.println();
+		*/
 	}
 	
 	
