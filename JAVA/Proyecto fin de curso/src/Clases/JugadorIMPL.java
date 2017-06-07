@@ -11,8 +11,8 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	private static final long serialVersionUID = 1888313045729668467L;
 	private String nombre;
 	private int vida;
-	private double baseDmg;
-	private double baseDef;
+	private int baseDmg;
+	private int baseDef;
 	private ItemIMPL armadura;
 	private ArmaIMPL armaEquipada;
 	private int oro;
@@ -23,8 +23,8 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	{
 		nombre = "";
 		vida = 0;
-		baseDmg = 0.0;
-		baseDef = 0.0;
+		baseDmg = 0;
+		baseDef = 0;
 		armadura = new ItemIMPL ();
 		armaEquipada = new ArmaIMPL ();
 		oro = 0;
@@ -43,7 +43,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		this.inventario = jugador.inventario;
 	}
 	
-	public JugadorIMPL (String nombre, int vida, double baseDmg, double baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ObjetoIMPL [] inventario) throws JuegoException
+	public JugadorIMPL (String nombre, int vida, int baseDmg, int baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ObjetoIMPL [] inventario) throws JuegoException
 	{
 		if ((nombre.equals(null) || nombre.equals(""))
 			|| (vida < 1 )
@@ -125,12 +125,12 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		}
 	}
 	
-	public double getBaseDmg ()
+	public int getBaseDmg ()
 	{
 		return baseDmg;
 	}
 	
-	public void setBaseDmg (double baseDmg) throws JuegoException
+	public void setBaseDmg (int baseDmg) throws JuegoException
 	{
 		if (baseDmg < 0)
 		{
@@ -142,12 +142,12 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		}
 	}
 	
-	public double getBaseDef ()
+	public int getBaseDef ()
 	{
 		return baseDef;
 	}
 	
-	public void setBaseDef (double baseDef) throws JuegoException
+	public void setBaseDef (int baseDef) throws JuegoException
 	{
 		if (baseDef < 0)
 		{
@@ -206,43 +206,43 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		this.inventario = inventario;
 	}
 	
-	public double getTotalDmg ()
+	public int getTotalDmg ()
 	{
 		return (baseDmg + armaEquipada.getDmg());
 	}
 	
-	public double getTotalDef ()
+	public int getTotalDef ()
 	{
 		return (baseDef + armadura.getModificadorDef());
 	}
 	
 
-	public double getArmaduraModificadorDmg() 
+	public int getArmaduraModificadorDmg() 
 	{
 		return armadura.getModificadorDmg();
 	}
 
-	public void setArmaduraModificadorDmg(double modificadorDmg) 
+	public void setArmaduraModificadorDmg(int modificadorDmg) 
 	{
 		armadura.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getArmaduraModificadorDef() 
+	public int getArmaduraModificadorDef() 
 	{
 		return armadura.getModificadorDef();
 	}
 
-	public void setArmaduraModificadorDef(double modificadorDef) 
+	public void setArmaduraModificadorDef(int modificadorDef) 
 	{
 		armadura.setModificadorDef(modificadorDef);
 	}
 
-	public double getArmaduraDuracion() 
+	public boolean getArmaduraDuracion() 
 	{
 		return armadura.getDuracion();
 	}
 
-	public void setArmaduraDuracion(double duracion) 
+	public void setArmaduraDuracion(boolean duracion) 
 	{
 		armadura.setDuracion(duracion);
 	}
@@ -257,32 +257,32 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		armadura.setEfecto(efecto);
 	}
 	
-	public double getArmaduraPrecio ()
+	public int getArmaduraPrecio ()
 	{
 		return armadura.getPrecio();
 	}
 	
-	public void setArmaduraPrecio (double precio) throws JuegoException
+	public void setArmaduraPrecio (int precio) throws JuegoException
 	{
 		armadura.setPrecio(precio);
 	}
 
-	public double getArmaEquipadaDmg() 
+	public int getArmaEquipadaDmg() 
 	{
 		return armaEquipada.getDmg();
 	}
 
-	public void setArmaEquipadaDmg(double dmg) 
+	public void setArmaEquipadaDmg(int dmg) 
 	{
 		armaEquipada.setDmg(dmg);
 	}
 	
-	public double getArmaEquipadaPrecio ()
+	public int getArmaEquipadaPrecio ()
 	{
 		return armaEquipada.getPrecio();
 	}
 	
-	public void setArmaEquipadaPrecio (double precio)
+	public void setArmaEquipadaPrecio (int precio)
 	{
 		armaEquipada.setPrecio(precio);
 	}

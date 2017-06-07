@@ -9,12 +9,12 @@ import Interfaces.Arma;
 public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Cloneable, Serializable, Arma
 {
 	private static final long serialVersionUID = 551200043961558334L;
-	private double dmg;
+	private int dmg;
 	
 	//Constructores
 	public ArmaIMPL ()
 	{
-		dmg = 0.0;
+		dmg = 0;
 	}
 	
 	public ArmaIMPL (ArmaIMPL arma)
@@ -22,7 +22,7 @@ public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Clo
 		this.dmg = arma.dmg;
 	}
 	
-	public ArmaIMPL (String nombre, double Dmg, double precio) throws JuegoException
+	public ArmaIMPL (String nombre, int Dmg, int precio) throws JuegoException
 	{
 		super (nombre, precio);
 		this.dmg = Dmg;
@@ -30,12 +30,12 @@ public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Clo
 	//Fin Constructores
 	
 	//Getes y setes
-	public double getDmg ()
+	public int getDmg ()
 	{
 		return dmg;
 	}
 	
-	public void setDmg (double dmg)
+	public void setDmg (int dmg)
 	{
 		this.dmg = dmg;
 	}
@@ -50,12 +50,12 @@ public class ArmaIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Clo
 		this.nombre = nombre;
 	}
 	
-	public double getPrecio ()
+	public int getPrecio ()
 	{
 		return precio;
 	}
 	
-	public void setPrecio (double precio)
+	public void setPrecio (int precio)
 	{
 		this.precio = precio;
 	}

@@ -33,9 +33,9 @@ public interface Arma
 	String getNombre ();
 	void setNombre (String nombre);
 	
-	double getDmg ();
-	void setDmg (double dmg);
+	int getDmg ();
+	void setDmg (int dmg);
 	
-	double getPrecio ();
-	void setPrecio (double precio);
+	int getPrecio ();
+	void setPrecio (int precio);
 }

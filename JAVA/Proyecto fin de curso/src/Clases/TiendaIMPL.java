@@ -106,42 +106,42 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		objeto1.setNombre(nombre);
 	}
 
-	public double getObjeto1Precio() 
+	public int getObjeto1Precio() 
 	{
 		return objeto1.getPrecio();
 	}
 
-	public void setObjeto1Precio(double precio) throws JuegoException
+	public void setObjeto1Precio(int precio) throws JuegoException
 	{
 		objeto1.setPrecio(precio);
 	}
 
-	public double getObjeto1ModificadorDmg() 
+	public int getObjeto1ModificadorDmg() 
 	{
 		return objeto1.getModificadorDmg();
 	}
 
-	public void setObjeto1ModificadorDmg(double modificadorDmg) 
+	public void setObjeto1ModificadorDmg(int modificadorDmg) 
 	{
 		objeto1.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getObjeto1ModificadorDef() 
+	public int getObjeto1ModificadorDef() 
 	{
 		return objeto1.getModificadorDef();
 	}
 
-	public void setObjeto1ModificadorDef(double modificadorDef) 
+	public void setObjeto1ModificadorDef(int modificadorDef) 
 	{
 		objeto1.setModificadorDef(modificadorDef);
 	}
 
-	public double getObjeto1Duracion() 
+	public boolean getObjeto1Duracion() 
 	{
 		return objeto1.getDuracion();
 	}
 
-	public void setObjeto1Duracion(double duracion) 
+	public void setObjeto1Duracion(boolean duracion) 
 	{
 		objeto1.setDuracion(duracion);
 	}
@@ -166,42 +166,42 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		objeto2.setNombre(nombre);
 	}
 
-	public double getObjeto2Precio() 
+	public int getObjeto2Precio() 
 	{
 		return objeto2.getPrecio();
 	}
 
-	public void setObjeto2Precio(double precio) throws JuegoException
+	public void setObjeto2Precio(int precio) throws JuegoException
 	{
 		objeto2.setPrecio(precio);
 	}
 
-	public double getObjeto2ModificadorDmg() 
+	public int getObjeto2ModificadorDmg() 
 	{
 		return objeto2.getModificadorDmg();
 	}
 
-	public void setObjeto2ModificadorDmg(double modificadorDmg) 
+	public void setObjeto2ModificadorDmg(int modificadorDmg) 
 	{
 		objeto2.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getObjeto2ModificadorDef() 
+	public int getObjeto2ModificadorDef() 
 	{
 		return objeto2.getModificadorDef();
 	}
 
-	public void setObjeto2ModificadorDef(double modificadorDef) 
+	public void setObjeto2ModificadorDef(int modificadorDef) 
 	{
 		objeto2.setModificadorDef(modificadorDef);
 	}
 
-	public double getObjeto2Duracion() 
+	public boolean getObjeto2Duracion() 
 	{
 		return objeto2.getDuracion();
 	}
 
-	public void setObjeto2Duracion(double duracion) 
+	public void setObjeto2Duracion(boolean duracion) 
 	{
 		objeto2.setDuracion(duracion);
 	}
@@ -226,42 +226,42 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		objeto3.setNombre(nombre);
 	}
 
-	public double getObjeto3Precio() 
+	public int getObjeto3Precio() 
 	{
 		return objeto3.getPrecio();
 	}
 
-	public void setObjeto3Precio(double precio) throws JuegoException
+	public void setObjeto3Precio(int precio) throws JuegoException
 	{
 		objeto3.setPrecio(precio);
 	}
 
-	public double getObjeto3ModificadorDmg() 
+	public int getObjeto3ModificadorDmg() 
 	{
 		return objeto3.getModificadorDmg();
 	}
 
-	public void setObjeto3ModificadorDmg(double modificadorDmg) 
+	public void setObjeto3ModificadorDmg(int modificadorDmg) 
 	{
 		objeto3.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getObjeto3ModificadorDef() 
+	public int getObjeto3ModificadorDef() 
 	{
 		return objeto3.getModificadorDef();
 	}
 
-	public void setObjeto3ModificadorDef(double modificadorDef) 
+	public void setObjeto3ModificadorDef(int modificadorDef) 
 	{
 		objeto3.setModificadorDef(modificadorDef);
 	}
 
-	public double getObjeto3Duracion() 
+	public boolean getObjeto3Duracion() 
 	{
 		return objeto3.getDuracion();
 	}
 
-	public void setObjeto3Duracion(double duracion) 
+	public void setObjeto3Duracion(boolean duracion) 
 	{
 		objeto3.setDuracion(duracion);
 	}
@@ -286,22 +286,22 @@ public class TiendaIMPL implements Cloneable, Serializable, Tienda
 		objeto4.setNombre(nombre);
 	}
 
-	public double getObjeto4Precio() 
+	public int getObjeto4Precio() 
 	{
 		return objeto4.getPrecio();
 	}
 
-	public void setObjeto4Precio(double precio) throws JuegoException
+	public void setObjeto4Precio(int precio) throws JuegoException
 	{
 		objeto4.setPrecio(precio);
 	}
 
-	public double getObjeto4Dmg() 
+	public int getObjeto4Dmg() 
 	{
 		return objeto4.getDmg();
 	}
 
-	public void setObjeto4Dmg(double dmg) 
+	public void setObjeto4Dmg(int dmg) 
 	{
 		objeto4.setDmg(dmg);
 	}

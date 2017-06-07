@@ -3,22 +3,26 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 
+import Exceptions.JuegoException;
 import Interfaces.Item;
 
 public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Serializable, Item
 {
 	private static final long serialVersionUID = -1109388286406543710L;
-	private double modificadorDmg;
-	private double modificadorDef;
-	private double duracion;
+	private int modificadorDmg;
+	private int modificadorDef;
+	private int modificadorVida;
+	private boolean duracion;
 	private String efecto;
 	
 	//Constructores
 	public ItemIMPL ()
 	{
-		modificadorDmg = 0.0;
-		modificadorDef = 0.0;
-		duracion = 0.0;
+		super ();
+		modificadorDmg = 0;
+		modificadorDef = 0;
+		modificadorVida = 0;
+		duracion = false;
 		efecto = "";
 	}
 	
@@ -26,45 +30,57 @@ public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Ser
 	{
 		this.modificadorDmg = item.modificadorDmg;
 		this.modificadorDef = item.modificadorDef;
+		this.modificadorVida = item.modificadorVida;
 		this.duracion = item.duracion;
 		this.efecto = item.efecto;
 	}
 	
-	public ItemIMPL (String Nombre, int Valor, double modificadorDmg, double modificadorDef, double duracion, String efecto)
+	public ItemIMPL (String Nombre, int Valor, int modificadorDmg, int modificadorDef, int modificadorVida, boolean duracion, String efecto) throws JuegoException
 	{
+		super (Nombre, Valor);
 		this.modificadorDmg = modificadorDmg;
 		this.modificadorDef = modificadorDef;
+		this.modificadorVida = modificadorVida;
 		this.duracion = duracion;
 		this.efecto = efecto;
 	}
 	//Fin Constructores
 	
 	//Getes y setes
-	public double getModificadorDmg ()
+	public int getModificadorDmg ()
 	{
 		return modificadorDmg;
 	}
 	
-	public void setModificadorDmg (double modificadorDmg)
+	public void setModificadorDmg (int modificadorDmg)
 	{
 		this.modificadorDmg = modificadorDmg;
 	}
 	
-	public double getModificadorDef ()
+	public int getModificadorDef ()
 	{
 		return modificadorDef;
 	}
-	public void setModificadorDef (double modificadorDef)
+	public void setModificadorDef (int modificadorDef)
 	{
 		this.modificadorDef = modificadorDef;
 	}
 	
-	public double getDuracion ()
+	public int getModificadorVida ()
+	{
+		return modificadorVida;
+	}
+	public void setModificadorVida (int modificadorVida)
+	{
+		this.modificadorVida = modificadorVida;
+	}
+	
+	public boolean getDuracion ()
 	{
 		return duracion;
 	}
 	
-	public void setDuracion (double duracion)
+	public void setDuracion (boolean duracion)
 	{
 		this.duracion = duracion;
 	}
@@ -85,8 +101,10 @@ public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Ser
 	@Override
 	public String toString ()
 	{
-		String s = (super.toString()+","+getModificadorDmg ()+
+		String s = (super.toString()+
+					","+getModificadorDmg ()+
 					","+getModificadorDef ()+
+					","+getModificadorVida ()+
 					","+getDuracion ()+
 					","+getEfecto ());
 		return s;
@@ -105,6 +123,7 @@ public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Ser
 			if (super.equals(objeto)
 				&& this.getModificadorDmg () == item.getModificadorDmg ()
 				&& this.getModificadorDef () == item.getModificadorDef ()
+				&& this.getModificadorVida () == item.getModificadorVida ()
 				&& this.getDuracion () == item.getDuracion ()
 				&& this.efecto.equals(item.getEfecto ()))
 			{
@@ -139,7 +158,7 @@ public class ItemIMPL extends ObjetoIMPL implements Comparable <ObjetoIMPL>, Ser
 	{
 		
 		
-		return (super.hashCode() + Objects.hash (this.getModificadorDmg (), this.getModificadorDef (), this.getDuracion (), this.getEfecto ()));
+		return (super.hashCode() + Objects.hash (this.getModificadorDmg (), this.getModificadorDef (), this.getModificadorVida(), this.getDuracion (), this.getEfecto ()));
 	}
 	
 	//Criterio de comparacion: Valor del item

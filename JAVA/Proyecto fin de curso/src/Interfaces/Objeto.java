@@ -25,6 +25,6 @@ public interface Objeto
 	String getNombre ();
 	void setNombre (String nombre) throws JuegoException;
 	
-	double getPrecio ();
-	void setPrecio (double precio) throws JuegoException;
+	int getPrecio ();
+	void setPrecio (int precio) throws JuegoException;
 }

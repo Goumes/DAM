@@ -245,7 +245,7 @@ public class Mazmorra implements Serializable, Cloneable
 			for (int j = 0; j < this.getMapa()[0].length; j++)
 			{
 				
-				if (this.getMapa()[i][j] != null)
+				if (this.getMapa()[i][j] != null && this.getMapa ()[i][j].getJugador())
 				{
 					System.out.print("|        X        ");
 				}

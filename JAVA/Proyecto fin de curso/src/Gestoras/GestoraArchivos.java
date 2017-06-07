@@ -35,6 +35,7 @@ public class GestoraArchivos
 	{
 		File partidas = new File ("./src/Archivos/partidas.dat");
 		ObjectOutputStream oos = null;
+		GestoraAleatoria gestora = new GestoraAleatoria ();
 		
 		try
 		{
@@ -44,8 +45,8 @@ public class GestoraArchivos
 			};
 			
 			oos.writeObject(new Partida (new Mazmorra (), new JugadorIMPL ()));
-			oos.writeObject(new Partida (new Mazmorra (), new JugadorIMPL ("pepejavaSlayer", 450, 10.0, 10.0,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
-			oos.writeObject(new Partida (new Mazmorra (), new JugadorIMPL ("XxnoScoper360xX", 550, 12.0, 12.0,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
+			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("pepejavaSlayer", 450, 10, 10,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
+			oos.writeObject(new Partida (gestora.generarMazmorraAleatoria(), new JugadorIMPL ("XxnoScoper360xX", 550, 12, 12,new ItemIMPL (), new ArmaIMPL (), 100, new ObjetoIMPL [] {})));
 		}
 		
 		catch (FileNotFoundException e)
@@ -188,7 +189,18 @@ public class GestoraArchivos
 				@Override protected void writeStreamHeader () {}
 			};
 			
-			oos.writeObject(new ItemIMPL ()); //Aquí va toda la tralla
+			oos.writeObject (new ItemIMPL ("Pocion de vida", 20, 0, 0, 25, false, "Una poción que cura 25 de vida"));
+			oos.writeObject (new ItemIMPL ("Pocion de ataque", 100, 20, 0, 0, true, "Una poción que aumenta el ataque 20 puntos durante un combate"));
+			oos.writeObject (new ItemIMPL ("Pocion de defensa", 100, 0, 20, 0, true, "Una poción que aumenta la defensa 20 puntos durante un combate"));
+			oos.writeObject (new ItemIMPL ("Casco de hierro", 70, 0, 20, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos"));
+			oos.writeObject (new ItemIMPL ("Peto de hierro", 150, 0, 40, 0, false, "Un peto de hierro que aumenta la defensa en 40 puntos"));
+			oos.writeObject (new ItemIMPL ("Pocion de vida +", 150, 0, 0, 200, false, "Una poción que cura 200 de vida"));
+			oos.writeObject (new ItemIMPL ("Pocion de ataque +", 200, 50, 0, 0, true, "Una poción que aumenta el ataque 50 puntos durante un combate"));
+			oos.writeObject (new ItemIMPL ("Pocion de defensa +", 200, 0, 50, 0, true, "Una poción que aumenta la defensa 50 puntos durante un combate"));
+			oos.writeObject (new ItemIMPL ("Casco de acero pa los barcos", 500, 0, 100, 0, false, "Un casco de acero pa los barcos que aumenta la defensa en 100 puntos"));
+			oos.writeObject (new ItemIMPL ("Peto de acero pa los barcos", 700, 0, 150, 0, false, "Un peto de acero pa los barcos que aumenta la defensa en 150 puntos"));
+			oos.writeObject (new ItemIMPL ("Casco divino", 1000, 0, 300, 0, false, "Un casco hecho por lo dioses que aumenta la defensa en 300 puntos"));
+			oos.writeObject (new ItemIMPL ("Peto divino", 1200, 0, 350, 0, false, "Un peto hecho por los dioses que aumenta la defensa en 350 puntos"));
 		}
 		
 		catch (FileNotFoundException e)
@@ -201,6 +213,11 @@ public class GestoraArchivos
 		}
 		
 		catch (IOException e)
+		{
+			System.out.println(e);
+		}
+		
+		catch (JuegoException e)
 		{
 			System.out.println(e);
 		}
@@ -240,6 +257,7 @@ public class GestoraArchivos
 	{
 		File enemigos = new File ("./src/Archivos/enemigos.dat");
 		ObjectOutputStream oos = null;
+		GestoraAleatoria gestora = new GestoraAleatoria ();
 		
 		try
 		{
@@ -248,7 +266,14 @@ public class GestoraArchivos
 				@Override protected void writeStreamHeader () {}
 			};
 			
-			oos.writeObject(new EnemigoIMPL ()); //Aquí va toda la tralla
+			oos.writeObject(new EnemigoIMPL ("Guilliedhu", 30, 30, 10, gestora.itemAleatorio (), 20, 1, false)); 
+			oos.writeObject(new EnemigoIMPL ("Dientes de sable", 50, 20, 15, gestora.itemAleatorio (), 50, 1, false)); 
+			oos.writeObject(new EnemigoIMPL ("Disco segador", 20, 60, 0, gestora.itemAleatorio (), 30, 1, false)); 
+			oos.writeObject(new EnemigoIMPL ("Dakurion", 200, 50, 30, gestora.itemAleatorio (), 200, 1, true)); 
+			oos.writeObject(new EnemigoIMPL ("Basilisk", 50, 20, 20, gestora.itemAleatorio (), 70, 2, false)); 
+			oos.writeObject(new EnemigoIMPL ("", 100, 40, 30, gestora.itemAleatorio (), 100, 2, false)); 
+			oos.writeObject(new EnemigoIMPL ("", 40, 100, 0, gestora.itemAleatorio (), 80, 2, false)); 
+			oos.writeObject(new EnemigoIMPL ("Bankayas", 400, 80, 40, gestora.itemAleatorio (), 500, 2, true)); 
 		}
 		
 		catch (FileNotFoundException e)

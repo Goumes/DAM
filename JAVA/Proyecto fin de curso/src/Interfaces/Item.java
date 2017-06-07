@@ -32,14 +32,17 @@ Restricciones:
  */
 public interface Item 
 {
-	double getModificadorDmg ();
-	void setModificadorDmg (double modificadorDmg);
+	int getModificadorDmg ();
+	void setModificadorDmg (int modificadorDmg);
 	
-	double getModificadorDef ();
-	void setModificadorDef (double modificadorDef);
+	int getModificadorDef ();
+	void setModificadorDef (int modificadorDef);
 	
-	double getDuracion ();
-	void setDuracion (double duracion);
+	int getModificadorVida ();
+	void setModificadorVida (int modificadorVida);
+	
+	boolean getDuracion ();
+	void setDuracion (boolean duracion);
 	
 	String getEfecto ();
 	void setEfecto (String efecto);

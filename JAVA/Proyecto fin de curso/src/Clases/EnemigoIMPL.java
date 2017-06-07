@@ -17,6 +17,7 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 	private ItemIMPL dropItem;
 	private int dropDinero;
 	private int nivel;
+	private boolean jefe;
 	//Fin Propiedades
 	
 	//Constructores
@@ -29,6 +30,7 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		dropItem = new ItemIMPL ();
 		dropDinero = 0;
 		nivel = 0;
+		jefe = false;
 	}
 	
 	public EnemigoIMPL (EnemigoIMPL enemigo)
@@ -40,9 +42,10 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		this.dropItem = enemigo.dropItem;
 		this.dropDinero = enemigo.dropDinero;
 		this.nivel = enemigo.nivel;
+		this.jefe = enemigo.jefe;
 	}
 	
-	public EnemigoIMPL (String nombre, int vida, double dmg, double def, ItemIMPL dropItem, int dropDinero, int nivel)
+	public EnemigoIMPL (String nombre, int vida, double dmg, double def, ItemIMPL dropItem, int dropDinero, int nivel, boolean jefe)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
@@ -51,6 +54,7 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		this.dropItem = dropItem;
 		this.dropDinero = dropDinero;
 		this.nivel = nivel;
+		this.jefe = jefe;
 	}
 	//Fin Constructores
 	
@@ -125,42 +129,52 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		this.nivel = nivel;
 	}
 	
-	public double getDropItemPrecio() 
+	public boolean getJefe ()
+	{
+		return jefe;
+	}
+	
+	public void setJefe (boolean jefe)
+	{
+		this.jefe = jefe;
+	}
+	
+	public int getDropItemPrecio() 
 	{
 		return dropItem.getPrecio();
 	}
 
-	public void setDropItemPrecio(double precio) throws JuegoException
+	public void setDropItemPrecio(int precio) throws JuegoException
 	{
 		dropItem.setPrecio(precio);
 	}
 
-	public double getDropItemModificadorDmg() 
+	public int getDropItemModificadorDmg() 
 	{
 		return dropItem.getModificadorDmg();
 	}
 
-	public void setDropItemModificadorDmg(double modificadorDmg) 
+	public void setDropItemModificadorDmg(int modificadorDmg) 
 	{
 		dropItem.setModificadorDmg(modificadorDmg);
 	}
 
-	public double getDropItemModificadorDef() 
+	public int getDropItemModificadorDef() 
 	{
 		return dropItem.getModificadorDef();
 	}
 
-	public void setDropItemModificadorDef(double modificadorDef) 
+	public void setDropItemModificadorDef(int modificadorDef) 
 	{
 		dropItem.setModificadorDef(modificadorDef);
 	}
 
-	public double getDropItemDuracion() 
+	public boolean getDropItemDuracion() 
 	{
 		return dropItem.getDuracion();
 	}
 
-	public void setDropItemDuracion(double duracion) 
+	public void setDropItemDuracion(boolean duracion) 
 	{
 		dropItem.setDuracion(duracion);
 	}

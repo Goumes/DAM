@@ -385,11 +385,12 @@ public class GestoraJuego
 	{
 		boolean añadido = false;
 		
-		for (int i = 0; i < partida.getMazmorra ().getMapa().length; i++)
+		for (int i = 0; i < partida.getMazmorra ().getMapa().length && !añadido; i++)
 		{
 			for (int j = 0; j < partida.getMazmorra ().getMapa()[0].length; j++)
 			{
-				if (!partida.getMazmorra().getMapa()[i][j].getJugador())
+				if (partida.getMazmorra().getMapa()[i][j].getJugador() 
+					&& !partida.getMazmorra().getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 				{
 					añadido = true;
 					try

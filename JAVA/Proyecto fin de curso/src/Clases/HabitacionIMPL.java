@@ -282,32 +282,32 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		enemy.setNivel(nivel);
 	}
 
-	public double getModificadorDmg() 
+	public int getModificadorDmg() 
 	{
 		return enemy.getDropItemModificadorDmg();
 	}
 
-	public void setModificadorDmg(double modificadorDmg) 
+	public void setModificadorDmg(int modificadorDmg) 
 	{
 		enemy.setDropItemModificadorDmg(modificadorDmg);
 	}
 
-	public double getModificadorDef() 
+	public int getModificadorDef() 
 	{
 		return enemy.getDropItemModificadorDef();
 	}
 
-	public void setModificadorDef(double modificadorDef) 
+	public void setModificadorDef(int modificadorDef) 
 	{
 		enemy.setDropItemModificadorDef(modificadorDef);
 	}
 
-	public double getDuracion() 
+	public boolean getDuracion() 
 	{
 		return enemy.getDropItemDuracion();
 	}
 
-	public void setDuracion(double duracion) 
+	public void setDuracion(boolean duracion) 
 	{
 		enemy.setDropItemDuracion(duracion);
 	}
@@ -352,12 +352,12 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		cofre.setNombre(nombre);
 	}
 
-	public double getCofrePrecio() 
+	public int getCofrePrecio() 
 	{
 		return cofre.getDropPrecio();
 	}
 
-	public void setCofrePrecio(double precio) throws JuegoException
+	public void setCofrePrecio(int precio) throws JuegoException
 	{
 		cofre.setDropPrecio(precio);
 	}

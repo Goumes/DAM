@@ -11,13 +11,13 @@ public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, S
 {
 	private static final long serialVersionUID = -8016225400798258794L;
 	String nombre;
-	double precio;
+	int precio;
 	
 	//Constructores
 	public ObjetoIMPL ()
 	{
 		nombre = "";
-		precio = 0.0;
+		precio = 0;
 	}
 	
 	public ObjetoIMPL (ObjetoIMPL objeto)
@@ -26,7 +26,7 @@ public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, S
 		this.precio = objeto.precio;
 	}
 	
-	public ObjetoIMPL (String nombre, double precio) throws JuegoException
+	public ObjetoIMPL (String nombre, int precio) throws JuegoException
 	{
 		if (nombre.equals(null) || nombre.equals("")
 			|| precio < 0)
@@ -68,12 +68,12 @@ public class ObjetoIMPL implements Cloneable, Comparable <ObjetoIMPL>, Objeto, S
 		}
 	}
 	
-	public double getPrecio ()
+	public int getPrecio ()
 	{
 		return precio;
 	}
 	
-	public void setPrecio (double precio) throws JuegoException
+	public void setPrecio (int precio) throws JuegoException
 	{
 		if (precio < 0)
 		{

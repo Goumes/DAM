@@ -129,6 +129,7 @@ public class MainJuego
 	 */
 	public static void menuAcciones ()
 	{
+		System.out.println();
 		System.out.println("Esta es tu interfaz de acciones. Selecciona una opción.");
 		System.out.println("1. Abrir cofre");
 		System.out.println("2. Ir a tienda");
@@ -151,8 +152,6 @@ public class MainJuego
 		Partida partidaDefinitiva = new Partida ();
 		GestoraJuego gestora = new GestoraJuego ();
 		GestoraAleatoria gestoraAleatoria = new GestoraAleatoria ();
-		Mazmorra mazmorra = new Mazmorra ();
-		JugadorIMPL jugador = new JugadorIMPL ();
 		int accion = 0;
 		
 		//LeerValidarJugar

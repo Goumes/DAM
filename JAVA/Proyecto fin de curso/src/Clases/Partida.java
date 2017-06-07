@@ -72,22 +72,22 @@ public class Partida implements Cloneable, Serializable
 		jugador.setVida(vida);
 	}
 
-	public double getJugadorBaseDmg() 
+	public int getJugadorBaseDmg() 
 	{
 		return jugador.getBaseDmg();
 	}
 
-	public void setJugadorBaseDmg(double baseDmg) throws JuegoException
+	public void setJugadorBaseDmg(int baseDmg) throws JuegoException
 	{
 		jugador.setBaseDmg(baseDmg);
 	}
 
-	public double getJugadorBaseDef() 
+	public int getJugadorBaseDef() 
 	{
 		return jugador.getBaseDef();
 	}
 
-	public void setJugadorBaseDef(double baseDef) throws JuegoException
+	public void setJugadorBaseDef(int baseDef) throws JuegoException
 	{
 		jugador.setBaseDef(baseDef);
 	}
@@ -132,32 +132,32 @@ public class Partida implements Cloneable, Serializable
 		jugador.setInventario(inventario);
 	}
 
-	public double getJugadorModificadorDmg() 
+	public int getJugadorModificadorDmg() 
 	{
 		return jugador.getArmaduraModificadorDmg();
 	}
 
-	public void setJugadorModificadorDmg(double modificadorDmg) 
+	public void setJugadorModificadorDmg(int modificadorDmg) 
 	{
 		jugador.setArmaduraModificadorDmg(modificadorDmg);
 	}
 
-	public double getJugadorModificadorDef() 
+	public int getJugadorModificadorDef() 
 	{
 		return jugador.getArmaduraModificadorDef();
 	}
 
-	public void setJugadorModificadorDef(double modificadorDef) 
+	public void setJugadorModificadorDef(int modificadorDef) 
 	{
 		jugador.setArmaduraModificadorDef(modificadorDef);
 	}
 
-	public double getJugadorDuracion() 
+	public boolean getJugadorDuracion() 
 	{
 		return jugador.getArmaduraDuracion();
 	}
 
-	public void setJugadorDuracion(double duracion) 
+	public void setJugadorDuracion(boolean duracion) 
 	{
 		jugador.setArmaduraDuracion(duracion);
 	}
@@ -172,32 +172,32 @@ public class Partida implements Cloneable, Serializable
 		jugador.setArmaduraEfecto(efecto);
 	}
 
-	public double getJugadorArmaduraPrecio() 
+	public int getJugadorArmaduraPrecio() 
 	{
 		return jugador.getArmaduraPrecio();
 	}
 
-	public void setJugadorArmaduraPrecio(double precio) throws JuegoException
+	public void setJugadorArmaduraPrecio(int precio) throws JuegoException
 	{
 		jugador.setArmaduraPrecio(precio);
 	}
 
-	public double getJugadorDmg() 
+	public int getJugadorDmg() 
 	{
 		return jugador.getBaseDmg();
 	}
 
-	public void setJugadorDmg(double dmg) throws JuegoException
+	public void setJugadorDmg(int dmg) throws JuegoException
 	{
 		jugador.setBaseDmg(dmg);
 	}
 
-	public double getJugadorArmaPrecio() 
+	public int getJugadorArmaPrecio() 
 	{
 		return jugador.getArmaEquipadaPrecio();
 	}
 
-	public void setJugadorArmaPrecio(double precio) 
+	public void setJugadorArmaPrecio(int precio) 
 	{
 		jugador.setArmaEquipadaPrecio(precio);
 	}

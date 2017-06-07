@@ -8,15 +8,15 @@ import Exceptions.JuegoException;
 			Básicas: 
 				String nombre 		 		------------	Consultable / Modificable
 				Int vida 	      	 		------------	Consultable / Modificable
-				Double baseDmg		 		------------ 	Consultable / Modificable
-				Double baseDef		 		------------ 	Consultable / Modificable
+				int baseDmg		 		------------ 	Consultable / Modificable
+				int baseDef		 		------------ 	Consultable / Modificable
 				Item Armadura		 		------------	Consultable / Modificable
 				Arma armaEquipada    		------------ 	Consultable / Modificable
 				Int oro		 	 			------------	Consultable / Modificable
 				Inventario inventario 	 	------------	Consultable / Modificable
 			Derivadas: 
-				Double totalDmg		 		------------	Consultable
-				Double totalDef		 		------------	Consultable
+				int totalDmg		 		------------	Consultable
+				int totalDef		 		------------	Consultable
 			Compartidas:
 
  * Fórmulas: 
@@ -67,16 +67,16 @@ public interface Jugador
 	 int getVida();
 	 void setVida (int vida) throws JuegoException;
 	 
-	 double getBaseDmg ();
-	 void setBaseDmg (double baseDmg) throws JuegoException;
+	 int getBaseDmg ();
+	 void setBaseDmg (int baseDmg) throws JuegoException;
 	 
-	 double getBaseDef ();
-	 void setBaseDef (double baseDef) throws JuegoException;
+	 int getBaseDef ();
+	 void setBaseDef (int baseDef) throws JuegoException;
  
 	 int getOro ();
 	 void setOro (int oro) throws JuegoException;
 	 
-	 double getTotalDmg ();
+	 int getTotalDmg ();
 	 
-	 double getTotalDef ();
+	 int getTotalDef ();
 }

@@ -126,22 +126,27 @@ public class GestoraAleatoria
 		TiendaIMPL tienda = new TiendaIMPL ();
 		EnemigoIMPL enemigo = new EnemigoIMPL ();
 		CofreIMPL cofre = new CofreIMPL ();
+		boolean existeTienda = false;
 		
 		if (aleatorio.nextBoolean())
 		{
-			//tienda = generarTiendaAleatoria ();
-			habitacion.setShop(tienda);
+			if (!existeTienda)
+			{
+				tienda = generarTiendaAleatoria ();
+				habitacion.setShop(tienda);
+				existeTienda = true;
+			}
 		}
 		
 		else if (aleatorio.nextBoolean())
 		{
-			//enemigo = enemigoAleatorio ();
+			enemigo = enemigoAleatorio ();
 			habitacion.setEnemy(enemigo);
 		}
 		
 		else if (aleatorio.nextBoolean())
 		{
-			//cofre = generarCofreAleatorio ();
+			cofre = generarCofreAleatorio ();
 			habitacion.setCofreIMPL(cofre);
 		}
 		
@@ -410,7 +415,7 @@ public class GestoraAleatoria
 		ObjectInputStream ois = null;
 		int numero = 0;
 		int contador = 1;
-		numero = aleatorio.nextInt(15) + 1;
+		numero = aleatorio.nextInt(12) + 1;
 		
 		try
 		{
@@ -584,7 +589,7 @@ public class GestoraAleatoria
 		ObjectInputStream ois = null;
 		int numero = 0;
 		int contador = 1;
-		numero = aleatorio.nextInt(15) + 1;
+		numero = aleatorio.nextInt(8) + 1;
 		
 		try
 		{
