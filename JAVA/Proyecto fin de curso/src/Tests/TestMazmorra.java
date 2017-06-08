@@ -155,14 +155,14 @@ public class TestMazmorra
 		
 		 
 		
-		 //mazmorra = ga.generarMazmorraAleatoria();
+		 mazmorra = ga.generarMazmorraAleatoria();
 		 
-		 partida = new Partida (mazmorra, jugador);
+		 //partida = new Partida (mazmorra, jugador);
 
-		 mazmorra.setMapa(mapa);
+		// mazmorra.setMapa(mapa);
 		 mazmorra.printMazmorra();
 		 
-		 
+		 /*
 		 inventario.add(ga.itemAleatorio ());
 		 inventario.add(ga.itemAleatorio ());
 		 inventario.add(ga.armaAleatoria ());
@@ -175,5 +175,6 @@ public class TestMazmorra
 		 gestora.abrirCofre (partida);
 		 
 		 gestora.monstrarInventario(jugador);
+		 */
 	}
 }
