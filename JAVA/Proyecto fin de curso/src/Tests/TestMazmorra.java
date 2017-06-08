@@ -1,14 +1,20 @@
 package Tests;
 
+import java.util.ArrayList;
+
 import Clases.ArmaIMPL;
 import Clases.CofreIMPL;
 import Clases.EnemigoIMPL;
 import Clases.HabitacionIMPL;
 import Clases.ItemIMPL;
+import Clases.JugadorIMPL;
 import Clases.Mazmorra;
+import Clases.ObjetoIMPL;
+import Clases.Partida;
 import Clases.TiendaIMPL;
 import Exceptions.JuegoException;
 import Gestoras.GestoraAleatoria;
+import Gestoras.GestoraJuego;
 
 public class TestMazmorra 
 {
@@ -17,6 +23,12 @@ public class TestMazmorra
 		Mazmorra mazmorra = new Mazmorra ();
 		Mazmorra mazmorra2 = new Mazmorra ();
 		GestoraAleatoria ga = new GestoraAleatoria ();
+		ArmaIMPL pistola = new ArmaIMPL ("Rifle de pulsos", 45, 100);
+		ItemIMPL armadura = new ItemIMPL ("Casco de hierro", 70, 0, 20, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos");
+		ArrayList <ObjetoIMPL> inventario = new ArrayList <ObjetoIMPL> (){};
+		JugadorIMPL jugador = new JugadorIMPL ("pepe.java", 420, 1, 45, armadura, pistola, 0, inventario);
+		Partida partida = null;
+		GestoraJuego gestora = new GestoraJuego ();
 		 
 		HabitacionIMPL habitacionInicial = new HabitacionIMPL ();
 		HabitacionIMPL habitacion2 = new HabitacionIMPL ();
@@ -112,7 +124,7 @@ public class TestMazmorra
 		 habitacion5.setAbajo(true);
 		 habitacion5.setSalida(true);
 		 
-		 habitacionInicial.setJugador(true);
+		 habitacion4.setJugador(true);
 		 habitacion4.setCofreIMPL(ga.generarCofreAleatorio ());
 		 habitacion5.setCofreIMPL(ga.generarCofreAleatorio ());
 		 habitacion8.setCofreIMPL(ga.generarCofreAleatorio ());
@@ -143,10 +155,25 @@ public class TestMazmorra
 		
 		 
 		
-		 mazmorra = ga.generarMazmorraAleatoria();
+		 //mazmorra = ga.generarMazmorraAleatoria();
+		 
+		 partida = new Partida (mazmorra, jugador);
 
-		 //mazmorra.setMapa(mapa);
-		 mazmorra.printMazmorra3();
+		 mazmorra.setMapa(mapa);
+		 mazmorra.printMazmorra();
+		 
+		 
+		 inventario.add(ga.itemAleatorio ());
+		 inventario.add(ga.itemAleatorio ());
+		 inventario.add(ga.armaAleatoria ());
+		 inventario.add(ga.itemAleatorio ());
+			
+		 gestora.monstrarInventario(jugador);
+		 
+		 
 
+		 gestora.abrirCofre (partida);
+		 
+		 gestora.monstrarInventario(jugador);
 	}
 }

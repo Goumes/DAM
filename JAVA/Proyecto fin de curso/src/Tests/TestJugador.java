@@ -1,5 +1,7 @@
 package Tests;
 
+import java.util.ArrayList;
+
 import Clases.ArmaIMPL;
 import Clases.ItemIMPL;
 import Clases.JugadorIMPL;
@@ -12,11 +14,11 @@ public class TestJugador
 	{
 		try
 		{
-			ArmaIMPL pistola = new ArmaIMPL ("Rifle de pulsos", 45.5, 100);
-			ItemIMPL armadura = new ItemIMPL ("Casco de hierro", 70, 0.0, 20.0, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos");
-			ObjetoIMPL inventario [] = null;
-			JugadorIMPL pepejava = new JugadorIMPL ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
-			JugadorIMPL pepejava2 = new JugadorIMPL ("pepe.java", 420, 1.0, 45.6, armadura, pistola, 0, inventario);
+			ArmaIMPL pistola = new ArmaIMPL ("Rifle de pulsos", 45, 100);
+			ItemIMPL armadura = new ItemIMPL ("Casco de hierro", 70, 0, 20, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos");
+			ArrayList <ObjetoIMPL> inventario = null;
+			JugadorIMPL pepejava = new JugadorIMPL ("pepe.java", 420, 1, 45, armadura, pistola, 0, inventario);
+			JugadorIMPL pepejava2 = new JugadorIMPL ("pepe.java", 420, 1, 45, armadura, pistola, 0, inventario);
 			JugadorIMPL estoNoEsUnaCopiaDeIsaac = new JugadorIMPL ("EstoNoEsUnaCopiaDeIsaac", 3, 3.5, 0.0, armadura, pistola, 0, inventario);
 			JugadorIMPL pepejava3;
 			

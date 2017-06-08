@@ -384,6 +384,7 @@ public class GestoraJuego
 	public Partida abrirCofre (Partida partida)
 	{
 		boolean añadido = false;
+		ItemIMPL item = new ItemIMPL ();
 		
 		for (int i = 0; i < partida.getMazmorra ().getMapa().length && !añadido; i++)
 		{
@@ -395,13 +396,21 @@ public class GestoraJuego
 					añadido = true;
 					try
 					{
+						item = (ItemIMPL) partida.getMazmorra ().getMapa()[i][j].getCofreDrop();
 						System.out.println("WOW! Has encontrado: ");
-						System.out.println();
-						System.out.println(partida.getMazmorra ().getMapa()[i][j].getCofreDrop().toString());
-						System.out.println();
+						System.out.println ();
+						
+						System.out.print(item.getNombre ());
+						System.out.print(", valor de " + String.valueOf(item.getPrecio ()) + " monedas de oro. ");
+						System.out.print("Descripción: " + String.valueOf(item.getEfecto()));
+						
+						System.out.println ();
+						System.out.println ();
+						System.out.println("Y "+(partida.getJugador().getOro() + partida.getMazmorra ().getMapa()[i][j].getCofreValor())+" monedas de oro");
+						System.out.println ();
 						System.out.println("Lo recoges y añades a tu inventario");
 						
-						partida.getJugador().addInventario(partida.getMazmorra().getMapa()[i][j].getDropItem());
+						partida.getJugador().addInventario(item);
 						partida.getJugador().setOro (partida.getJugador().getOro() + partida.getMazmorra ().getMapa()[i][j].getCofreValor());
 					}
 					catch (JuegoException e)
@@ -448,7 +457,7 @@ public class GestoraJuego
 				System.out.println ();
 				
 				System.out.print((i + 1) + ". " + item.getNombre ());
-				System.out.print(", valor de " + String.valueOf(item.getPrecio ()) + " oros. ");
+				System.out.print(", valor de " + String.valueOf(item.getPrecio ()) + " monedas de oro. ");
 				System.out.print("Descripción: " + String.valueOf(item.getEfecto()));
 				
 				System.out.println ();
@@ -460,7 +469,7 @@ public class GestoraJuego
 				System.out.println ();
 				
 				System.out.print((i + 1) + ". " + arma.getNombre ());
-				System.out.print(", valor de " + String.valueOf (arma.getPrecio ()) + " oros. ");
+				System.out.print(", valor de " + String.valueOf (arma.getPrecio ()) + " monedas de oro. ");
 				System.out.print("Daño: " + String.valueOf (arma.getDmg()));
 				
 				System.out.println ();

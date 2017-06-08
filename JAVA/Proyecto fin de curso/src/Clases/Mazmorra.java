@@ -107,9 +107,9 @@ public class Mazmorra implements Serializable, Cloneable
 			System.out.println ("Llamada al metodo printMazmorra");
 		}
 	 */
+	/*
 	public void printMazmorra ()
 	{
-		/*
 		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
 		System.out.println(" | S             C |                 |                 |                 |                 |");
 		System.out.println(" |                 |                 |                 |                 |                 |");
@@ -151,8 +151,6 @@ public class Mazmorra implements Serializable, Cloneable
 		System.out.println(" |                 |                 |                 |                 |                 |");
 		System.out.println(" |                 |                 |                 |                 |                 |");
 		System.out.println("  ----------------- ----------------- ----------------- ----------------- ----------------- ");
-		
-		*/
 		
 		for (int i = 0; i < this.getMapa().length; i++)
 		{
@@ -394,8 +392,9 @@ public class Mazmorra implements Serializable, Cloneable
 			System.out.println();
 		}
 	}
+	*/
 	
-	public void printMazmorra3 ()
+	public void printMazmorra ()
 	{
 		for (int i = 0; i < this.getMapa().length; i++)
 		{
