@@ -270,6 +270,8 @@ public class GestoraAleatoria
 		}
 		
 		mapa[i][j].setVisitada(true);
+		
+		//Creo que aquí va lo de casilla de salida
 
 		while (!avanzar)
 		{

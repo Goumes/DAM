@@ -32,10 +32,10 @@ public class CrearFichero
 	public static void menuCrear ()
 	{
 		System.out.println("Elija que archivo desea crear");
-		System.out.println("1. Partidas");
-		System.out.println("2. Armas");
-		System.out.println("3. Items");
-		System.out.println("4. Enemigos");
+		System.out.println("1. Armas");
+		System.out.println("2. Items");
+		System.out.println("3. Enemigos");
+		System.out.println("4. Partidas");
 		System.out.println("0. Salir");
 	}
 	//Fin menuCrear
@@ -51,10 +51,10 @@ public class CrearFichero
 	 * 	ImprimirMenuLeerValidarOpcion
 	 * 	Mientras Opcion != 0
 	 * 		segun (opcion)
-	 *			caso 1: Crear partidas
+	 *			caso 1: Crear enemigos
 	 *			caso 2: Crear items
 	 *			caso 3: Crear armas
-	 *			caso 4: Crear enemigos
+	 *			caso 4: Crear partidas
 	 *		fin_Segun
 	 *		ImprimirMenuLeerValidarOpcion
 	 *	fin_Mientras
@@ -82,19 +82,19 @@ public class CrearFichero
 			switch (opcion)
 			{
 				case 1:
-					gestora.crearPartidas ();
-				break;
-				
-				case 2:
 					gestora.crearArmas ();
 				break;
 				
-				case 3:
+				case 2:
 					gestora.crearItems ();
 				break;
 				
-				case 4:
+				case 3:
 					gestora.crearEnemigos ();
+				break;
+				
+				case 4:
+					gestora.crearPartidas ();
 				break;
 			}//Fin_Segun
 			

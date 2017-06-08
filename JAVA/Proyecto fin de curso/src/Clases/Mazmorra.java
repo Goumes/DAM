@@ -334,12 +334,577 @@ public class Mazmorra implements Serializable, Cloneable
 		{
 			for (int j = 0; j < this.getMapa()[0].length; j++)
 			{
-				if (this.getMapa()[i][j].getArriba() == true)
+				if (!this.getMapa()[i][j].getArriba())
 				{
-					System.out.println("");
+					System.out.print(" --- ");
+				}
+				
+				else
+				{
+					System.out.print("     ");
 				}
 			}
 			
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getDerecha() 
+						&& !this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|   |");
+				}
+				
+				else if (!this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|    ");
+				}
+				
+				else if (!this.getMapa()[i][j].getDerecha())
+					
+				{
+					System.out.print("    |");
+				}
+				
+				else if (this.getMapa()[i][j].getDerecha() 
+						&& this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("     ");
+				}
+			}
+			
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				
+				if (!this.getMapa()[i][j].getAbajo())
+				{
+					System.out.print(" ___ ");
+				}
+				
+				else
+				{
+					System.out.print("     ");
+				}
+			}
+			
+			System.out.println();
+		}
+	}
+	
+	public void printMazmorra3 ()
+	{
+		for (int i = 0; i < this.getMapa().length; i++)
+		{
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getArriba())
+				{
+					System.out.print(" ---------------- ");
+				}
+				
+				else
+				{
+					System.out.print("                  ");
+				}
+			}
+			
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getDerecha() 
+						&& !this.getMapa()[i][j].getIzquierda())
+				{
+					if (this.getMapa()[i][j].getEntrada())
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("| E            C |");
+						}
+						
+						else
+						{
+							System.out.print("| E              |");
+						}
+					}
+					
+					else if ((this.getMapa()[i][j].getSalida()))
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("| S            C |");
+						}
+						
+						else
+						{
+							System.out.print("| S              |");
+						}
+					}
+
+					else
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("|              C |");
+						}
+						
+						else
+						{
+							System.out.print("|                |");
+						}
+					}
+				}
+				
+				else if (!this.getMapa()[i][j].getIzquierda())
+				{
+					if (this.getMapa()[i][j].getEntrada())
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("| E            C ");
+						}
+						
+						else
+						{
+							System.out.print("| E              ");
+						}
+					}
+
+					else if ((this.getMapa()[i][j].getSalida()))
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("| S            C ");
+						}
+						
+						else
+						{
+							System.out.print("| S              ");
+						}
+					}
+
+					else
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("|              C ");
+						}
+						
+						else
+						{
+							System.out.print("|                ");
+						}
+					}
+				}
+				
+				else if (!this.getMapa()[i][j].getDerecha())
+					
+				{
+					if (this.getMapa()[i][j].getEntrada())
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print(" E             C |");
+						}
+						
+						else
+						{
+							System.out.print(" E               |");
+						}
+					}
+					
+					else if ((this.getMapa()[i][j].getSalida()))
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print(" S             C |");
+						}
+						
+						else
+						{
+							System.out.print(" S               |");
+						}
+					}
+
+					else
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("                C |");
+						}
+						
+						else
+						{
+							System.out.print("                  |");
+						}
+					}
+					
+				}
+				
+				else if (this.getMapa()[i][j].getDerecha() 
+						&& this.getMapa()[i][j].getIzquierda())
+				{
+					if (this.getMapa()[i][j].getEntrada())
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print(" E              C ");
+						}
+						
+						else
+						{
+							System.out.print(" E                ");
+						}
+					}
+					
+					else if ((this.getMapa()[i][j].getSalida()))
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print(" S              C ");
+						}
+						
+						else
+						{
+							System.out.print(" S                ");
+						}
+					}
+
+					else
+					{
+						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
+						{
+							System.out.print("                C ");
+						}
+						
+						else
+						{
+							System.out.print("                  ");
+						}
+					}
+					
+					
+				}
+			}
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getDerecha() 
+						&& !this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                |");
+				}
+				
+				else if (!this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                ");
+				}
+				
+				else if (!this.getMapa()[i][j].getDerecha())
+					
+				{
+					System.out.print("                  |");
+				}
+				
+				else if (this.getMapa()[i][j].getDerecha() 
+						&& this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("                  ");
+				}
+			}
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getDerecha() 
+						&& !this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                |");
+				}
+				
+				else if (!this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                ");
+				}
+				
+				else if (!this.getMapa()[i][j].getDerecha())
+					
+				{
+					System.out.print("                  |");
+				}
+				
+				else if (this.getMapa()[i][j].getDerecha() 
+						&& this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("                  ");
+				}
+			}
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (this.getMapa() [i][j].getJugador())
+				{
+					if (!this.getMapa()[i][j].getDerecha() 
+							&& !this.getMapa()[i][j].getIzquierda())
+					{
+						System.out.print("|       X        |");
+					}
+					
+					else if (!this.getMapa()[i][j].getIzquierda())
+					{
+						System.out.print("|       X        ");
+					}
+					
+					else if (!this.getMapa()[i][j].getDerecha())
+						
+					{
+						System.out.print("        X         |");
+					}
+					
+					else if (this.getMapa()[i][j].getDerecha() 
+							&& this.getMapa()[i][j].getIzquierda())
+					{
+						System.out.print("        X         ");
+					}
+				}
+				
+				else
+				{
+					if (!this.getMapa()[i][j].getDerecha() 
+							&& !this.getMapa()[i][j].getIzquierda())
+					{
+						System.out.print("|                |");
+					}
+					
+					else if (!this.getMapa()[i][j].getIzquierda())
+					{
+						System.out.print("|                ");
+					}
+					
+					else if (!this.getMapa()[i][j].getDerecha())
+						
+					{
+						System.out.print("                  |");
+					}
+					
+					else if (this.getMapa()[i][j].getDerecha() 
+							&& this.getMapa()[i][j].getIzquierda())
+					{
+						System.out.print("                  ");
+					}
+				}
+				
+			}
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getDerecha() 
+						&& !this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                |");
+				}
+				
+				else if (!this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                ");
+				}
+				
+				else if (!this.getMapa()[i][j].getDerecha())
+					
+				{
+					System.out.print("                  |");
+				}
+				
+				else if (this.getMapa()[i][j].getDerecha() 
+						&& this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("                  ");
+				}
+			}
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getDerecha() 
+						&& !this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                |");
+				}
+				
+				else if (!this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("|                ");
+				}
+				
+				else if (!this.getMapa()[i][j].getDerecha())
+					
+				{
+					System.out.print("                  |");
+				}
+				
+				else if (this.getMapa()[i][j].getDerecha() 
+						&& this.getMapa()[i][j].getIzquierda())
+				{
+					System.out.print("                  ");
+				}
+			}
+			
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (!this.getMapa()[i][j].getDerecha() 
+						&& !this.getMapa()[i][j].getIzquierda())
+				{
+					if (!this.getMapa()[i][j].getShop().equals(new TiendaIMPL ()))
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("| T            E |");
+						}
+						
+						else
+						{
+							System.out.print("| T              |");
+						}
+					}
+					
+					else
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("|              E |");
+						}
+						
+						else
+						{
+							System.out.print("|                |");
+						}
+					}
+				}
+				
+				else if (!this.getMapa()[i][j].getIzquierda())
+				{
+					if (!this.getMapa()[i][j].getShop().equals(new TiendaIMPL ()))
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("| T            E ");
+						}
+						
+						else
+						{
+							System.out.print("| T              ");
+						}
+					}
+
+					else
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("|              E ");
+						}
+						
+						else
+						{
+							System.out.print("|                ");
+						}
+					}
+				}
+				
+				else if (!this.getMapa()[i][j].getDerecha())
+					
+				{
+					if (!this.getMapa()[i][j].getShop().equals(new TiendaIMPL ()))
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("  T             E |");
+						}
+						
+						else
+						{
+							System.out.print("  T               |");
+						}
+					}
+
+					else
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("                E |");
+						}
+						
+						else
+						{
+							System.out.print("                  |");
+						}
+					}
+					
+				}
+				
+				else if (this.getMapa()[i][j].getDerecha() 
+						&& this.getMapa()[i][j].getIzquierda())
+				{
+					if (!this.getMapa()[i][j].getShop().equals(new TiendaIMPL ()))
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("   T            E ");
+						}
+						
+						else
+						{
+							System.out.print("   T              ");
+						}
+					}
+					
+					else
+					{
+						if (!this.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							System.out.print("                E ");
+						}
+						
+						else
+						{
+							System.out.print("                  ");
+						}
+					}
+				}
+			}
+
+
+			System.out.println();
+			
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				
+				if (!this.getMapa()[i][j].getAbajo())
+				{
+					System.out.print(" ---------------- ");
+				}
+				
+				else
+				{
+					System.out.print("                  ");
+				}
+			}
+			
+			System.out.println();
 		}
 	}
 	

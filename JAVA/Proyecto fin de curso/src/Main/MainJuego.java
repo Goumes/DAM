@@ -298,7 +298,7 @@ public class MainJuego
 						break;
 						// Caso 6: Ver mapa
 						case 6:
-							partidaDefinitiva.getMazmorra ().printMazmorra ();
+							partidaDefinitiva.getMazmorra ().printMazmorra3 ();
 						break;
 					}// Fin_segun
 					
