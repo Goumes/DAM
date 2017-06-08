@@ -269,6 +269,44 @@ public class GestoraAleatoria
 			mapa [i][j].setJugador(true);
 		}
 		
+		else if ((i  + 1< mapa.length
+				&& j < mapa[0].length
+				&& i + 1>= 0
+				&& j >= 0
+				&& mapa[i + 1][j] != null)
+			||(i - 1< mapa.length
+					&& j < mapa[0].length
+					&& i - 1>= 0
+					&& j >= 0
+					&& mapa[i - 1][j] != null)
+			|| (i < mapa.length
+					&& j + 1< mapa[0].length
+					&& i >= 0
+					&& j + 1>= 0
+					&& mapa[i][j + 1] != null)
+			|| (i < mapa.length
+					&& j - 1< mapa[0].length
+					&& i >= 0
+					&& j - 1>= 0
+					&& mapa[i][j - 1] != null))
+		{
+			for (int k = 0; k < mapa.length; k++)
+			{
+				for (int l = 0; l < mapa[0].length; l++)
+				{
+					if (mapa[k][l] == null)
+					{
+						contador++;
+					}
+					
+					else if (k == 4 && l == 4 && contador == 0)
+					{
+						mapa[i][j].setSalida(true);
+					}
+				}
+			}
+		}
+		
 		mapa[i][j].setVisitada(true);
 		
 		//Creo que aquí va lo de casilla de salida
@@ -309,7 +347,7 @@ public class GestoraAleatoria
 								&& j >= 0
 								&& mapa[i + 1][j] == null)
 						{
-							mapa[i][j].setArriba (true);
+							mapa[i][j].setAbajo (true);
 							i++;
 							mapa[i][j] = generarHabitacionAleatoria (tiendaGenerada);
 							
@@ -318,7 +356,7 @@ public class GestoraAleatoria
 								tiendaGenerada = true;
 							}
 							
-							mapa[i][j].setAbajo(true);
+							mapa[i][j].setArriba(true);
 							backtracking (mapa, i, j, tiendaGenerada);
 						}
 					break;
@@ -330,7 +368,7 @@ public class GestoraAleatoria
 							&& j >= 0
 							&& mapa[i - 1][j] == null)
 						{
-							mapa[i][j].setAbajo (true);
+							mapa[i][j].setArriba (true);
 							i--;
 							mapa[i][j] = generarHabitacionAleatoria (tiendaGenerada);
 							
@@ -339,7 +377,7 @@ public class GestoraAleatoria
 								tiendaGenerada = true;
 							}
 							
-							mapa[i][j].setArriba (true);
+							mapa[i][j].setAbajo (true);
 							backtracking (mapa, i, j, tiendaGenerada);
 						}
 					break;
@@ -392,24 +430,6 @@ public class GestoraAleatoria
 			else
 			{
 				avanzar = true;
-				
-				/*
-				for (int k = 0; k < mapa.length; k++)
-				{
-					for (int l = 0; l < mapa[0].length; l++)
-					{
-						if (mapa[k][l] == null)
-						{
-							contador++;
-						}
-						
-						else if (k == 4 && l == 4 && contador == 0)
-						{
-							mapa[i][j].setSalida(true);
-						}
-					}
-				}
-				*/
 			}
 		}		
 		

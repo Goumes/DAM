@@ -509,12 +509,12 @@ public class Mazmorra implements Serializable, Cloneable
 					{
 						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 						{
-							System.out.print(" E             C |");
+							System.out.print("   E            C |");
 						}
 						
 						else
 						{
-							System.out.print(" E               |");
+							System.out.print("   E              |");
 						}
 					}
 					
@@ -522,12 +522,12 @@ public class Mazmorra implements Serializable, Cloneable
 					{
 						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 						{
-							System.out.print(" S             C |");
+							System.out.print("   S            C |");
 						}
 						
 						else
 						{
-							System.out.print(" S               |");
+							System.out.print("   S              |");
 						}
 					}
 

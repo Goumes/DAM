@@ -55,7 +55,7 @@ public class TestMazmorra
 		 
 		 mazmorra2.setMapa (mapa2);
 		 
-		 mazmorra2.printMazmorra3();
+		// mazmorra2.printMazmorra3();
 		 
 		 System.out.println();
 		 System.out.println();
@@ -143,9 +143,9 @@ public class TestMazmorra
 		
 		 
 		
-		//mazmorra = ga.generarMazmorraAleatoria();
+		 mazmorra = ga.generarMazmorraAleatoria();
 
-		 mazmorra.setMapa(mapa);
+		 //mazmorra.setMapa(mapa);
 		 mazmorra.printMazmorra3();
 
 	}
