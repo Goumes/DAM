@@ -93,13 +93,42 @@ CREATE TABLE Boletos_Partidos
 (
 	IDBoleto INT NOT NULL,
 	IDPartido INT NOT NULL,
+	GolesEquipo1 INT NULL,
+	GolesEquipo2 INT NULL,
 
 	CONSTRAINT PK_Boletos_Partidos PRIMARY KEY (IDBoleto, IDPartido),
 	CONSTRAINT FK_Boletos_Partidos_Boletos FOREIGN KEY (IDBoleto) REFERENCES Boletos (ID) ON UPDATE CASCADE ON DELETE NO ACTION,
 	CONSTRAINT FK_Boletos_Partidos_Partidos FOREIGN KEY (IDPartido) REFERENCES Partidos (ID) ON UPDATE NO ACTION ON DELETE NO ACTION --Cambiar estos dos update y cascade
 )
 
+GO
+
+CREATE TABLE Premios
+(
+	ID INT NOT NULL,
+	IDJornada INT NOT NULL,
+	Categoria INT NOT NULL,
+	Valor MONEY NULL,
+
+	CONSTRAINT PK_Premios PRIMARY KEY (ID),
+	CONSTRAINT FK_Premios_Jornadas FOREIGN KEY (IDJornada) REFERENCES Jornadas (ID)
+)
+
+GO
+
+CREATE TABLE Boletos_Premios
+(
+	IDBoleto INT NOT NULL,
+	IDPremio INT NOT NULL,
+
+	CONSTRAINT PK_Boletos_Premios PRIMARY KEY (IDBoleto,IDPremio),
+	CONSTRAINT FK_Boletos_Premios_Boletos FOREIGN KEY (IDBoleto) REFERENCES Boletos (ID) ON UPDATE CASCADE ON DELETE NO ACTION,
+	CONSTRAINT FK_Boletos_Premios_Premios FOREIGN KEY (IDPremio) REFERENCES Premios (ID) ON UPDATE CASCADE ON DELETE NO ACTION
+)
+
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Tipo CHECK (Tipo IN ('Simple', 'Multiple'))
+ALTER TABLE Jornadas ADD CONSTRAINT CK_Jornadas_Estado CHECK (Estado IN ('Abierto', 'Cerrado'))
+ALTER TABLE Premios ADD CONSTRAINT CK_Premios_Categoria CHECK (Categoria BETWEEN 1 AND 6)
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion1 CHECK (Prediccion1 IN ('1', 'X', '2', '1X', '12', 'X2', '1X2'))
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion2 CHECK (Prediccion2 IN ('1', 'X', '2', '1X', '12', 'X2', '1X2'))
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion3 CHECK (Prediccion3 IN ('1', 'X', '2', '1X', '12', 'X2', '1X2'))
@@ -190,10 +219,58 @@ IF EXISTS (SELECT COUNT (I.ID)
 				INNER JOIN
 				Boletos AS B
 				ON I.IDBoleto = B.ID
+				GROUP BY NumeroApuestas
 				HAVING COUNT (I.ID) > NumeroApuestas)
 BEGIN
 	ROLLBACK
 END
+
+GO
+
+CREATE TRIGGER sorteoAbierto ON Apuestas
+AFTER INSERT AS
+
+IF EXISTS (SELECT I.ID
+				FROM inserted as I
+				INNER JOIN
+				Boletos AS B
+				ON I.IDBoleto = B.ID
+				INNER JOIN
+				Jornadas AS J
+				ON B.IDJornada = J.ID
+				WHERE Estado = 'Cerrado')
+BEGIN
+	Print 'El sorteo debe estar abierto'
+	ROLLBACK
+END
+
+GO
+
+CREATE FUNCTION calcularFondosTotales ()
+RETURNS MONEY AS
+BEGIN
+	DECLARE @NumeroApuestas INT
+	
+	SELECT @NumeroApuestas = COUNT (ID)
+		FROM Apuestas
+	
+	RETURN (@NumeroApuestas * 0.75) * 0.55
+END
+
+GO
+
+CREATE FUNCTION dividirFondos ()
+RETURNS TABLE AS
+	RETURN (SELECT P.Categoria,
+			CASE 
+				WHEN Categoria = 1 THEN (dbo.calcularFondosTotales ()) * 0.16
+				WHEN Categoria = 2 THEN (dbo.calcularFondosTotales ()) * 0.075
+				WHEN Categoria = 3 THEN (dbo.calcularFondosTotales ()) * 0.075
+				WHEN Categoria = 4 THEN (dbo.calcularFondosTotales ()) * 0.075
+				WHEN Categoria = 5 THEN (dbo.calcularFondosTotales ()) * 0.09
+				ELSE (dbo.calcularFondosTotales ()) * 0.075
+			END Fondos
+			FROM Premios as P)
 
 /* Crea un procedimiento que grabe una apuesta simple. Los parámetros de entrada
 
