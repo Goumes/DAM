@@ -5,6 +5,7 @@
 		<title>Formulario de inscripción</title>
 		<link rel="stylesheet" type="text/css" href="estilos.css">
 	</head>
+
 	<body>
 	<h1>Formulario de inscripción</h1>
 	<br><br>
@@ -13,10 +14,14 @@
 		<form action="www.mediaice.com" method="post">
 		<fieldset>
 			<br>
-			<input type="text" name="nombre" placeholder="Nombre">
-			<input type="text" name="apellidos" placeholder="Apellidos"><br><br>
-			<input type="email" name="email" placeholder="Email" size="45"><br><br>
-			<input type="password" name="contraseña" placeholder="Contraseña" size="45"><br><br>
+			<input type="text" name="txtNombre" id = "IdNombre" placeholder="Nombre">
+			<span id = "errorNombre"></span>
+			<input type="text" name="txtApellidos" id = "IdApellidos" placeholder="Apellidos"><br><br>
+			<span id = "errorApellidos"></span>
+			<input type="email" name="txtEmail" id = "IdEmail" placeholder="Email" size="45"><br><br>
+			<span id = "errorEmail"></span>
+			<input type="password" name="txtContraseña" id = "IdPassword" placeholder="Contraseña" size="45"><br><br>
+			<span id = "errorPassword"></span>
 			<textarea name="terminos" rows="10" cols="46" readonly>
 Condiciones de servicio de MediaIce
 Reconocimiento
@@ -60,7 +65,7 @@ Distribuir cualquier Contenido que implique falsamente el patrocinio del Conteni
 </textarea><br><br>
 			<input type="checkbox" name="checkbox" value="check" class="agree"> He leído y acepto los Términos y Condiciones y la Política de Privacidad.
 			<br><br>
-			<input type="submit" value="Enviar">
+			<input type="button" onclick = "validar()" value="Enviar">
 		</fieldset>
 		</form>
 		<br><br>
@@ -78,4 +83,49 @@ Distribuir cualquier Contenido que implique falsamente el patrocinio del Conteni
 		</div>
 	</div>
 	</body>
+	
+	<script>
+	/* Prototipo: validar ()
+	   Breve comentario: Funcion dedicada a validar los elementos del formulario
+	   Precondiciones: Ninguna
+	   Entradas: Ninguna
+	   Salidas: Ninguna
+	   Entradas/Salidas: Ninguna
+	   Postcondiciones: Ninguna
+	   
+	   Resguardo : function validar ()
+	   {
+			alert ("Llamada al metodo validar () ");
+	   }
+	*/
+	function validar()
+	{
+		nombre = document.getElementById ("IdNombre").value;
+		apellidos = document.getElementById ("IdApellidos").value;
+		email = document.getElementById ("IdEmail").value;
+		password = document.getElementById ("IdPassword").value;
+		
+		if (nombre.replace(/\s+/g, '') == "")
+		{
+			document.getElementById (errorNombre).innerHTML = "El nombre no puede estar vacio";
+		}
+		
+		if (apellidos.replace(/\s+/g, '') == "")
+		{
+			document.getElementById (errorApellidos).innerHTML = "Los apellidos no pueden estar vacio";
+		}
+		
+		if (email.replace(/\s+/g, '') == "")
+		{
+			document.getElementById (errorEmail).innerHTML = "El email no puede estar vacio";
+		}
+		
+		if (password.replace(/\s+/g, '') == "")
+		{
+			document.getElementById (errorPassword).innerHTML = "La contraseá no puede estar vacio";
+		}
+
+	}
+	</script>
+
 </html>

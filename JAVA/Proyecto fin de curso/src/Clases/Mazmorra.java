@@ -326,7 +326,22 @@ public class Mazmorra implements Serializable, Cloneable
 	}
 		
 
-	//Fin printMazmorra ()
+	//Fin printMazmorra
+	
+	public void printMazmorra2 ()
+	{
+		for (int i = 0; i < this.getMapa().length; i++)
+		{
+			for (int j = 0; j < this.getMapa()[0].length; j++)
+			{
+				if (this.getMapa()[i][j].getArriba() == true)
+				{
+					System.out.println("");
+				}
+			}
+			
+		}
+	}
 	
 	//Fin Metodos añadidos
 }
