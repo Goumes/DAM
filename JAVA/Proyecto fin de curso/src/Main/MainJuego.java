@@ -149,6 +149,33 @@ public class MainJuego
 	}
 	//Fin menuAcciones
 	
+	/* Prototipo: void menuMovimiento ()
+	 * Breve comentario: Menu de movimiento del programa.
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void menuMovimiento ()
+		{
+			System.out.println("Llamada al metodo menuMovimiento");
+		}
+	 */
+	public static void menuMovimiento ()
+	{
+		System.out.println();
+		System.out.println("¿Hacia qué dirección quieres moverte?");
+		System.out.println();
+		System.out.println("1. Arriba");
+		System.out.println("2. Derecha");
+		System.out.println("3. Abajo");
+		System.out.println("4. Izquierda");
+		System.out.println("0. Salir");
+		System.out.println();
+	}
+	//Fin menuMovimiento
+	
 	public static void main (String [] args)
 	{
 		Scanner teclado = new Scanner (System.in);
@@ -165,6 +192,7 @@ public class MainJuego
 		int numeroInventario = -1;
 		char utilizar = ' ';
 		boolean resultadoInventario = false;
+		int posicion = 0;
 		
 		//LeerValidarJugar
 		do
@@ -243,6 +271,14 @@ public class MainJuego
 						break;
 						// Caso 4: Avanzar
 						case 4:
+							do
+							{
+								menuMovimiento ();
+								posicion = teclado.nextInt ();
+							}
+							while (posicion < 0 || posicion > 4);
+							gestora.moverJugador (partidaDefinitiva.getMazmorra(), posicion);
+							partidaDefinitiva.getMazmorra ().printMazmorra ();
 						break;
 						// Caso 5: Abrir Inventario
 						case 5:
@@ -256,10 +292,7 @@ public class MainJuego
 							
 								while (eleccionInventario != 0)
 								{
-								
 									
-									
-									do
 									{
 										System.out.println();
 										System.out.println("¿Quieres utilizar este objeto?");

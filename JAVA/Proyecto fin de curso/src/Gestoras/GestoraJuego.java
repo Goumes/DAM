@@ -406,12 +406,13 @@ public class GestoraJuego
 						
 						System.out.println ();
 						System.out.println ();
-						System.out.println("Y "+(partida.getJugador().getOro() + partida.getMazmorra ().getMapa()[i][j].getCofreValor())+" monedas de oro");
+						System.out.println("Y "+(partida.getMazmorra ().getMapa()[i][j].getCofreValor())+" monedas de oro");
 						System.out.println ();
 						System.out.println("Lo recoges y añades a tu inventario");
 						
 						partida.getJugador().addInventario(item);
 						partida.getJugador().setOro (partida.getJugador().getOro() + partida.getMazmorra ().getMapa()[i][j].getCofreValor());
+						partida.getMazmorra().getMapa()[i][j].setCofreIMPL (new CofreIMPL ());
 					}
 					catch (JuegoException e)
 					{
@@ -565,7 +566,109 @@ public class GestoraJuego
 	}
 	//Fin utilizarItem
 	
+	/* Prototipo: Mazmorra moverJugador (Mazmorra mazmorra, int posicion)
+	 * Breve comentario: Metodo dedicado a moverte por la mazmorra
+	 * Precondiciones: Ninguna
+	 * Entradas: int posicion
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Una Mamorra
+	 * Postcondiciones: Una mazmorra con la posición del jugador modificada
+	 * 
+	 * Resguardo: public Mazmorra moverJugador (Mazmorra mazmorra, int posicion)
+		{
+			System.out.println("Llamada al metodo moverJugador");
+			
+			return mazmorra;
+		}
+	 */
 	//Fin
-	
+	public Mazmorra moverJugador (Mazmorra mazmorra, int posicion)
+	{
+		boolean resultado = false;
+		
+		if (posicion == 1)
+		{
+			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
+			{
+				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				{
+					if (mazmorra.getMapa()[i][j].getJugador())
+					{
+						if (mazmorra.getMapa()[i][j].getArriba())
+						{
+							mazmorra.getMapa()[i][j].setJugador(false);
+							mazmorra.getMapa()[i - 1][j].setJugador(true);
+							resultado = true;
+						}
+					}
+				}
+			}
+		}
+		
+		else if (posicion == 2)
+		{
+			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
+			{
+				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				{
+					if (mazmorra.getMapa()[i][j].getJugador())
+					{
+						if (mazmorra.getMapa()[i][j].getDerecha ())
+						{
+							mazmorra.getMapa()[i][j].setJugador(false);
+							mazmorra.getMapa()[i][j + 1].setJugador(true);
+							resultado = true;
+						}
+					}
+				}
+			}
+		}
+		
+		else if (posicion == 3)
+		{
+			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
+			{
+				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				{
+					if (mazmorra.getMapa()[i][j].getJugador())
+					{
+						if (mazmorra.getMapa()[i][j].getAbajo ())
+						{
+							mazmorra.getMapa()[i][j].setJugador(false);
+							mazmorra.getMapa()[i + 1][j].setJugador(true);
+							resultado = true;
+						}
+					}
+				}
+			}
+		}
+		
+		else
+		{
+			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
+			{
+				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				{
+					if (mazmorra.getMapa()[i][j].getJugador())
+					{
+						if (mazmorra.getMapa()[i][j].getIzquierda ())
+						{
+							mazmorra.getMapa()[i][j].setJugador(false);
+							mazmorra.getMapa()[i][j - 1].setJugador(true);
+							resultado = true;
+						}
+					}
+				}
+			}
+		}
+		
+		if (!resultado)
+		{
+			System.out.println();
+			System.out.println("No puedes avanzar en esa dirección Hulio!");
+		}
+		
+		return mazmorra;
+	}
 	//Fin Metodos Añadidos
 }

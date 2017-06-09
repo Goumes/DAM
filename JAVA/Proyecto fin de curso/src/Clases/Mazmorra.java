@@ -423,12 +423,12 @@ public class Mazmorra implements Serializable, Cloneable
 					{
 						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 						{
-							System.out.print("| E            C |");
+							System.out.print("| O            C |");
 						}
 						
 						else
 						{
-							System.out.print("| E              |");
+							System.out.print("| O              |");
 						}
 					}
 					
@@ -465,12 +465,12 @@ public class Mazmorra implements Serializable, Cloneable
 					{
 						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 						{
-							System.out.print("| E            C ");
+							System.out.print("| O            C ");
 						}
 						
 						else
 						{
-							System.out.print("| E              ");
+							System.out.print("| O              ");
 						}
 					}
 
@@ -508,12 +508,12 @@ public class Mazmorra implements Serializable, Cloneable
 					{
 						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 						{
-							System.out.print("   E            C |");
+							System.out.print("   O            C |");
 						}
 						
 						else
 						{
-							System.out.print("   E              |");
+							System.out.print("   O              |");
 						}
 					}
 					
@@ -552,12 +552,12 @@ public class Mazmorra implements Serializable, Cloneable
 					{
 						if (!this.getMapa()[i][j].getCofre().equals(new CofreIMPL ()))
 						{
-							System.out.print(" E              C ");
+							System.out.print(" O              C ");
 						}
 						
 						else
 						{
-							System.out.print(" E                ");
+							System.out.print(" O                ");
 						}
 					}
 					
