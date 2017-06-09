@@ -1,3 +1,4 @@
 Menu accion: Avanzar, Pelear, Ir a tienda.
 Corregir lo de las pociones de vida para que restauren, no sumen.
 Cambiar el print de la mazmorra para que sólo se vean los caminos posibles.
+Opción 0 del menú de elegir partidas: Borrar una partida.

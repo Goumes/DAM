@@ -273,12 +273,12 @@ public class MainJuego
 						case 4:
 							do
 							{
+								partidaDefinitiva.getMazmorra ().printMazmorra ();
 								menuMovimiento ();
 								posicion = teclado.nextInt ();
 							}
 							while (posicion < 0 || posicion > 4);
-							gestora.moverJugador (partidaDefinitiva.getMazmorra(), posicion);
-							partidaDefinitiva.getMazmorra ().printMazmorra ();
+							partidaDefinitiva.setMazmorra(gestora.moverJugador (partidaDefinitiva.getMazmorra(), posicion));
 						break;
 						// Caso 5: Abrir Inventario
 						case 5:
