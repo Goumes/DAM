@@ -20,7 +20,7 @@ import java.io.*;
  * 	LeerValidarJugar
  * 	Mientras QuieraJugar
  * 		LeerPartidas *
- * 		PrintElegirPartidas *
+ * 		PrintElegirBorrarPartidas *
  *		EjecutarJuego
  *		Preguntar JugarOtraVez
  * 	Fin_Mientras QuieraJugar        
@@ -117,6 +117,8 @@ public class MainJuego
 			System.out.println();
 			partida3.imprimirJugador ();
 		}
+		
+		System.out.println("0. Borrar una partida");
 	}
 	//Fin printPartidas
 	
@@ -176,6 +178,32 @@ public class MainJuego
 	}
 	//Fin menuMovimiento
 	
+	/* Prototipo: void menuBorrar ()
+	 * Breve comentario: Menu de movimiento del programa.
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void menuBorrar ()
+		{
+			System.out.println("Llamada al metodo menuBorrar");
+		}
+	 */
+	public static void menuBorrar ()
+	{
+		System.out.println();
+		System.out.println("¿Qué partida deseas borrar?");
+		System.out.println();
+		System.out.println("1. Partida 1");
+		System.out.println("2. Partida 2");
+		System.out.println("3. Partida 3");
+		System.out.println("0. Ninguna");
+		System.out.println();
+	}
+	//Fin menuBorrar
+	
 	public static void main (String [] args)
 	{
 		Scanner teclado = new Scanner (System.in);
@@ -193,6 +221,7 @@ public class MainJuego
 		char utilizar = ' ';
 		boolean resultadoInventario = false;
 		int posicion = 0;
+		int borrar = 0;
 		
 		//LeerValidarJugar
 		do
@@ -212,7 +241,7 @@ public class MainJuego
 			partida3 = gestora.leerPartida (3);
 			//Fin LeerPartidas
 			
-			//PrintElegirPartidas
+			//PrintElegirBorrarPartidas
 			do
 			{
 				MainJuego.printPartidas (partida1, partida2, partida3);
@@ -220,8 +249,24 @@ public class MainJuego
 			}
 			while (numeroPartida < 0 || numeroPartida > 3);
 			
-			partidaDefinitiva = gestora.asignarPartida (partida1, partida2, partida3, numeroPartida);
-			//Fin PrintElegirPartidas
+			if (numeroPartida != 0)
+			{
+				partidaDefinitiva = gestora.asignarPartida (partida1, partida2, partida3, numeroPartida);
+			}
+			
+			else
+			{
+				do
+				{
+					menuBorrar ();
+					borrar = teclado.nextInt();
+				}
+				while (borrar < 0 || borrar > 3);
+				
+				gestora.borrarPartida (borrar);
+			}
+			
+			//Fin PrintElegirBorrarPartidas
 		
 			//EjecutarJuego
 			

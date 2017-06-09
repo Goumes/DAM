@@ -88,6 +88,116 @@ public class GestoraJuego
 	}
 	//Fin leerPartida
 	
+	/* Protipo: Partida borrarPartida (int numero)
+	 * Breve comentario: Subprograma dedicado a borrar una partida del fichero
+	 * Precondiciones: Ninguna
+	 * Entradas: Un entero indicando el numero de partida deseado
+	 * Salidas: Una partida
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Una partida borrada dependiendo de la selección recibida por parámetros
+	 * 
+	 * Resguardo:	public Partida borrarPartida (int numero)
+	 * {
+	 * 		System.out.println("Llamada al metodo borrarPartida");
+	 * }
+	 */
+	public boolean borrarPartida (int numeroPartida)
+	{
+		File partidas = new File ("./src/Archivos/partidas.dat");
+		File auxiliar = new File ("auxiliar.dat");
+		Partida partida = null;
+		ObjectOutputStream oos = null;
+		ObjectInputStream ois = null;
+		int contador = 1;
+		boolean resultado = false;
+		
+		try
+		{
+			oos = new ObjectOutputStream (new FileOutputStream (auxiliar, true))
+			{
+				@Override protected void writeStreamHeader () {}
+			};
+			
+			ois = new ObjectInputStream (new FileInputStream (partidas))
+			{
+				@Override protected void readStreamHeader () {}
+			};
+		
+			partida = (Partida) ois.readObject();
+			
+			while (!partida.equals(null))
+			{
+				if (contador == numeroPartida)
+				{
+					oos.writeObject(new Partida ());
+				}
+				
+				else
+				{
+					oos.writeObject (partida);
+				}
+				
+				partida = (Partida) ois.readObject();
+				contador++;
+			}
+		}
+		
+		catch (ClassNotFoundException e)
+		{
+			System.out.println("ClassNotFoundException e");
+		}
+		
+		catch (FileNotFoundException e)
+		{
+			System.out.println("FileNotFoundException");
+		}
+		
+		catch (EOFException e)
+		{
+			
+		}
+		
+		catch (IOException e)
+		{
+			System.out.println("IOException");
+		}
+		
+		finally
+		{
+			if (oos != null)
+			{
+				try
+				{
+					oos.close();
+				}
+				
+				catch (IOException e)
+				{
+					System.out.println("IOException close");
+				}
+			}
+			
+			if (ois != null)
+			{
+				try
+				{
+					ois.close();
+				}
+				
+				catch (IOException e)
+				{
+					System.out.println("IOException close");
+				}
+			}
+		}
+		
+		partidas.delete();
+		auxiliar.renameTo(partidas);
+	
+		return resultado;
+	}
+	//Fin borrarPartida
+	
 	/* Prototipo: Partida asignarPartida (Partida partida1, Partida partida2, Partida partida3, int numero)
 	 * Breve comentario: Metodo dedicado a la asignación de una partida a la partida definitiva a utilizar en el main.
 	 * Precondiciones: Ninguna
