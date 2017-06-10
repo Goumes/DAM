@@ -676,6 +676,7 @@ public class GestoraJuego
 	}
 	//Fin utilizarItem
 	
+	
 	/* Prototipo: Mazmorra moverJugador (Mazmorra mazmorra, int posicion)
 	 * Breve comentario: Metodo dedicado a moverte por la mazmorra
 	 * Precondiciones: Ninguna
@@ -781,6 +782,79 @@ public class GestoraJuego
 	}
 	//Fin moverJugador
 	
+	/* Prototipo: boolean comprobarEnemigo (Mazmorra mazmorra)
+	 * Breve comentario: Metodo dedicado a comprobar si existe un enemigo
+	 * Precondiciones: Ninguna
+	 * Entradas: Una Mazmorra
+	 * Salidas: Un boolean
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un booleano indicando si existe un enemigo o no.
+	 * 
+	 * Resguardo: public boolean comprobarEnemigo (Mazmorra mazmorra)
+		{
+			System.out.println("Llamada al metodo comprobarEnemigo");
+			return false;
+		}
+	 */
+	//Fin comprobarEnemigo
+	public boolean comprobarEnemigo (Mazmorra mazmorra)
+	{
+		boolean resultado = false;
+		
+		for (int i = 0; i < mazmorra.getMapa ().length; i++)
+		{
+			for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+			{
+				if (mazmorra.getMapa()[i][j].getJugador())
+				{
+					if (!mazmorra.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+					{
+						resultado = true;
+					}
+				}
+			}
+		}
+		
+		return resultado;
+	}
+	//Fin comprobarEnemigo
+	
+	/* Prototipo: boolean comprobarTienda (Mazmorra mazmorra)
+	 * Breve comentario: Metodo dedicado a comprobar si existe una tienda
+	 * Precondiciones: Ninguna
+	 * Entradas: Una Mazmorra
+	 * Salidas: Un boolean
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un booleano indicando si existe una tienda o no.
+	 * 
+	 * Resguardo: public boolean comprobarTienda (Mazmorra mazmorra)
+		{
+			System.out.println("Llamada al metodo comprobarTienda");
+			return false;
+		}
+	 */
+	public boolean comprobarTienda (Mazmorra mazmorra)
+	{
+		boolean resultado = false;
+		
+		for (int i = 0; i < mazmorra.getMapa ().length; i++)
+		{
+			for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+			{
+				if (mazmorra.getMapa()[i][j].getJugador())
+				{
+					if (!mazmorra.getMapa()[i][j].getShop().equals(new TiendaIMPL ()))
+					{
+						resultado = true;
+					}
+				}
+			}
+		}
+		
+		return resultado;
+	}
+	//Fin comprobarTienda
+	
 	/* Prototipo: void abrirTienda (Partida partida)
 	 * Breve comentario: Metodo dedicado a abrir la tienda
 	 * Precondiciones: Ninguna
@@ -829,15 +903,15 @@ public class GestoraJuego
 						System.out.print(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getNombre ());
 						System.out.println(". Daño: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getDmg() 
 											+ ". Precio: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getPrecio());
+						System.out.println();
+						System.out.println("0. Salir de la tienda");
+						System.out.println();
+						System.out.println();
 						
 					}
 				}
 			}
 		}
-		
-		System.out.println();
-		System.out.println("0. Salir de la tienda");
-		System.out.println();
 	}
 	//Fin abrirTienda
 	
@@ -886,13 +960,6 @@ public class GestoraJuego
 								partida.getJugador().setOro(partida.getJugador ().getOro () - partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto2 ().getPrecio());
 								resultado = true;
 							}
-							
-							else
-							{
-								System.out.println();
-								System.out.print("No tienes dinero suficiente para comprar este objeto");
-								System.out.println();
-							}
 						}
 						
 						else if (eleccion == 3)
@@ -903,13 +970,6 @@ public class GestoraJuego
 								partida.getJugador().setOro(partida.getJugador ().getOro () - partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto3 ().getPrecio());
 								resultado = true;
 							}
-							
-							else
-							{
-								System.out.println();
-								System.out.print("No tienes dinero suficiente para comprar este objeto");
-								System.out.println();
-							}
 						}
 						
 						else if (eleccion == 4)
@@ -919,13 +979,6 @@ public class GestoraJuego
 								partida.getJugador().addInventario(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ());
 								partida.getJugador().setOro(partida.getJugador ().getOro () - partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getPrecio());
 								resultado = true;
-							}
-							
-							else
-							{
-								System.out.println();
-								System.out.print("No tienes dinero suficiente para comprar este objeto");
-								System.out.println();
 							}
 						}
 					}
@@ -976,5 +1029,160 @@ public class GestoraJuego
 	}
 	//Fin comprobarFinNivel
 	
+	/* Prototipo: void interfazCombate (Partida partida)
+	 * Breve comentario: Metodo dedicado a mostrar la interfaz de un combate
+	 * Precondiciones: Ninguna
+	 * Entradas: Una Partida
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void interfazCombate (Partida partida)
+	 * {
+	 * 		System.out.println("Llamada al metodo interfazCombate");
+	 * }
+	 */
+	 public void interfazCombate (Partida partida)
+	 {
+		 boolean salir = false;
+		 for (int i = 0; i < partida.getMazmorra().getMapa().length && !salir; i++)
+		 {
+			 for (int j = 0; j < partida.getMazmorra().getMapa()[0].length && !salir; j++)
+			 {
+				 if (partida.getMazmorra().getMapa()[i][j].getJugador())
+				 {
+					 if (!partida.getMazmorra().getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+					 {
+						 System.out.println();
+						 System.out.println("Te enfrentas a:");
+						 System.out.println();
+						 partida.getMazmorra().getMapa()[i][j].getEnemy().imprimirEnemigo();
+						 System.out.println();
+						 System.out.println();
+						 System.out.println("Tus estadísticas son: ");
+						 System.out.println();
+						 partida.getJugador ().imprimirJugadorCombate();
+						 System.out.println();
+						 System.out.println();
+						 System.out.println("¿Qué deseas hacer?");
+						 System.out.println();
+						 System.out.println("1. Atacar");
+						 System.out.println("2. Utilizar un item");
+						 System.out.println("0. Dejar el combate");
+						 System.out.println();
+						 
+						 salir = true;
+					 }
+				 }
+			 }
+		 }
+	 }
+	//Fin interfazCombate
+	 
+	 /* Prototipo: Partida combate (Partida partida)
+		 * Breve comentario: Metodo dedicado a mostrar la interfaz de un combate
+		 * Precondiciones: Ninguna
+		 * Entradas: Una Partida
+		 * Salidas: Ninguna
+		 * Entradas/Salidas: Una Partida
+		 * Postcondiciones: Una Partida con el combate ya efectuado
+		 * 
+		 * Resguardo: public Partida combate (Partida partida)
+		 * {
+		 * 		System.out.println("Llamada al metodo combate");
+		 * 		return partida;
+		 * }
+		 */
+	 public Partida combate (Partida partida)
+	 {
+		 boolean salir = false;
+		 
+		 try
+		 {
+			 for (int i = 0; i < partida.getMazmorra().getMapa().length && !salir; i++)
+			 {
+				 for (int j = 0; j < partida.getMazmorra().getMapa()[0].length && !salir; j++)
+				 {
+					 if (partida.getMazmorra().getMapa()[i][j].getJugador())
+					 {
+						 if (!partida.getMazmorra().getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						 {
+							 partida.getMazmorra().getMapa()[i][j].getEnemy().setVida(partida.getMazmorra().getMapa()[i][j].getEnemy().getVida()  - (partida.getJugador ().getTotalDmg() - partida.getMazmorra().getMapa()[i][j].getEnemy().getDef ()));
+							 
+							 if (partida.getMazmorra().getMapa()[i][j].getEnemy().getVida() <= 0)
+							 {
+								 System.out.println("Has derrotado al enemigo!");
+								 System.out.println();
+								 System.out.println("Has conseguido:");
+								 System.out.println(partida.getMazmorra ().getMapa()[i][j].getEnemy().getDropItem().getNombre() + ". Y también "+partida.getMazmorra ().getMapa()[i][j].getEnemy().getDropDinero()+" monedas de oro.");
+								 partida.getJugador().setOro(partida.getJugador ().getOro() + partida.getMazmorra ().getMapa()[i][j].getEnemy().getDropDinero());
+								 partida.getJugador().addInventario(partida.getMazmorra ().getMapa()[i][j].getEnemy().getDropItem());
+								 partida.getMazmorra ().getMapa()[i][j].setEnemy(new EnemigoIMPL ());
+								 salir = true;
+							 }
+							 
+							 else if (partida.getMazmorra().getMapa()[i][j].getEnemyDmg() > partida.getJugador ().getTotalDef())
+							 {
+								 if ((partida.getJugador ().getVida() - (partida.getMazmorra().getMapa()[i][j].getEnemyDmg() - partida.getJugador ().getTotalDef())) > 1)
+								 {
+									 partida.getJugador().setVida(partida.getJugador ().getVida() - (partida.getMazmorra().getMapa()[i][j].getEnemyDmg() - partida.getJugador ().getTotalDef()));
+								 }
+							 }
+							 
+							 
+							 else if (partida.getJugador ().getVida() - (partida.getMazmorra().getMapa()[i][j].getEnemyDmg() - partida.getJugador ().getTotalDef()) < 1 )
+							 {
+								 partida.getJugador().setVida (0);
+							 }
+						 }
+					 }
+				 }
+			 }
+		 }
+		 catch (JuegoException e)
+		 {
+			 System.out.println(e);
+		 }
+		 
+		 return partida;
+	 }
+	 //Fin combate
+	 
+	 /* Prototipo: boolean comprobarEnemigoMuerto (Mazmorra mazmorra)
+		 * Breve comentario: Metodo dedicado a comprobar si un enemigo ha muerto
+		 * Precondiciones: Ninguna
+		 * Entradas: Una mazmorra
+		 * Salidas: Ninguna
+		 * Entradas/Salidas: Ninguna
+		 * Postcondiciones: Ninguna
+		 * 
+		 * Resguardo: public boolean comprobarEnemigoMuerto (Mazmorra mazmorra)
+			{
+				System.out.println("Llamada al metodo comprobarEnemigoMuerto");
+				return false;
+			}
+		 */
+		public boolean comprobarEnemigoMuerto (Mazmorra mazmorra)
+		{
+			boolean resultado = false;
+			
+			for (int i = 0; i < mazmorra.getMapa ().length; i++)
+			{
+				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				{
+					if (mazmorra.getMapa()[i][j].getJugador())
+					{
+						if (mazmorra.getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
+						{
+							resultado = true;
+						}
+					}
+				}
+			}
+			
+			return resultado;
+		}
+		//Fin comprobarEnemigoMuerto
+	 
 	//Fin Metodos Añadidos
 }

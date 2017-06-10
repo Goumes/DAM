@@ -12,8 +12,8 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 	//Propiedades
 	private String nombre;
 	private int vida;
-	private double dmg;
-	private double def;
+	private int dmg;
+	private int def;
 	private ItemIMPL dropItem;
 	private int dropDinero;
 	private int nivel;
@@ -25,8 +25,8 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 	{
 		nombre = "";
 		vida = 0;
-		dmg = 0.0;
-		def = 0.0;
+		dmg = 0;
+		def = 0;
 		dropItem = new ItemIMPL ();
 		dropDinero = 0;
 		nivel = 0;
@@ -45,7 +45,7 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		this.jefe = enemigo.jefe;
 	}
 	
-	public EnemigoIMPL (String nombre, int vida, double dmg, double def, ItemIMPL dropItem, int dropDinero, int nivel, boolean jefe)
+	public EnemigoIMPL (String nombre, int vida, int dmg, int def, ItemIMPL dropItem, int dropDinero, int nivel, boolean jefe)
 	{
 		this.nombre = nombre;
 		this.vida = vida;
@@ -79,22 +79,22 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		this.vida = vida;
 	}
 	
-	public double getDmg ()
+	public int getDmg ()
 	{
 		return dmg;
 	}
 	
-	public void setDmg (double dmg)
+	public void setDmg (int dmg)
 	{
 		this.dmg = dmg;
 	}
 	
-	public double getDef ()
+	public int getDef ()
 	{
 		return def;
 	}
 	
-	public void setDef (double def)
+	public void setDef (int def)
 	{
 		this.def = def;
 	}
@@ -271,6 +271,35 @@ public class EnemigoIMPL implements Cloneable, Comparable <EnemigoIMPL>, Seriali
 		
 		return resultado;
 	}
+	
+	/* Prototipo: void imprimirEnemigo
+	 * Breve comentario: Metodo dedicado a imprimir un enemigo
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void imprimirEnemigo ()
+	 * {
+	 * 		System.out.println("imprimirEnemigo");
+	 * }
+	 */
+	public void imprimirEnemigo ()
+	{
+		Object [][] tabla = new String[2][4];
+		tabla[0] = new String[] { "| Nombre", "| Vida", "| Daño Base", "| Defensa base" };
+		tabla[1] = new String[] {"| " + this.getNombre(), "| " + String.valueOf (this.getVida ()), "| " + String.valueOf (this.getDmg()), 
+								"| " + String.valueOf (this.getDef ())};
+
+		for (Object[] fila : tabla) 
+		{
+			System.out.format("%-30s%-20s%-20s%-20s\n", fila);
+		}
+		
+		System.out.println();
+	}
+	//Fin imprimirEnemigo
 	//Fin Metodos aÃ±adidos
 	
 }//fin_clase

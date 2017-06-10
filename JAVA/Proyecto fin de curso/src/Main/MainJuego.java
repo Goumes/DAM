@@ -222,6 +222,7 @@ public class MainJuego
 		int accion = 0;
 		int eleccionInventario = 0;
 		int eleccionTienda = 0;
+		int eleccionCombate = 0;
 		int numeroInventario = -1;
 		char utilizar = ' ';
 		char comprar = ' ';
@@ -229,6 +230,7 @@ public class MainJuego
 		int posicion = 0;
 		int borrar = 0;
 		char avanzar = ' ';
+		boolean muerto = false;
 		
 		//LeerValidarJugar
 		do
@@ -316,46 +318,14 @@ public class MainJuego
 				
 					switch (accion)
 					{
-						// Caso 1: Abrir cofre
+
 						case 1:
 							gestora.abrirCofre (partidaDefinitiva);
 						break;
-						// Caso 2: Ir tienda
+
 						case 2:
-							do
+							if (gestora.comprobarTienda (partidaDefinitiva.getMazmorra()))
 							{
-								gestora.abrirTienda(partidaDefinitiva);
-								eleccionTienda = teclado.nextInt();
-							}
-							while (eleccionTienda < 0 || eleccionTienda > 4);
-							
-							while (eleccionTienda != 0)
-							{
-								do
-								{
-									System.out.println();
-									System.out.println("¿Quieres comprar este objeto?");
-									System.out.println();
-									comprar = Character.toLowerCase(teclado.next().charAt(0));
-								}
-								while (comprar != 's' && comprar != 'n');
-								
-								if (comprar == 's')
-								{
-									if (gestora.elegirItemTienda(partidaDefinitiva, eleccionTienda))
-									{
-										System.out.println();
-										System.out.println("Has comprado el objeto y se ha añadido a tu inventario!");
-										System.out.println();
-									}
-									
-									else
-									{
-										System.out.println();
-										System.out.println("No tienes dinero suficiente para comprar este objeto");
-										System.out.println();
-									}
-								}
 								
 								do
 								{
@@ -363,12 +333,154 @@ public class MainJuego
 									eleccionTienda = teclado.nextInt();
 								}
 								while (eleccionTienda < 0 || eleccionTienda > 4);
+								
+								while (eleccionTienda != 0)
+								{
+									do
+									{
+										System.out.println();
+										System.out.println("¿Quieres comprar este objeto?");
+										System.out.println();
+										comprar = Character.toLowerCase(teclado.next().charAt(0));
+									}
+									while (comprar != 's' && comprar != 'n');
+									
+									if (comprar == 's')
+									{
+										if (gestora.elegirItemTienda(partidaDefinitiva, eleccionTienda))
+										{
+											System.out.println();
+											System.out.println("Has comprado el objeto y se ha añadido a tu inventario!");
+											System.out.println();
+										}
+										
+										else
+										{
+											System.out.println();
+											System.out.println("No tienes dinero suficiente para comprar este objeto");
+											System.out.println();
+										}
+									}
+									
+									do
+									{
+										gestora.abrirTienda(partidaDefinitiva);
+										eleccionTienda = teclado.nextInt();
+									}
+									while (eleccionTienda < 0 || eleccionTienda > 4);
+								}
+							}
+							
+							else
+							{
+								System.out.println();
+								System.out.println("Quizás deberías buscar una tienda antes de intentar comprar...");
+								System.out.println();
 							}
 						break;
-						// Caso 3: Pelear
+						
 						case 3:
+							
+							if (gestora.comprobarEnemigo(partidaDefinitiva.getMazmorra()))
+							{
+								do
+								{
+									gestora.interfazCombate(partidaDefinitiva);
+									eleccionCombate = teclado.nextInt();
+								}
+								while (eleccionCombate < 0 || eleccionCombate > 2);
+								
+								while (eleccionCombate != 0)
+								{
+									switch (eleccionCombate)
+									{
+									case 1:
+										gestora.combate(partidaDefinitiva);
+										
+										if (partidaDefinitiva.getJugador().getVida() == 0)
+										{
+											System.out.println("Has muerto...");
+											gestora.borrarPartida(numeroPartida);
+											muerto = true;
+											
+										}
+										
+									break;
+										
+									case 2:
+										
+										do
+										{
+											numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+											eleccionInventario = teclado.nextInt();
+										}
+										while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+										
+										while (eleccionInventario != 0)
+										{
+											
+											{
+												System.out.println();
+												System.out.println("¿Quieres utilizar este objeto?");
+												System.out.println();
+												utilizar = Character.toLowerCase(teclado.next().charAt(0));
+											}
+											while (utilizar != 's' && utilizar != 'n');
+											
+											if (utilizar == 's')
+											{
+												resultadoInventario = gestora.utilizarItem (partidaDefinitiva.getJugador(), eleccionInventario);
+												
+												if (resultadoInventario)
+												{
+													System.out.println();
+													System.out.println("Haz utilizado el item con éxito!");
+													System.out.println();
+												}
+												
+												else
+												{
+													System.out.println();
+													System.out.println("No puedes utilizar una poción de efecto temporal fuera de combate!");
+													System.out.println();
+												}
+											}
+											
+											do
+											{
+												numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+												eleccionInventario = teclado.nextInt();
+											}
+											while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+										}
+										
+									break;
+									}
+									
+									if (!gestora.comprobarEnemigoMuerto (partidaDefinitiva.getMazmorra()))
+									{
+										do
+										{
+											gestora.interfazCombate(partidaDefinitiva);
+											eleccionCombate = teclado.nextInt();
+										}
+										while (eleccionCombate < 0 || eleccionCombate > 2);
+									}
+									
+									else
+									{
+										eleccionCombate = 0;
+									}
+								}
+							}
+							
+							else
+							{
+								System.out.println("Deja de buscar pelea con las paredes y primero encuentra un enemigo.");
+							}
+							
 						break;
-						// Caso 4: Avanzar
+						
 						case 4:
 							do
 							{
@@ -399,7 +511,7 @@ public class MainJuego
 							}
 							
 						break;
-						// Caso 5: Abrir Inventario
+						
 						case 5:
 							
 							do
@@ -448,7 +560,7 @@ public class MainJuego
 								}
 							
 						break;
-						// Caso 6: Ver mapa
+
 						case 6:
 							partidaDefinitiva.getMazmorra ().printMazmorra ();
 						break;

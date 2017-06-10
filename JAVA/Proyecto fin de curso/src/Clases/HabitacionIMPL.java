@@ -232,22 +232,22 @@ public class HabitacionIMPL implements Serializable, Habitacion
 		shop.setDisponibilidad(disponibilidad);
 	}
 
-	public double getEnemyDmg() 
+	public int getEnemyDmg() 
 	{
 		return enemy.getDmg();
 	}
 
-	public void setEnemyDmg(double dmg) 
+	public void setEnemyDmg(int dmg) 
 	{
 		enemy.setDmg(dmg);
 	}
 
-	public double getEnemyDef() 
+	public int getEnemyDef() 
 	{
 		return enemy.getDef();
 	}
 
-	public void setEnemyDef(double def) 
+	public void setEnemyDef(int def) 
 	{
 		enemy.setDef(def);
 	}

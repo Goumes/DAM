@@ -9,8 +9,8 @@ Propiedades.
 				Int Vida			------------	Consultable / Modificable
 				Item dropItem		------------	Consultable / Modificable
 				Int dropDinero		------------	Consultable / Modificable
-				Double Dmg			------------	Consultable / Modificable
-				Double Def			------------	Consultable / Modificable
+				int Dmg			------------	Consultable / Modificable
+				int Def			------------	Consultable / Modificable
 				Int Nivel			------------	Consultable / Modificable
 	Derivadas:
 	Compartidas:
@@ -54,11 +54,11 @@ public interface Enemigo
 	int getVida ();
 	void setVida (int vida);
 	
-	double getDmg ();
-	void setDmg (double dmg);
+	int getDmg ();
+	void setDmg (int dmg);
 	
-	double getDef ();
-	void setDef (double def);
+	int getDef ();
+	void setDef (int def);
 	
 	int getDropDinero ();
 	void setDropDinero (int dinero);

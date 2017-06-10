@@ -371,6 +371,36 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		System.out.println();
 		*/
 	}
+	//Fin imprimirJugador
+	
+	/* Prototipo: void imprimirJugadorCombate
+	 * Breve comentario: Metodo dedicado a imprimir un jugador con sus estadísticas alteradas por los objetos
+	 * Precondiciones: Ninguna
+	 * Entradas: Ninguna
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void imprimirJugadorCombate ()
+	 * {
+	 * 		System.out.println("imprimirJugadorCombate");
+	 * }
+	 */
+	public void imprimirJugadorCombate ()
+	{
+		Object [][] tabla = new String[2][3];
+		tabla[0] = new String[] {"| Vida", "| Daño Total", "| Defensa Total" };
+		tabla[1] = new String[] {"| " + String.valueOf (this.getVida ()), "| " + String.valueOf (this.getTotalDmg()), 
+								"| " + String.valueOf (this.getTotalDef ()), "| " + String.valueOf (this.getOro ())  };
+
+		for (Object[] fila : tabla) 
+		{
+			System.out.format("%-20s%-20s%-20s\n", fila);
+		}
+		
+		System.out.println();
+	}
+	//Fin imprimirJugadorCombate
 	
 	
 	@Override
