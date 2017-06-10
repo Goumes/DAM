@@ -691,7 +691,6 @@ public class GestoraJuego
 			return mazmorra;
 		}
 	 */
-	//Fin
 	public Mazmorra moverJugador (Mazmorra mazmorra, int posicion)
 	{
 		boolean resultado = false;
@@ -780,5 +779,202 @@ public class GestoraJuego
 		
 		return mazmorra;
 	}
+	//Fin moverJugador
+	
+	/* Prototipo: void abrirTienda (Partida partida)
+	 * Breve comentario: Metodo dedicado a abrir la tienda
+	 * Precondiciones: Ninguna
+	 * Entradas: Una Partida
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public void abrirTienda (Partida partida)
+		{
+			System.out.println("Llamada al metodo abrirTienda");
+		}
+	 */
+	public void abrirTienda (Partida partida)
+	{
+		for (int i = 0; i < partida.getMazmorra ().getMapa ().length; i++)
+		{
+			for (int j = 0; j < partida.getMazmorra ().getMapa()[0].length; j++)
+			{
+				if (partida.getMazmorra ().getMapa()[i][j].getJugador())
+				{
+					if (!partida.getMazmorra ().getMapa()[i][j].getShop().equals (new TiendaIMPL ()))
+					{
+						System.out.println("Bienvenido a tu tienda de confianza. ¿Algo de tu interés? Tienes " +partida.getJugador().getOro ()+" monedas de oro.");
+						System.out.println();
+						System.out.println();
+						System.out.print(1 + ". ");
+						System.out.print(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto1 ().getNombre ());
+						System.out.println(". Efecto: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto1 ().getEfecto() 
+											+ ". Precio: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto1 ().getPrecio());
+						
+						System.out.println();
+						System.out.print(2 + ". ");
+						System.out.print(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto2 ().getNombre ());
+						System.out.println(". Efecto: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto2 ().getEfecto() 
+											+ ". Precio: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto2 ().getPrecio());
+						
+						System.out.println();
+						System.out.print(3 + ". ");
+						System.out.print(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto3 ().getNombre ());
+						System.out.println(". Efecto: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto3 ().getEfecto() 
+											+ ". Precio: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto3 ().getPrecio());
+						
+						System.out.println();
+						System.out.print(4 + ". ");
+						System.out.print(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getNombre ());
+						System.out.println(". Daño: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getDmg() 
+											+ ". Precio: " + partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getPrecio());
+						
+					}
+				}
+			}
+		}
+		
+		System.out.println();
+		System.out.println("0. Salir de la tienda");
+		System.out.println();
+	}
+	//Fin abrirTienda
+	
+	/* Prototipo: Partida elegirItemTienda (Partida partida, int eleccion)
+	 * Breve comentario: Metodo dedicado a abrir la tienda
+	 * Precondiciones: Ninguna
+	 * Entradas: Un entero indicando la eleccion
+	 * Salidas: Un booleano
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Un booleano indicando si se ha comprado correctamente el objeto o no
+	 * 
+	 * Resguardo: public boolean elegirItemTienda (Partida partida, int eleccion)
+		{
+			System.out.println("Llamada al metodo elegirItemTienda");
+			return partida;
+		}
+	 */
+	public boolean elegirItemTienda (Partida partida, int eleccion)
+	{
+		boolean resultado = false;
+		
+		try
+		{
+			for (int i = 0; i < partida.getMazmorra ().getMapa ().length; i++)
+			{
+				for (int j = 0; j < partida.getMazmorra ().getMapa()[0].length; j++)
+				{
+					if (partida.getMazmorra ().getMapa()[i][j].getJugador())
+					{
+						if (eleccion == 1)
+						{
+							if (partida.getJugador().getOro() >= partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto1 ().getPrecio())
+							{
+								partida.getJugador().addInventario(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto1 ());
+								partida.getJugador().setOro(partida.getJugador ().getOro () - partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto1 ().getPrecio());
+								resultado = true;
+							}
+
+						}
+						
+						else if (eleccion == 2)
+						{
+							if (partida.getJugador().getOro() >= partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto2 ().getPrecio())
+							{
+								partida.getJugador().addInventario(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto2 ());
+								partida.getJugador().setOro(partida.getJugador ().getOro () - partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto2 ().getPrecio());
+								resultado = true;
+							}
+							
+							else
+							{
+								System.out.println();
+								System.out.print("No tienes dinero suficiente para comprar este objeto");
+								System.out.println();
+							}
+						}
+						
+						else if (eleccion == 3)
+						{
+							if (partida.getJugador().getOro() >= partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto3 ().getPrecio())
+							{
+								partida.getJugador().addInventario(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto3 ());
+								partida.getJugador().setOro(partida.getJugador ().getOro () - partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto3 ().getPrecio());
+								resultado = true;
+							}
+							
+							else
+							{
+								System.out.println();
+								System.out.print("No tienes dinero suficiente para comprar este objeto");
+								System.out.println();
+							}
+						}
+						
+						else if (eleccion == 4)
+						{
+							if (partida.getJugador().getOro() >= partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getPrecio())
+							{
+								partida.getJugador().addInventario(partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ());
+								partida.getJugador().setOro(partida.getJugador ().getOro () - partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getPrecio());
+								resultado = true;
+							}
+							
+							else
+							{
+								System.out.println();
+								System.out.print("No tienes dinero suficiente para comprar este objeto");
+								System.out.println();
+							}
+						}
+					}
+				}
+			}
+		}
+		catch (JuegoException e)
+		{
+			System.out.println(e);
+		}
+		return resultado;
+	}
+	//Fin elegirItemTienda
+	
+	/* Prototipo: boolean comprobarFinNivel (Mazmorra mazmorra)
+	 * Breve comentario: Metodo dedicado a comprobar si es posible avanzar al siguiente nivel
+	 * Precondiciones: Ninguna
+	 * Entradas: Una mazmorra
+	 * Salidas: Ninguna
+	 * Entradas/Salidas: Ninguna
+	 * Postcondiciones: Ninguna
+	 * 
+	 * Resguardo: public boolean comprobarFinNivel (Mazmorra mazmorra)
+		{
+			System.out.println("Llamada al metodo comprobarFinNivel");
+			return false;
+		}
+	 */
+	public boolean comprobarFinNivel (Mazmorra mazmorra)
+	{
+		boolean resultado = false;
+		
+		for (int i = 0; i < mazmorra.getMapa ().length; i++)
+		{
+			for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+			{
+				if (mazmorra.getMapa()[i][j].getSalida())
+				{
+					if (mazmorra.getMapa ()[i][j].getJugador())
+					{
+						resultado = true;
+					}
+				}
+			}
+		}
+		
+		return resultado;
+	}
+	//Fin comprobarFinNivel
+	
 	//Fin Metodos Añadidos
 }

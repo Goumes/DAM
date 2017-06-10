@@ -79,11 +79,14 @@ public class MainJuego
 	public static void printPartidas (Partida partida1, Partida partida2, Partida partida3)
 	{
 		System.out.println("Selecciona una partida:");
+		System.out.println();
 		
 		if (partida1.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
 		{
 			System.out.println("Partida 1: Crear nueva partida");
+			System.out.println();
 		}
+		
 		else
 		{
 			System.out.println();
@@ -95,11 +98,11 @@ public class MainJuego
 		if (partida2.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
 		{
 			System.out.println("Partida 2: Crear nueva partida");
+			System.out.println();
 		}
 		
 		else
 		{
-			System.out.println();
 			System.out.println("Partida 2: ");
 			System.out.println();
 			partida2.imprimirJugador();
@@ -108,6 +111,7 @@ public class MainJuego
 		if (partida3.equals(new Partida (new Mazmorra (), new JugadorIMPL ())))
 		{
 			System.out.println("Partida 3: Crear nueva partida");
+			System.out.println();
 		}
 		
 		else
@@ -212,16 +216,19 @@ public class MainJuego
 		Partida partida1 = new Partida ();
 		Partida partida2 = new Partida ();
 		Partida partida3 = new Partida ();
-		Partida partidaDefinitiva = new Partida ();
+		Partida partidaDefinitiva = null;
 		GestoraJuego gestora = new GestoraJuego ();
 		GestoraAleatoria gestoraAleatoria = new GestoraAleatoria ();
 		int accion = 0;
 		int eleccionInventario = 0;
+		int eleccionTienda = 0;
 		int numeroInventario = -1;
 		char utilizar = ' ';
+		char comprar = ' ';
 		boolean resultadoInventario = false;
 		int posicion = 0;
 		int borrar = 0;
+		char avanzar = ' ';
 		
 		//LeerValidarJugar
 		do
@@ -234,37 +241,42 @@ public class MainJuego
 		
 		while (ejecutar == 's')
 		{
-		
-			//LeerPartidas
-			partida1 = gestora.leerPartida (1);
-			partida2 = gestora.leerPartida (2);
-			partida3 = gestora.leerPartida (3);
-			//Fin LeerPartidas
 			
-			//PrintElegirBorrarPartidas
-			do
-			{
-				MainJuego.printPartidas (partida1, partida2, partida3);
-				numeroPartida = teclado.nextInt();
-			}
-			while (numeroPartida < 0 || numeroPartida > 3);
 			
-			if (numeroPartida != 0)
+			while (partidaDefinitiva == null)
 			{
-				partidaDefinitiva = gestora.asignarPartida (partida1, partida2, partida3, numeroPartida);
-			}
-			
-			else
-			{
+				
+				//LeerPartidas
+				partida1 = gestora.leerPartida (1);
+				partida2 = gestora.leerPartida (2);
+				partida3 = gestora.leerPartida (3);
+				//Fin LeerPartidas
+				
+				//PrintElegirBorrarPartidas
 				do
 				{
-					menuBorrar ();
-					borrar = teclado.nextInt();
+					MainJuego.printPartidas (partida1, partida2, partida3);
+					numeroPartida = teclado.nextInt();
 				}
-				while (borrar < 0 || borrar > 3);
+				while (numeroPartida < 0 || numeroPartida > 3);
 				
-				gestora.borrarPartida (borrar);
-			}
+				if (numeroPartida != 0)
+				{
+					partidaDefinitiva = gestora.asignarPartida (partida1, partida2, partida3, numeroPartida);
+				}
+				
+				else
+				{
+					do
+					{
+						menuBorrar ();
+						borrar = teclado.nextInt();
+					}
+					while (borrar < 0 || borrar > 3);
+					
+					gestora.borrarPartida (borrar);
+				}
+			}//Fin mientras
 			
 			//Fin PrintElegirBorrarPartidas
 		
@@ -310,6 +322,48 @@ public class MainJuego
 						break;
 						// Caso 2: Ir tienda
 						case 2:
+							do
+							{
+								gestora.abrirTienda(partidaDefinitiva);
+								eleccionTienda = teclado.nextInt();
+							}
+							while (eleccionTienda < 0 || eleccionTienda > 4);
+							
+							while (eleccionTienda != 0)
+							{
+								do
+								{
+									System.out.println();
+									System.out.println("¿Quieres comprar este objeto?");
+									System.out.println();
+									comprar = Character.toLowerCase(teclado.next().charAt(0));
+								}
+								while (comprar != 's' && comprar != 'n');
+								
+								if (comprar == 's')
+								{
+									if (gestora.elegirItemTienda(partidaDefinitiva, eleccionTienda))
+									{
+										System.out.println();
+										System.out.println("Has comprado el objeto y se ha añadido a tu inventario!");
+										System.out.println();
+									}
+									
+									else
+									{
+										System.out.println();
+										System.out.println("No tienes dinero suficiente para comprar este objeto");
+										System.out.println();
+									}
+								}
+								
+								do
+								{
+									gestora.abrirTienda(partidaDefinitiva);
+									eleccionTienda = teclado.nextInt();
+								}
+								while (eleccionTienda < 0 || eleccionTienda > 4);
+							}
 						break;
 						// Caso 3: Pelear
 						case 3:
@@ -323,7 +377,27 @@ public class MainJuego
 								posicion = teclado.nextInt ();
 							}
 							while (posicion < 0 || posicion > 4);
+							
 							partidaDefinitiva.setMazmorra(gestora.moverJugador (partidaDefinitiva.getMazmorra(), posicion));
+							
+							if (gestora.comprobarFinNivel(partidaDefinitiva.getMazmorra()))
+							{
+								do
+								{
+									System.out.println();
+									System.out.println("¿Quieres avanzar al siguiente nivel?");
+									System.out.println();
+									avanzar = Character.toLowerCase(teclado.next ().charAt (0));
+								}
+								
+								while (avanzar != 's' && avanzar != 'n');
+								
+								if (avanzar == 's')
+								{
+									partidaDefinitiva.setMazmorra(gestoraAleatoria.generarMazmorraAleatoria());
+								}
+							}
+							
 						break;
 						// Caso 5: Abrir Inventario
 						case 5:
@@ -412,6 +486,8 @@ public class MainJuego
 				ejecutar = Character.toLowerCase(teclado.next().charAt(0));
 			}
 			while (ejecutar != 's' && ejecutar != 'n');
+			
+			partidaDefinitiva = null;
 			//Fin Preguntar JugarOtraVez
 		
 		}//Fin_Mientras QuieraJugar
