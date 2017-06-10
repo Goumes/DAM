@@ -699,7 +699,7 @@ public class GestoraJuego
 		{
 			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
 			{
-				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				for (int j = 0; j < mazmorra.getMapa()[0].length && !resultado; j++)
 				{
 					if (mazmorra.getMapa()[i][j].getJugador())
 					{
@@ -718,7 +718,7 @@ public class GestoraJuego
 		{
 			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
 			{
-				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				for (int j = 0; j < mazmorra.getMapa()[0].length && !resultado; j++)
 				{
 					if (mazmorra.getMapa()[i][j].getJugador())
 					{
@@ -737,7 +737,7 @@ public class GestoraJuego
 		{
 			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
 			{
-				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				for (int j = 0; j < mazmorra.getMapa()[0].length && !resultado; j++)
 				{
 					if (mazmorra.getMapa()[i][j].getJugador())
 					{
@@ -756,7 +756,7 @@ public class GestoraJuego
 		{
 			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
 			{
-				for (int j = 0; j < mazmorra.getMapa()[0].length; j++)
+				for (int j = 0; j < mazmorra.getMapa()[0].length && !resultado; j++)
 				{
 					if (mazmorra.getMapa()[i][j].getJugador())
 					{
