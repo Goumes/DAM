@@ -490,7 +490,10 @@ public class MainJuego
 							}
 							while (posicion < 0 || posicion > 4);
 							
-							partidaDefinitiva.setMazmorra(gestora.moverJugador (partidaDefinitiva.getMazmorra(), posicion));
+							if (posicion != 0)
+							{
+								partidaDefinitiva.setMazmorra(gestora.moverJugador (partidaDefinitiva.getMazmorra(), posicion));
+							}
 							
 							if (gestora.comprobarFinNivel(partidaDefinitiva.getMazmorra()))
 							{

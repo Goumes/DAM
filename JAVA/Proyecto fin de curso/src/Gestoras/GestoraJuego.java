@@ -972,7 +972,7 @@ public class GestoraJuego
 							}
 						}
 						
-						else if (eleccion == 4)
+						else
 						{
 							if (partida.getJugador().getOro() >= partida.getMazmorra ().getMapa()[i][j].getShop().getObjeto4 ().getPrecio())
 							{
