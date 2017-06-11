@@ -259,9 +259,12 @@ END
 
 GO
 
-CREATE FUNCTION dividirFondos ()
-RETURNS TABLE AS
-	RETURN (SELECT P.Categoria,
+CREATE PROCEDURE dividirAsignarFondos
+AS
+BEGIN
+	DECLARE @tabla TABLE (categoria INT, Valor MONEY)
+	INSERT INTO @tabla
+	SELECT P.Categoria, Fondos,
 			CASE 
 				WHEN Categoria = 1 THEN (dbo.calcularFondosTotales ()) * 0.16
 				WHEN Categoria = 2 THEN (dbo.calcularFondosTotales ()) * 0.075
@@ -270,7 +273,9 @@ RETURNS TABLE AS
 				WHEN Categoria = 5 THEN (dbo.calcularFondosTotales ()) * 0.09
 				ELSE (dbo.calcularFondosTotales ()) * 0.075
 			END Fondos
-			FROM Premios as P)
+			FROM Premios as P
+END
+
 
 /* Crea un procedimiento que grabe una apuesta simple. Los parámetros de entrada
 
@@ -316,7 +321,7 @@ BEGIN
 			INSERT INTO Boletos (IDJornada, NumeroApuestas)
 			VALUES (@IDJornada, 1)
 
-			SET @NumeroBoleto = (SELECT MAX (ID) FROM Boletos) -- Necesito la transacción para que esta consulta no de fallo
+			SET @NumeroBoleto = (SELECT MAX (ID) FROM Boletos) -- Necesito la transacción para que estas operaciones se hagan correctamente
 
 			COMMIT TRANSACTION
 		END
