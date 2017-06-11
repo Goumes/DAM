@@ -284,8 +284,8 @@ public class GestoraArchivos
 			oos.writeObject(new EnemigoIMPL ("Disco segador", 20, 60, 0, gestora.itemAleatorio (), 30, 1, false)); 
 			oos.writeObject(new EnemigoIMPL ("Dakurion", 200, 50, 30, gestora.itemAleatorio (), 200, 1, true)); 
 			oos.writeObject(new EnemigoIMPL ("Basilisk", 50, 20, 20, gestora.itemAleatorio (), 70, 2, false)); 
-			oos.writeObject(new EnemigoIMPL ("", 100, 40, 30, gestora.itemAleatorio (), 100, 2, false)); 
-			oos.writeObject(new EnemigoIMPL ("", 40, 100, 0, gestora.itemAleatorio (), 80, 2, false)); 
+			oos.writeObject(new EnemigoIMPL ("Kalkhazka", 100, 40, 30, gestora.itemAleatorio (), 100, 2, false)); 
+			oos.writeObject(new EnemigoIMPL ("Jabalí ciclao", 40, 100, 0, gestora.itemAleatorio (), 80, 2, false)); 
 			oos.writeObject(new EnemigoIMPL ("Bankayas", 400, 80, 40, gestora.itemAleatorio (), 500, 2, true)); 
 		}
 		

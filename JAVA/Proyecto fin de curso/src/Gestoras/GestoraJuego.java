@@ -753,7 +753,7 @@ public class GestoraJuego
 			}
 		}
 		
-		else
+		else if (posicion == 4)
 		{
 			for (int i = 0; i < mazmorra.getMapa().length && !resultado; i++)
 			{
@@ -1107,7 +1107,10 @@ public class GestoraJuego
 					 {
 						 if (!partida.getMazmorra().getMapa()[i][j].getEnemy().equals(new EnemigoIMPL ()))
 						 {
-							 partida.getMazmorra().getMapa()[i][j].getEnemy().setVida(partida.getMazmorra().getMapa()[i][j].getEnemy().getVida()  - (partida.getJugador ().getTotalDmg() - partida.getMazmorra().getMapa()[i][j].getEnemy().getDef ()));
+							 if (partida.getMazmorra().getMapa()[i][j].getEnemyDef () < partida.getJugador ().getTotalDmg())
+							 {
+								 partida.getMazmorra().getMapa()[i][j].getEnemy().setVida(partida.getMazmorra().getMapa()[i][j].getEnemy().getVida()  - (partida.getJugador ().getTotalDmg() - partida.getMazmorra().getMapa()[i][j].getEnemy().getDef ()));
+							 }
 							 
 							 if (partida.getMazmorra().getMapa()[i][j].getEnemy().getVida() <= 0)
 							 {
