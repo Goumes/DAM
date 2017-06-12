@@ -48,6 +48,7 @@ GO
 CREATE TABLE Partidos
 (
 	ID INT IDENTITY (1,1) NOT NULL,
+	NumeroPartido INT NOT NULL,
 	Equipo1 VARCHAR (50) NOT NULL,
 	Equipo2 VARCHAR (50) NOT NULL,
 	Resultado VARCHAR (3) NULL,
@@ -56,9 +57,6 @@ CREATE TABLE Partidos
 	CONSTRAINT PK_Partidos PRIMARY KEY (ID),
 	CONSTRAINT FK_Partidos_Jornadas FOREIGN KEY (IDJornada) REFERENCES Jornadas (ID) ON UPDATE CASCADE ON DELETE NO ACTION
 )
-
-GO
-
 
 GO
 
@@ -260,20 +258,87 @@ END
 GO
 
 CREATE PROCEDURE dividirAsignarFondos
+	@IDJornada INT
 AS
 BEGIN
-	DECLARE @tabla TABLE (categoria INT, Valor MONEY)
-	INSERT INTO @tabla
-	SELECT P.Categoria, Fondos,
-			CASE 
-				WHEN Categoria = 1 THEN (dbo.calcularFondosTotales ()) * 0.16
-				WHEN Categoria = 2 THEN (dbo.calcularFondosTotales ()) * 0.075
-				WHEN Categoria = 3 THEN (dbo.calcularFondosTotales ()) * 0.075
-				WHEN Categoria = 4 THEN (dbo.calcularFondosTotales ()) * 0.075
-				WHEN Categoria = 5 THEN (dbo.calcularFondosTotales ()) * 0.09
-				ELSE (dbo.calcularFondosTotales ()) * 0.075
-			END Fondos
-			FROM Premios as P
+	INSERT INTO Premios (IDJornada, Categoria, Valor)
+	SELECT @IDJornada, T.Categoria, T.Fondos
+		FROM (SELECT P.Categoria,
+				CASE 
+					WHEN Categoria = 1 THEN (dbo.calcularFondosTotales ()) * 0.16
+					WHEN Categoria = 2 THEN (dbo.calcularFondosTotales ()) * 0.075
+					WHEN Categoria = 3 THEN (dbo.calcularFondosTotales ()) * 0.075
+					WHEN Categoria = 4 THEN (dbo.calcularFondosTotales ()) * 0.075
+					WHEN Categoria = 5 THEN (dbo.calcularFondosTotales ()) * 0.09
+					ELSE (dbo.calcularFondosTotales ()) * 0.075
+				END Fondos
+				FROM Premios as P) AS T
+END
+
+GO
+
+CREATE FUNCTION ConsultarAciertos (@IDBoleto INT)
+RETURNS @tabla TABLE (
+						Acierto1 BIT,
+						Acierto2 BIT,
+						Acierto3 BIT,
+						Acierto4 BIT,
+						Acierto5 BIT,
+						Acierto6 BIT,
+						Acierto7 BIT,
+						Acierto8 BIT,
+						Acierto9 BIT,
+						Acierto10 BIT,
+						Acierto11 BIT,
+						Acierto12 BIT,
+						Acierto13 BIT,
+						Acierto14 BIT,
+						Acierto15 BIT
+					 ) 
+AS
+BEGIN
+	IF EXISTS (SELECT *
+				 FROM Boletos_Partidos AS BP
+				 INNER JOIN
+				 Partidos AS P
+				 ON BP.IDPartido = P.ID
+				 WHERE GolesEquipo1 > GolesEquipo2 AND P.NumeroPartido = 3)
+	BEGIN
+		
+	END
+
+
+	RETURN
+END
+-- Falta consultar aciertos y asignar un premio a cada boleto ganador
+
+GO
+
+CREATE PROCEDURE asignarPremios
+	
+	AS
+BEGIN
+	DECLARE @Aciertos TABLE (
+						Acierto1 BIT,
+						Acierto2 BIT,
+						Acierto3 BIT,
+						Acierto4 BIT,
+						Acierto5 BIT,
+						Acierto6 BIT,
+						Acierto7 BIT,
+						Acierto8 BIT,
+						Acierto9 BIT,
+						Acierto10 BIT,
+						Acierto11 BIT,
+						Acierto12 BIT,
+						Acierto13 BIT,
+						Acierto14 BIT,
+						Acierto15 BIT
+					 ) 
+
+	INSERT INTO @Aciertos
+	SELECT *
+		FROM dbo.ConsultarAciertos ()
 END
 
 

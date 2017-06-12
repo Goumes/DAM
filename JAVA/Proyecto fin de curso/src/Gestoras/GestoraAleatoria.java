@@ -137,13 +137,13 @@ public class GestoraAleatoria
 			}
 		}
 		
-		else if (aleatorio.nextBoolean())
+		if (aleatorio.nextBoolean())
 		{
 			enemigo = enemigoAleatorio ();
 			habitacion.setEnemy(enemigo);
 		}
 		
-		else if (aleatorio.nextBoolean())
+		if (aleatorio.nextBoolean())
 		{
 			cofre = generarCofreAleatorio ();
 			habitacion.setCofreIMPL(cofre);
