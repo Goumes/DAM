@@ -1,4 +1,4 @@
 Implementar ventas
-Hacer que salga del bucle al morir
 Cambiar el inventario de combate para que acepte items temporales
 Comprobar si el código está hecho con el culo o no.
+Implementar Inputs Mismatch

@@ -235,6 +235,7 @@ public class MainJuego
 		{
 			System.out.println("Quieres jugar a 'UnknownName'? S/N");
 			ejecutar = Character.toLowerCase(teclado.next().charAt(0));
+
 		}
 		while (ejecutar != 's' && ejecutar != 'n');
 		//Fin LeerValidarJugar
@@ -255,8 +256,16 @@ public class MainJuego
 				//PrintElegirBorrarPartidas
 				do
 				{
-					MainJuego.printPartidas (partida1, partida2, partida3);
-					numeroPartida = teclado.nextInt();
+					try
+					{
+						MainJuego.printPartidas (partida1, partida2, partida3);
+						numeroPartida = teclado.nextInt();
+					}
+					catch (InputMismatchException e)
+					{
+						System.out.println("Ja ja que gracioso.");
+						teclado.next();
+					}
 				}
 				while (numeroPartida < 0 || numeroPartida > 3);
 				
