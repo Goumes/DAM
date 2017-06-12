@@ -10,7 +10,7 @@ public class GestoraJuego
 	 * Breve comentario: Subprograma dedicado a leer una partida del fichero
 	 * Precondiciones: Ninguna
 	 * Entradas: Un entero indicando el numero de partida deseado
-	 * Salidas: Una partida
+	 * Salidas: Una Partida
 	 * Entradas/Salidas: Ninguna
 	 * Postcondiciones: Una partida dependiendo de la selección recibida por parámetros
 	 * 
@@ -341,7 +341,7 @@ public class GestoraJuego
 	}
 	//Fin crearPartida
 	
-	/* Prototipo: void Jugador crearJugador ();
+	/* Prototipo: JugadorIMPL crearJugador ();
 	 * Breve comentario: Metodo dedicado a crear un jugador con datos de teclado
 	 * Precondiciones: Ninguna
 	 * Entradas: Ninguna
@@ -543,7 +543,7 @@ public class GestoraJuego
 	}
 	//Fin abrirCofre
 	
-	/* Prototipo: void mostrarInventario (JugadorIMPL jugador)
+	/* Prototipo: int mostrarInventario (JugadorIMPL jugador)
 	 * Breve comentario: Metodo dedicado a mostrar el inventario
 	 * Precondiciones: Ninguna
 	 * Entradas: Un JugadorIMPL
@@ -551,9 +551,10 @@ public class GestoraJuego
 	 * Entradas/Salidas: Ninguna
 	 * Postcondiciones: Un entero indicando el número de objetos que hay en el inventario
 	 * 
-	 * Resguardo: public void monstrarInventario (JugadorIMPL jugador)
+	 * Resguardo: public int monstrarInventario (JugadorIMPL jugador)
 		{
 			System.out.println("Llamada al metodo mostrarInventario");
+			return -1;
 		}	
 	 */
 	public int monstrarInventario (JugadorIMPL jugador)
@@ -608,6 +609,7 @@ public class GestoraJuego
 	 * Resguardo: public boolean utilizarItem (JugadorIMPL jugador, int posicion)
 		{
 			System.out.println("Llamada al metodo utilizarItem");
+			return false;
 		}	
 	 */
 	public boolean utilizarItem (JugadorIMPL jugador, int posicion)
@@ -806,7 +808,6 @@ public class GestoraJuego
 			return false;
 		}
 	 */
-	//Fin comprobarEnemigo
 	public boolean comprobarEnemigo (Mazmorra mazmorra)
 	{
 		boolean resultado = false;
@@ -925,7 +926,7 @@ public class GestoraJuego
 	}
 	//Fin abrirTienda
 	
-	/* Prototipo: Partida elegirItemTienda (Partida partida, int eleccion)
+	/* Prototipo: boolean elegirItemTienda (Partida partida, int eleccion)
 	 * Breve comentario: Metodo dedicado a abrir la tienda
 	 * Precondiciones: Ninguna
 	 * Entradas: Un entero indicando la eleccion
@@ -1007,9 +1008,9 @@ public class GestoraJuego
 	 * Breve comentario: Metodo dedicado a comprobar si es posible avanzar al siguiente nivel
 	 * Precondiciones: Ninguna
 	 * Entradas: Una mazmorra
-	 * Salidas: Ninguna
+	 * Salidas: Un booleano
 	 * Entradas/Salidas: Ninguna
-	 * Postcondiciones: Ninguna
+	 * Postcondiciones: TRUE si es el fin de nivel, FALSE sino.
 	 * 
 	 * Resguardo: public boolean comprobarFinNivel (Mazmorra mazmorra)
 		{
@@ -1164,9 +1165,9 @@ public class GestoraJuego
 		 * Breve comentario: Metodo dedicado a comprobar si un enemigo ha muerto
 		 * Precondiciones: Ninguna
 		 * Entradas: Una mazmorra
-		 * Salidas: Ninguna
+		 * Salidas: Un booleano
 		 * Entradas/Salidas: Ninguna
-		 * Postcondiciones: Ninguna
+		 * Postcondiciones: TRUE si el enemigo está muerto, FALSE sino.
 		 * 
 		 * Resguardo: public boolean comprobarEnemigoMuerto (Mazmorra mazmorra)
 			{

@@ -89,7 +89,6 @@ public class MainJuego
 		
 		else
 		{
-			System.out.println();
 			System.out.println("Partida 1: ");
 			System.out.println();
 			partida1.imprimirJugador ();
@@ -116,7 +115,6 @@ public class MainJuego
 		
 		else
 		{
-			System.out.println();
 			System.out.println("Partida 3: ");
 			System.out.println();
 			partida3.imprimirJugador ();
@@ -457,7 +455,7 @@ public class MainJuego
 									break;
 									}
 									
-									if (!gestora.comprobarEnemigoMuerto (partidaDefinitiva.getMazmorra()))
+									if (!gestora.comprobarEnemigoMuerto (partidaDefinitiva.getMazmorra()) && !muerto)
 									{
 										do
 										{
@@ -570,12 +568,20 @@ public class MainJuego
 					}// Fin_segun
 					
 					// PrintMenuLeerValidarAcciones
-					do
+					if (!muerto)
 					{
-						menuAcciones ();
-						accion = teclado.nextInt();
+						do
+						{
+							menuAcciones ();
+							accion = teclado.nextInt();
+						}
+						while (accion < 0 || accion > 6);
 					}
-					while (accion < 0 || accion > 6);
+					
+					else
+					{
+						accion = 0;
+					}
 					//Fin PrintMenuLeerValidarAcciones
 					
 				}// Fin_Mientras
@@ -583,13 +589,19 @@ public class MainJuego
 				//Fin Jugar
 				
 				//GuardarPartida *
-				gestora.guardarPartida(partidaDefinitiva.getMazmorra (), partidaDefinitiva.getJugador (), numeroPartida);
+				if (!muerto)
+				{
+					gestora.guardarPartida(partidaDefinitiva.getMazmorra (), partidaDefinitiva.getJugador (), numeroPartida);
+				}
 				//Fin GuardarPartida
 				
 				//PrintEstadoPartida *
-				System.out.println("Este es el estado de tu partida actual:");
-				System.out.println();
-				partidaDefinitiva.imprimirJugador();
+				if (!muerto)
+				{
+					System.out.println("Este es el estado de tu partida actual:");
+					System.out.println();
+					partidaDefinitiva.imprimirJugador();
+				}
 				//Fin PrintEstadoPartida
 			
 			//Fin EjecutarJuego
@@ -603,6 +615,7 @@ public class MainJuego
 			while (ejecutar != 's' && ejecutar != 'n');
 			
 			partidaDefinitiva = null;
+			muerto = false;
 			//Fin Preguntar JugarOtraVez
 		
 		}//Fin_Mientras QuieraJugar

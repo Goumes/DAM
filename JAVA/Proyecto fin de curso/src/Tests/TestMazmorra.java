@@ -26,7 +26,7 @@ public class TestMazmorra
 		ArmaIMPL pistola = new ArmaIMPL ("Rifle de pulsos", 45, 100);
 		ItemIMPL armadura = new ItemIMPL ("Casco de hierro", 70, 0, 20, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos");
 		ArrayList <ObjetoIMPL> inventario = new ArrayList <ObjetoIMPL> (){};
-		JugadorIMPL jugador = new JugadorIMPL ("pepe.java", 420, 1, 45, armadura, pistola, 0, inventario);
+		JugadorIMPL jugador = new JugadorIMPL ("pepe.java", 420, 420, 1, 45, armadura, pistola, 0, inventario);
 		Partida partida = null;
 		GestoraJuego gestora = new GestoraJuego ();
 		 
