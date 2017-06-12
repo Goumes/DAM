@@ -282,6 +282,9 @@ BEGIN
 END
 
 GO
+/* Procedimiento que devuelve una tabla que contiene el numero de apuesta y su resultado, si ha acertado o no, pasándole
+una id de boleto por parámetros.
+*/
 
 CREATE FUNCTION ConsultarAciertos (@IDBoleto INT)
 RETURNS @tabla TABLE (
@@ -418,6 +421,10 @@ END --END Procedure
 GO
 
 CREATE PROCEDURE asignarPremios
+AS
+BEGIN
+	print 'En construccion'
+END
 
 
 /* Crea un procedimiento que grabe una apuesta simple. Los parámetros de entrada
