@@ -263,7 +263,10 @@ public class MainJuego
 					}
 					catch (InputMismatchException e)
 					{
+						numeroPartida = -1;
+						System.out.println();
 						System.out.println("Ja ja que gracioso.");
+						System.out.println();
 						teclado.next();
 					}
 				}
