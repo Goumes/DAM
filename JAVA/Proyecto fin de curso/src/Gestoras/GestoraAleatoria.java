@@ -21,7 +21,7 @@ import Interfaces.Habitacion;
 
 public class GestoraAleatoria 
 {
-	/* Prototipo: generarTiendaAleatoria ()
+	/* Prototipo: TiendaIMPL generarTiendaAleatoria ()
 	 * Breve comentario: Metodo dedicado a la generación aleatoria de la tienda
 	 * Precondiciones: Ninguna
 	 * Entradas: Ninguna
@@ -105,7 +105,7 @@ public class GestoraAleatoria
 	}
 	//Fin generarCofreAleatorio
 	
-	/* Prototipo: generarHabitacionAleatoria ()
+	/* Prototipo: generarHabitacionAleatoria (boolean existeTienda)
 	 * Breve comentario: Metodo dedicado a la generación aleatoria de una habitacion
 	 * Precondiciones: Ninguna
 	 * Entradas: Un booleano indicando si existe ya una tienda en la mazmorra o no
@@ -113,7 +113,7 @@ public class GestoraAleatoria
 	 * Entradas/Salidas: Ninguna
 	 * Postcondiciones: Una HabitacionIMPL generada aleatoriamente
 	 * 
-	 * Resguardo: public HabitacionIMPL generarHabitacionAleatoria ()
+	 * Resguardo: public HabitacionIMPL generarHabitacionAleatoria (boolean existeTienda)
 		{
 			System.out.println("Llamada al metodo generarHabitacionAleatoria");
 			return (new HabitacionIMPL ());
@@ -242,14 +242,14 @@ public class GestoraAleatoria
 	 * Precondiciones: Ninguna
 	 * Entradas: Dos enteros y un booleano
 	 * Salidas: Ninguna
-	 * Entradas/Salidas: Un array de HabitacionIMPL
+	 * Entradas/Salidas: Un Array bidimensional de HabitacionIMPL
 	 * Postcondiciones: Un Array bidimensional de HabitacionIMPL con las mismas ya generadas aleatoriamente
 	 * 
-	 * Resguardo: 	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j, boolean tiendaGenerada)
+	 * Resguardo: public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j, boolean tiendaGenerada)
 		{
 			System.out.println("Llamada al metodo backtracking");
 			
-			return (new int [][] {});
+			return (new HabitacionIMPL [][] {});
 		}
 	 */
 	public HabitacionIMPL [][] backtracking (HabitacionIMPL [][] mapa, int i, int j, boolean tiendaGenerada)

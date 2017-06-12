@@ -8,8 +8,9 @@ import Exceptions.JuegoException;
 			Básicas: 
 				String nombre 		 		------------	Consultable / Modificable
 				Int vida 	      	 		------------	Consultable / Modificable
-				int baseDmg		 		------------ 	Consultable / Modificable
-				int baseDef		 		------------ 	Consultable / Modificable
+				int vidaTotal				------------	Consultable / Modificable
+				int baseDmg		 			------------ 	Consultable / Modificable
+				int baseDef		 			------------ 	Consultable / Modificable
 				Item Armadura		 		------------	Consultable / Modificable
 				Arma armaEquipada    		------------ 	Consultable / Modificable
 				Int oro		 	 			------------	Consultable / Modificable
@@ -30,6 +31,9 @@ import Exceptions.JuegoException;
  * 
  * Int getVida();
  * void setVida (Int vida);
+ * 
+ * int getVidaTotal();
+ * void setVidaTotal (int vidaTotal);
  * 
  * Double getBaseDmg ();
  * void setBaseDmg (double baseDmg);
@@ -54,7 +58,7 @@ import Exceptions.JuegoException;
  * double getTotalDef ();
  * 
  * 
- * Métodos añadidos: cambiarHabitacion
+ * Métodos añadidos: imprimirJugador (), imprimirJugadorCombate (), addInventario (), removeInventario ()
  * 
  * Restricciones:
  * 
@@ -66,6 +70,9 @@ public interface Jugador
 	 
 	 int getVida();
 	 void setVida (int vida) throws JuegoException;
+	 
+	 int getVidaTotal();
+	 void setVidaTotal (int vidaTotal) throws JuegoException;
 	 
 	 int getBaseDmg ();
 	 void setBaseDmg (int baseDmg) throws JuegoException;

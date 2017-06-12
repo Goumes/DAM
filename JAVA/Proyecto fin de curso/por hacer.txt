@@ -1,3 +1,6 @@
 Implementar ventas
 Hacer que salga del bucle al morir
 Cambiar el inventario de combate para que acepte items temporales
+Comprobar interfaces metodos:
+		- GestoraJuego
+		- Main

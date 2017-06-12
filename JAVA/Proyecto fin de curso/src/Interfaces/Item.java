@@ -1,9 +1,9 @@
 package Interfaces;
 /*
 Propiedades.
-	Básicas:	Double modificadorDmg	-----------		Consultable / Modificable
-				Double modificadorDef	-----------		Consultable / Modificable
-				Double duracion			-----------		Consultable / Modificable
+	Básicas:	int modificadorDmg		-----------		Consultable / Modificable
+				int modificadorDef		-----------		Consultable / Modificable
+				boolean duracion		-----------		Consultable / Modificable
 				String efecto			-----------		Consultable / Modificable
 	Derivadas:
 	Compartidas:
@@ -12,14 +12,14 @@ Fórmulas:
 
 Getes y Setes: 
 
-double getModificadorDmg();
-void setModificadorDmg (double modificadorDmg);
+int getModificadorDmg();
+void setModificadorDmg (int modificadorDmg);
 
-double getModificadorDef();
-void setModificadorDef (double modificadorDef);
+int getModificadorDef();
+void setModificadorDef (int modificadorDef);
 
-double getDuracion ();
-void setDuracion (doublé duracion);
+boolean getDuracion ();
+void setDuracion (boolean duracion);
 
 String getEfecto ();
 void setEfecto (String efecto);

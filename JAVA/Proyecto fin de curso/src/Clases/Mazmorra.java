@@ -16,9 +16,8 @@ import Interfaces.Habitacion;
  * Habitacion [] [] getMapa ();
  * void setMapa (Habitacion [] [] mapa);
  * 
- * Metodos añadidos:
+ * Metodos añadidos: printMazmorra ()
  * 
- * generarMazmorraAleatoria ();
  */
 
 public class Mazmorra implements Serializable, Cloneable

@@ -2,7 +2,7 @@ package Interfaces;
 /* Propiedades:
  * 
  * 		Basicas: 				String nombre		-----------		Consultable / Modificable
- * 								double precio		----------- 	Consultable / Modificable
+ * 								int precio		----------- 	Consultable / Modificable
  * 		Derivadas:
  * 		Compartidas:
  * 
@@ -10,8 +10,8 @@ package Interfaces;
  * String getNombre ();
  * void setNombre (String nombre);
  * 
- * double getPrecio ();
- * void setPrecio (double precio);
+ * int getPrecio ();
+ * void setPrecio (int precio);
  * 
  * Metodos añadidos: Ninguno
  * 

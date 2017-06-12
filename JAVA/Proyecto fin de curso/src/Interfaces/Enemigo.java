@@ -9,9 +9,10 @@ Propiedades.
 				Int Vida			------------	Consultable / Modificable
 				Item dropItem		------------	Consultable / Modificable
 				Int dropDinero		------------	Consultable / Modificable
-				int Dmg			------------	Consultable / Modificable
-				int Def			------------	Consultable / Modificable
+				int Dmg				------------	Consultable / Modificable
+				int Def				------------	Consultable / Modificable
 				Int Nivel			------------	Consultable / Modificable
+				boolean Jefe		------------ 	Consultable / Modificable
 	Derivadas:
 	Compartidas:
 
@@ -24,11 +25,11 @@ void setNombre (string Nombre);
 Int getVida ();
 void setVida (Int Vida); 
 
-Double getDmg ();
-void setDmg (double Dmg);
+int getDmg ();
+void setDmg (int Dmg);
 
-Double getDef ();
-void setDef (double Def);
+int getDef ();
+void setDef (int Def);
 
 Item getDropItem ();
 void setDropItem (Item dropItem);
@@ -39,9 +40,12 @@ void setDropDinero (Int dropDinero);
 Int getNivel ();
 void setNivel (Int Nivel);
 
+boolean getJefe ();
+void setJefe (boolean jefe);
 
 
-Métodos añadidos:
+
+Métodos añadidos: imprimirEnemigo
 
 Restricciones:
 */
@@ -65,4 +69,7 @@ public interface Enemigo
 	
 	int getNivel ();
 	void setNivel (int nivel);
+	
+	boolean getJefe ();
+	void setJefe (boolean jefe);
 }

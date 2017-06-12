@@ -6,6 +6,21 @@ import java.util.Objects;
 
 import Exceptions.JuegoException;
 
+/* Propiedades
+ * 		Basicas:		Mazmorra mazmorra		---------	Consultable / Modificable
+ * 						JugadorIMPL jugador		----------	Consultable / Modificable
+ * 		Derivadas:
+ * 		Compartidas:
+ * 
+ * Getters y setters:
+ * 
+ * Mazmorra getMazmorra ();
+ * void setMazmorra (Mazmorra mazmorra); 
+ * 
+ * Jugador getJugador ();
+ * void setJugador (Jugador jugador);
+ * 
+ */
 public class Partida implements Cloneable, Serializable
 {
 	private static final long serialVersionUID = 4877091961554436191L;
