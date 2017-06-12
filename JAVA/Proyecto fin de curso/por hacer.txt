@@ -1,5 +1,3 @@
-Menu accion: Pelear
-Corregir lo de las pociones de vida para que restauren, no sumen.
 Implementar ventas
-Preguntar cómo hacer que salga del bucle al morir
+Hacer que salga del bucle al morir
 Cambiar el inventario de combate para que acepte items temporales

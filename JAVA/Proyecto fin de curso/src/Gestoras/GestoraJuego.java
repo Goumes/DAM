@@ -367,6 +367,7 @@ public class GestoraJuego
 		try
 		{
 			jugador = new JugadorIMPL ();
+			jugador.setVidaTotal(100);
 			jugador.setVida(100);
 			jugador.setBaseDmg(50);
 			jugador.setBaseDef(50);
@@ -410,6 +411,7 @@ public class GestoraJuego
 						
 						puntos = puntos - cantidad;
 						
+						jugador.setVidaTotal(jugador.getVidaTotal() + (cantidad * 10));
 						jugador.setVida(jugador.getVida() + (cantidad * 10));
 						
 					break;
@@ -642,7 +644,15 @@ public class GestoraJuego
 						{
 							if (item.getModificadorVida() != 0)
 							{
-								jugador.setVida(jugador.getVida() + item.getModificadorVida());
+								if ((jugador.getVida() + item.getModificadorVida() > jugador.getVidaTotal()))
+								{
+									jugador.setVida(jugador.getVidaTotal());
+								}
+								else
+								{
+									jugador.setVida(jugador.getVida() + item.getModificadorVida());
+								}
+								
 								jugador.removeInventario(i);
 								resultado = true;
 							}
@@ -1130,12 +1140,11 @@ public class GestoraJuego
 								 {
 									 partida.getJugador().setVida(partida.getJugador ().getVida() - (partida.getMazmorra().getMapa()[i][j].getEnemyDmg() - partida.getJugador ().getTotalDef()));
 								 }
-							 }
-							 
-							 
-							 else if (partida.getJugador ().getVida() - (partida.getMazmorra().getMapa()[i][j].getEnemyDmg() - partida.getJugador ().getTotalDef()) < 1 )
-							 {
-								 partida.getJugador().setVida (0);
+								 
+								 else
+								 {
+									 partida.getJugador().setVida (0);
+								 }
 							 }
 						 }
 					 }

@@ -11,6 +11,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	private static final long serialVersionUID = 1888313045729668467L;
 	private String nombre;
 	private int vida;
+	private int vidaTotal;
 	private int baseDmg;
 	private int baseDef;
 	private ItemIMPL armadura;
@@ -23,6 +24,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	{
 		nombre = "";
 		vida = 0;
+		vidaTotal = 0;
 		baseDmg = 0;
 		baseDef = 0;
 		armadura = new ItemIMPL ();
@@ -35,6 +37,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	{
 		this.nombre = jugador.nombre;
 		this.vida = jugador.vida;
+		this.vidaTotal = jugador.vidaTotal;
 		this.baseDmg = jugador.baseDmg;
 		this.baseDef = jugador.baseDef;
 		this.armadura = jugador.armadura;
@@ -43,10 +46,11 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		this.inventario = jugador.inventario;
 	}
 	
-	public JugadorIMPL (String nombre, int vida, int baseDmg, int baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ArrayList<ObjetoIMPL> inventario) throws JuegoException
+	public JugadorIMPL (String nombre, int vida, int vidaTotal, int baseDmg, int baseDef,ItemIMPL armadura, ArmaIMPL armaEquipada, int oro, ArrayList<ObjetoIMPL> inventario) throws JuegoException
 	{
 		if ((nombre.equals(null) || nombre.equals(""))
 			|| (vida < 1 )
+			|| (vidaTotal < 1 )
 			|| (baseDmg < 0)
 			|| (baseDef < 0)
 			|| (oro < 0))
@@ -57,6 +61,11 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 			}
 			
 			else if (vida < 1) 
+			{
+				throw new JuegoException ("La vida no puede ser 0 o menor que 0");
+			}
+			
+			else if (vidaTotal < 1) 
 			{
 				throw new JuegoException ("La vida no puede ser 0 o menor que 0");
 			}
@@ -80,6 +89,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		{
 			this.nombre = nombre;
 			this.vida = vida;
+			this.vidaTotal = vidaTotal;
 			this.baseDmg = baseDmg;
 			this.baseDef = baseDef;
 			this.armadura = armadura;
@@ -122,6 +132,23 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 		else
 		{
 			this.vida = vida;
+		}
+	}
+	
+	public int getVidaTotal ()
+	{
+		return vidaTotal;
+	}
+	
+	public void setVidaTotal (int vidaTotal) throws JuegoException
+	{
+		if (vidaTotal < 0)
+		{
+			throw new JuegoException ("La vida no puede ser menor a 0");
+		}
+		else
+		{
+			this.vidaTotal = vidaTotal;
 		}
 	}
 	
@@ -318,14 +345,14 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	 */
 	public void imprimirJugador ()
 	{
-		Object [][] tabla = new String[2][5];
-		tabla[0] = new String[] { "| Nombre", "| Vida", "| Daño Base", "| Defensa base", "| Riqueza" };
-		tabla[1] = new String[] {"| " + this.getNombre(), "| " + String.valueOf (this.getVida ()), "| " + String.valueOf (this.getBaseDmg()), 
+		Object [][] tabla = new String[2][6];
+		tabla[0] = new String[] { "| Nombre", "| Vida", "| Vida total", "| Daño Base", "| Defensa base", "| Riqueza" };
+		tabla[1] = new String[] {"| " + this.getNombre(), "| " + String.valueOf (this.getVida ()), "| " + String.valueOf (this.getVidaTotal ()), "| " + String.valueOf (this.getBaseDmg()), 
 								"| " + String.valueOf (this.getBaseDef ()), "| " + String.valueOf (this.getOro ())  };
 
 		for (Object[] fila : tabla) 
 		{
-			System.out.format("%-20s%-20s%-20s%-20s%-20s\n", fila);
+			System.out.format("%-20s%-20s%-20s%-20s%-20s%-20s\n", fila);
 		}
 		
 		System.out.println();
@@ -388,14 +415,14 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	 */
 	public void imprimirJugadorCombate ()
 	{
-		Object [][] tabla = new String[2][3];
-		tabla[0] = new String[] {"| Vida", "| Daño Total", "| Defensa Total" };
-		tabla[1] = new String[] {"| " + String.valueOf (this.getVida ()), "| " + String.valueOf (this.getTotalDmg()), 
+		Object [][] tabla = new String[2][4];
+		tabla[0] = new String[] {"| Vida", "| Vida total", "| Daño Total", "| Defensa Total" };
+		tabla[1] = new String[] {"| " + String.valueOf (this.getVida ()), "| " + String.valueOf (this.getVidaTotal ()), "| " + String.valueOf (this.getTotalDmg()), 
 								"| " + String.valueOf (this.getTotalDef ()), "| " + String.valueOf (this.getOro ())  };
 
 		for (Object[] fila : tabla) 
 		{
-			System.out.format("%-20s%-20s%-20s\n", fila);
+			System.out.format("%-20s%-20s%-20s%-20s\n", fila);
 		}
 		
 		System.out.println();
@@ -414,6 +441,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 			
 			if (this.getNombre().equals(jugador.getNombre())
 				&& this.getVida () == jugador.getVida ()
+				&& this.getVidaTotal () == jugador.getVidaTotal ()
 				&& this.getBaseDmg () == jugador.getBaseDmg ()
 				&& this.getBaseDef () == jugador.getBaseDef ()
 				&& this.getArmadura().equals(jugador.getArmadura())
@@ -429,7 +457,7 @@ public class JugadorIMPL implements Cloneable, Comparable <JugadorIMPL>, Seriali
 	@Override
 	public int hashCode ()
 	{
-		return (Objects.hash (this.getNombre (), this.getVida (), this.getBaseDmg (), this.getBaseDef (), this.getArmadura (), this.getArmaEquipada (), this.getOro ()));
+		return (Objects.hash (this.getNombre (), this.getVida (), this.getVidaTotal(), this.getBaseDmg (), this.getBaseDef (), this.getArmadura (), this.getArmaEquipada (), this.getOro ()));
 	}
 	
 	@Override
