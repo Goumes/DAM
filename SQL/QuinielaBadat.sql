@@ -79,7 +79,8 @@ CREATE TABLE Apuestas
 	Prediccion12 VARCHAR (3) NOT NULL,
 	Prediccion13 VARCHAR (3) NOT NULL,
 	Prediccion14 VARCHAR (3) NOT NULL,
-	PrediccionPleno VARCHAR (4) NULL,
+	PrediccionPleno1 VARCHAR (4) NULL,
+	PrediccionPleno2 VARCHAR (4) NULL,
 
 	CONSTRAINT PK_Apuesta PRIMARY KEY (ID, IDBoleto),
 	CONSTRAINT FK_Apuestas_Boletos FOREIGN KEY (IDBoleto) REFERENCES Boletos (ID) ON UPDATE CASCADE ON DELETE CASCADE
@@ -141,7 +142,9 @@ ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion11 CHECK (Prediccion11
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion12 CHECK (Prediccion12 IN ('1', 'X', '2', '1X', '12', 'X2', '1X2'))
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion13 CHECK (Prediccion13 IN ('1', 'X', '2', '1X', '12', 'X2', '1X2'))
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion14 CHECK (Prediccion14 IN ('1', 'X', '2', '1X', '12', 'X2', '1X2'))
-ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Prediccion15 CHECK (PrediccionPleno IN ('0', '1', '2', 'M', '01', '02', '0M', 
+ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_PrediccionPleno1 CHECK (PrediccionPleno1 IN ('0', '1', '2', 'M', '01', '02', '0M', 
+																									'12', '1M', '2M', '012', '01M', '12M', '012M'))
+ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_PrediccionPleno2 CHECK (PrediccionPleno2 IN ('0', '1', '2', 'M', '01', '02', '0M', 
 																									'12', '1M', '2M', '012', '01M', '12M', '012M'))
 
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Longitud1 CHECK ((Tipo = 'Simple' AND LEN (Prediccion1) = 1) 
@@ -186,8 +189,11 @@ ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Longitud13 CHECK ((Tipo = 'Simpl
 ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_Longitud14 CHECK ((Tipo = 'Simple' AND LEN (Prediccion14) = 1) 
 																	OR (Tipo = 'Multiple' AND LEN (Prediccion14) IN (2, 3)))
 
-ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_LongitudPleno CHECK ((Tipo = 'Simple' AND LEN (PrediccionPleno) = 1)
-																	OR (Tipo = 'Multiple' AND LEN (PrediccionPleno) IN (2, 3, 4)))
+ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_LongitudPleno1 CHECK ((Tipo = 'Simple' AND LEN (PrediccionPleno1) = 1)
+																	OR (Tipo = 'Multiple' AND LEN (PrediccionPleno1) IN (2, 3, 4)))
+
+ALTER TABLE Apuestas ADD CONSTRAINT CK_Apuestas_LongitudPleno2 CHECK ((Tipo = 'Simple' AND LEN (PrediccionPleno2) = 1)
+																	OR (Tipo = 'Multiple' AND LEN (PrediccionPleno2) IN (2, 3, 4)))
 
 ALTER TABLE Boletos ADD CONSTRAINT CK_Boletos_NumeroApuesta CHECK (NumeroApuestas > 0 AND NumeroApuestas < 9)
 
@@ -279,67 +285,139 @@ GO
 
 CREATE FUNCTION ConsultarAciertos (@IDBoleto INT)
 RETURNS @tabla TABLE (
-						Acierto1 BIT,
-						Acierto2 BIT,
-						Acierto3 BIT,
-						Acierto4 BIT,
-						Acierto5 BIT,
-						Acierto6 BIT,
-						Acierto7 BIT,
-						Acierto8 BIT,
-						Acierto9 BIT,
-						Acierto10 BIT,
-						Acierto11 BIT,
-						Acierto12 BIT,
-						Acierto13 BIT,
-						Acierto14 BIT,
-						Acierto15 BIT
+						numeroApuesta INT NOT NULL,
+						resultado BIT NULL
 					 ) 
 AS
-BEGIN
-	IF EXISTS (SELECT *
-				 FROM Boletos_Partidos AS BP
-				 INNER JOIN
-				 Partidos AS P
-				 ON BP.IDPartido = P.ID
-				 WHERE GolesEquipo1 > GolesEquipo2 AND P.NumeroPartido = 3)
-	BEGIN
-		
-	END
+BEGIN 
+	DECLARE @contador INT
+	DECLARE @resultado BIT
+	SET @resultado = 0
+	DECLARE cursorAciertos CURSOR FOR SELECT numeroApuesta FROM @tabla
+	FETCH NEXT FROM cursorAciertos INTO @tabla
 
+	INSERT INTO @tabla (numeroApuesta)
+	VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12), (13), (14), (15)
+
+	--Comprobamos si el sorteo está cerrado
+	IF EXISTS (SELECT J.ID
+				FROM Jornadas AS J
+				INNER JOIN
+				Boletos AS B
+				ON J.ID = B.IDJornada
+				WHERE Estado = 'Cerrado')
+	BEGIN
+
+		WHILE (@@FETCH_STATUS = 0)
+		BEGIN
+
+			IF (@contador != 15)
+			BEGIN
+				--Si ha ganado el equipo1 el partido X (donde X es el contador)
+				IF EXISTS (SELECT P.ID
+							FROM Partidos AS P
+							INNER JOIN
+							Boletos_Partidos AS BP
+							ON P.ID = BP.IDPartido
+							WHERE GolesEquipo1 > GolesEquipo2 AND NumeroPartido = @contador)
+				BEGIN
+					-- Si la predicción es acertada
+					IF EXISTS (SELECT B.ID
+									FROM Boletos AS B
+									INNER JOIN
+									Apuestas AS A
+									ON B.ID = A.IDBoleto
+									WHERE ('Prediccion' + @contador) IN ('1', '1X', '12', '1X2'))
+					BEGIN
+						SET @resultado = 1
+					END --End if prediccion
+				END --END if ganar
+
+				--Si ha ganado el equipo2 el partido X (donde X es el contador)
+				ELSE IF EXISTS (SELECT P.ID
+							FROM Partidos AS P
+							INNER JOIN
+							Boletos_Partidos AS BP
+							ON P.ID = BP.IDPartido
+							WHERE GolesEquipo1 < GolesEquipo2 AND NumeroPartido = @contador)
+
+				BEGIN
+					-- Si la predicción es acertada
+					IF EXISTS (SELECT B.ID
+									FROM Boletos AS B
+									INNER JOIN
+									Apuestas AS A
+									ON B.ID = A.IDBoleto
+									WHERE ('Prediccion' + @contador) IN ('2', 'X2', '12', '1X2'))
+					BEGIN
+						SET @resultado = 1
+					END --End if prediccion
+				END --End if perder
+
+					--Si han empatado el partidoX (donde X es el contador)
+				ELSE IF EXISTS	(SELECT P.ID
+									FROM Partidos AS P
+									INNER JOIN
+									Boletos_Partidos AS BP
+									ON P.ID = BP.IDPartido
+									WHERE GolesEquipo1 = GolesEquipo2 AND NumeroPartido = @contador)
+				BEGIN
+					-- Si la prediccion es acertada
+					IF EXISTS (SELECT B.ID
+									FROM Boletos AS B
+									INNER JOIN
+									Apuestas AS A
+									ON B.ID = A.IDBoleto
+									WHERE ('Prediccion' + @contador) IN ('X', '1X', 'X2', '1X2'))
+					BEGIN
+						SET @resultado = 1
+					END --End if prediccion
+				END --End if empatar
+
+				INSERT INTO @tabla
+				SELECT @resultado
+					FROM @tabla
+					WHERE numeroApuesta = @contador
+
+				FETCH NEXT FROM cursorAciertos INTO @tabla
+				SET @contador = @contador + 1;
+			END --End if contador
+
+			ELSE
+			BEGIN
+				-- Si es la apuesta del pleno al 15 y es acertada
+				IF EXISTS (SELECT P.ID
+								FROM Partidos AS P
+								INNER JOIN
+								Boletos_Partidos AS BP
+								ON P.ID = BP.IDPartido
+								INNER JOIN
+								Boletos AS B
+								ON BP.IDBoleto = B.ID
+								INNER JOIN
+								Apuestas AS A
+								ON B.ID = A.IDBoleto
+								WHERE (PrediccionPleno1 LIKE '%' + GolesEquipo1 + '%' AND PrediccionPleno2 LIKE '%' + GolesEquipo2 + '%')
+										OR ((GolesEquipo1 > 2 AND PrediccionPleno1 LIKE '%[M]%') AND (PrediccionPleno2 LIKE '%' + GolesEquipo2 + '%'))
+										OR ((GolesEquipo2 > 2 AND PrediccionPleno2 LIKE '%[M]%') AND (PrediccionPleno1 LIKE '%' + GolesEquipo1 + '%'))
+										OR (GolesEquipo1 > 2 AND PrediccionPleno1 LIKE '%[M]%') AND (GolesEquipo2 > 2 AND PrediccionPleno2 LIKE '%[M]%'))
+				BEGIN
+					SET @resultado = 1
+				END --End if resultado igual
+			END-- End else
+		END --End while fetch
+	CLOSE cursorInserted
+	END --End IF Cerrado
+
+	DEALLOCATE cursorInserted
 
 	RETURN
-END
+END --END Procedure
 -- Falta consultar aciertos y asignar un premio a cada boleto ganador
 
 GO
 
 CREATE PROCEDURE asignarPremios
-	
-	AS
-BEGIN
-	DECLARE @Aciertos TABLE (
-						Acierto1 BIT,
-						Acierto2 BIT,
-						Acierto3 BIT,
-						Acierto4 BIT,
-						Acierto5 BIT,
-						Acierto6 BIT,
-						Acierto7 BIT,
-						Acierto8 BIT,
-						Acierto9 BIT,
-						Acierto10 BIT,
-						Acierto11 BIT,
-						Acierto12 BIT,
-						Acierto13 BIT,
-						Acierto14 BIT,
-						Acierto15 BIT
-					 ) 
-
-	INSERT INTO @Aciertos
-	SELECT *
-		FROM dbo.ConsultarAciertos ()
-END
 
 
 /* Crea un procedimiento que grabe una apuesta simple. Los parámetros de entrada
@@ -368,7 +446,8 @@ CREATE PROCEDURE grabarApuestaSimple
 	@Pronostico12 CHAR (1),
 	@Pronostico13 CHAR (1),
 	@Pronostico14 CHAR (1),
-	@Pronostico15 CHAR (1),
+	@PronosticoPleno1 CHAR (1),
+	@PronosticoPleno2 CHAR (1),
 	@IDJornada INT,
 	@NumeroBoleto INT = NULL
 AS
@@ -393,9 +472,9 @@ BEGIN
 
 		INSERT INTO Apuestas (IDBoleto, Tipo, Prediccion1, Prediccion2, Prediccion3, Prediccion4, Prediccion5, Prediccion6,
 							Prediccion7, Prediccion8, Prediccion9, Prediccion10, Prediccion11, Prediccion12, Prediccion13,
-							Prediccion14, PrediccionPleno)
+							Prediccion14, PrediccionPleno1, PrediccionPleno2)
 		VALUES(@NumeroBoleto, 'Simple', @Pronostico1, @Pronostico2, @Pronostico3, @Pronostico4, @Pronostico5, @Pronostico6,
-			@Pronostico7, @Pronostico8, @Pronostico9, @Pronostico10, @Pronostico11, @Pronostico12, @Pronostico13, @Pronostico14, @Pronostico15)
+			@Pronostico7, @Pronostico8, @Pronostico9, @Pronostico10, @Pronostico11, @Pronostico12, @Pronostico13, @Pronostico14, @PronosticoPleno1, @PronosticoPleno2)
 
 	END
 
