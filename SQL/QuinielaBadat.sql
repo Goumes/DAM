@@ -259,6 +259,7 @@ BEGIN
 		FROM Apuestas
 	
 	RETURN (@NumeroApuestas * 0.75) * 0.55
+	--Tener en cuenta las multiples
 END
 
 GO
@@ -282,10 +283,10 @@ BEGIN
 END
 
 GO
-/* Procedimiento que devuelve una tabla que contiene el numero de apuesta y su resultado, si ha acertado o no, pasándole
+
+/* Funcion que devuelve una tabla que contiene el numero de apuesta y su resultado, si ha acertado o no, pasándole
 una id de boleto por parámetros.
 */
-
 CREATE FUNCTION ConsultarAciertos (@IDBoleto INT)
 RETURNS @tabla TABLE (
 						numeroApuesta INT NOT NULL,
@@ -293,15 +294,14 @@ RETURNS @tabla TABLE (
 					 ) 
 AS
 BEGIN 
-	DECLARE @contador INT
 	DECLARE @resultado BIT
+	DECLARE @numeroApuesta INT
 	SET @resultado = 0
-	DECLARE cursorAciertos CURSOR FOR SELECT numeroApuesta FROM @tabla
-	FETCH NEXT FROM cursorAciertos INTO @tabla
-
 	INSERT INTO @tabla (numeroApuesta)
 	VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12), (13), (14), (15)
 
+	DECLARE cursorAciertos CURSOR FOR SELECT numeroApuesta FROM @tabla
+	FETCH NEXT FROM cursorAciertos INTO @numeroApuesta
 	--Comprobamos si el sorteo está cerrado
 	IF EXISTS (SELECT J.ID
 				FROM Jornadas AS J
@@ -314,7 +314,7 @@ BEGIN
 		WHILE (@@FETCH_STATUS = 0)
 		BEGIN
 
-			IF (@contador != 15)
+			IF (@numeroApuesta != 15)
 			BEGIN
 				--Si ha ganado el equipo1 el partido X (donde X es el contador)
 				IF EXISTS (SELECT P.ID
@@ -322,7 +322,7 @@ BEGIN
 							INNER JOIN
 							Boletos_Partidos AS BP
 							ON P.ID = BP.IDPartido
-							WHERE GolesEquipo1 > GolesEquipo2 AND NumeroPartido = @contador)
+							WHERE GolesEquipo1 > GolesEquipo2 AND NumeroPartido = @numeroApuesta)
 				BEGIN
 					-- Si la predicción es acertada
 					IF EXISTS (SELECT B.ID
@@ -330,7 +330,7 @@ BEGIN
 									INNER JOIN
 									Apuestas AS A
 									ON B.ID = A.IDBoleto
-									WHERE ('Prediccion' + @contador) IN ('1', '1X', '12', '1X2'))
+									WHERE ('Prediccion' + @numeroApuesta) IN ('1', '1X', '12', '1X2'))
 					BEGIN
 						SET @resultado = 1
 					END --End if prediccion
@@ -342,7 +342,7 @@ BEGIN
 							INNER JOIN
 							Boletos_Partidos AS BP
 							ON P.ID = BP.IDPartido
-							WHERE GolesEquipo1 < GolesEquipo2 AND NumeroPartido = @contador)
+							WHERE GolesEquipo1 < GolesEquipo2 AND NumeroPartido = @numeroApuesta)
 
 				BEGIN
 					-- Si la predicción es acertada
@@ -351,7 +351,7 @@ BEGIN
 									INNER JOIN
 									Apuestas AS A
 									ON B.ID = A.IDBoleto
-									WHERE ('Prediccion' + @contador) IN ('2', 'X2', '12', '1X2'))
+									WHERE ('Prediccion' + @numeroApuesta) IN ('2', 'X2', '12', '1X2'))
 					BEGIN
 						SET @resultado = 1
 					END --End if prediccion
@@ -363,7 +363,7 @@ BEGIN
 									INNER JOIN
 									Boletos_Partidos AS BP
 									ON P.ID = BP.IDPartido
-									WHERE GolesEquipo1 = GolesEquipo2 AND NumeroPartido = @contador)
+									WHERE GolesEquipo1 = GolesEquipo2 AND NumeroPartido = @numeroApuesta)
 				BEGIN
 					-- Si la prediccion es acertada
 					IF EXISTS (SELECT B.ID
@@ -371,19 +371,11 @@ BEGIN
 									INNER JOIN
 									Apuestas AS A
 									ON B.ID = A.IDBoleto
-									WHERE ('Prediccion' + @contador) IN ('X', '1X', 'X2', '1X2'))
+									WHERE ('Prediccion' + @numeroApuesta) IN ('X', '1X', 'X2', '1X2'))
 					BEGIN
 						SET @resultado = 1
 					END --End if prediccion
 				END --End if empatar
-
-				INSERT INTO @tabla
-				SELECT @resultado
-					FROM @tabla
-					WHERE numeroApuesta = @contador
-
-				FETCH NEXT FROM cursorAciertos INTO @tabla
-				SET @contador = @contador + 1;
 			END --End if contador
 
 			ELSE
@@ -408,6 +400,12 @@ BEGIN
 					SET @resultado = 1
 				END --End if resultado igual
 			END-- End else
+
+			UPDATE @tabla
+			SET resultado = @resultado
+			WHERE CURRENT OF cursorAciertos
+			--Forma chuli
+			FETCH NEXT FROM cursorAciertos INTO @numeroApuesta
 		END --End while fetch
 	CLOSE cursorInserted
 	END --End IF Cerrado
@@ -421,11 +419,83 @@ END --END Procedure
 GO
 
 CREATE PROCEDURE asignarPremios
+	@IDJornada INT
 AS
 BEGIN
-	print 'En construccion'
-END
+	DECLARE @tabla TABLE (IDBoleto INT,
+						  numeroApuesta INT,
+						  resultado BIT)
+	DECLARE @IDBoleto INT
+	DECLARE cursorPremios CURSOR FOR SELECT ID FROM Boletos WHERE IDJornada = @IDJornada
+	FETCH NEXT FROM cursorpremios INTO @IDBoleto
+	
+	WHILE (@@FETCH_STATUS = 0)
+	BEGIN
+		INSERT INTO @tabla (IDBoleto, numeroApuesta, resultado)
+		SELECT @IDBoleto, numeroApuesta, resultado
+			FROM dbo.ConsultarAciertos (@IDBoleto)
 
+		IF ((SELECT COUNT (resultado)
+				FROM @tabla
+				WHERE IDBoleto = @IDBoleto AND resultado = 1) = 14)
+		BEGIN
+			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
+			VALUES (@IDBoleto, (SELECT ID
+									FROM Premios
+									WHERE IDJornada = @IDJornada AND Categoria = 1))
+		END --End if
+
+		ELSE IF ((SELECT COUNT (resultado)
+					FROM @tabla
+					WHERE IDBoleto = @IDBoleto AND resultado = 1) = 13)
+		BEGIN
+			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
+			VALUES (@IDBoleto, (SELECT ID
+									FROM Premios
+									WHERE IDJornada = @IDJornada AND Categoria = 2))
+		END --End Else if
+
+		ELSE IF ((SELECT COUNT (resultado)
+					FROM @tabla
+					WHERE IDBoleto = @IDBoleto AND resultado = 1) = 12)
+		BEGIN
+			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
+			VALUES (@IDBoleto, (SELECT ID
+									FROM Premios
+									WHERE IDJornada = @IDJornada AND Categoria = 3))
+		END --End Else if
+
+		ELSE IF ((SELECT COUNT (resultado)
+					FROM @tabla
+					WHERE IDBoleto = @IDBoleto AND resultado = 1) = 11)
+		BEGIN
+			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
+			VALUES (@IDBoleto, (SELECT ID
+									FROM Premios
+									WHERE IDJornada = @IDJornada AND Categoria = 4))
+		END --End Else if
+
+		ELSE IF ((SELECT COUNT (resultado)
+					FROM @tabla
+					WHERE IDBoleto = @IDBoleto AND resultado = 1) = 10)
+		BEGIN
+			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
+			VALUES (@IDBoleto, (SELECT ID
+									FROM Premios
+									WHERE IDJornada = @IDJornada AND Categoria = 5))
+		END --End Else if
+
+		IF EXISTS ((SELECT resultado
+					FROM @tabla
+					WHERE IDBoleto = @IDBoleto AND resultado = 1 AND numeroApuesta = 15))
+		BEGIN
+			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
+			VALUES (@IDBoleto, (SELECT ID
+									FROM Premios
+									WHERE IDJornada = @IDJornada AND Categoria = 6))
+		END --End if
+	END --End While fetch
+END--End Procedure
 
 /* Crea un procedimiento que grabe una apuesta simple. Los parámetros de entrada
 
@@ -491,3 +561,5 @@ BEGIN
 		Print 'El sorteo debe estar abierto'
 	END
 END
+
+--leo@iesnervion.es
