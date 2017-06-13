@@ -10,9 +10,9 @@ public class TestEnemigo
 	{
 		try
 		{
-			ItemIMPL ataqueDefensaX = new ItemIMPL ("Ataque y Defensa X", 40, 5.0, 2.0, 0, true, "Aumenta tu ataque en 5 puntos y tu defensa en 2");
-			EnemigoIMPL aseolake = new EnemigoIMPL ("Jaranator", 100, 45.0, 25.0, ataqueDefensaX, 10, 3, false);
-			EnemigoIMPL aseolake2 = new EnemigoIMPL ("ElHipervinculos", 150, 60.0, 35.0, ataqueDefensaX, 20, 7, true);
+			ItemIMPL ataqueDefensaX = new ItemIMPL ("Ataque y Defensa X", 40, 5, 2, 0, true, "Aumenta tu ataque en 5 puntos y tu defensa en 2");
+			EnemigoIMPL aseolake = new EnemigoIMPL ("Jaranator", 100, 45, 25, ataqueDefensaX, 10, 3, false);
+			EnemigoIMPL aseolake2 = new EnemigoIMPL ("ElHipervinculos", 150, 60, 35, ataqueDefensaX, 20, 7, true);
 			EnemigoIMPL aseolake3;
 			
 			//Getes, setes y toString
@@ -22,9 +22,9 @@ public class TestEnemigo
 			System.out.println(aseolake.getVida());
 			aseolake.setVida (1);
 			System.out.println(aseolake.getDmg());
-			aseolake.setDmg (0.1);
+			aseolake.setDmg (0);
 			System.out.println(aseolake.getDef());
-			aseolake.setDef (999.9);
+			aseolake.setDef (999);
 			System.out.println(aseolake.getDropDinero());
 			aseolake.setDropDinero (99999);
 			System.out.println(aseolake.getNivel());

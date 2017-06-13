@@ -13,8 +13,8 @@ public class TestArma
 		
 		try
 		{
-			riflePulsos = new ArmaIMPL ("Rifle de pulsos", 45.5, 100);
-			cuchilloCombate = new ArmaIMPL ("Cuchillo de combate", 30.0, 40);
+			riflePulsos = new ArmaIMPL ("Rifle de pulsos", 45, 100);
+			cuchilloCombate = new ArmaIMPL ("Cuchillo de combate", 30, 40);
 			riflePulsos2 = new ArmaIMPL ();
 		}
 		
@@ -29,7 +29,7 @@ public class TestArma
 		System.out.println(riflePulsos.getDmg ());
 		System.out.println(riflePulsos.getPrecio ());
 		riflePulsos.setNombre ("Bomba de humo");
-		riflePulsos.setDmg (10.0);
+		riflePulsos.setDmg (10);
 		riflePulsos.setPrecio (20);
 		
 		System.out.println(riflePulsos.toString ());

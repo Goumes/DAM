@@ -17,9 +17,9 @@ public class TestJugador
 			ArmaIMPL pistola = new ArmaIMPL ("Rifle de pulsos", 45, 100);
 			ItemIMPL armadura = new ItemIMPL ("Casco de hierro", 70, 0, 20, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos");
 			ArrayList <ObjetoIMPL> inventario = null;
-			JugadorIMPL pepejava = new JugadorIMPL ("pepe.java", 420, 1, 45, armadura, pistola, 0, inventario);
-			JugadorIMPL pepejava2 = new JugadorIMPL ("pepe.java", 420, 1, 45, armadura, pistola, 0, inventario);
-			JugadorIMPL estoNoEsUnaCopiaDeIsaac = new JugadorIMPL ("EstoNoEsUnaCopiaDeIsaac", 3, 3.5, 0.0, armadura, pistola, 0, inventario);
+			JugadorIMPL pepejava = new JugadorIMPL ("pepe.java", 420, 420, 1, 45, armadura, pistola, 0, inventario);
+			JugadorIMPL pepejava2 = new JugadorIMPL ("pepe.java", 420, 420, 1, 45, armadura, pistola, 0, inventario);
+			JugadorIMPL estoNoEsUnaCopiaDeIsaac = new JugadorIMPL ("EstoNoEsUnaCopiaDeIsaac", 3, 3, 3, 0, armadura, pistola, 0, inventario);
 			JugadorIMPL pepejava3;
 			
 			
@@ -35,12 +35,12 @@ public class TestJugador
 			pepejava2.setVida (0);
 			System.out.println("--------------------");
 			System.out.println(pepejava.getBaseDmg ());
-			pepejava.setBaseDmg (50.0);
-			pepejava2.setBaseDmg (50.0);
+			pepejava.setBaseDmg (50);
+			pepejava2.setBaseDmg (50);
 			System.out.println("--------------------");
 			System.out.println(pepejava.getBaseDef ());
-			pepejava.setBaseDef (473.25);
-			pepejava2.setBaseDef (473.25);
+			pepejava.setBaseDef (473);
+			pepejava2.setBaseDef (473);
 			System.out.println("--------------------");
 			System.out.println(pepejava.toString ());
 			System.out.println("--------------------");
@@ -66,8 +66,8 @@ public class TestJugador
 			System.out.println("--------------------");
 			pepejava2.setNombre ("Aseoleik");
 			pepejava2.setVida (45);
-			pepejava2.setBaseDmg (60.0);
-			pepejava2.setBaseDef (43.25);
+			pepejava2.setBaseDmg (6);
+			pepejava2.setBaseDef (43);
 			System.out.println(pepejava.compareTo (pepejava3));
 			System.out.println(pepejava.compareTo (estoNoEsUnaCopiaDeIsaac));
 			System.out.println(pepejava.compareTo (pepejava2));

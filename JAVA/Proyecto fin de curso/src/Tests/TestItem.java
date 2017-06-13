@@ -9,8 +9,8 @@ public class TestItem
 	{
 		try
 		{
-			ItemIMPL pocion = new ItemIMPL ("Pocion de vida", 30, 0.0, 0.0, 0, false, "El jugador se bebe la pocion y se cura 25 de vida");
-			ItemIMPL casco = new ItemIMPL ("Casco de hierro", 70, 0.0, 20.0, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos");
+			ItemIMPL pocion = new ItemIMPL ("Pocion de vida", 30, 0, 0, 0, false, "El jugador se bebe la pocion y se cura 25 de vida");
+			ItemIMPL casco = new ItemIMPL ("Casco de hierro", 70, 0, 20, 0, false, "Un casco de hierro que aumenta la defensa en 20 puntos");
 			ItemIMPL pocionCopia = new ItemIMPL ();
 		
 			//Getes, setes y toString
@@ -20,9 +20,9 @@ public class TestItem
 			System.out.println(pocion.getPrecio ());
 			pocion.setPrecio(20);
 			System.out.println(pocion.getModificadorDmg ());
-			pocion.setModificadorDmg(0.0);
+			pocion.setModificadorDmg(0);
 			System.out.println(pocion.getModificadorDef ());
-			pocion.setModificadorDef(0.0);
+			pocion.setModificadorDef(0);
 			System.out.println(pocion.getDuracion ());
 			pocion.setDuracion(true);
 			System.out.println(pocion.getEfecto ());

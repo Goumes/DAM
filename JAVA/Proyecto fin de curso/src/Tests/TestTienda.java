@@ -11,14 +11,14 @@ public class TestTienda
 	{
 		try
 		{
-			ItemIMPL objeto1 = new ItemIMPL ("a", 1, 1.0, 1.0, 1, false, "aa");
-			ItemIMPL objeto2 = new ItemIMPL ("b", 2, 2.0, 2.0, 2, false, "ba");
+			ItemIMPL objeto1 = new ItemIMPL ("a", 1, 1, 1, 1, false, "aa");
+			ItemIMPL objeto2 = new ItemIMPL ("b", 2, 2, 2, 2, false, "ba");
 			
-			ItemIMPL objeto3 = new ItemIMPL ("c", 3, 3.0, 3.0, 3, false, "ca");
+			ItemIMPL objeto3 = new ItemIMPL ("c", 3, 3, 3, 3, false, "ca");
 			ArmaIMPL objeto4 = new ArmaIMPL ("Hacha estándar", 70, 300);
-			ItemIMPL objeto5 = new ItemIMPL ("e", 5, 5.0, 5.0, 5, false, "ea");
-			ItemIMPL objeto6 = new ItemIMPL ("f", 6, 6.0, 6.0, 6, false, "fa");
-			ItemIMPL objeto7 = new ItemIMPL ("g", 7, 7.0, 7.0, 7, false, "ga");
+			ItemIMPL objeto5 = new ItemIMPL ("e", 5, 5, 5, 5, false, "ea");
+			ItemIMPL objeto6 = new ItemIMPL ("f", 6, 6, 6, 6, false, "fa");
+			ItemIMPL objeto7 = new ItemIMPL ("g", 7, 7, 7, 7, false, "ga");
 			ArmaIMPL objeto8 =  new ArmaIMPL ("Hacha estándar 2", 70, 300);
 			
 			
