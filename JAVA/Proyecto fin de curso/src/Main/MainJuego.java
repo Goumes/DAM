@@ -476,6 +476,9 @@ public class MainJuego
 										if (partidaDefinitiva.getJugador().getVida() == 0)
 										{
 											System.out.println("Has muerto...");
+											System.out.println();
+											System.out.println("Este juego tiene derechos de copyright de Tera y de Jaranator-3000. Gracias por jugar.");
+											System.out.println();
 											gestora.borrarPartida(numeroPartida);
 											muerto = true;
 											
