@@ -51,6 +51,8 @@ CREATE TABLE Partidos
 	NumeroPartido INT NOT NULL,
 	Equipo1 VARCHAR (50) NOT NULL,
 	Equipo2 VARCHAR (50) NOT NULL,
+	GolesEquipo1 INT NULL,
+	GolesEquipo2 INT NULL,
 	Resultado VARCHAR (3) NULL,
 	IDJornada INT NOT NULL,
 	
@@ -92,12 +94,10 @@ CREATE TABLE Boletos_Partidos
 (
 	IDBoleto INT NOT NULL,
 	IDPartido INT NOT NULL,
-	GolesEquipo1 INT NULL,
-	GolesEquipo2 INT NULL,
 
 	CONSTRAINT PK_Boletos_Partidos PRIMARY KEY (IDBoleto, IDPartido),
 	CONSTRAINT FK_Boletos_Partidos_Boletos FOREIGN KEY (IDBoleto) REFERENCES Boletos (ID) ON UPDATE CASCADE ON DELETE NO ACTION,
-	CONSTRAINT FK_Boletos_Partidos_Partidos FOREIGN KEY (IDPartido) REFERENCES Partidos (ID) ON UPDATE NO ACTION ON DELETE NO ACTION --Cambiar estos dos update y cascade
+	CONSTRAINT FK_Boletos_Partidos_Partidos FOREIGN KEY (IDPartido) REFERENCES Partidos (ID) ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 
 GO
@@ -199,6 +199,7 @@ ALTER TABLE Boletos ADD CONSTRAINT CK_Boletos_NumeroApuesta CHECK (NumeroApuesta
 
 GO
 
+--Trigger que comprueba que no se puedan hacer mas de una apuesta múltiple
 CREATE TRIGGER numeroApuestas ON Apuestas
 AFTER INSERT AS
 
@@ -215,6 +216,7 @@ END
 
 GO
 
+--Trigger que cancela un insert si mete más apuestas de las posibles
 CREATE TRIGGER numeroApuestasTotales ON Apuestas
 AFTER INSERT AS
 
@@ -231,6 +233,7 @@ END
 
 GO
 
+--Triger que comprueba si el sorteo está abierto
 CREATE TRIGGER sorteoAbierto ON Apuestas
 AFTER INSERT AS
 
@@ -250,16 +253,21 @@ END
 
 GO
 
-CREATE FUNCTION calcularFondosTotales ()
+--Funcion que calcula los fondos destinados a las apuestas en la jornada seleccionada
+CREATE FUNCTION calcularFondosTotales (@IDJornada INT)
 RETURNS MONEY AS
 BEGIN
 	DECLARE @NumeroApuestas INT
 	
-	SELECT @NumeroApuestas = COUNT (ID)
-		FROM Apuestas
+	SELECT @NumeroApuestas = COUNT (A.ID)
+		FROM Apuestas AS A
+		INNER JOIN
+		Boletos AS B
+		ON A.IDBoleto = B.ID
+		WHERE IDJornada = @IDJornada
 	
 	RETURN (@NumeroApuestas * 0.75) * 0.55
-	--Tener en cuenta las multiples
+
 END
 
 GO
@@ -268,6 +276,7 @@ CREATE PROCEDURE dividirAsignarFondos
 	@IDJornada INT
 AS
 BEGIN
+	--Insertamos en premios el valor del premio de cada categoría en la jornada deseada
 	INSERT INTO Premios (IDJornada, Categoria, Valor)
 	SELECT @IDJornada, T.Categoria, T.Fondos
 		FROM (SELECT P.Categoria,
@@ -317,11 +326,8 @@ BEGIN
 			IF (@numeroApuesta != 15)
 			BEGIN
 				--Si ha ganado el equipo1 el partido X (donde X es el contador)
-				IF EXISTS (SELECT P.ID
-							FROM Partidos AS P
-							INNER JOIN
-							Boletos_Partidos AS BP
-							ON P.ID = BP.IDPartido
+				IF EXISTS (SELECT ID
+							FROM Partidos
 							WHERE GolesEquipo1 > GolesEquipo2 AND NumeroPartido = @numeroApuesta)
 				BEGIN
 					-- Si la predicción es acertada
@@ -337,11 +343,8 @@ BEGIN
 				END --END if ganar
 
 				--Si ha ganado el equipo2 el partido X (donde X es el contador)
-				ELSE IF EXISTS (SELECT P.ID
-							FROM Partidos AS P
-							INNER JOIN
-							Boletos_Partidos AS BP
-							ON P.ID = BP.IDPartido
+				ELSE IF EXISTS (SELECT ID
+							FROM Partidos
 							WHERE GolesEquipo1 < GolesEquipo2 AND NumeroPartido = @numeroApuesta)
 
 				BEGIN
@@ -358,11 +361,8 @@ BEGIN
 				END --End if perder
 
 					--Si han empatado el partidoX (donde X es el contador)
-				ELSE IF EXISTS	(SELECT P.ID
-									FROM Partidos AS P
-									INNER JOIN
-									Boletos_Partidos AS BP
-									ON P.ID = BP.IDPartido
+				ELSE IF EXISTS	(SELECT ID
+									FROM Partidos
 									WHERE GolesEquipo1 = GolesEquipo2 AND NumeroPartido = @numeroApuesta)
 				BEGIN
 					-- Si la prediccion es acertada
@@ -429,16 +429,31 @@ BEGIN
 	DECLARE cursorPremios CURSOR FOR SELECT ID FROM Boletos WHERE IDJornada = @IDJornada
 	FETCH NEXT FROM cursorpremios INTO @IDBoleto
 	
+	--Con el cursor, recorremos cada ID de boletos de la jornada deseada para ir asignándole los premios
 	WHILE (@@FETCH_STATUS = 0)
 	BEGIN
+		--Insertamos los datos del acierto de este boleto en la tabla que hemos creado como variable
 		INSERT INTO @tabla (IDBoleto, numeroApuesta, resultado)
 		SELECT @IDBoleto, numeroApuesta, resultado
 			FROM dbo.ConsultarAciertos (@IDBoleto)
 
+		--Comprobamos cada numero de aciertos y le asignamos un premio de su correspondiente categoría si lo tiene
 		IF ((SELECT COUNT (resultado)
 				FROM @tabla
 				WHERE IDBoleto = @IDBoleto AND resultado = 1) = 14)
 		BEGIN
+			
+			--Este if es el caso especial del pleno al 15, que se otorga cuando se ha conseguido acertar todas las predicciones
+			IF EXISTS ((SELECT resultado
+						FROM @tabla
+						WHERE IDBoleto = @IDBoleto AND resultado = 1 AND numeroApuesta = 15))
+			BEGIN
+				INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
+				VALUES (@IDBoleto, (SELECT ID
+										FROM Premios
+										WHERE IDJornada = @IDJornada AND Categoria = 6))
+			END --End if
+
 			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
 			VALUES (@IDBoleto, (SELECT ID
 									FROM Premios
@@ -484,16 +499,6 @@ BEGIN
 									FROM Premios
 									WHERE IDJornada = @IDJornada AND Categoria = 5))
 		END --End Else if
-
-		IF EXISTS ((SELECT resultado
-					FROM @tabla
-					WHERE IDBoleto = @IDBoleto AND resultado = 1 AND numeroApuesta = 15))
-		BEGIN
-			INSERT INTO Boletos_Premios  (IDBoleto, IDPremio)
-			VALUES (@IDBoleto, (SELECT ID
-									FROM Premios
-									WHERE IDJornada = @IDJornada AND Categoria = 6))
-		END --End if
 	END --End While fetch
 END--End Procedure
 
@@ -529,12 +534,13 @@ CREATE PROCEDURE grabarApuestaSimple
 	@NumeroBoleto INT = NULL
 AS
 BEGIN
-
+	
+	--Comprobar si está abierto el sorteo
 	IF EXISTS (SELECT ID
 					FROM Jornadas
 					WHERE Estado = 'Abierto' AND ID = @IDJornada)
 	BEGIN
-
+		--Si no nos dan número de boleto, lo creamos nosotros
 		IF (@NumeroBoleto IS NULL)
 		BEGIN
 			BEGIN TRANSACTION
@@ -547,6 +553,7 @@ BEGIN
 			COMMIT TRANSACTION
 		END
 
+		--Insertamos la apuesta en el boleto
 		INSERT INTO Apuestas (IDBoleto, Tipo, Prediccion1, Prediccion2, Prediccion3, Prediccion4, Prediccion5, Prediccion6,
 							Prediccion7, Prediccion8, Prediccion9, Prediccion10, Prediccion11, Prediccion12, Prediccion13,
 							Prediccion14, PrediccionPleno1, PrediccionPleno2)
@@ -557,9 +564,6 @@ BEGIN
 
 	ELSE
 	BEGIN
-		--RAISEERROR ()
 		Print 'El sorteo debe estar abierto'
 	END
 END
-
---leo@iesnervion.es

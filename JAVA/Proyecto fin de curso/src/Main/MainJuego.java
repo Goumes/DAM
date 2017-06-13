@@ -351,14 +351,16 @@ public class MainJuego
 					switch (accion)
 					{
 
+						//Abrir Cofre
 						case 1:
 							gestora.abrirCofre (partidaDefinitiva);
 						break;
 
+						//Ir a Tienda
 						case 2:
 							if (gestora.comprobarTienda (partidaDefinitiva.getMazmorra()))
 							{
-								
+								//LeerValidarEleccionTienda
 								do
 								{
 									try
@@ -376,9 +378,11 @@ public class MainJuego
 									}
 								}
 								while (eleccionTienda < 0 || eleccionTienda > 4);
+								//Fin LeerValidarEleccionTienda
 								
 								while (eleccionTienda != 0)
 								{
+									//LeerValidarComprar
 									do
 									{
 										System.out.println();
@@ -387,6 +391,7 @@ public class MainJuego
 										comprar = Character.toLowerCase(teclado.next().charAt(0));
 									}
 									while (comprar != 's' && comprar != 'n');
+									//LeerValidarComprar
 									
 									if (comprar == 's')
 									{
@@ -404,6 +409,7 @@ public class MainJuego
 											System.out.println();
 										}
 									}
+									//LeerValidarEleccionTienda
 									do
 									{
 										try
@@ -421,6 +427,7 @@ public class MainJuego
 										}
 									}
 									while (eleccionTienda < 0 || eleccionTienda > 4);
+									//Fin LeerValidarEleccionTienda
 								}
 							}
 							
@@ -432,10 +439,12 @@ public class MainJuego
 							}
 						break;
 						
+						//Pelear enemigo
 						case 3:
 							
 							if (gestora.comprobarEnemigo(partidaDefinitiva.getMazmorra()))
 							{
+								//LeerValidarEleccionCombate
 								do
 								{
 									try
@@ -453,11 +462,14 @@ public class MainJuego
 									}
 								}
 								while (eleccionCombate < 0 || eleccionCombate > 2);
+								//Fin LeerValidarEleccionCombate
 								
 								while (eleccionCombate != 0)
 								{
 									switch (eleccionCombate)
 									{
+									
+									//Combatir
 									case 1:
 										gestora.combate(partidaDefinitiva);
 										
@@ -471,8 +483,10 @@ public class MainJuego
 										
 									break;
 										
+									//UtilizarItem
 									case 2:
 										
+										//LeerValidarEleccionInventario
 										do
 										{
 											try
@@ -490,10 +504,12 @@ public class MainJuego
 											}
 										}
 										while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+										//Fin LeerValidarEleccionInventario
 										
 										while (eleccionInventario != 0)
 										{
-											
+											//LeerValidarUtilizarItem
+											do
 											{
 												System.out.println();
 												System.out.println("¿Quieres utilizar este objeto?");
@@ -501,6 +517,7 @@ public class MainJuego
 												utilizar = Character.toLowerCase(teclado.next().charAt(0));
 											}
 											while (utilizar != 's' && utilizar != 'n');
+											//Fin LeerValidarUtilizarItem
 											
 											if (utilizar == 's')
 											{
@@ -521,6 +538,7 @@ public class MainJuego
 												}
 											}
 											
+											//LeerValidarEleccionInventario
 											do
 											{
 												try
@@ -538,6 +556,7 @@ public class MainJuego
 												}
 											}
 											while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+											//Fin LeerValidarEleccionInventario
 										}
 										
 									break;
@@ -545,6 +564,7 @@ public class MainJuego
 									
 									if (!gestora.comprobarEnemigoMuerto (partidaDefinitiva.getMazmorra()) && !muerto)
 									{
+										//LeerValidarEleccionCombate
 										do
 										{
 											try
@@ -562,6 +582,7 @@ public class MainJuego
 											}
 										}
 										while (eleccionCombate < 0 || eleccionCombate > 2);
+										//Fin LeerValidarEleccionCombate
 									}
 									
 									else
@@ -578,7 +599,9 @@ public class MainJuego
 							
 						break;
 						
+						//Avanzar
 						case 4:
+							//LeerValidarPosicion
 							do
 							{
 								try
@@ -597,6 +620,7 @@ public class MainJuego
 								}
 							}
 							while (posicion < 0 || posicion > 4);
+							//Fin LeerValidarPosicion
 							
 							if (posicion != 0)
 							{
@@ -605,6 +629,7 @@ public class MainJuego
 							
 							if (gestora.comprobarFinNivel(partidaDefinitiva.getMazmorra()))
 							{
+								//LeerValidarAvanzarSiguienteNivel
 								do
 								{
 									System.out.println();
@@ -612,8 +637,8 @@ public class MainJuego
 									System.out.println();
 									avanzar = Character.toLowerCase(teclado.next ().charAt (0));
 								}
-								
 								while (avanzar != 's' && avanzar != 'n');
+								//Fin LeerValidarAvanzarSiguienteNivel
 								
 								if (avanzar == 's')
 								{
@@ -623,8 +648,9 @@ public class MainJuego
 							
 						break;
 						
+						//Abrir inventario
 						case 5:
-							
+							//LeerValidarEleccionInventario
 							do
 							{
 								try
@@ -642,10 +668,12 @@ public class MainJuego
 								}
 							}
 							while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+							//Fin LeerValidarEleccionInventario
 							
 								while (eleccionInventario != 0)
 								{
-									
+									//LeerValidarUtilizarItem
+									do
 									{
 										System.out.println();
 										System.out.println("¿Quieres utilizar este objeto?");
@@ -653,6 +681,7 @@ public class MainJuego
 										utilizar = Character.toLowerCase(teclado.next().charAt(0));
 									}
 									while (utilizar != 's' && utilizar != 'n');
+									//Fin LeerValidarUtilizarItem
 									
 									if (utilizar == 's')
 									{
@@ -673,6 +702,7 @@ public class MainJuego
 										}
 									}
 									
+									//LeerValidarEleccionInventario
 									do
 									{
 										try
@@ -690,10 +720,12 @@ public class MainJuego
 										}
 									}
 									while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
+									//Fin LeerValidarEleccionInventario
 								}
 							
 						break;
 
+						//Mostrar mapa
 						case 6:
 							partidaDefinitiva.getMazmorra ().printMazmorra ();
 						break;
