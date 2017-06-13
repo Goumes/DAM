@@ -404,7 +404,7 @@ BEGIN
 			UPDATE @tabla
 			SET resultado = @resultado
 			WHERE CURRENT OF cursorAciertos
-			--Forma chuli
+
 			FETCH NEXT FROM cursorAciertos INTO @numeroApuesta
 		END --End while fetch
 	CLOSE cursorInserted
