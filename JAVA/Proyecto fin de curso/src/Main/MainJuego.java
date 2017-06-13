@@ -281,8 +281,19 @@ public class MainJuego
 				{
 					do
 					{
-						menuBorrar ();
-						borrar = teclado.nextInt();
+						try
+						{
+							menuBorrar ();
+							borrar = teclado.nextInt();
+						}
+						catch (InputMismatchException e)
+						{
+							borrar = -1;
+							System.out.println();
+							System.out.println("Ja ja que gracioso.");
+							System.out.println();
+							teclado.next();
+						}
 					}
 					while (borrar < 0 || borrar > 3);
 					
@@ -317,8 +328,19 @@ public class MainJuego
 				// PrintMenuLeerValidarAcciones
 				do
 				{
-					menuAcciones ();
-					accion = teclado.nextInt();
+					try
+					{
+						menuAcciones ();
+						accion = teclado.nextInt();
+					}
+					catch (InputMismatchException e)
+					{
+						accion = -1;
+						System.out.println();
+						System.out.println("Ja ja que gracioso.");
+						System.out.println();
+						teclado.next();
+					}
 				}
 				while (accion < 0 || accion > 6);
 				//Fin PrintMenuLeerValidarAcciones
@@ -339,8 +361,19 @@ public class MainJuego
 								
 								do
 								{
-									gestora.abrirTienda(partidaDefinitiva);
-									eleccionTienda = teclado.nextInt();
+									try
+									{
+										gestora.abrirTienda(partidaDefinitiva);
+										eleccionTienda = teclado.nextInt();
+									}
+									catch (InputMismatchException e)
+									{
+										eleccionTienda = -1;
+										System.out.println();
+										System.out.println("Ja ja que gracioso.");
+										System.out.println();
+										teclado.next();
+									}
 								}
 								while (eleccionTienda < 0 || eleccionTienda > 4);
 								
@@ -371,11 +404,21 @@ public class MainJuego
 											System.out.println();
 										}
 									}
-									
 									do
 									{
-										gestora.abrirTienda(partidaDefinitiva);
-										eleccionTienda = teclado.nextInt();
+										try
+										{
+											gestora.abrirTienda(partidaDefinitiva);
+											eleccionTienda = teclado.nextInt();
+										}
+										catch (InputMismatchException e)
+										{
+											eleccionTienda = -1;
+											System.out.println();
+											System.out.println("Ja ja que gracioso.");
+											System.out.println();
+											teclado.next();
+										}
 									}
 									while (eleccionTienda < 0 || eleccionTienda > 4);
 								}
@@ -395,8 +438,19 @@ public class MainJuego
 							{
 								do
 								{
-									gestora.interfazCombate(partidaDefinitiva);
-									eleccionCombate = teclado.nextInt();
+									try
+									{
+										gestora.interfazCombate(partidaDefinitiva);
+										eleccionCombate = teclado.nextInt();
+									}
+									catch (InputMismatchException e)
+									{
+										eleccionCombate = -1;
+										System.out.println();
+										System.out.println("Ja ja que gracioso.");
+										System.out.println();
+										teclado.next();
+									}
 								}
 								while (eleccionCombate < 0 || eleccionCombate > 2);
 								
@@ -421,8 +475,19 @@ public class MainJuego
 										
 										do
 										{
-											numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
-											eleccionInventario = teclado.nextInt();
+											try
+											{
+												numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+												eleccionInventario = teclado.nextInt();
+											}
+											catch (InputMismatchException e)
+											{
+												eleccionInventario = -1;
+												System.out.println();
+												System.out.println("Ja ja que gracioso.");
+												System.out.println();
+												teclado.next();
+											}
 										}
 										while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
 										
@@ -458,8 +523,19 @@ public class MainJuego
 											
 											do
 											{
-												numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
-												eleccionInventario = teclado.nextInt();
+												try
+												{
+													numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+													eleccionInventario = teclado.nextInt();
+												}
+												catch (InputMismatchException e)
+												{
+													eleccionInventario = -1;
+													System.out.println();
+													System.out.println("Ja ja que gracioso.");
+													System.out.println();
+													teclado.next();
+												}
 											}
 											while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
 										}
@@ -471,8 +547,19 @@ public class MainJuego
 									{
 										do
 										{
-											gestora.interfazCombate(partidaDefinitiva);
-											eleccionCombate = teclado.nextInt();
+											try
+											{
+												gestora.interfazCombate(partidaDefinitiva);
+												eleccionCombate = teclado.nextInt();
+											}
+											catch (InputMismatchException e)
+											{
+												eleccionCombate = -1;
+												System.out.println();
+												System.out.println("Ja ja que gracioso.");
+												System.out.println();
+												teclado.next();
+											}
 										}
 										while (eleccionCombate < 0 || eleccionCombate > 2);
 									}
@@ -494,9 +581,20 @@ public class MainJuego
 						case 4:
 							do
 							{
-								partidaDefinitiva.getMazmorra ().printMazmorra ();
-								menuMovimiento ();
-								posicion = teclado.nextInt ();
+								try
+								{
+									partidaDefinitiva.getMazmorra ().printMazmorra ();
+									menuMovimiento ();
+									posicion = teclado.nextInt ();
+								}
+								catch (InputMismatchException e)
+								{
+									posicion = -1;
+									System.out.println();
+									System.out.println("Ja ja que gracioso.");
+									System.out.println();
+									teclado.next();
+								}
 							}
 							while (posicion < 0 || posicion > 4);
 							
@@ -529,8 +627,19 @@ public class MainJuego
 							
 							do
 							{
-								numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
-								eleccionInventario = teclado.nextInt();
+								try
+								{
+									numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+									eleccionInventario = teclado.nextInt();
+								}
+								catch (InputMismatchException e)
+								{
+									eleccionInventario = -1;
+									System.out.println();
+									System.out.println("Ja ja que gracioso.");
+									System.out.println();
+									teclado.next();
+								}
 							}
 							while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
 							
@@ -566,8 +675,19 @@ public class MainJuego
 									
 									do
 									{
-										numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
-										eleccionInventario = teclado.nextInt();
+										try
+										{
+											numeroInventario = gestora.monstrarInventario(partidaDefinitiva.getJugador());
+											eleccionInventario = teclado.nextInt();
+										}
+										catch (InputMismatchException e)
+										{
+											eleccionInventario = -1;
+											System.out.println();
+											System.out.println("Ja ja que gracioso.");
+											System.out.println();
+											teclado.next();
+										}
 									}
 									while (eleccionInventario < 0 || eleccionInventario > numeroInventario);
 								}
@@ -584,8 +704,19 @@ public class MainJuego
 					{
 						do
 						{
-							menuAcciones ();
-							accion = teclado.nextInt();
+							try
+							{
+								menuAcciones ();
+								accion = teclado.nextInt();
+							}
+							catch (InputMismatchException e)
+							{
+								accion = -1;
+								System.out.println();
+								System.out.println("Ja ja que gracioso.");
+								System.out.println();
+								teclado.next();
+							}
 						}
 						while (accion < 0 || accion > 6);
 					}
