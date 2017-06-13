@@ -233,7 +233,7 @@ public class MainJuego
 		//LeerValidarJugar
 		do
 		{
-			System.out.println("Quieres jugar a 'UnknownName'? S/N");
+			System.out.println("Quieres jugar a EstoNoTieneNadaQueVerConIsaac? S/N");
 			ejecutar = Character.toLowerCase(teclado.next().charAt(0));
 
 		}
@@ -752,7 +752,7 @@ public class MainJuego
 			//Preguntar JugarOtraVez
 			do
 			{
-				System.out.println("Quieres volver a jugar a 'UnknownName'? S/N");
+				System.out.println("Quieres volver a jugar a EstoNoTieneNadaQueVerConIsaac? S/N");
 				ejecutar = Character.toLowerCase(teclado.next().charAt(0));
 			}
 			while (ejecutar != 's' && ejecutar != 'n');
