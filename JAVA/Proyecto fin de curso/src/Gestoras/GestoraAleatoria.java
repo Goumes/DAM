@@ -474,7 +474,7 @@ public class GestoraAleatoria
 			{
 				if (numero == contador)
 				{
-					resultado = (ItemIMPL) item.clone();
+					resultado = (ItemIMPL) item;
 				}
 				
 				item = (ItemIMPL) ois.readObject();
@@ -561,7 +561,7 @@ public class GestoraAleatoria
 			{
 				if (numero == contador)
 				{
-					resultado = (ArmaIMPL) arma.clone();
+					resultado = (ArmaIMPL) arma;
 				}
 				
 				arma = (ArmaIMPL) ois.readObject();
@@ -648,7 +648,7 @@ public class GestoraAleatoria
 			{
 				if (numero == contador)
 				{
-					resultado = (EnemigoIMPL) enemigo.clone();
+					resultado = (EnemigoIMPL) enemigo;
 				}
 				
 				enemigo = (EnemigoIMPL) ois.readObject();

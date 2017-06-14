@@ -2,6 +2,7 @@ package Tests;
 
 import Clases.ArmaIMPL;
 import Exceptions.JuegoException;
+import Gestoras.GestoraAleatoria;
 
 public class TestArma
 {
@@ -10,6 +11,7 @@ public class TestArma
 		ArmaIMPL riflePulsos = null;
 		ArmaIMPL cuchilloCombate = null;
 		ArmaIMPL riflePulsos2 = null;
+		GestoraAleatoria gestora = new GestoraAleatoria ();
 		
 		try
 		{
@@ -61,6 +63,10 @@ public class TestArma
 		System.out.println(riflePulsos.compareTo (cuchilloCombate));
 		System.out.println(cuchilloCombate.compareTo (riflePulsos));
 		//Fin compareTo
+		
+		System.out.println(gestora.armaAleatoria().toString());
+		System.out.println(gestora.enemigoAleatorio().toString());
+		System.out.println(gestora.itemAleatorio().toString());
 		
 	}//fin_main
 }//fin_pp
